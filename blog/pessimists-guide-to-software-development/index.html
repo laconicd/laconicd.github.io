@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lofi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Blog</title>
+
+    
+    
+    
+    
+
+    <meta name="description" content="A blog about Rust, Zola, and modern web development. Featuring tutorials, insights, and personal projects.">
+    <meta property="og:title" content="The Blog">
+    <meta property="og:description" content="A blog about Rust, Zola, and modern web development. Featuring tutorials, insights, and personal projects.">
+    <meta property="og:type" content="website">
+    
+    
+    
+    
+
+    <meta property="og:url" content="http:&#x2F;&#x2F;localhost:8080&#x2F;blog&#x2F;pessimists-guide-to-software-development&#x2F;">
+    <link rel="canonical" href="http:&#x2F;&#x2F;localhost:8080&#x2F;blog&#x2F;pessimists-guide-to-software-development&#x2F;">
+    <link rel="icon" href="http://localhost:8080/favicon.ico">
+    
+    
+    
+    
+    
+    <meta property="og:image" content="http:&#x2F;&#x2F;localhost:8080&#x2F;default_og.png">
+    <meta name="twitter:image" content="http:&#x2F;&#x2F;localhost:8080&#x2F;default_og.png">
+    
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Blog">
+    <meta name="twitter:description" content="A blog about Rust, Zola, and modern web development. Featuring tutorials, insights, and personal projects.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- TailwindCSS + DaisyUI CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+    <style>
+        :root {
+            --font-main: 'Outfit', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-base-100 text-base-content">
+
+    <div class="navbar bg-base-100/90 backdrop-blur-sm sticky top-0 z-50 border-b border-base-200">
+    <div class="container mx-auto max-w-screen-2xl px-4">
+        <div class="flex-1">
+            <a href="/" class="btn btn-ghost text-xl font-bold tracking-tight">
+                The Blog
+            </a>
+        </div>
+        <div class="flex-none flex items-center gap-2">
+            <ul class="menu menu-horizontal px-1 font-medium hidden sm:flex">
+                <!-- Hardcoded relative links to avoid Zola generation issues -->
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+
+            <!-- Search Button -->
+            <button class="btn btn-ghost btn-circle" onclick="search_modal.showModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </button>
+
+            <!-- Theme Toggle -->
+            <label class="swap swap-rotate btn btn-ghost btn-circle">
+                <input type="checkbox" class="theme-controller" value="dim" />
+                <!-- sun icon -->
+                <svg class="swap-off fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+                </svg>
+                <!-- moon icon -->
+                <svg class="swap-on fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22,8.27,8.27,0,0,1,12.14,4a10,10,0,0,0,0,20A8.32,8.32,0,0,1,12.14,19.69Z" />
+                </svg>
+            </label>
+        </div>
+    </div>
+</div>
+
+    <!-- Main Content -->
+    <div class="flex-grow container mx-auto max-w-screen-2xl px-4 py-8">
+        
+
+<!-- Article Header -->
+<div class="max-w-4xl mx-auto text-center mb-12">
+    <div class="text-sm font-semibold text-primary mb-4 tracking-wide uppercase">
+        December 11, 2025
+    </div>
+    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">염세주의자를 위한 삶의 안내서</h1>
+
+    <div class="flex items-center justify-center gap-4">
+        <div class="avatar placeholder">
+            <div class="bg-neutral text-neutral-content rounded-full w-12">
+                <span class="text-xl">A</span>
+            </div>
+        </div>
+        <div class="text-left">
+            <div class="font-bold">Author Name</div>
+            <div class="text-xs text-base-content/60">Writer</div>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Image -->
+
+
+<div class="flex flex-col lg:flex-row gap-12">
+    <!-- Main Content -->
+    <article class="prose prose-lg md:prose-xl mx-auto flex-1 max-w-none">
+
+        
+<div class="p-6 bg-base-200/50 rounded-xl mb-8 not-prose border border-base-200 lg:hidden">
+    <h3 class="font-bold mb-2 text-sm uppercase tracking-wider opacity-70">Table of Contents</h3>
+    <ul class="menu menu-sm w-full p-0">
+        
+        <li><a href="http:&#x2F;&#x2F;localhost:8080&#x2F;blog&#x2F;pessimists-guide-to-software-development&#x2F;#seomun-gidaeneun-gotongeul-nahneunda">서문: 기대는 고통을 낳는다</a></li>
+        
+        <li><a href="http:&#x2F;&#x2F;localhost:8080&#x2F;blog&#x2F;pessimists-guide-to-software-development&#x2F;#1-modeun-gyehoegeun-eogeusnagi-maryeonida">1. 모든 계획은 어긋나기 마련이다</a></li>
+        
+        <li><a href="http:&#x2F;&#x2F;localhost:8080&#x2F;blog&#x2F;pessimists-guide-to-software-development&#x2F;#2-sarameun-bulwanjeonhan-jonjaeda-nareul-pohamhaeseo">2. 사람은 불완전한 존재다, 나를 포함해서</a></li>
+        
+        <li><a href="http:&#x2F;&#x2F;localhost:8080&#x2F;blog&#x2F;pessimists-guide-to-software-development&#x2F;#gyeolron-cenyeomi-anin-suyong">결론: 체념이 아닌 수용</a></li>
+        
+    </ul>
+</div>
+
+
+        <h2 id="seomun-gidaeneun-gotongeul-nahneunda">서문: 기대는 고통을 낳는다</h2>
+<p>완벽한 하루, 이상적인 관계, 흠 없는 성공을 꿈꾼다. 하지만 현실은 언제나 예상치 못한 문제들로 가득하다. 쇼펜하우어가 말했듯, 맹목적인 기대와 욕망은 결국 우리를 실망과 고통으로 이끄는 것 같다.</p>
+<p>모든 것이 잘못될 수 있다는 생각. 어쩌면 이 염세적인 관점에서 더 현실적이고 평온한 삶의 실마리를 찾을 수 있지 않을까.</p>
+<h2 id="1-modeun-gyehoegeun-eogeusnagi-maryeonida">1. 모든 계획은 어긋나기 마련이다</h2>
+<p>아무리 꼼꼼하게 세운 계획도 언제든 틀어질 수 있음을 이제는 안다. 삶이란 본질적으로 불안정한 것이기에.</p>
+<ul>
+<li><strong>대안을 생각해 본다:</strong> '설마' 하는 안일한 생각이 가장 큰 위험일지 모른다. 예상치 못한 상황에 대비한 최소한의 안전장치, 재정적인 것이든 심리적인 것이든, 그런 게 필요하다.</li>
+<li><strong>결과에 대한 집착을 버려본다:</strong> 최선을 다하되, 결과는 내 손을 떠난 영역에 있음을 받아들이려 한다. 과정에 집중하고 결과에는 초연해지는 연습, 그것이 필요하다.</li>
+</ul>
+<h2 id="2-sarameun-bulwanjeonhan-jonjaeda-nareul-pohamhaeseo">2. 사람은 불완전한 존재다, 나를 포함해서</h2>
+<p>인간은 누구나 실수를 하고, 감정에 휩쓸리며, 어제의 다짐을 오늘 잊는다. 타인에게 완벽함을 기대하는 것, 나 자신에게 완벽을 강요하는 것 모두 폭력일 뿐이다.</p>
+<ul>
+<li><strong>오해의 가능성을 열어둔다:</strong> 모든 소통은 왜곡될 여지가 있다. 중요한 이야기일수록 상대가 제대로 이해했는지 확인하고, 기록으로 남겨두는 것이 서로를 위한 최소한의 배려가 아닐까.</li>
+<li><strong>다른 시선을 빌려본다:</strong> 중요한 결정을 내리기 전, 믿을 수 있는 이에게 조언을 구해본다. 이는 상대를 의심해서가 아니라, 나 혼자서는 보지 못하는 맹점을 인정하기 위함이다.</li>
+</ul>
+<h2 id="gyeolron-cenyeomi-anin-suyong">결론: 체념이 아닌 수용</h2>
+<p>염세주의는 세상을 무작정 부정적으로 보는 비관론이 아니다. 세상의 불완전함과 삶의 불확실성을 있는 그대로 받아들이고, 그 안에서 내가 할 수 있는 최선을 다하려는 현실적인 태도에 가깝다.</p>
+<p>과도한 기대를 버리고 모든 가능성에 대비할 때, 역설적으로 불안에서 벗어나 더 큰 평온과 자유를 얻게 되는 것 같다.</p>
+
+    </article>
+
+    <!-- Sidebar (TOC) Desktop -->
+    
+<aside class="hidden lg:block w-64 shrink-0">
+    <div class="sticky top-24">
+        <h3 class="font-bold mb-4 text-sm uppercase tracking-wider opacity-70">On this page</h3>
+        <ul class="menu menu-sm w-full p-0 border-l border-base-200">
+            
+            <li><a href="http:&#x2F;&#x2F;localhost:8080&#x2F;blog&#x2F;pessimists-guide-to-software-development&#x2F;#seomun-gidaeneun-gotongeul-nahneunda" class="border-l border-transparent hover:border-primary">서문: 기대는 고통을 낳는다</a></li>
+            
+            <li><a href="http:&#x2F;&#x2F;localhost:8080&#x2F;blog&#x2F;pessimists-guide-to-software-development&#x2F;#1-modeun-gyehoegeun-eogeusnagi-maryeonida" class="border-l border-transparent hover:border-primary">1. 모든 계획은 어긋나기 마련이다</a></li>
+            
+            <li><a href="http:&#x2F;&#x2F;localhost:8080&#x2F;blog&#x2F;pessimists-guide-to-software-development&#x2F;#2-sarameun-bulwanjeonhan-jonjaeda-nareul-pohamhaeseo" class="border-l border-transparent hover:border-primary">2. 사람은 불완전한 존재다, 나를 포함해서</a></li>
+            
+            <li><a href="http:&#x2F;&#x2F;localhost:8080&#x2F;blog&#x2F;pessimists-guide-to-software-development&#x2F;#gyeolron-cenyeomi-anin-suyong" class="border-l border-transparent hover:border-primary">결론: 체념이 아닌 수용</a></li>
+            
+        </ul>
+
+        <div class="mt-8">
+            <h3 class="font-bold mb-4 text-sm uppercase tracking-wider opacity-70">Share</h3>
+            <div class="flex gap-2">
+                <button class="btn btn-square btn-ghost btn-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                        <polyline points="16 6 12 2 8 6" />
+                        <line x1="12" y1="2" x2="12" y2="15" />
+                    </svg>
+                </button>
+                <!-- Add more social buttons if needed -->
+            </div>
+        </div>
+    </div>
+</aside>
+
+</div>
+
+<!-- Post Navigation -->
+<div class="border-t border-base-200 mt-16 pt-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div></div>
+        
+
+        
+    </div>
+</div>
+
+
+    </div>
+
+    <footer class="footer footer-center py-6 px-4 bg-base-200 text-base-content rounded-t-xl mt-12">
+    <nav class="grid grid-flow-col gap-4">
+        <a href="/about/" class="link link-hover">About</a>
+        <a href="/blog/" class="link link-hover">Blog</a>
+    </nav>
+    <nav>
+        <div class="flex items-center justify-center gap-6">
+            <a href="#" class="link link-hover"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" class="fill-current">
+                    <path
+                        d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z">
+                    </path>
+                </svg></a>
+            <a href="#" class="link link-hover"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" class="fill-current">
+                    <path
+                        d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z">
+                    </path>
+                </svg></a>
+            <a href="#" class="link link-hover"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" class="fill-current">
+                    <path
+                        d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z">
+                    </path>
+                </svg></a>
+        </div>
+    </nav>
+    <aside>
+        <p>Copyright © 2025 - All right reserved by The Blog</p>
+    </aside>
+</footer>
+
+    <dialog id="search_modal" class="modal">
+    <div class="modal-box w-11/12 max-w-2xl bg-base-100">
+        <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+        <h3 class="font-bold text-lg mb-4">Search</h3>
+        <div class="relative">
+            <input type="text" id="search-input" placeholder="Type to search..." class="input input-bordered w-full" />
+        </div>
+        <ul id="search-results" class="menu bg-base-100 w-full p-0 mt-4 max-h-[60vh] overflow-y-auto">
+            <!-- Search results will be populated here -->
+        </ul>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+    </form>
+</dialog>
+    <script src="http://localhost:8080/elasticlunr.min.js"></script>
+<script src="http://localhost:8080/search_index.en.js"></script>
+<script src="http://localhost:8080/search.js"></script>
+</body>
+
+</html>
