@@ -1,6 +1,6 @@
 # The URL the site will be built for
 title = "The Blog"                                                                                                         # <- 여기에 설정
-base_url = "http://localhost:8080"
+base_url = "https://laconicd.github.io"
 description = "A blog about Rust, Zola, and modern web development. Featuring tutorials, insights, and personal projects."
 
 # Whether to automatically compile all Sass files in the sass directory
