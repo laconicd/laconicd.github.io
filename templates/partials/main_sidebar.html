@@ -1,0 +1,39 @@
+<div class="space-y-8">
+    <!-- About Me Card -->
+    <div class="card bg-base-200/50 border border-base-200">
+        <div class="card-body items-center text-center p-6">
+            <div class="avatar mb-4">
+                <div
+                    class="w-24 rounded-full bg-base-300 ring ring-primary ring-offset-base-100 ring-offset-2 flex items-center justify-center">
+                    <!-- Placeholder for an image or an icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-base-content/30" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </div>
+            </div>
+            <h2 class="card-title">{{ config.title }}</h2>
+            <p class="text-sm text-base-content/70">
+                철학자들의 명언을 곱씹으며, 삶에 적용하고 사유하는 것을 즐깁니다.
+            </p>
+            <div class="card-actions mt-4">
+                <a href="{{ get_url(path='@/about.md') }}" class="btn btn-primary btn-sm">더 알아보기</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Posts -->
+    <div class="p-6 bg-base-200/50 border border-base-200 rounded-box">
+        <h2 class="text-xl font-bold mb-4">최신 글</h2>
+        {% set blog_section = get_section(path="blog/_index.md") %}
+        <ul class="space-y-4">
+            {% for page in blog_section.pages | slice(end=5) %}
+            <li>
+                <a href="{{ page.permalink }}" class="link link-hover font-semibold">{{ page.title }}</a>
+                <p class="text-sm text-base-content/60 mt-1">{{ page.date | date(format="%Y년 %m월 %d일") }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

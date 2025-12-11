@@ -1,0 +1,36 @@
+<div class="card lg:card-side bg-base-100 shadow-xl mb-16 overflow-hidden border border-base-200">
+    {% if hero_post.extra.cover %}
+    <figure class="lg:w-1/2">
+        <img src="{{ get_url(path=hero_post.extra.cover) }}" alt="{{ hero_post.title }}"
+            class="w-full h-full object-cover" />
+    </figure>
+    {% endif %}
+    <div class="card-body lg:w-1/2 justify-center p-8 lg:p-12">
+        <div class="text-sm font-semibold text-primary mb-2">
+            {{ hero_post.date | date(format=config.extra.date_format) }}
+        </div>
+        <h2 class="card-title text-4xl font-bold mb-4 hover:text-primary transition-colors">
+            <a href="{{ hero_post.permalink }}">{{ hero_post.title }}</a>
+        </h2>
+        <p class="text-base-content/70 text-lg mb-6 leading-relaxed">
+            {% if hero_post.summary %}
+            {{ hero_post.summary | striptags | truncate(length=200) }}
+            {% else %}
+            {{ hero_post.content | striptags | truncate(length=200) }}
+            {% endif %}
+        </p>
+        <div class="card-actions justify-start">
+            <div class="flex items-center gap-4">
+                <div class="avatar placeholder">
+                    <div class="bg-neutral text-neutral-content rounded-full w-10">
+                        <span class="text-xs">A</span>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-sm">{{ config.extra.author_name }}</span>
+                    <span class="text-xs text-base-content/60">{{ config.extra.author_role }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

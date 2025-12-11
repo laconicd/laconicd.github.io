@@ -1,0 +1,25 @@
+# The URL the site will be built for
+title = "The Blog"                                                                                                         # <- 여기에 설정
+base_url = "http://localhost:8080"
+description = "A blog about Rust, Zola, and modern web development. Featuring tutorials, insights, and personal projects."
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = false
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+highlight_theme = "ayu-light"
+
+[extra]
+# Put all your custom variables here
+hero_title = "Writings"
+hero_subtitle = "The latest news, technologies, and resources from our team."
+default_image = "default_og.png"
+date_format = "%B %d, %Y"
+author_name = "My Name"
+author_role = "Writer"

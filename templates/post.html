@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock title %}
+
+{% block content %}
+
+<!-- Article Header -->
+<div class="max-w-4xl mx-auto text-center mb-12">
+    <div class="text-sm font-semibold text-primary mb-4 tracking-wide uppercase">
+        {{ page.date | date(format="%B %d, %Y") }}
+    </div>
+    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">{{ page.title }}</h1>
+
+    <div class="flex items-center justify-center gap-4">
+        <div class="avatar placeholder">
+            <div class="bg-neutral text-neutral-content rounded-full w-12">
+                <span class="text-xl">A</span>
+            </div>
+        </div>
+        <div class="text-left">
+            <div class="font-bold">Author Name</div>
+            <div class="text-xs text-base-content/60">Writer</div>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Image -->
+{% if page.extra.cover %}
+<figure class="mb-16 -mx-4 lg:-mx-12 overflow-hidden rounded-xl shadow-2xl">
+    <img src="{{ get_url(path=page.extra.cover) }}" alt="{{ page.title }}" class="w-full object-cover" />
+</figure>
+{% endif %}
+
+<div class="flex flex-col lg:flex-row gap-12">
+    <!-- Main Content -->
+    <article class="prose prose-lg md:prose-xl mx-auto flex-1 max-w-none">
+
+        {% include "partials/post_toc_mobile.html" %}
+
+        {{ page.content | safe }}
+    </article>
+
+    <!-- Sidebar (TOC) Desktop -->
+    {% include "partials/post_sidebar.html" %}
+</div>
+
+<!-- Post Navigation -->
+{% include "partials/post_nav.html" %}
+
+{% endblock content %}

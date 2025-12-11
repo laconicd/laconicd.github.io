@@ -1,0 +1,10 @@
+{% if page.toc %}
+<div class="p-6 bg-base-200/50 rounded-xl mb-8 not-prose border border-base-200 lg:hidden">
+    <h3 class="font-bold mb-2 text-sm uppercase tracking-wider opacity-70">Table of Contents</h3>
+    <ul class="menu menu-sm w-full p-0">
+        {% for h in page.toc %}
+        <li><a href="{{ h.permalink }}">{{ h.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
