@@ -26,7 +26,7 @@
     <!-- Recent Posts -->
     <div class="p-6 bg-base-200/50 border border-base-200 rounded-box">
         <h2 class="text-xl font-bold mb-4">최신 글</h2>
-        {% set blog_section = get_section(path="blog/_index.md") %}
+        {% set blog_section = get_section(path="posts/_index.md") %}
         <ul class="space-y-4">
             {% for page in blog_section.pages | slice(end=5) %}
             <li>

@@ -1,6 +1,7 @@
 +++
-title = "Home"
+title = "Blog"
 sort_by = "date"
-paginate_by = 5
 template = "index.html"
+page_template = "post.html"
+paginate_by = 5
 +++
