@@ -1,0 +1,44 @@
+# .github/workflows/deploy.yml
+name: Deploy to GitHub Pages (Arch Linux)
+
+on:
+  # main 브랜치에 push 할 때 실행
+  push:
+    branches:
+      - main
+  # Actions 탭에서 수동으로 실행
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    # GitHub의 Ubuntu 환경에서 실행되지만,
+    # 모든 작업 단계(steps)는 아래의 Arch Linux 컨테이너 안에서 구동됩니다.
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+
+    steps:
+      # 1. GitHub Action에서 사용할 소스 코드를 체크아웃합니다.
+      # @v4는 이 'checkout' 액션의 4번째 메이저 버전을 의미합니다. (아래 추가 설명)
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Arch Linux의 패키지 매니저(pacman)로 필요한 도구를 설치합니다.
+      #    - zola: 사이트 빌드용
+      #    - git: 빌드된 파일을 gh-pages 브랜치에 push하기 위해 필요
+      - name: Install Dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm zola git
+
+      # 3. Zola를 사용해 웹사이트를 빌드합니다. 결과물은 'public' 폴더에 생성됩니다.
+      - name: Build site
+        run: zola build
+
+      # 4. 'public' 폴더의 내용을 GitHub Pages에 배포합니다.
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          commit_message: ${{ github.event.head_commit.message }}
