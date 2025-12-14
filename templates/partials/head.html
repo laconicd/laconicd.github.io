@@ -1,63 +1,64 @@
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
 
-    {% set page_description = "" %}
-    {% if page %}
-    {% set page_description = page.summary | default(value=config.description) %}
-    {% elif section %}
-    {% set page_description = section.description | default(value=config.description) %}
-    {% else %}
-    {% set page_description = config.description %}
-    {% endif %}
+  {% set page_description = "" %}
+  {% if page %}
+  {% set page_description = page.summary | default(value=config.description) %}
+  {% elif section %}
+  {% set page_description = section.description | default(value=config.description) %}
+  {% else %}
+  {% set page_description = config.description %}
+  {% endif %}
 
-    <meta name="description" content="{{ page_description | truncate(length=155) }}">
-    <meta property="og:title" content="{% block og_title %}{{ config.title }}{% endblock og_title %}">
-    <meta property="og:description" content="{{ page_description | truncate(length=155) }}">
-    <meta property="og:type" content="{% if page and page.is_page %}article{% else %}website{% endif %}">
-    {% set page_url = config.base_url %}
-    {% if page %}
-    {% set page_url = page.permalink %}
-    {% elif section %}
-    {% set page_url = section.permalink %}
-    {% endif %}
+  <meta name="description" content="{{ page_description | truncate(length=155) }}">
+  <meta property="og:title" content="{% block og_title %}{{ config.title }}{% endblock og_title %}">
+  <meta property="og:description" content="{{ page_description | truncate(length=155) }}">
+  <meta property="og:type" content="{% if page and page.is_page %}article{% else %}website{% endif %}">
+  {% set page_url = config.base_url %}
+  {% if page %}
+  {% set page_url = page.permalink %}
+  {% elif section %}
+  {% set page_url = section.permalink %}
+  {% endif %}
 
-    <meta property="og:url" content="{{ page_url }}">
-    <link rel="canonical" href="{{ page_url }}">
-    <link rel="icon" href="{{ get_url(path='favicon.ico') }}">
-    {% set image_url = "" %}
-    {% if page.extra.image %}
-    {% set image_url = get_url(path=page.extra.image) %}
-    {% elif config.extra.default_image %}
-    {% set image_url = get_url(path=config.extra.default_image) %}
-    {% endif %}
-    {% if image_url %}
-    <meta property="og:image" content="{{ image_url }}">
-    <meta name="twitter:image" content="{{ image_url }}">
-    {% endif %}
+  <meta property="og:url" content="{{ page_url }}">
+  <link rel="canonical" href="{{ page_url }}">
+  <link rel="icon" href="{{ get_url(path='favicon.ico') }}">
+  {% set image_url = "" %}
+  {% if page.extra.image %}
+  {% set image_url = get_url(path=page.extra.image) %}
+  {% elif config.extra.default_image %}
+  {% set image_url = get_url(path=config.extra.default_image) %}
+  {% endif %}
+  {% if image_url %}
+  <meta property="og:image" content="{{ image_url }}">
+  <meta name="twitter:image" content="{{ image_url }}">
+  {% endif %}
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{% block twitter_title %}{{ config.title }}{% endblock twitter_title %}">
-    <meta name="twitter:description" content="{{ page_description | truncate(length=155) }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block twitter_title %}{{ config.title }}{% endblock twitter_title %}">
+  <meta name="twitter:description" content="{{ page_description | truncate(length=155) }}">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
-    <!-- TailwindCSS + DaisyUI CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <!-- TailwindCSS + DaisyUI CDN -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" /> -->
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <!-- <script src="https://cdn.tailwindcss.com?plugins=typography"></script> -->
+  <link rel="stylesheet" href="{{ get_url(path='styles.css') }}">
 
-    <style>
-        :root {
-            --font-main: 'Outfit', sans-serif;
-        }
+  <style>
+    :root {
+      --font-main: 'Outfit', sans-serif;
+    }
 
-        body {
-            font-family: var(--font-main);
-        }
-    </style>
+    body {
+      font-family: var(--font-main);
+    }
+  </style>
 </head>
