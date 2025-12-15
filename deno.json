@@ -1,0 +1,14 @@
+{
+  "tasks": {
+    "tailwindcss:build": "tailwindcss -i static/tailwind.css -o static/styles.css",
+    "build": {
+      "dependencies": [
+        "tailwindcss:build"
+      ]
+    }
+  },
+  "imports": {
+    "daisyui": "npm:daisyui@^5.5.14"
+  },
+  "nodeModulesDir": "auto"
+}
