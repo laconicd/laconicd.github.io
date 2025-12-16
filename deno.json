@@ -1,14 +1,31 @@
 {
   "tasks": {
     "tailwindcss:build": "tailwindcss -i static/tailwind.css -o static/styles.css",
+    "fuse:build": "deno bundle --platform browser --minify --sourcemap=inline --outdir public/ scripts/fuse.ts",
+    "dev": "zola serve --port 8080",
     "build": {
       "dependencies": [
-        "tailwindcss:build"
+        "tailwindcss:build",
+        "fuse:build",
+        "dev"
       ]
     }
   },
   "imports": {
-    "daisyui": "npm:daisyui@^5.5.14"
+    "daisyui": "npm:daisyui@^5.5.14",
+    "fuse.js": "npm:fuse.js@^7.1.0"
+  },
+  "compilerOptions": {
+    "lib": [
+      "deno.window",
+      "deno.ns",
+      "deno.unstable",
+      "deno.worker",
+      "esnext",
+      "dom",
+      "dom.asynciterable",
+      "dom.iterable"
+    ]
   },
   "nodeModulesDir": "auto"
 }
