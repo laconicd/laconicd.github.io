@@ -1,16 +1,21 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:daisyui@^5.5.14": "5.5.14"
+    "npm:daisyui@^5.5.14": "5.5.14",
+    "npm:fuse.js@^7.1.0": "7.1.0"
   },
   "npm": {
     "daisyui@5.5.14": {
       "integrity": "sha512-L47rvw7I7hK68TA97VB8Ee0woHew+/ohR6Lx6Ah/krfISOqcG4My7poNpX5Mo5/ytMxiR40fEaz6njzDi7cuSg=="
+    },
+    "fuse.js@7.1.0": {
+      "integrity": "sha512-trLf4SzuuUxfusZADLINj+dE8clK1frKdmqiJNb1Es75fmI5oY6X2mxLVUciLLjxqw/xr72Dhy+lER6dGd02FQ=="
     }
   },
   "workspace": {
     "dependencies": [
-      "npm:daisyui@^5.5.14"
+      "npm:daisyui@^5.5.14",
+      "npm:fuse.js@^7.1.0"
     ]
   }
 }
