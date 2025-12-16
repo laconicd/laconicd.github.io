@@ -1,0 +1,1 @@
+window.searchIndex = [{"url":"https://laconicd.github.io/posts/","title":"Blog","description":"","body":"","path":"/posts/"},{"url":"https://laconicd.github.io/","title":"Blog","description":"","body":"","path":"/"}]
