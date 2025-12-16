@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "tailwindcss:build": "tailwindcss -i static/tailwind.css -o static/styles.css",
+    "tailwindcss:build": "tailwindcss -i assets/tailwind.css -o static/styles.css",
     "fuse:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/fuse.ts",
     "dev": {
       "command": "zola serve --port 8080",
