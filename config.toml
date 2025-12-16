@@ -1,22 +1,23 @@
-# The URL the site will be built for
-title = "The Blog"                                                                                                         # <- 여기에 설정
 base_url = "https://laconicd.github.io"
 description = "A blog about Rust, Zola, and modern web development. Featuring tutorials, insights, and personal projects."
-
-# Whether to automatically compile all Sass files in the sass directory
-compile_sass = false
-
-# Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
+default_language = "ko"
+minify_html = true
+
+[search]
+include_title = true
+include_description = true
+include_date = true
+include_path = true
+include_content = true
+index_format = "fuse_javascript"
 
 [markdown]
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
 highlight_theme = "ayu-light"
+render_emoji = true
 
 [extra]
-# Put all your custom variables here
 hero_title = "Writings"
 hero_subtitle = "The latest news, technologies, and resources from our team."
 default_image = "default_og.png"
