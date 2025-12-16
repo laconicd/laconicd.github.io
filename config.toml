@@ -1,4 +1,5 @@
 base_url = "https://laconicd.github.io"
+title = "The Blog"
 description = "A blog about Rust, Zola, and modern web development. Featuring tutorials, insights, and personal projects."
 build_search_index = true
 default_language = "ko"
