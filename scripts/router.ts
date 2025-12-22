@@ -1,105 +1,134 @@
 import { initSearch } from "./fuse.ts";
 
-function updateDOM(newDoc: Document) {
-  // Replace the body content
-  // Note: This replaces the entire body, so any event listeners directly on body elements (unlike our delegated one on document) will be lost.
-  // The delegated listener on 'document.body' might be lost if we replace document.body itself with newDoc.body?
-  // Yes, document.body.replaceWith(...) replaces the node.
-  // The listener in DOMContentLoaded was attached to `document.body`.
-  // If we replace `document.body`, that listener is gone.
-  // Better to attach listener to `document` or re-attach.
-  
-  document.body.replaceWith(newDoc.body);
-  document.title = newDoc.title;
-  
-  // Re-initialize search
-  initSearch();
-  
-  // Scroll to top (native navigation behavior)
-  globalThis.scrollTo(0, 0);
-}
-
-async function handleNavigation(url: string, transitionType: string = 'slide') {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Response status: ${response.status}`);
-    
-    const text = await response.text();
-    const parser = new DOMParser();
-    const newDoc = parser.parseFromString(text, 'text/html');
-
-    if (document.startViewTransition) {
-        // Set transition type on the root element
-        document.documentElement.dataset.transition = transitionType;
-        
-        const transition = document.startViewTransition(() => updateDOM(newDoc));
-        
-        // Clean up after transition
-        try {
-            await transition.finished;
-        } finally {
-            // Optional: remove attribute if you want to reset, or leave it
-            // document.documentElement.removeAttribute('data-transition');
+/**
+ * Handles fetching and parsing the page content.
+ * (Data Layer / Gateway)
+ */
+class PageFetcher {
+    public async fetch(url: string): Promise<Document> {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch page: ${response.status}`);
         }
-    } else {
-      updateDOM(newDoc);
+        const text = await response.text();
+        const parser = new DOMParser();
+        return parser.parseFromString(text, "text/html");
     }
-  } catch (err) {
-    console.error("Navigation failed:", err);
-    globalThis.location.href = url; // Fallback
-  }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Initial init
-    initSearch();
+/**
+ * Handles rendering the new page content and managing view transitions.
+ * (Presentation Layer)
+ */
+class PagePresenter {
+    public render(newDoc: Document, transitionType: string): void {
+        const performDOMUpdate = () => this.updateDOM(newDoc);
 
-    // Use 'document' instead of 'document.body' for delegation so it persists across body swaps
-    document.addEventListener("click", (e) => {
-        let target = e.target as Node;
-        
-        // Handle text nodes
-        if (target.nodeType === Node.TEXT_NODE) {
-            target = target.parentNode as Node;
+        if (!document.startViewTransition) {
+            performDOMUpdate();
+            return;
         }
 
-        const anchor = (target as Element).closest("a");
-        if (!anchor) return;
-        
-        const href = anchor.getAttribute("href");
-        if (!href) return;
-        
-        console.log(`[Link Click] href: ${href}`);
-        
-        // Ignore empty links or just hashes if logic requires
-        if (href === "" || href === "#") return;
+        document.documentElement.dataset.transition = transitionType;
+        const transition = document.startViewTransition(performDOMUpdate);
+        transition.finished.finally(() => {
+            // The 'data-transition' attribute can be removed here if desired
+        });
+    }
 
-        // Resolve absolute URL
-        const url = new URL(href, globalThis.location.origin);
-        
-        // Check for external links
-        if (url.origin !== globalThis.location.origin) return;
-        
-        // Check for new tab or modifiers
-        if (anchor.target === "_blank") return;
-        if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
-        
-        // Check if it's just a hash change on same page
-        if (url.pathname === globalThis.location.pathname && url.search === globalThis.location.search && url.hash) {
-             // Let default behavior handle hash scroll
-             return;
+    private updateDOM(newDoc: Document): void {
+        document.body.replaceWith(newDoc.body);
+        document.title = newDoc.title;
+        globalThis.scrollTo(0, 0);
+
+        // This is a cross-cutting concern. A more advanced implementation
+        // might use a custom event bus (e.g., on 'page:load').
+        initSearch();
+    }
+}
+
+/**
+ * Orchestrates client-side navigation.
+ * (Application/Use Case Layer)
+ */
+class SpaRouter {
+    private readonly pageFetcher = new PageFetcher();
+    private readonly pagePresenter = new PagePresenter();
+
+    /** A declarative set of rules to determine if navigation should be intercepted.
+     * Each rule is a function that returns `true` if interception should be **blocked**.
+    */
+    private readonly navigationRules: Array<(anchor: HTMLAnchorElement, event: MouseEvent) => boolean> = [
+        // Block if the anchor has no valid href
+        anchor => {
+            const href = anchor.getAttribute("href");
+            return !href || href === "" || href === "#" || href.startsWith("javascript:");
+        },
+        // Block if the link is external
+        anchor => new URL(anchor.href).origin !== globalThis.location.origin,
+        // Block for new tabs or modified clicks
+        (anchor, event) => anchor.target === "_blank" || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey,
+        // Block for same-page links with only a hash change
+        anchor => {
+            const url = new URL(anchor.href);
+            return url.pathname === globalThis.location.pathname && url.search === globalThis.location.search && url.hash !== "";
+        },
+    ];
+
+    /**
+     * Attaches global event listeners to handle navigation.
+     */
+    public attach(): void {
+        document.addEventListener("click", this.onLinkClick.bind(this));
+        globalThis.addEventListener("popstate", this.onPopState.bind(this));
+        initSearch(); // For the initial page load
+    }
+
+    private onLinkClick(event: MouseEvent): void {
+        const anchor = this.findAnchor(event);
+        if (!anchor || !this.shouldIntercept(anchor, event)) {
+            return;
         }
-
-        e.preventDefault();
         
-        // Get transition type from attribute, default to 'slide'
-        const transitionType = anchor.getAttribute('data-transition') || 'slide';
+        event.preventDefault();
+        const href = anchor.getAttribute("href")!;
+        const transitionType = anchor.getAttribute("data-transition") || "slide";
+        this.navigate(href, transitionType);
+    }
+    
+    private onPopState(): void {
+        this.performNavigation(globalThis.location.href, "slide");
+    }
 
+    private findAnchor(event: MouseEvent): HTMLAnchorElement | null {
+        const target = event.target as Node;
+        const parent = target.nodeType === Node.TEXT_NODE ? target.parentNode : target;
+        return (parent as Element)?.closest("a");
+    }
+    
+    private shouldIntercept(anchor: HTMLAnchorElement, event: MouseEvent): boolean {
+        const isBlocked = this.navigationRules.some(rule => rule(anchor, event));
+        return !isBlocked;
+    }
+
+    private navigate(href: string, transitionType: string): void {
         history.pushState({}, "", href);
-        handleNavigation(href, transitionType);
-    });
+        this.performNavigation(href, transitionType);
+    }
 
-    globalThis.addEventListener("popstate", () => {
-        handleNavigation(globalThis.location.href, 'slide'); // Default transition for back/forward
-    });
+    private async performNavigation(href: string, transitionType: string): Promise<void> {
+        try {
+            console.log(`[Router] Navigating to: ${href}`);
+            const newDoc = await this.pageFetcher.fetch(href);
+            this.pagePresenter.render(newDoc, transitionType);
+        } catch (error) {
+            console.error("Navigation failed:", error);
+            globalThis.location.assign(href); // Fallback to full page load
+        }
+    }
+}
+
+// Initialize and attach the router once the DOM is ready.
+document.addEventListener("DOMContentLoaded", () => {
+    new SpaRouter().attach();
 });
