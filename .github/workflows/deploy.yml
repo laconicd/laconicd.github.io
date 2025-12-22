@@ -1,5 +1,4 @@
-# .github/workflows/deploy.yml
-name: Deploy to GitHub Pages (Arch Linux)
+name: Deploy to GitHub Pages
 
 on:
   # main 브랜치에 push 할 때 실행
@@ -15,28 +14,32 @@ jobs:
     permissions:
       contents: write # ${{ secrets.GITHUB_TOKEN }}이 브랜치에 푸시할 수 있도록 쓰기 권한 부여
 
-    # GitHub의 Ubuntu 환경에서 실행되지만,
-    # 모든 작업 단계(steps)는 아래의 Arch Linux 컨테이너 안에서 구동됩니다.
     runs-on: ubuntu-latest
-    container:
-      image: archlinux:latest
 
     steps:
       # 1. GitHub Action에서 사용할 소스 코드를 체크아웃합니다.
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2. Arch Linux의 패키지 매니저(pacman)로 필요한 도구를 설치합니다.
-      - name: Install Dependencies
-        run: |
-          pacman -Syu --noconfirm
-          pacman -S --noconfirm zola git
+      # 2. Deno 설치 (deno bundle 사용을 위해 v1 stable 유지)
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.6.x
+          cache: true
+      - run: echo "Deno version is ${{ steps.deno.outputs.deno-version }}"
 
-      # 3. Zola를 사용해 웹사이트를 빌드합니다.
+      # 3. Zola 설치
+      - name: Install Zola
+        uses: taiki-e/install-action@v2
+        with:
+          tool: zola
+
+      # 4. 웹사이트 빌드 (TailwindCSS 및 Router 번들링 포함)
       - name: Build site
-        run: zola build
+        run: deno task prd
 
-      # 4. 'public' 폴더의 내용을 GitHub Pages에 배포합니다.
+      # 5. 'public' 폴더의 내용을 GitHub Pages에 배포합니다.
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
