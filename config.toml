@@ -5,6 +5,10 @@ build_search_index = true
 default_language = "ko"
 minify_html = true
 
+taxonomies = [
+    {name = "tags"},
+]
+
 [search]
 include_title = true
 include_description = true

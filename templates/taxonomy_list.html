@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="prose max-w-none">
+    <h1>{{ taxonomy.name | capitalize }}</h1>
+
+    <ul class="list-disc pl-5">
+        {% for term in terms %}
+        <li>
+            <a href="{{ term.permalink }}" class="link link-primary no-underline hover:underline">
+                {{ term.name }}
+            </a>
+            <span class="text-xs text-base-content/60">({{ term.pages | length }})</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}
