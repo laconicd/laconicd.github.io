@@ -9,4 +9,23 @@
     <url>
         <loc>https://laconicd.github.io/posts/</loc>
     </url>
+    <url>
+        <loc>https://laconicd.github.io/posts/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/posts/view-transition-test/</loc>
+        <lastmod>2025-12-22</lastmod>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/animation/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/frontend/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/test/</loc>
+    </url>
 </urlset>
