@@ -1,19 +1,19 @@
 {
   "tasks": {
     "tailwindcss:build": "tailwindcss -i assets/tailwind.css -o static/styles.css",
-    "fuse:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/fuse.ts",
+    "router:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/router.ts",
     "dev": {
       "command": "zola serve --port 8080",
       "dependencies": [
         "tailwindcss:build",
-        "fuse:build"
+        "router:build"
       ]
     },
     "prd": {
       "command": "zola build",
       "dependencies": [
         "tailwindcss:build",
-        "fuse:build"
+        "router:build"
       ]
     }
   },

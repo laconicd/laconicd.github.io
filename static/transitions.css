@@ -1,0 +1,88 @@
+/* View Transitions API Animations */
+@media (prefers-reduced-motion: no-preference) {
+  /* Give the navbar a stable transition identity so it stays put */
+  .navbar {
+    view-transition-name: navbar;
+  }
+
+  /* --- Base Styles --- */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 350ms;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    animation-fill-mode: both;
+    mix-blend-mode: normal;
+  }
+
+  /* --- Slide Effect (Default) --- */
+  html[data-transition="slide"] ::view-transition-old(root) {
+    animation-name: fade-out;
+    animation-duration: 200ms; /* Exit faster */
+  }
+  html[data-transition="slide"] ::view-transition-new(root) {
+    animation-name: slide-up-fade;
+  }
+
+  /* --- Fade Effect --- */
+  html[data-transition="fade"] ::view-transition-old(root) {
+    animation-name: fade-out;
+  }
+  html[data-transition="fade"] ::view-transition-new(root) {
+    animation-name: fade-in;
+  }
+
+  /* --- Zoom Effect --- */
+  html[data-transition="zoom"] ::view-transition-old(root) {
+    animation-name: zoom-out-fade;
+    animation-duration: 200ms;
+  }
+  html[data-transition="zoom"] ::view-transition-new(root) {
+    animation-name: zoom-in-fade;
+  }
+}
+
+/* Keyframes */
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoom-out-fade {
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes zoom-in-fade {
+  from {
+    opacity: 0;
+    transform: scale(1.05); /* Start slightly larger */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

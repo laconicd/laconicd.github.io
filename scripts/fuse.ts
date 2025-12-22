@@ -23,6 +23,10 @@ interface SearchElements {
 
 declare global {
   var searchIndex: SearchItem[];
+
+  interface Document {
+    startViewTransition(updateCallback: () => Promise<void> | void): ViewTransition;
+  }
 }
 
 // -- Logic --
@@ -50,8 +54,8 @@ function initializeFuse(data: SearchItem[]): Fuse<SearchItem> {
 function createResultItemHTML(item: SearchItem): string {
   const permalink = item.permalink || item.path || '#';
   const title = item.title;
-  const description = item.description 
-    ? item.description 
+  const description = item.description
+    ? item.description
     : (item.content ? item.content.substring(0, 150) + "..." : "");
 
   return `
@@ -71,27 +75,21 @@ function renderResults(container: HTMLElement, results: FuseResult<SearchItem>[]
   const html = results
     .map(result => createResultItemHTML(result.item))
     .join('');
-  
+
   container.innerHTML = html;
 }
 
 // -- Main Initialization --
 
 // Start the search functionality
-document.addEventListener('DOMContentLoaded', () => {
-    // Retry initialization in case script loading order is still racing
-    // giving a small buffer or just checking explicitly.
-    // With defer/async or bottom-of-body, DOMContentLoaded usually suffices.
-    initSearch();
-});
-
-function initSearch(): void {
+// Export initSearch to be used by main.ts
+export function initSearch(): void {
   const elements = getSearchElements();
   if (!elements) return;
 
   if (!globalThis.searchIndex) {
-      console.error("Fusion search index not found. Ensure search_index.js is loaded before fuse.js");
-      return;
+    console.error("Fusion search index not found. Ensure search_index.js is loaded before fuse.js");
+    return;
   }
 
   const { input, resultsContainer } = elements;
