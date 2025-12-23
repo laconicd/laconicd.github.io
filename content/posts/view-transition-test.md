@@ -4,6 +4,7 @@ date = 2025-12-22
 description = "A sample post to test the native View Transitions API implementation."
 [taxonomies]
 tags = ["test", "frontend", "animation"]
+categories = ["Development"]
 +++
 
 # Testing View Transitions

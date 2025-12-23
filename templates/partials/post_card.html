@@ -11,8 +11,22 @@
     {% endif %}
     <div class="card-body">
         <header>
-            <div class="text-xs font-semibold text-primary mb-1">
-                {{ page.date | date(format=config.extra.date_format) }}
+            <div class="flex items-center gap-2 mb-1">
+                <div class="text-xs font-semibold text-primary">
+                    {{ page.date | date(format=config.extra.date_format) }}
+                </div>
+                {% if page.taxonomies.categories %}
+                <span class="text-xs text-base-content/40">•</span>
+                {% set category_name = page.taxonomies.categories[0] %}
+                {% set categories_taxonomy = get_taxonomy(kind="categories") %}
+                {% for term in categories_taxonomy.items %}
+                    {% if term.name == category_name %}
+                        <a href="{{ term.permalink }}" class="text-xs font-bold text-secondary uppercase tracking-tighter hover:underline">
+                            {{ term.name }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+                {% endif %}
             </div>
             <h2 class="card-title text-xl font-bold mb-2 hover:text-primary transition-colors">
                 <a href="{{ page.permalink }}">{{ page.title }}</a>

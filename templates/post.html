@@ -9,8 +9,22 @@
     <div class="w-full lg:w-2/3">
         <!-- Article Header -->
         <header class="text-center mb-12">
-            <div class="text-sm font-semibold text-primary mb-4 tracking-wide uppercase">
-                {{ page.date | date(format=config.extra.date_format) }}
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <div class="text-sm font-semibold text-primary tracking-wide uppercase">
+                    {{ page.date | date(format=config.extra.date_format) }}
+                </div>
+                {% if page.taxonomies.categories %}
+                <span class="text-base-content/40">•</span>
+                {% set category_name = page.taxonomies.categories[0] %}
+                {% set categories_taxonomy = get_taxonomy(kind="categories") %}
+                {% for term in categories_taxonomy.items %}
+                    {% if term.name == category_name %}
+                        <a href="{{ term.permalink }}" class="text-sm font-bold text-secondary uppercase tracking-widest hover:underline">
+                            {{ term.name }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+                {% endif %}
             </div>
             <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">{{ page.title }}</h1>
 
