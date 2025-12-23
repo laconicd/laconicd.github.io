@@ -23,9 +23,15 @@
             <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">{{ page.title }}</h1>
 
             <div class="flex items-center justify-center gap-4">
-                <div class="avatar placeholder">
-                    <div class="bg-neutral text-neutral-content rounded-full w-12">
-                        <span class="text-xl">{{ config.extra.author_name | truncate(length=1, end="") | upper }}</span>
+                <div class="avatar">
+                    <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        {% if config.extra.author_avatar %}
+                            <img src="{{ get_url(path=config.extra.author_avatar) }}" alt="{{ config.extra.author_name }}" />
+                        {% else %}
+                            <div class="bg-neutral text-neutral-content flex items-center justify-center w-full h-full">
+                                <span class="text-xl">{{ config.extra.author_name | truncate(length=1, end="") | upper }}</span>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="text-left">
