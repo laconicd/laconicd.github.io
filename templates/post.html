@@ -15,15 +15,9 @@
                 </div>
                 {% if page.taxonomies.categories %}
                 <span class="text-base-content/40">•</span>
-                {% set category_name = page.taxonomies.categories[0] %}
-                {% set categories_taxonomy = get_taxonomy(kind="categories") %}
-                {% for term in categories_taxonomy.items %}
-                    {% if term.name == category_name %}
-                        <a href="{{ term.permalink }}" class="text-sm font-bold text-secondary uppercase tracking-widest hover:underline">
-                            {{ term.name }}
-                        </a>
-                    {% endif %}
-                {% endfor %}
+                <a href="{{ get_taxonomy_url(kind='categories', name=page.taxonomies.categories[0]) }}" class="text-sm font-bold text-secondary uppercase tracking-widest hover:underline">
+                    {{ page.taxonomies.categories[0] }}
+                </a>
                 {% endif %}
             </div>
             <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">{{ page.title }}</h1>
