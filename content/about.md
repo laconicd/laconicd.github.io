@@ -1,7 +1,6 @@
 +++
 title = "About Me"
 template = "page.html"
-path = "about"
 +++
 
 # Hello, I'm a Developer 👋

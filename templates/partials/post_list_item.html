@@ -1,0 +1,30 @@
+<article class="group py-6 border-b border-base-200 hover:bg-base-200/30 transition-colors px-4 rounded-lg">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+                <time class="text-sm text-base-content/50">{{ page.date | date(format="%B %d, %Y") }}</time>
+                {% if page.taxonomies.categories %}
+                <span class="text-base-content/20">|</span>
+                <a href="{{ get_taxonomy_url(kind='categories', name=page.taxonomies.categories[0]) }}" class="text-xs font-bold text-secondary uppercase tracking-wider hover:underline">
+                    {{ page.taxonomies.categories[0] }}
+                </a>
+                {% endif %}
+            </div>
+            <h2 class="text-2xl font-bold group-hover:text-primary transition-colors">
+                <a href="{{ page.permalink }}">{{ page.title }}</a>
+            </h2>
+            {% if page.summary %}
+            <p class="mt-2 text-base-content/70 line-clamp-2 text-sm leading-relaxed">
+                {{ page.summary | striptags }}
+            </p>
+            {% endif %}
+        </div>
+        <div class="flex-none">
+            <a href="{{ page.permalink }}" class="btn btn-ghost btn-circle group-hover:btn-primary group-hover:text-primary-content transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</article>
