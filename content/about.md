@@ -1,6 +1,7 @@
 +++
 title = "About Me"
 template = "page.html"
+weight = 1
 +++
 
 # Hello, I'm a Developer 👋
