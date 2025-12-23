@@ -4,12 +4,12 @@
 
 {% block content %}
 
-<div class="max-w-4xl mx-auto mb-12 text-center">
+<div class="mb-12 text-center">
     <h1 class="text-4xl md:text-5xl font-bold mb-6">{{ page.title }}</h1>
 </div>
 
 <article
-    class="prose prose-lg md:prose-xl mx-auto max-w-none bg-base-100 p-8 rounded-xl border border-base-200 shadow-sm">
+    class="prose prose-lg md:prose-xl mx-auto max-w-4xl bg-base-100 p-8 rounded-xl border border-base-200 shadow-sm">
     {{ page.content | safe }}
 </article>
 

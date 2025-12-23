@@ -5,7 +5,7 @@
 {% block content %}
 
 <!-- Article Header -->
-<div class="max-w-4xl mx-auto text-center mb-12">
+<div class="text-center mb-12">
     <div class="text-sm font-semibold text-primary mb-4 tracking-wide uppercase">
         {{ page.date | date(format="%B %d, %Y") }}
     </div>
@@ -26,22 +26,24 @@
 
 <!-- Featured Image -->
 {% if page.extra.cover %}
-<figure class="mb-16 -mx-4 lg:-mx-12 overflow-hidden rounded-xl shadow-2xl">
+<figure class="mb-16 -mx-4 overflow-hidden rounded-xl shadow-2xl">
     <img src="{{ get_url(path=page.extra.cover) }}" alt="{{ page.title }}" class="w-full object-cover" />
 </figure>
 {% endif %}
 
-<div class="flex flex-col lg:flex-row gap-12">
+<div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
     <!-- Main Content -->
-    <article class="prose prose-lg md:prose-xl mx-auto flex-1 max-w-none">
+    <div class="w-full lg:w-2/3">
+        <article class="prose prose-lg md:prose-xl max-w-none">
+            {% include "partials/post_toc_mobile.html" %}
+            {{ page.content | safe }}
+        </article>
+    </div>
 
-        {% include "partials/post_toc_mobile.html" %}
-
-        {{ page.content | safe }}
-    </article>
-
-    <!-- Sidebar (TOC) Desktop -->
-    {% include "partials/post_sidebar.html" %}
+    <!-- Sidebar Column -->
+    <aside class="w-full lg:w-1/3">
+        {% include "partials/post_sidebar.html" %}
+    </aside>
 </div>
 
 <!-- Post Navigation -->
