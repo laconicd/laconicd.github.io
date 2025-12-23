@@ -1,19 +1,23 @@
-<div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow border border-base-200">
+<article class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow border border-base-200 overflow-hidden">
     {% if page.extra.cover %}
     <figure class="h-48 overflow-hidden">
         <a href="{{ page.permalink }}" class="w-full h-full">
-            <img src="{{ get_url(path=page.extra.cover) }}" alt="{{ page.title }}"
-                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+            {% set image = resize_image(path=page.extra.cover, width=600, height=400, op="fill") %}
+            <img src="{{ image.url }}" alt="{{ page.title }}"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" 
+                width="{{ image.width }}" height="{{ image.height }}" />
         </a>
     </figure>
     {% endif %}
     <div class="card-body">
-        <div class="text-xs font-semibold text-primary mb-1">
-            {{ page.date | date(format=config.extra.date_format) }}
-        </div>
-        <h2 class="card-title text-xl font-bold mb-2 hover:text-primary transition-colors">
-            <a href="{{ page.permalink }}">{{ page.title }}</a>
-        </h2>
+        <header>
+            <div class="text-xs font-semibold text-primary mb-1">
+                {{ page.date | date(format=config.extra.date_format) }}
+            </div>
+            <h2 class="card-title text-xl font-bold mb-2 hover:text-primary transition-colors">
+                <a href="{{ page.permalink }}">{{ page.title }}</a>
+            </h2>
+        </header>
         <p class="text-base-content/70 text-sm mb-4 line-clamp-3">
             {% if page.summary %}
             {{ page.summary | striptags | truncate(length=120) }}
@@ -23,8 +27,8 @@
         </p>
         <div class="card-actions justify-end mt-auto">
             <a href="{{ page.permalink }}" class="btn btn-primary btn-sm btn-outline">
-                Read Article
+                자세히 읽기
             </a>
         </div>
     </div>
-</div>
+</article>

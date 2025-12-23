@@ -37,8 +37,17 @@ class PagePresenter {
     }
 
     private updateDOM(newDoc: Document): void {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'lofi';
         document.body.replaceWith(newDoc.body);
         document.title = newDoc.title;
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        // Sync the theme controller checkbox state
+        const themeController = document.querySelector('.theme-controller') as HTMLInputElement;
+        if (themeController) {
+            themeController.checked = currentTheme === 'dim';
+        }
+
         globalThis.scrollTo(0, 0);
 
         // This is a cross-cutting concern. A more advanced implementation
@@ -80,8 +89,25 @@ class SpaRouter {
      */
     public attach(): void {
         document.addEventListener("click", this.onLinkClick.bind(this));
+        document.addEventListener("change", this.onThemeChange.bind(this));
         globalThis.addEventListener("popstate", this.onPopState.bind(this));
+        
+        // Sync theme controller on initial load
+        const themeController = document.querySelector('.theme-controller') as HTMLInputElement;
+        if (themeController) {
+            themeController.checked = document.documentElement.getAttribute('data-theme') === 'dim';
+        }
+
         initSearch(); // For the initial page load
+    }
+
+    private onThemeChange(event: Event): void {
+        const target = event.target as HTMLInputElement;
+        if (target.classList.contains('theme-controller')) {
+            const theme = target.checked ? 'dim' : 'lofi';
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
     }
 
     private onLinkClick(event: MouseEvent): void {

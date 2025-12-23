@@ -5,14 +5,18 @@
 
 <body class="flex flex-col min-h-screen bg-base-100 text-base-content">
 
-    {% include "partials/navbar.html" %}
+    <header>
+        {% include "partials/navbar.html" %}
+    </header>
 
     <!-- Main Content -->
     <div class="flex-grow container mx-auto max-w-screen-2xl px-4 py-8">
         {% block content %} {% endblock content %}
     </div>
 
-    {% include "partials/footer.html" %}
+    <footer>
+        {% include "partials/footer.html" %}
+    </footer>
 
     {% include "partials/search_modal.html" %}
     {% include "partials/scripts.html" %}

@@ -50,6 +50,12 @@
   <link rel="stylesheet" href="{{ get_url(path='styles.css') }}">
   <link rel="stylesheet" href="{{ get_url(path='transitions.css') }}?v=2">
 
+  <script>
+    // Initialize theme as early as possible to prevent FOUC
+    const savedTheme = localStorage.getItem('theme') || 'lofi';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+
   <style>
     :root {
       --font-main: 'Outfit', sans-serif;
