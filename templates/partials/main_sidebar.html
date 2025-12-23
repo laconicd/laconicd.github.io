@@ -17,20 +17,20 @@
                 {{ config.description }}
             </p>
             <div class="card-actions mt-4">
-                <a href="{{ get_url(path='@/about.md') }}" class="btn btn-primary btn-sm">더 알아보기</a>
+                <a href="{{ get_url(path='@/about.md') }}" class="btn btn-primary btn-sm">Learn More</a>
             </div>
         </div>
     </aside>
 
     <!-- Recent Posts -->
     <div class="p-6 bg-base-200/50 border border-base-200 rounded-box">
-        <h2 class="text-xl font-bold mb-4">최신 글</h2>
+        <h2 class="text-xl font-bold mb-4">Recent Posts</h2>
         {% set blog_section = get_section(path="posts/_index.md") %}
         <ul class="space-y-4">
             {% for page in blog_section.pages | slice(end=5) %}
             <li>
                 <a href="{{ page.permalink }}" class="link link-hover font-semibold">{{ page.title }}</a>
-                <p class="text-sm text-base-content/60 mt-1">{{ page.date | date(format="%Y년 %m월 %d일") }}</p>
+                <p class="text-sm text-base-content/60 mt-1">{{ page.date | date(format="%B %d, %Y") }}</p>
             </li>
             {% endfor %}
         </ul>
@@ -39,7 +39,7 @@
     <!-- Categories -->
     {% set categories = get_taxonomy(kind="categories") %}
     <div class="p-6 bg-base-200/50 border border-base-200 rounded-box">
-        <h2 class="text-xl font-bold mb-4">카테고리</h2>
+        <h2 class="text-xl font-bold mb-4">Categories</h2>
         <ul class="space-y-2">
             {% for term in categories.items %}
             <li class="flex justify-between items-center">
@@ -53,7 +53,7 @@
     <!-- Tags -->
     {% set tags = get_taxonomy(kind="tags") %}
     <div class="p-6 bg-base-200/50 border border-base-200 rounded-box">
-        <h2 class="text-xl font-bold mb-4">태그</h2>
+        <h2 class="text-xl font-bold mb-4">Tags</h2>
         <div class="flex flex-wrap gap-2">
             {% for term in tags.items %}
             <a href="{{ term.permalink }}" class="badge badge-outline badge-primary hover:badge-primary transition-colors py-3 px-4">
