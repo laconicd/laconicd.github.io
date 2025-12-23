@@ -1,6 +1,7 @@
 +++
 title = "About Me"
 template = "page.html"
+date = 2025-01-01
 weight = 1
 +++
 
