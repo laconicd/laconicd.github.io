@@ -14,13 +14,47 @@
         <loc>https://laconicd.github.io/categories/development/</loc>
     </url>
     <url>
+        <loc>https://laconicd.github.io/categories/english-study/</loc>
+    </url>
+    <url>
         <loc>https://laconicd.github.io/page/1/</loc>
     </url>
     <url>
         <loc>https://laconicd.github.io/posts/</loc>
     </url>
     <url>
+        <loc>https://laconicd.github.io/posts/english-study-week1-internal-communication/</loc>
+        <lastmod>2025-12-29</lastmod>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/posts/english-study-week2-social-communication/</loc>
+        <lastmod>2025-12-29</lastmod>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/posts/english-study-week3-daily-communication/</loc>
+        <lastmod>2025-12-29</lastmod>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/posts/english-study-week4-expansion-communication/</loc>
+        <lastmod>2025-12-29</lastmod>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/posts/english-study-week5-deep-conversation/</loc>
+        <lastmod>2025-12-29</lastmod>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/posts/git-internal-deep-dive/</loc>
+        <lastmod>2025-12-24</lastmod>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/posts/git-workflow-practice-guide/</loc>
+        <lastmod>2025-12-24</lastmod>
+    </url>
+    <url>
         <loc>https://laconicd.github.io/posts/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/posts/page/2/</loc>
     </url>
     <url>
         <loc>https://laconicd.github.io/posts/view-transition-test/</loc>
@@ -33,9 +67,36 @@
         <loc>https://laconicd.github.io/tags/animation/</loc>
     </url>
     <url>
+        <loc>https://laconicd.github.io/tags/communication/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/cs/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/devlog/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/english/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/expression/</loc>
+    </url>
+    <url>
         <loc>https://laconicd.github.io/tags/frontend/</loc>
     </url>
     <url>
+        <loc>https://laconicd.github.io/tags/git/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/merge/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/rebase/</loc>
+    </url>
+    <url>
         <loc>https://laconicd.github.io/tags/test/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/workflow/</loc>
     </url>
 </urlset>
