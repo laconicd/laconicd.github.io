@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "tailwindcss:build": "deno run -A npm:@tailwindcss/cli -i assets/tailwind.css -o static/styles.css",
+    "tailwindcss:build": "deno run -A @tailwindcss/cli -i assets/tailwind.css -o static/styles.css",
     "router:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/router.ts",
     "dev": {
       "command": "zola serve --port 8080",
@@ -39,6 +39,8 @@
   "nodeModulesDir": "auto",
   "allowScripts": {
     "allow": [],
-    "deny": ["npm:@parcel/watcher@2.5.1"]
+    "deny": [
+      "npm:@parcel/watcher@2.5.1"
+    ]
   }
 }
