@@ -1,6 +1,4 @@
 node_modules/
 public/
-static/*.js
-static/*.js.map
-static/*.css
-!static/transitions.css
+static/
+AGENTS.md
