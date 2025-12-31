@@ -428,95 +428,6 @@
       }
     }
   }
-  .dropdown {
-    @layer daisyui.l1.l2.l3 {
-      position: relative;
-      display: inline-block;
-      position-area: var(--anchor-v, bottom) var(--anchor-h, span-right);
-      & > *:not(:has(~ [class*="dropdown-content"])):focus {
-        --tw-outline-style: none;
-        outline-style: none;
-        @media (forced-colors: active) {
-          outline: 2px solid transparent;
-          outline-offset: 2px;
-        }
-      }
-      .dropdown-content {
-        position: absolute;
-      }
-      &.dropdown-close .dropdown-content, &:not(details, .dropdown-open, .dropdown-hover:hover, :focus-within) .dropdown-content, &.dropdown-hover:not(:hover) [tabindex]:first-child:focus:not(:focus-visible) ~ .dropdown-content {
-        display: none;
-        transform-origin: top;
-        opacity: 0%;
-        scale: 95%;
-      }
-      &[popover], .dropdown-content {
-        z-index: 999;
-        @media (prefers-reduced-motion: no-preference) {
-          animation: dropdown 0.2s;
-          transition-property: opacity, scale, display;
-          transition-behavior: allow-discrete;
-          transition-duration: 0.2s;
-          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        }
-      }
-      @starting-style {
-        &[popover], .dropdown-content {
-          scale: 95%;
-          opacity: 0;
-        }
-      }
-      &:not(.dropdown-close) {
-        &.dropdown-open, &:not(.dropdown-hover):focus, &:focus-within {
-          > [tabindex]:first-child {
-            pointer-events: none;
-          }
-          .dropdown-content {
-            opacity: 100%;
-            scale: 100%;
-          }
-        }
-        &.dropdown-hover:hover {
-          .dropdown-content {
-            opacity: 100%;
-            scale: 100%;
-          }
-        }
-      }
-      &:is(details) {
-        summary {
-          &::-webkit-details-marker {
-            display: none;
-          }
-        }
-      }
-      &:where([popover]) {
-        background: #0000;
-      }
-      &[popover] {
-        position: fixed;
-        color: inherit;
-        @supports not (position-area: bottom) {
-          margin: auto;
-          &.dropdown-close, &.dropdown-open:not(:popover-open) {
-            display: none;
-            transform-origin: top;
-            opacity: 0%;
-            scale: 95%;
-          }
-          &::backdrop {
-            background-color: color-mix(in oklab, #000 30%, #0000);
-          }
-        }
-        &.dropdown-close, &:not(.dropdown-open, :popover-open) {
-          display: none;
-          transform-origin: top;
-          opacity: 0%;
-          scale: 95%;
-        }
-      }
-    }
-  }
   .btn {
     :where(&) {
       @layer daisyui.l1.l2.l3 {
@@ -669,141 +580,6 @@
   }
   .pointer-events-none {
     pointer-events: none;
-  }
-  .toggle {
-    @layer daisyui.l1.l2.l3 {
-      border: var(--border) solid currentColor;
-      color: var(--input-color);
-      position: relative;
-      display: inline-grid;
-      flex-shrink: 0;
-      cursor: pointer;
-      appearance: none;
-      place-content: center;
-      vertical-align: middle;
-      webkit-user-select: none;
-      user-select: none;
-      grid-template-columns: 0fr 1fr 1fr;
-      --radius-selector-max: calc(
-      var(--radius-selector) + var(--radius-selector) + var(--radius-selector)
-    );
-      border-radius: calc( var(--radius-selector) + min(var(--toggle-p), var(--radius-selector-max)) + min(var(--border), var(--radius-selector-max)) );
-      padding: var(--toggle-p);
-      box-shadow: 0 1px currentColor inset;
-      @supports (color: color-mix(in lab, red, red)) {
-        box-shadow: 0 1px color-mix(in oklab, currentColor calc(var(--depth) * 10%), #0000) inset;
-      }
-      transition: color 0.3s, grid-template-columns 0.2s;
-      --input-color: var(--color-base-content);
-      @supports (color: color-mix(in lab, red, red)) {
-        --input-color: color-mix(in oklab, var(--color-base-content) 50%, #0000);
-      }
-      --toggle-p: calc(var(--size) * 0.125);
-      --size: calc(var(--size-selector, 0.25rem) * 6);
-      width: calc((var(--size) * 2) - (var(--border) + var(--toggle-p)) * 2);
-      height: var(--size);
-      > * {
-        z-index: 1;
-        grid-column: span 1 / span 1;
-        grid-column-start: 2;
-        grid-row-start: 1;
-        height: 100%;
-        cursor: pointer;
-        appearance: none;
-        background-color: transparent;
-        padding: calc(0.25rem * 0.5);
-        transition: opacity 0.2s, rotate 0.4s;
-        border: none;
-        &:focus {
-          --tw-outline-style: none;
-          outline-style: none;
-          @media (forced-colors: active) {
-            outline: 2px solid transparent;
-            outline-offset: 2px;
-          }
-        }
-        &:nth-child(2) {
-          color: var(--color-base-100);
-          rotate: 0deg;
-        }
-        &:nth-child(3) {
-          color: var(--color-base-100);
-          opacity: 0%;
-          rotate: -15deg;
-        }
-      }
-      &:has(:checked) {
-        > :nth-child(2) {
-          opacity: 0%;
-          rotate: 15deg;
-        }
-        > :nth-child(3) {
-          opacity: 100%;
-          rotate: 0deg;
-        }
-      }
-      &:before {
-        position: relative;
-        inset-inline-start: calc(0.25rem * 0);
-        grid-column-start: 2;
-        grid-row-start: 1;
-        aspect-ratio: 1 / 1;
-        height: 100%;
-        border-radius: var(--radius-selector);
-        background-color: currentcolor;
-        translate: 0;
-        --tw-content: "";
-        content: var(--tw-content);
-        transition: background-color 0.1s, translate 0.2s, inset-inline-start 0.2s;
-        box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset, 0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset, 0 1px currentColor;
-        @supports (color: color-mix(in lab, red, red)) {
-          box-shadow: 0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset, 0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset, 0 1px color-mix(in oklab, currentColor calc(var(--depth) * 10%), #0000);
-        }
-        background-size: auto, calc(var(--noise) * 100%);
-        background-image: none, var(--fx-noise);
-      }
-      @media (forced-colors: active) {
-        &:before {
-          outline-style: var(--tw-outline-style);
-          outline-width: 1px;
-          outline-offset: calc(1px * -1);
-        }
-      }
-      @media print {
-        &:before {
-          outline: 0.25rem solid;
-          outline-offset: -1rem;
-        }
-      }
-      &:focus-visible, &:has(:focus-visible) {
-        outline: 2px solid currentColor;
-        outline-offset: 2px;
-      }
-      &:checked, &[aria-checked="true"], &:has(> input:checked) {
-        grid-template-columns: 1fr 1fr 0fr;
-        background-color: var(--color-base-100);
-        --input-color: var(--color-base-content);
-        &:before {
-          background-color: currentcolor;
-        }
-        @starting-style {
-          &:before {
-            opacity: 0;
-          }
-        }
-      }
-      &:indeterminate {
-        grid-template-columns: 0.5fr 1fr 0.5fr;
-      }
-      &:disabled {
-        cursor: not-allowed;
-        opacity: 30%;
-        &:before {
-          background-color: transparent;
-          border: var(--border) solid currentColor;
-        }
-      }
-    }
   }
   .input {
     @layer daisyui.l1.l2.l3 {
@@ -1251,34 +1027,6 @@
   .sticky {
     position: sticky;
   }
-  .dropdown-end {
-    @layer daisyui.l1.l2 {
-      --anchor-h: span-left;
-      :where(.dropdown-content) {
-        inset-inline-end: calc(0.25rem * 0);
-        translate: 0 0;
-        [dir="rtl"] & {
-          translate: 0 0;
-        }
-      }
-      &.dropdown-left {
-        --anchor-h: left;
-        --anchor-v: span-top;
-        .dropdown-content {
-          top: auto;
-          bottom: calc(0.25rem * 0);
-        }
-      }
-      &.dropdown-right {
-        --anchor-h: right;
-        --anchor-v: span-top;
-        .dropdown-content {
-          top: auto;
-          bottom: calc(0.25rem * 0);
-        }
-      }
-    }
-  }
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
@@ -1378,9 +1126,6 @@
   .z-50 {
     z-index: 50;
   }
-  .z-\[1\] {
-    z-index: 1;
-  }
   .modal-box {
     @layer daisyui.l1.l2.l3 {
       grid-column-start: 1;
@@ -1420,36 +1165,6 @@
       max-width: 96rem;
     }
   }
-  .divider {
-    @layer daisyui.l1.l2.l3 {
-      display: flex;
-      height: calc(0.25rem * 4);
-      flex-direction: row;
-      align-items: center;
-      align-self: stretch;
-      white-space: nowrap;
-      margin: var(--divider-m, 1rem 0);
-      --divider-color: var(--color-base-content);
-      @supports (color: color-mix(in lab, red, red)) {
-        --divider-color: color-mix(in oklab, var(--color-base-content) 10%, transparent);
-      }
-      &:before, &:after {
-        content: "";
-        height: calc(0.25rem * 0.5);
-        width: 100%;
-        flex-grow: 1;
-        background-color: var(--divider-color);
-      }
-      @media print {
-        &:before, &:after {
-          border: 0.5px solid;
-        }
-      }
-      &:not(:empty) {
-        gap: calc(0.25rem * 4);
-      }
-    }
-  }
   .-mx-4 {
     margin-inline: calc(var(--spacing) * -4);
   }
@@ -1458,9 +1173,6 @@
   }
   .mx-auto {
     margin-inline: auto;
-  }
-  .my-0 {
-    margin-block: calc(var(--spacing) * 0);
   }
   .join-item {
     &:where(*:not(:first-child, :disabled, [disabled], .btn-disabled)) {
@@ -2091,9 +1803,6 @@
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
-  .mt-3 {
-    margin-top: calc(var(--spacing) * 3);
-  }
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
   }
@@ -2337,9 +2046,6 @@
   .h-6 {
     height: calc(var(--spacing) * 6);
   }
-  .h-7 {
-    height: calc(var(--spacing) * 7);
-  }
   .h-16 {
     height: calc(var(--spacing) * 16);
   }
@@ -2364,9 +2070,6 @@
   .w-6 {
     width: calc(var(--spacing) * 6);
   }
-  .w-7 {
-    width: calc(var(--spacing) * 7);
-  }
   .w-10 {
     width: calc(var(--spacing) * 10);
   }
@@ -2381,9 +2084,6 @@
   }
   .w-24 {
     width: calc(var(--spacing) * 24);
-  }
-  .w-52 {
-    width: calc(var(--spacing) * 52);
   }
   .w-full {
     width: 100%;
@@ -2634,9 +2334,6 @@
   .p-0 {
     padding: calc(var(--spacing) * 0);
   }
-  .p-2 {
-    padding: calc(var(--spacing) * 2);
-  }
   .p-6 {
     padding: calc(var(--spacing) * 6);
   }
@@ -2645,9 +2342,6 @@
   }
   .px-0\.5 {
     padding-inline: calc(var(--spacing) * 0.5);
-  }
-  .px-3 {
-    padding-inline: calc(var(--spacing) * 3);
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
@@ -2854,10 +2548,6 @@
   .opacity-70 {
     opacity: 70%;
   }
-  .shadow {
-    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
-    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
   .shadow-2xl {
     --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -2983,13 +2673,6 @@
     @layer daisyui.l1.l2.l3 {
       --btn-color: var(--color-primary);
       --btn-fg: var(--color-primary-content);
-    }
-  }
-  .toggle-sm {
-    @layer daisyui.l1.l2 {
-      &:is([type="checkbox"]), &:has([type="checkbox"]) {
-        --size: calc(var(--size-selector, 0.25rem) * 5);
-      }
     }
   }
   .group-hover\:text-primary {
@@ -3298,11 +2981,6 @@
       display: flex;
     }
   }
-  .md\:hidden {
-    @media (width >= 48rem) {
-      display: none;
-    }
-  }
   .md\:inline-grid {
     @media (width >= 48rem) {
       display: inline-grid;
@@ -3321,11 +2999,6 @@
   .md\:items-center {
     @media (width >= 48rem) {
       align-items: center;
-    }
-  }
-  .md\:gap-2 {
-    @media (width >= 48rem) {
-      gap: calc(var(--spacing) * 2);
     }
   }
   .md\:text-5xl {
