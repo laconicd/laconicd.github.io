@@ -1,16 +1,5 @@
 import { initSearch } from "./fuse.ts";
-
-/**
- * Synchronizes all theme controller elements with the current theme.
- */
-function syncThemeControllers(theme: string): void {
-    const controllers = document.querySelectorAll('.theme-controller');
-    controllers.forEach(el => {
-        if (el instanceof HTMLInputElement) {
-            el.checked = theme === 'dim';
-        }
-    });
-}
+import { ThemeManager } from "./theme.ts";
 
 /**
  * Handles fetching and parsing the page content.
@@ -31,6 +20,8 @@ class PageFetcher {
  * Handles rendering the new page content and managing view transitions.
  */
 class PagePresenter {
+    constructor(private readonly themeManager: ThemeManager) {}
+
     public render(newDoc: Document, transitionType: string): void {
         const performDOMUpdate = () => this.updateDOM(newDoc);
 
@@ -47,10 +38,10 @@ class PagePresenter {
     }
 
     private updateDOM(newDoc: Document): void {
-        const currentTheme = document.documentElement.getAttribute('data-theme') || 'lofi';
+        const currentTheme = this.themeManager.getCurrentTheme();
         document.body.replaceWith(newDoc.body);
         document.title = newDoc.title;
-        document.documentElement.setAttribute('data-theme', currentTheme);
+        this.themeManager.apply(currentTheme);
         
         // Close any open dropdowns (like the hamburger menu)
         document.querySelectorAll('details[open]').forEach(el => {
@@ -64,9 +55,6 @@ class PagePresenter {
             document.activeElement.blur();
         }
 
-        // Sync all theme controller states after DOM replacement
-        syncThemeControllers(currentTheme);
-
         globalThis.scrollTo(0, 0);
         initSearch();
     }
@@ -77,7 +65,8 @@ class PagePresenter {
  */
 class SpaRouter {
     private readonly pageFetcher = new PageFetcher();
-    private readonly pagePresenter = new PagePresenter();
+    private readonly pagePresenter: PagePresenter;
+    private readonly themeManager = new ThemeManager();
 
     private readonly navigationRules: Array<(anchor: HTMLAnchorElement, event: MouseEvent) => boolean> = [
         anchor => {
@@ -92,27 +81,24 @@ class SpaRouter {
         },
     ];
 
+    constructor() {
+        this.pagePresenter = new PagePresenter(this.themeManager);
+    }
+
     public attach(): void {
         document.addEventListener("click", this.onLinkClick.bind(this));
         document.addEventListener("change", this.onThemeChange.bind(this));
         globalThis.addEventListener("popstate", this.onPopState.bind(this));
         
         // Initial sync
-        const currentTheme = document.documentElement.getAttribute('data-theme') || 'lofi';
-        syncThemeControllers(currentTheme);
-
+        this.themeManager.init();
         initSearch();
     }
 
     private onThemeChange(event: Event): void {
         const target = event.target as HTMLInputElement;
         if (target.classList.contains('theme-controller')) {
-            const theme = target.checked ? 'dim' : 'lofi';
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            
-            // Sync all other controllers to match the new theme
-            syncThemeControllers(theme);
+            this.themeManager.toggle(target.checked);
         }
     }
 
