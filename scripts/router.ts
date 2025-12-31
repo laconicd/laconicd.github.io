@@ -1,8 +1,19 @@
 import { initSearch } from "./fuse.ts";
 
 /**
+ * Synchronizes all theme controller elements with the current theme.
+ */
+function syncThemeControllers(theme: string): void {
+    const controllers = document.querySelectorAll('.theme-controller');
+    controllers.forEach(el => {
+        if (el instanceof HTMLInputElement) {
+            el.checked = theme === 'dim';
+        }
+    });
+}
+
+/**
  * Handles fetching and parsing the page content.
- * (Data Layer / Gateway)
  */
 class PageFetcher {
     public async fetch(url: string): Promise<Document> {
@@ -18,7 +29,6 @@ class PageFetcher {
 
 /**
  * Handles rendering the new page content and managing view transitions.
- * (Presentation Layer)
  */
 class PagePresenter {
     public render(newDoc: Document, transitionType: string): void {
@@ -32,7 +42,7 @@ class PagePresenter {
         document.documentElement.dataset.transition = transitionType;
         const transition = document.startViewTransition(performDOMUpdate);
         transition.finished.finally(() => {
-            // The 'data-transition' attribute can be removed here if desired
+            // Optional: cleanup transition state
         });
     }
 
@@ -42,63 +52,56 @@ class PagePresenter {
         document.title = newDoc.title;
         document.documentElement.setAttribute('data-theme', currentTheme);
         
-        // Sync the theme controller checkbox state
-        const themeController = document.querySelector('.theme-controller') as HTMLInputElement;
-        if (themeController) {
-            themeController.checked = currentTheme === 'dim';
+        // Close any open dropdowns (like the hamburger menu)
+        document.querySelectorAll('details[open]').forEach(el => {
+            if (el instanceof HTMLDetailsElement) {
+                el.open = false;
+            }
+        });
+
+        // Close any other focused elements by blurring the active element
+        if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
         }
 
-        globalThis.scrollTo(0, 0);
+        // Sync all theme controller states after DOM replacement
+        syncThemeControllers(currentTheme);
 
-        // This is a cross-cutting concern. A more advanced implementation
-        // might use a custom event bus (e.g., on 'page:load').
+        globalThis.scrollTo(0, 0);
         initSearch();
     }
 }
 
 /**
  * Orchestrates client-side navigation.
- * (Application/Use Case Layer)
  */
 class SpaRouter {
     private readonly pageFetcher = new PageFetcher();
     private readonly pagePresenter = new PagePresenter();
 
-    /** A declarative set of rules to determine if navigation should be intercepted.
-     * Each rule is a function that returns `true` if interception should be **blocked**.
-    */
     private readonly navigationRules: Array<(anchor: HTMLAnchorElement, event: MouseEvent) => boolean> = [
-        // Block if the anchor has no valid href
         anchor => {
             const href = anchor.getAttribute("href");
             return !href || href === "" || href === "#" || href.startsWith("javascript:");
         },
-        // Block if the link is external
         anchor => new URL(anchor.href).origin !== globalThis.location.origin,
-        // Block for new tabs or modified clicks
         (anchor, event) => anchor.target === "_blank" || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey,
-        // Block for same-page links with only a hash change
         anchor => {
             const url = new URL(anchor.href);
             return url.pathname === globalThis.location.pathname && url.search === globalThis.location.search && url.hash !== "";
         },
     ];
 
-    /**
-     * Attaches global event listeners to handle navigation.
-     */
     public attach(): void {
         document.addEventListener("click", this.onLinkClick.bind(this));
         document.addEventListener("change", this.onThemeChange.bind(this));
         globalThis.addEventListener("popstate", this.onPopState.bind(this));
         
-        // Sync theme controller on initial load
-        const themeController = document.querySelector('.theme-controller') as HTMLInputElement;
-        if (themeController) {
-            themeController.checked = document.documentElement.getAttribute('data-theme') === 'dim';
-        }
+        // Initial sync
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'lofi';
+        syncThemeControllers(currentTheme);
 
-        initSearch(); // For the initial page load
+        initSearch();
     }
 
     private onThemeChange(event: Event): void {
@@ -107,6 +110,9 @@ class SpaRouter {
             const theme = target.checked ? 'dim' : 'lofi';
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
+            
+            // Sync all other controllers to match the new theme
+            syncThemeControllers(theme);
         }
     }
 
