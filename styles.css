@@ -2164,17 +2164,6 @@
       padding-inline: calc(var(--size) / 2 - var(--border));
     }
   }
-  .tabs {
-    @layer daisyui.l1.l2.l3 {
-      display: flex;
-      flex-wrap: wrap;
-      --tabs-height: auto;
-      --tabs-direction: row;
-      --tab-height: calc(var(--size-field, 0.25rem) * 10);
-      height: var(--tabs-height);
-      flex-direction: var(--tabs-direction);
-    }
-  }
   .footer {
     @layer daisyui.l1.l2.l3 {
       display: grid;
@@ -2436,6 +2425,9 @@
   }
   .list-disc {
     list-style-type: disc;
+  }
+  .list-none {
+    list-style-type: none;
   }
   .grid-flow-col {
     grid-auto-flow: column;
