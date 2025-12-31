@@ -40,7 +40,7 @@
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --blur-sm: 8px;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -670,6 +670,9 @@
   }
   .pointer-events-none {
     pointer-events: none;
+  }
+  .invisible {
+    visibility: hidden;
   }
   .toggle {
     @layer daisyui.l1.l2.l3 {
@@ -2396,10 +2399,10 @@
   .origin-top-right {
     transform-origin: 100% 0;
   }
-  .scale-98 {
-    --tw-scale-x: 98%;
-    --tw-scale-y: 98%;
-    --tw-scale-z: 98%;
+  .scale-95 {
+    --tw-scale-x: 95%;
+    --tw-scale-y: 95%;
+    --tw-scale-z: 95%;
     scale: var(--tw-scale-x) var(--tw-scale-y);
   }
   .swap-rotate {
@@ -2435,9 +2438,6 @@
   }
   .list-disc {
     list-style-type: disc;
-  }
-  .list-none {
-    list-style-type: none;
   }
   .grid-flow-col {
     grid-auto-flow: column;
@@ -2949,9 +2949,9 @@
     --tw-duration: 300ms;
     transition-duration: 300ms;
   }
-  .ease-out {
-    --tw-ease: var(--ease-out);
-    transition-timing-function: var(--ease-out);
+  .ease-in-out {
+    --tw-ease: var(--ease-in-out);
+    transition-timing-function: var(--ease-in-out);
   }
   .btn-outline {
     @layer daisyui.l1 {
@@ -2997,19 +2997,6 @@
       &:is([type="checkbox"]), &:has([type="checkbox"]) {
         --size: calc(var(--size-selector, 0.25rem) * 5);
       }
-    }
-  }
-  .group-open\:scale-100 {
-    &:is(:where(.group):is([open], :popover-open, :open) *) {
-      --tw-scale-x: 100%;
-      --tw-scale-y: 100%;
-      --tw-scale-z: 100%;
-      scale: var(--tw-scale-x) var(--tw-scale-y);
-    }
-  }
-  .group-open\:opacity-100 {
-    &:is(:where(.group):is([open], :popover-open, :open) *) {
-      opacity: 100%;
     }
   }
   .group-hover\:text-primary {
@@ -3417,6 +3404,24 @@
   .lg\:p-12 {
     @media (width >= 64rem) {
       padding: calc(var(--spacing) * 12);
+    }
+  }
+  .\[\.dropdown\:focus-within_\&\]\:visible {
+    .dropdown:focus-within & {
+      visibility: visible;
+    }
+  }
+  .\[\.dropdown\:focus-within_\&\]\:scale-100 {
+    .dropdown:focus-within & {
+      --tw-scale-x: 100%;
+      --tw-scale-y: 100%;
+      --tw-scale-z: 100%;
+      scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+  }
+  .\[\.dropdown\:focus-within_\&\]\:opacity-100 {
+    .dropdown:focus-within & {
+      opacity: 100%;
     }
   }
 }
