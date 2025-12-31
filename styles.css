@@ -2982,13 +2982,6 @@
       --btn-fg: var(--color-primary-content);
     }
   }
-  .toggle-primary {
-    @layer daisyui.l1.l2 {
-      &:checked, &[aria-checked="true"] {
-        --input-color: var(--color-primary);
-      }
-    }
-  }
   .toggle-sm {
     @layer daisyui.l1.l2 {
       &:is([type="checkbox"]), &:has([type="checkbox"]) {
