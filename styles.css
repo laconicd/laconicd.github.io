@@ -3303,9 +3303,9 @@
       display: none;
     }
   }
-  .md\:inline-flex {
+  .md\:inline-grid {
     @media (width >= 48rem) {
-      display: inline-flex;
+      display: inline-grid;
     }
   }
   .md\:grid-cols-2 {
