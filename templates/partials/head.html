@@ -52,8 +52,14 @@
 
   <script>
     // Initialize theme as early as possible to prevent FOUC
-    const savedTheme = localStorage.getItem('theme') || 'lofi';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    const getInitialTheme = () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) return savedTheme;
+      
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dim' : 'lofi';
+    };
+    
+    document.documentElement.setAttribute('data-theme', getInitialTheme());
   </script>
 
   <style>
