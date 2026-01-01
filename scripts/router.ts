@@ -39,7 +39,19 @@ class PagePresenter {
 
   private updateDOM(newDoc: Document): void {
     const currentTheme = this.themeManager.getCurrentTheme();
-    document.body.replaceWith(newDoc.body);
+
+    // Find the main content area in both the current and new document
+    const currentMain = document.getElementById("main-content");
+    const newMain = newDoc.getElementById("main-content");
+
+    if (currentMain && newMain) {
+      currentMain.replaceWith(newMain);
+    } else {
+      // Fallback if main content area is missing
+      console.warn("Could not find #main-content, replacing body");
+      document.body.replaceWith(newDoc.body);
+    }
+
     document.title = newDoc.title;
     this.themeManager.apply(currentTheme);
 
