@@ -1,20 +1,11 @@
 {% extends "base.html" %} {% block content %}
-<div class="max-w-4xl mx-auto">
-  <div class="prose max-w-none text-center">
-    <h1>{{ taxonomy.name | capitalize }}: {{ term.name }}</h1>
+<div class="max-w-6xl mx-auto px-4">
+  <div class="prose max-w-none text-center mb-16">
+    <h1>{{ taxonomy.name | capitalize }}: <span class="text-primary">{{ term.name }}</span></h1>
+  </div>
 
-    <ul class="list-none p-0 not-prose">
-      {% for page in term.pages %}
-      <li class="my-4">
-        <a href="{{ page.permalink }}" class="link link-primary no-underline hover:underline text-xl block sm:inline">
-          {{ page.title }}
-        </a>
-        <div class="text-sm text-base-content/60 mt-1 sm:mt-0 sm:ml-2 sm:inline">
-          {{ page.date | date(format="%Y-%m-%d") }}
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for page in term.pages %} {% include "partials/post_card.html" %} {% endfor %}
   </div>
 </div>
 {% endblock content %}
