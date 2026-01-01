@@ -17,13 +17,6 @@
       ]
     }
   },
-  "imports": {
-    "@tailwindcss/cli": "npm:@tailwindcss/cli@^4.1.18",
-    "daisyui": "npm:daisyui@^5.5.14",
-    "fuse.js": "npm:fuse.js@^7.1.0",
-    "tailwindcss": "npm:tailwindcss@^4.1.18",
-    "@tailwindcss/typography": "npm:@tailwindcss/typography@^0.5.19"
-  },
   "compilerOptions": {
     "lib": [
       "deno.window",
@@ -36,7 +29,31 @@
       "dom.iterable"
     ]
   },
+  "lint": {
+    "include": [
+      "**/*"
+    ],
+    "exclude": [
+      "node_modules",
+      "static"
+    ],
+    "rules": {
+      "tags": [
+        "recommended"
+      ]
+    }
+  },
+  "fmt": {
+    "lineWidth": 120
+  },
   "nodeModulesDir": "auto",
+  "imports": {
+    "@tailwindcss/cli": "npm:@tailwindcss/cli@^4.1.18",
+    "daisyui": "npm:daisyui@^5.5.14",
+    "fuse.js": "npm:fuse.js@^7.1.0",
+    "tailwindcss": "npm:tailwindcss@^4.1.18",
+    "@tailwindcss/typography": "npm:@tailwindcss/typography@^0.5.19"
+  },
   "allowScripts": {
     "allow": [],
     "deny": [

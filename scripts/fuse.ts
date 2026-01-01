@@ -20,7 +20,9 @@ declare global {
   var searchIndex: SearchItem[];
 
   interface Document {
-    startViewTransition(updateCallback: () => Promise<void> | void): ViewTransition;
+    startViewTransition(
+      updateCallback: () => Promise<void> | void,
+    ): ViewTransition;
   }
 }
 
@@ -51,7 +53,8 @@ class SearchPresenter {
 
   public render(results: FuseResult<SearchItem>[], query: string): void {
     if (results.length === 0) {
-      this.container.innerHTML = `<li class="py-4 text-center text-base-content/50">No results found for "${query}"</li>`;
+      this.container.innerHTML =
+        `<li class="py-4 text-center text-base-content/50">No results found for "${query}"</li>`;
       return;
     }
 
@@ -69,16 +72,15 @@ class SearchPresenter {
     const permalink = item.permalink || item.path || "#";
 
     let title = item.title;
-    let description = item.description
-      ? item.description
-      : item.content
-      ? item.content.substring(0, 150) + "..."
-      : "";
+    let description = item.description ? item.description : item.content ? item.content.substring(0, 150) + "..." : "";
 
     if (result.matches) {
       for (const match of result.matches) {
         if (match.key === "title") {
-          title = this.highlight(item.title, match.indices as [number, number][]);
+          title = this.highlight(
+            item.title,
+            match.indices as [number, number][],
+          );
         } else if (match.key === "description" || match.key === "content") {
           const text = item.description || item.content || "";
           description = this.highlight(
@@ -105,10 +107,12 @@ class SearchPresenter {
 
     for (const [start, end] of sortedMatches) {
       highlightedText = highlightedText.substring(0, start) +
-        `<mark class="bg-primary/30 text-primary-content rounded-sm px-0.5">${highlightedText.substring(
-          start,
-          end + 1,
-        )}</mark>` +
+        `<mark class="bg-primary/30 text-primary-content rounded-sm px-0.5">${
+          highlightedText.substring(
+            start,
+            end + 1,
+          )
+        }</mark>` +
         highlightedText.substring(end + 1);
     }
 
@@ -147,7 +151,9 @@ export class SearchController {
  */
 export function initSearch(): void {
   const input = document.getElementById("search-input") as HTMLInputElement;
-  const resultsContainer = document.getElementById("search-results") as HTMLElement;
+  const resultsContainer = document.getElementById(
+    "search-results",
+  ) as HTMLElement;
 
   if (!input || !resultsContainer) {
     return;

@@ -1,35 +1,69 @@
 {% if paginator.number_pagers > 1 %}
 <div class="mt-20 flex justify-center">
-    <div class="join shadow-sm">
-        {% if paginator.previous %}
-        <a href="{{ paginator.previous }}"
-            class="join-item btn bg-base-100 hover:bg-base-200 border-base-300 text-base-content">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-            Prev
-        </a>
-        {% else %}
-        <button class="join-item btn btn-disabled bg-base-100 border-base-300 opacity-50">Prev</button>
-        {% endif %}
+  <div class="join shadow-sm">
+    {% if paginator.previous %}
+    <a
+      href="{{ paginator.previous }}"
+      class="join-item btn bg-base-100 hover:bg-base-200 border-base-300 text-base-content"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-4 w-4 mr-1"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"
+        />
+      </svg>
+      Prev
+    </a>
+    {% else %}
+    <button
+      class="join-item btn btn-disabled bg-base-100 border-base-300 opacity-50"
+    >
+      Prev
+    </button>
+    {% endif %}
 
-        <button class="join-item btn bg-base-100 border-base-300 pointer-events-none font-normal">
-            Page <span class="font-bold mx-1">{{ paginator.current_index }}</span> of {{ paginator.number_pagers }}
-        </button>
+    <button
+      class="join-item btn bg-base-100 border-base-300 pointer-events-none font-normal"
+    >
+      Page <span class="font-bold mx-1">{{ paginator.current_index }}</span> of {{ paginator.number_pagers }}
+    </button>
 
-        {% if paginator.next %}
-        <a href="{{ paginator.next }}"
-            class="join-item btn bg-base-100 hover:bg-base-200 border-base-300 text-base-content">
-            Next
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-        </a>
-        {% else %}
-        <button class="join-item btn btn-disabled bg-base-100 border-base-300 opacity-50">Next</button>
-        {% endif %}
-    </div>
+    {% if paginator.next %}
+    <a
+      href="{{ paginator.next }}"
+      class="join-item btn bg-base-100 hover:bg-base-200 border-base-300 text-base-content"
+    >
+      Next
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-4 w-4 ml-1"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"
+        />
+      </svg>
+    </a>
+    {% else %}
+    <button
+      class="join-item btn btn-disabled bg-base-100 border-base-300 opacity-50"
+    >
+      Next
+    </button>
+    {% endif %}
+  </div>
 </div>
 {% endif %}

@@ -1,26 +1,43 @@
 <div class="space-y-8">
-    <aside class="card bg-base-200/50 border border-base-200">
-        <div class="card-body items-center text-center p-6">
-            <div class="avatar mb-4">
-                <div class="w-24 rounded-full bg-base-300 ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden">
-                    {% if config.extra.author_avatar %}
-                        <img src="{{ get_url(path=config.extra.author_avatar) }}" alt="{{ config.extra.author_name }}" />
-                    {% else %}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-base-content/30 mx-auto mt-4" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                    {% endif %}
-                </div>
-            </div>
-            <h2 class="card-title">{{ config.title }}</h2>
-            <p class="text-sm text-base-content/70">
-                {{ config.description }}
-            </p>
-            <div class="card-actions mt-4">
-                <a href="{{ get_url(path='@/about.md') }}" class="btn btn-primary btn-sm">Learn More</a>
-            </div>
+  <aside class="card bg-base-200/50 border border-base-200">
+    <div class="card-body items-center text-center p-6">
+      <div class="avatar mb-4">
+        <div
+          class="w-24 rounded-full bg-base-300 ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden"
+        >
+          {% if config.extra.author_avatar %}
+          <img
+            src="{{ get_url(path=config.extra.author_avatar) }}"
+            alt="{{ config.extra.author_name }}"
+          />
+          {% else %}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-16 h-16 text-base-content/30 mx-auto mt-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            />
+          </svg>
+          {% endif %}
         </div>
-    </aside>
+      </div>
+      <h2 class="card-title">{{ config.title }}</h2>
+      <p class="text-sm text-base-content/70">
+        {{ config.description }}
+      </p>
+      <div class="card-actions mt-4">
+        <a
+          href="{{ get_url(path='@/about.md') }}"
+          class="btn btn-primary btn-sm"
+        >Learn More</a>
+      </div>
+    </div>
+  </aside>
 </div>

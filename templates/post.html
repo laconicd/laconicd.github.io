@@ -1,65 +1,79 @@
-{% extends "base.html" %}
-
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock title %}
-
-{% block content %}
+{% extends "base.html" %} {% block title %}{{ page.title }} | {{ config.title }}{% endblock title %} {% block content %}
 
 <main class="max-w-4xl mx-auto">
-    <!-- Main Content -->
-    <div class="w-full">
-        <!-- Article Header -->
-        <header class="text-center mb-12">
-            <div class="flex items-center justify-center gap-2 mb-4">
-                <div class="text-sm font-semibold text-primary tracking-wide uppercase">
-                    {{ page.date | date(format=config.extra.date_format) }}
-                </div>
-                {% if page.taxonomies.categories %}
-                <span class="text-base-content/40">•</span>
-                <a href="{{ get_taxonomy_url(kind='categories', name=page.taxonomies.categories[0]) }}" class="text-sm font-bold text-secondary uppercase tracking-widest hover:underline">
-                    {{ page.taxonomies.categories[0] }}
-                </a>
-                {% endif %}
-            </div>
-            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">{{ page.title }}</h1>
-
-            <div class="flex items-center justify-center gap-4">
-                <div class="avatar">
-                    <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                        {% if config.extra.author_avatar %}
-                            <img src="{{ get_url(path=config.extra.author_avatar) }}" alt="{{ config.extra.author_name }}" />
-                        {% else %}
-                            <div class="bg-neutral text-neutral-content flex items-center justify-center w-full h-full">
-                                <span class="text-xl">{{ config.extra.author_name | truncate(length=1, end="") | upper }}</span>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="text-left">
-                    <div class="font-bold">{{ config.extra.author_name }}</div>
-                    <div class="text-xs text-base-content/60">{{ config.extra.author_role }}</div>
-                </div>
-            </div>
-        </header>
-
-        <!-- Featured Image -->
-        {% if page.extra.cover %}
-        <figure class="mb-16 -mx-4 overflow-hidden rounded-xl shadow-2xl">
-            {% set image = get_image_metadata(path=page.extra.cover) %}
-            <img src="{{ get_url(path=page.extra.cover) }}" alt="{{ page.title }}" class="w-full object-cover"
-                width="{{ image.width }}" height="{{ image.height }}" />
-        </figure>
+  <!-- Main Content -->
+  <div class="w-full">
+    <!-- Article Header -->
+    <header class="text-center mb-12">
+      <div class="flex items-center justify-center gap-2 mb-4">
+        <div class="text-sm font-semibold text-primary tracking-wide uppercase">
+          {{ page.date | date(format=config.extra.date_format) }}
+        </div>
+        {% if page.taxonomies.categories %}
+        <span class="text-base-content/40">•</span>
+        <a
+          href="{{ get_taxonomy_url(kind='categories', name=page.taxonomies.categories[0]) }}"
+          class="text-sm font-bold text-secondary uppercase tracking-widest hover:underline"
+        >
+          {{ page.taxonomies.categories[0] }}
+        </a>
         {% endif %}
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        {{ page.title }}
+      </h1>
 
-        <article class="prose prose-lg md:prose-xl max-w-none">
-            {% include "partials/post_toc_mobile.html" %}
-            {{ page.content | safe }}
-        </article>
+      <div class="flex items-center justify-center gap-4">
+        <div class="avatar">
+          <div
+            class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+          >
+            {% if config.extra.author_avatar %}
+            <img
+              src="{{ get_url(path=config.extra.author_avatar) }}"
+              alt="{{ config.extra.author_name }}"
+            />
+            {% else %}
+            <div
+              class="bg-neutral text-neutral-content flex items-center justify-center w-full h-full"
+            >
+              <span class="text-xl">{{ config.extra.author_name | truncate(length=1, end="") | upper }}</span>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="text-left">
+          <div class="font-bold">{{ config.extra.author_name }}</div>
+          <div class="text-xs text-base-content/60">
+            {{ config.extra.author_role }}
+          </div>
+        </div>
+      </div>
+    </header>
 
-        <!-- Post Navigation -->
-        <footer class="mt-16">
-            {% include "partials/post_nav.html" %}
-        </footer>
-    </div>
+    <!-- Featured Image -->
+    {% if page.extra.cover %}
+    <figure class="mb-16 -mx-4 overflow-hidden rounded-xl shadow-2xl">
+      {% set image = get_image_metadata(path=page.extra.cover) %}
+      <img
+        src="{{ get_url(path=page.extra.cover) }}"
+        alt="{{ page.title }}"
+        class="w-full object-cover"
+        width="{{ image.width }}"
+        height="{{ image.height }}"
+      />
+    </figure>
+    {% endif %}
+
+    <article class="prose prose-lg md:prose-xl max-w-none">
+      {% include "partials/post_toc_mobile.html" %} {{ page.content | safe }}
+    </article>
+
+    <!-- Post Navigation -->
+    <footer class="mt-16">
+      {% include "partials/post_nav.html" %}
+    </footer>
+  </div>
 </main>
 
 {% endblock content %}

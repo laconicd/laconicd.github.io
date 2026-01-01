@@ -1,20 +1,21 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="max-w-4xl mx-auto">
-    <div class="prose max-w-none">
+  <div class="prose max-w-none">
     <h1>{{ taxonomy.name | capitalize }}</h1>
 
     <ul class="list-disc pl-5">
-        {% for term in terms %}
-        <li>
-            <a href="{{ term.permalink }}" class="link link-primary no-underline hover:underline">
-                {{ term.name }}
-            </a>
-            <span class="text-xs text-base-content/60">({{ term.pages | length }})</span>
-        </li>
-        {% endfor %}
+      {% for term in terms %}
+      <li>
+        <a
+          href="{{ term.permalink }}"
+          class="link link-primary no-underline hover:underline"
+        >
+          {{ term.name }}
+        </a>
+        <span class="text-xs text-base-content/60">({{ term.pages | length }})</span>
+      </li>
+      {% endfor %}
     </ul>
-    </div>
+  </div>
 </div>
 {% endblock content %}
