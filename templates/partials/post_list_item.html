@@ -5,14 +5,17 @@
         <time class="text-xs text-base-content/50">{{ page.date | date(format="%B %d, %Y") }}</time>
         {% if page.taxonomies.categories %}
         <span class="text-base-content/20">|</span>
-        <a href="{{ get_taxonomy_url(kind='categories', name=page.taxonomies.categories[0]) }}"
-          class="text-[10px] md:text-xs font-bold text-secondary uppercase tracking-wider hover:underline">
+        <a
+          href="{{ get_taxonomy_url(kind='categories', name=page.taxonomies.categories[0]) }}"
+          class="text-[10px] md:text-xs font-bold text-secondary uppercase tracking-wider hover:underline"
+        >
           {{ page.taxonomies.categories[0] }}
         </a>
         {% endif %}
       </div>
       <h2
-        class="text-base md:text-2xl font-bold group-hover:text-primary transition-colors truncate md:whitespace-normal">
+        class="text-base md:text-2xl font-bold group-hover:text-primary transition-colors truncate md:whitespace-normal"
+      >
         <a href="{{ page.permalink }}">{{ page.title }}</a>
       </h2>
       {% if page.summary %}
@@ -22,10 +25,17 @@
       {% endif %}
     </div>
     <div class="flex-none self-center">
-      <a href="{{ page.permalink }}"
-        class="btn btn-ghost btn-circle btn-sm md:btn-md group-hover:btn-primary group-hover:text-primary-content transition-all">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24"
-          stroke="currentColor">
+      <a
+        href="{{ page.permalink }}"
+        class="btn btn-ghost btn-circle btn-sm md:btn-md group-hover:btn-primary group-hover:text-primary-content transition-all"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 md:h-6 md:w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </a>
