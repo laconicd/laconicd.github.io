@@ -2,20 +2,20 @@
   "tasks": {
     "tailwindcss:build": "deno run -A @tailwindcss/cli -i assets/tailwind.css -o static/styles.css",
     "router:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/router.ts",
-    "dev": {
-      "command": "zola serve --port 8080",
+    "zola:serve": "zola serve --port 8080",
+    "zola:build": "zola build",
+    "code_format": "deno fmt",
+    "code_lint": "deno lint --fix --json",
+    "common": {
       "dependencies": [
         "tailwindcss:build",
-        "router:build"
+        "router:build",
+        "code_format",
+        "code_lint"
       ]
     },
-    "prd": {
-      "command": "zola build",
-      "dependencies": [
-        "tailwindcss:build",
-        "router:build"
-      ]
-    }
+    "dev": "deno task common && deno task zola:serve",
+    "prd": "deno task common && deno task zola:build"
   },
   "compilerOptions": {
     "lib": [
@@ -47,17 +47,17 @@
     "lineWidth": 120
   },
   "nodeModulesDir": "auto",
+  "allowScripts": {
+    "allow": [],
+    "deny": [
+      "npm:@parcel/watcher@2.5.1"
+    ]
+  },
   "imports": {
     "@tailwindcss/cli": "npm:@tailwindcss/cli@^4.1.18",
     "daisyui": "npm:daisyui@^5.5.14",
     "fuse.js": "npm:fuse.js@^7.1.0",
     "tailwindcss": "npm:tailwindcss@^4.1.18",
     "@tailwindcss/typography": "npm:@tailwindcss/typography@^0.5.19"
-  },
-  "allowScripts": {
-    "allow": [],
-    "deny": [
-      "npm:@parcel/watcher@2.5.1"
-    ]
   }
 }
