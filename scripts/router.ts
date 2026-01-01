@@ -104,9 +104,32 @@ class SpaRouter {
   }
 
   public attach(): void {
-    document.addEventListener("click", this.onLinkClick.bind(this));
+    if ("navigation" in globalThis) {
+      (globalThis as any).navigation.addEventListener("navigate", (event: any) => {
+        const url = new URL(event.destination.url);
+
+        if (
+          url.origin !== location.origin ||
+          event.hashChange ||
+          !event.canIntercept ||
+          event.downloadRequest ||
+          event.formData
+        ) {
+          return;
+        }
+
+        event.intercept({
+          handler: async () => {
+            await this.performNavigation(url.href, "slide");
+          },
+        });
+      });
+    } else {
+      document.addEventListener("click", this.onLinkClick.bind(this));
+      globalThis.addEventListener("popstate", this.onPopState.bind(this));
+    }
+
     document.addEventListener("change", this.onThemeChange.bind(this));
-    globalThis.addEventListener("popstate", this.onPopState.bind(this));
 
     // Initial sync
     this.themeManager.init();

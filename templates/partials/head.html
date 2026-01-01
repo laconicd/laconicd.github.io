@@ -70,6 +70,17 @@
   document.documentElement.setAttribute("data-theme", getInitialTheme());
   </script>
 
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "source": "list",
+        "urls": ["/", "/posts"]
+      }
+    ]
+  }
+  </script>
+
   <style>
     :root {
       --font-main: "Outfit", sans-serif;
