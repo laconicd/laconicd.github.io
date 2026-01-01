@@ -18,14 +18,9 @@
       <!-- Grid Section -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for page in paginator.pages %}
-          {% include "partials/post_card.html" %}
+        {% include "partials/post_card.html" %}
         {% endfor %}
       </div>
-
-      <!-- Pagination -->
-      <nav class="mt-12" aria-label="Pagination">
-        {% include "partials/pagination.html" %}
-      </nav>
     </section>
   </div>
 </main>
