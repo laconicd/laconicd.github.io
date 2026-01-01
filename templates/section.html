@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% block title %}{{ section.title }} | {{ config.title }}{% endblock title %} {% block content
-%}
+{% extends "base.html" %} {% block title %}{{ section.title }} | {{ config.title
+}}{% endblock title %} {% block content %}
 
 <main>
   <!-- Main Content Layout -->
@@ -12,7 +12,8 @@
     <section class="w-full">
       <!-- Grid Section -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {% for page in paginator.pages %} {% include "partials/post_card.html" %} {% endfor %}
+        {% for page in paginator.pages %} {% include "partials/post_card.html"
+        %} {% endfor %}
       </div>
 
       <!-- Pagination -->

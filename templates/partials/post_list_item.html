@@ -1,8 +1,11 @@
-<article class="group py-6 border-b border-base-200 hover:bg-base-200/30 transition-colors px-4 rounded-lg">
+<article
+  class="group py-6 border-b border-base-200 hover:bg-base-200/30 transition-colors px-4 rounded-lg"
+>
   <div class="flex flex-row items-center justify-between gap-4">
     <div class="flex-1 min-w-0">
       <div class="flex items-center gap-2 mb-1">
-        <time class="text-xs text-base-content/50">{{ page.date | date(format="%B %d, %Y") }}</time>
+        <time class="text-xs text-base-content/50"
+        >{{ page.date | date(format="%B %d, %Y") }}</time>
         {% if page.taxonomies.categories %}
         <span class="text-base-content/20">|</span>
         <a
@@ -19,7 +22,9 @@
         <a href="{{ page.permalink }}">{{ page.title }}</a>
       </h2>
       {% if page.summary %}
-      <p class="mt-1 text-base-content/70 line-clamp-2 text-xs md:text-sm leading-relaxed">
+      <p
+        class="mt-1 text-base-content/70 line-clamp-2 text-xs md:text-sm leading-relaxed"
+      >
         {{ page.summary | striptags }}
       </p>
       {% endif %}
@@ -36,7 +41,12 @@
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
         </svg>
       </a>
     </div>

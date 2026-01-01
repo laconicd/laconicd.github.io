@@ -4,7 +4,8 @@
   {% if page.extra.cover %}
   <figure class="h-48 overflow-hidden">
     <a href="{{ page.permalink }}" class="w-full h-full">
-      {% set image = resize_image(path=page.extra.cover, width=600, height=400, op="fill") %}
+      {% set image = resize_image(path=page.extra.cover, width=600, height=400,
+      op="fill") %}
       <img
         src="{{ image.url }}"
         alt="{{ page.title }}"
@@ -38,8 +39,9 @@
       </h2>
     </header>
     <p class="text-base-content/70 text-sm mb-4 line-clamp-3">
-      {% if page.summary %} {{ page.summary | striptags | truncate(length=120) }} {% else %} {{ page.content | striptags
-      | truncate(length=120) }} {% endif %}
+      {% if page.summary %} {{ page.summary | striptags | truncate(length=120)
+      }} {% else %} {{ page.content | striptags | truncate(length=120) }} {%
+      endif %}
     </p>
     <div class="card-actions justify-end mt-auto">
       <a href="{{ page.permalink }}" class="btn btn-primary btn-sm btn-outline">

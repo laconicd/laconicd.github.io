@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% block title %}{{ section.title }} | {{ config.title }}{% endblock title %} {% block content
-%}
+{% extends "base.html" %} {% block title %}{{ section.title }} | {{ config.title
+}}{% endblock title %} {% block content %}
 
 <main>
   <!-- Header Section -->
@@ -14,7 +14,8 @@
     <section class="w-full">
       <!-- List Section -->
       <div class="flex flex-col">
-        {% for page in paginator.pages | slice(end=5) %} {% include "partials/post_list_item.html" %} {% endfor %}
+        {% for page in paginator.pages | slice(end=5) %} {% include
+        "partials/post_list_item.html" %} {% endfor %}
       </div>
     </section>
   </div>

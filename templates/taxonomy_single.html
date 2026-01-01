@@ -1,11 +1,15 @@
 {% extends "base.html" %} {% block content %}
 <div class="max-w-6xl mx-auto px-4">
   <div class="prose max-w-none text-center mb-16">
-    <h1>{{ taxonomy.name | capitalize }}: <span class="text-primary">{{ term.name }}</span></h1>
+    <h1>
+      {{ taxonomy.name | capitalize }}: <span class="text-primary"
+      >{{ term.name }}</span>
+    </h1>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {% for page in term.pages %} {% include "partials/post_card.html" %} {% endfor %}
+    {% for page in term.pages %} {% include "partials/post_card.html" %} {%
+    endfor %}
   </div>
 </div>
 {% endblock content %}

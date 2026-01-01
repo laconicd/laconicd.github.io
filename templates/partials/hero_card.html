@@ -3,7 +3,8 @@
 >
   {% if hero_post.extra.cover %}
   <figure class="lg:w-1/2 overflow-hidden">
-    {% set image = resize_image(path=hero_post.extra.cover, width=800, height=600, op="fill") %}
+    {% set image = resize_image(path=hero_post.extra.cover, width=800,
+    height=600, op="fill") %}
     <img
       src="{{ image.url }}"
       alt="{{ hero_post.title }}"
@@ -31,8 +32,9 @@
       <a href="{{ hero_post.permalink }}">{{ hero_post.title }}</a>
     </h2>
     <p class="text-base-content/70 text-lg mb-6 leading-relaxed">
-      {% if hero_post.summary %} {{ hero_post.summary | striptags | truncate(length=200) }} {% else %} {{
-      hero_post.content | striptags | truncate(length=200) }} {% endif %}
+      {% if hero_post.summary %} {{ hero_post.summary | striptags |
+      truncate(length=200) }} {% else %} {{ hero_post.content | striptags |
+      truncate(length=200) }} {% endif %}
     </p>
     <div class="card-actions justify-start">
       <div class="flex items-center gap-4">
@@ -43,7 +45,8 @@
         </div>
         <div class="flex flex-col">
           <span class="font-bold text-sm">{{ config.extra.author_name }}</span>
-          <span class="text-xs text-base-content/60">{{ config.extra.author_role }}</span>
+          <span class="text-xs text-base-content/60"
+          >{{ config.extra.author_role }}</span>
         </div>
       </div>
     </div>

@@ -11,7 +11,9 @@ export class ThemeManager {
    */
   public init(): void {
     const savedTheme = localStorage.getItem(this.STORAGE_KEY) ||
-      (globalThis.matchMedia("(prefers-color-scheme: dark)").matches ? this.DARK_THEME : this.LIGHT_THEME);
+      (globalThis.matchMedia("(prefers-color-scheme: dark)").matches
+        ? this.DARK_THEME
+        : this.LIGHT_THEME);
     this.apply(savedTheme);
   }
 

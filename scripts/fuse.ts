@@ -72,7 +72,11 @@ class SearchPresenter {
     const permalink = item.permalink || item.path || "#";
 
     let title = item.title;
-    let description = item.description ? item.description : item.content ? item.content.substring(0, 150) + "..." : "";
+    let description = item.description
+      ? item.description
+      : item.content
+      ? item.content.substring(0, 150) + "..."
+      : "";
 
     if (result.matches) {
       for (const match of result.matches) {
@@ -94,7 +98,11 @@ class SearchPresenter {
     return `
       <li class="py-2 border-b border-base-200">
         <a href="${permalink}" class="text-lg font-bold hover:text-primary transition-colors">${title}</a>
-        ${description ? `<p class="text-sm text-base-content/70 mt-1">${description}</p>` : ""}
+        ${
+      description
+        ? `<p class="text-sm text-base-content/70 mt-1">${description}</p>`
+        : ""
+    }
       </li>
     `;
   }
