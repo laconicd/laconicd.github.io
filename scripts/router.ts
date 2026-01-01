@@ -22,14 +22,20 @@ class PageFetcher {
 class PagePresenter {
   constructor(private readonly themeManager: ThemeManager) {}
 
-  public render(newDoc: Document, transitionType: string, restoreScroll = false): void {
+  public render(
+    newDoc: Document,
+    transitionType: string,
+    restoreScroll = false,
+  ): void {
     if (!document.startViewTransition) {
       this.updateDOM(newDoc, restoreScroll);
       return;
     }
 
     document.documentElement.dataset.transition = transitionType;
-    const transition = document.startViewTransition(() => this.updateDOM(newDoc, restoreScroll));
+    const transition = document.startViewTransition(() =>
+      this.updateDOM(newDoc, restoreScroll)
+    );
     transition.finished.finally(() => {
       // Optional: cleanup transition state
     });
@@ -37,12 +43,6 @@ class PagePresenter {
 
   private updateDOM(newDoc: Document, restoreScroll = false): void {
     const currentTheme = this.themeManager.getCurrentTheme();
-
-    // Save current scroll position to history state before replacing content
-    if (!restoreScroll) {
-      const scrollPos = { x: globalThis.scrollX, y: globalThis.scrollY };
-      globalThis.history.replaceState({ ...globalThis.history.state, scrollPos }, "");
-    }
 
     // Find the main content area in both the current and new document
     const currentMain = document.getElementById("main-content");
@@ -71,9 +71,17 @@ class PagePresenter {
       document.activeElement.blur();
     }
 
-    if (restoreScroll && globalThis.history.state?.scrollPos) {
-      const { x, y } = globalThis.history.state.scrollPos;
-      globalThis.scrollTo(x, y);
+    if (restoreScroll) {
+      // deno-lint-ignore no-explicit-any
+      const nav = (globalThis as any).navigation;
+      const state = nav?.currentEntry?.state || globalThis.history.state;
+
+      if (state?.scrollPos) {
+        const { x, y } = state.scrollPos;
+        globalThis.scrollTo(x, y);
+      } else {
+        globalThis.scrollTo(0, 0);
+      }
     } else {
       globalThis.scrollTo(0, 0);
     }
@@ -116,7 +124,8 @@ class SpaRouter {
   public attach(): void {
     if ("navigation" in globalThis) {
       // deno-lint-ignore no-explicit-any
-      (globalThis as any).navigation.addEventListener("navigate", (event: any) => {
+      const nav = (globalThis as any).navigation;
+      nav.addEventListener("navigate", (event: any) => {
         const url = new URL(event.destination.url);
 
         if (
@@ -127,6 +136,14 @@ class SpaRouter {
           event.formData
         ) {
           return;
+        }
+
+        // Save current scroll position to the entry we are LEAVING
+        if (nav.currentEntry) {
+          const scrollPos = { x: globalThis.scrollX, y: globalThis.scrollY };
+          nav.updateCurrentEntry({
+            state: { ...nav.currentEntry.state, scrollPos },
+          });
         }
 
         event.intercept({
@@ -174,7 +191,9 @@ class SpaRouter {
 
   private findAnchor(event: MouseEvent): HTMLAnchorElement | null {
     const target = event.target as Node;
-    const parent = target.nodeType === Node.TEXT_NODE ? target.parentNode : target;
+    const parent = target.nodeType === Node.TEXT_NODE
+      ? target.parentNode
+      : target;
     return (parent as Element)?.closest("a");
   }
 
