@@ -1,18 +1,17 @@
 {% extends "base.html" %} {% block content %}
 <div class="max-w-4xl mx-auto">
-  <div class="prose max-w-none">
+  <div class="prose max-w-none text-center">
     <h1>{{ taxonomy.name | capitalize }}: {{ term.name }}</h1>
 
-    <ul class="list-disc pl-5">
+    <ul class="list-none p-0 not-prose">
       {% for page in term.pages %}
-      <li>
-        <a
-          href="{{ page.permalink }}"
-          class="link link-primary no-underline hover:underline"
-        >
+      <li class="my-4">
+        <a href="{{ page.permalink }}" class="link link-primary no-underline hover:underline text-xl block sm:inline">
           {{ page.title }}
         </a>
-        <span class="text-xs text-base-content/60">{{ page.date | date(format="%Y-%m-%d") }}</span>
+        <div class="text-sm text-base-content/60 mt-1 sm:mt-0 sm:ml-2 sm:inline">
+          {{ page.date | date(format="%Y-%m-%d") }}
+        </div>
       </li>
       {% endfor %}
     </ul>
