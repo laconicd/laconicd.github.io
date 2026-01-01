@@ -11,14 +11,17 @@ categories = ["Development"]
 
 This is a test post to verify the **View Transitions API** implementation.
 
-When you navigate between this page and the home page, you should see a smooth **slide-up** animation if you are using a
-supported browser (Chrome, Edge, Safari, etc.).
+When you navigate between this page and the home page, you should see a smooth
+**slide-up** animation if you are using a supported browser (Chrome, Edge,
+Safari, etc.).
 
 ## Why Native API?
 
 1. **Zero Bundle Size**: No heavy libraries required.
-2. **Performance**: Handling snapshots at the browser engine level is extremely fast.
-3. **Simplicity**: Just wrap your DOM update in `document.startViewTransition()`.
+2. **Performance**: Handling snapshots at the browser engine level is extremely
+   fast.
+3. **Simplicity**: Just wrap your DOM update in
+   `document.startViewTransition()`.
 
 ## Code Example
 
