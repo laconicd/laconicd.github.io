@@ -2,17 +2,12 @@
 %}
 
 <main>
-  <!-- Header Section -->
-  <header class="mb-20 text-center">
-    <h1 class="text-5xl font-bold tracking-tight mb-4">{{ section.title }}</h1>
-    <p class="text-xl text-base-content/70">
-      {% if section.description %} {{ section.description }} {% else %} A collection of my writings and thoughts. {%
-      endif %}
-    </p>
-  </header>
-
   <!-- Main Content Layout -->
   <div class="max-w-4xl mx-auto">
+    <!-- Header Section -->
+    <div class="prose max-w-none mb-8 text-center">
+      <h1>{{ section.title }}</h1>
+    </div>
     <!-- Posts Column -->
     <section class="w-full">
       <!-- List Section -->
