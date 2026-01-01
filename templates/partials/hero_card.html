@@ -1,13 +1,23 @@
 <div class="card lg:card-side bg-base-100 shadow-xl mb-16 overflow-hidden border border-base-200">
     {% if hero_post.extra.cover %}
-    <figure class="lg:w-1/2">
-        <img src="{{ get_url(path=hero_post.extra.cover) }}" alt="{{ hero_post.title }}"
-            class="w-full h-full object-cover" />
+    <figure class="lg:w-1/2 overflow-hidden">
+        {% set image = resize_image(path=hero_post.extra.cover, width=800, height=600, op="fill") %}
+        <img src="{{ image.url }}" alt="{{ hero_post.title }}"
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+            width="{{ image.width }}" height="{{ image.height }}" />
     </figure>
     {% endif %}
     <div class="card-body lg:w-1/2 justify-center p-8 lg:p-12">
-        <div class="text-sm font-semibold text-primary mb-2">
-            {{ hero_post.date | date(format=config.extra.date_format) }}
+        <div class="flex items-center gap-2 mb-2">
+            <div class="text-sm font-semibold text-primary">
+                {{ hero_post.date | date(format=config.extra.date_format) }}
+            </div>
+            {% if hero_post.taxonomies.categories %}
+            <span class="text-sm text-base-content/40">•</span>
+            <span class="text-sm font-bold text-secondary uppercase tracking-widest">
+                {{ hero_post.taxonomies.categories[0] }}
+            </span>
+            {% endif %}
         </div>
         <h2 class="card-title text-4xl font-bold mb-4 hover:text-primary transition-colors">
             <a href="{{ hero_post.permalink }}">{{ hero_post.title }}</a>

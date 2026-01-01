@@ -23,45 +23,4 @@
             </div>
         </div>
     </aside>
-
-    <!-- Recent Posts -->
-    <div class="p-6 bg-base-200/50 border border-base-200 rounded-box">
-        <h2 class="text-xl font-bold mb-4">Recent Posts</h2>
-        {% set blog_section = get_section(path="posts/_index.md") %}
-        <ul class="space-y-4">
-            {% for page in blog_section.pages | slice(end=5) %}
-            <li>
-                <a href="{{ page.permalink }}" class="link link-hover font-semibold">{{ page.title }}</a>
-                <p class="text-sm text-base-content/60 mt-1">{{ page.date | date(format="%B %d, %Y") }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <!-- Categories -->
-    {% set categories = get_taxonomy(kind="categories") %}
-    <div class="p-6 bg-base-200/50 border border-base-200 rounded-box">
-        <h2 class="text-xl font-bold mb-4">Categories</h2>
-        <ul class="space-y-2">
-            {% for term in categories.items %}
-            <li class="flex justify-between items-center">
-                <a href="{{ term.permalink }}" class="link link-hover font-medium capitalize">{{ term.name }}</a>
-                <span class="badge badge-sm badge-ghost">{{ term.pages | length }}</span>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <!-- Tags -->
-    {% set tags = get_taxonomy(kind="tags") %}
-    <div class="p-6 bg-base-200/50 border border-base-200 rounded-box">
-        <h2 class="text-xl font-bold mb-4">Tags</h2>
-        <div class="flex flex-wrap gap-2">
-            {% for term in tags.items %}
-            <a href="{{ term.permalink }}" class="badge badge-outline badge-primary hover:badge-primary transition-colors py-3 px-4">
-                #{{ term.name }}
-            </a>
-            {% endfor %}
-        </div>
-    </div>
 </div>

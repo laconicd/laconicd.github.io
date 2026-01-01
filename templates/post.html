@@ -4,9 +4,9 @@
 
 {% block content %}
 
-<main class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+<main class="max-w-4xl mx-auto">
     <!-- Main Content -->
-    <div class="w-full lg:w-2/3">
+    <div class="w-full">
         <!-- Article Header -->
         <header class="text-center mb-12">
             <div class="flex items-center justify-center gap-2 mb-4">
@@ -60,11 +60,6 @@
             {% include "partials/post_nav.html" %}
         </footer>
     </div>
-
-    <!-- Sidebar Column -->
-    <aside class="w-full lg:w-1/3">
-        {% include "partials/post_sidebar.html" %}
-    </aside>
 </main>
 
 {% endblock content %}
