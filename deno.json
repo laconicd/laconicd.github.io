@@ -4,14 +4,10 @@
     "router:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/router.ts",
     "zola:serve": "zola serve --port 8080",
     "zola:build": "zola build",
-    "code_format": "deno fmt",
-    "code_lint": "deno lint --fix --json",
     "common": {
       "dependencies": [
         "tailwindcss:build",
-        "router:build",
-        "code_format",
-        "code_lint"
+        "router:build"
       ]
     },
     "dev": "deno task common && deno task zola:serve",
@@ -27,30 +23,6 @@
       "dom",
       "dom.asynciterable",
       "dom.iterable"
-    ]
-  },
-  "lint": {
-    "include": [
-      "**/*"
-    ],
-    "exclude": [
-      "node_modules",
-      "static",
-      "public",
-      "templates"
-    ],
-    "rules": {
-      "tags": [
-        "recommended"
-      ]
-    }
-  },
-  "fmt": {
-    "lineWidth": 120,
-    "exclude": [
-      "public",
-      "static",
-      "templates"
     ]
   },
   "nodeModulesDir": "auto",
