@@ -36,7 +36,8 @@
     "exclude": [
       "node_modules",
       "static",
-      "public"
+      "public",
+      "templates"
     ],
     "rules": {
       "tags": [
@@ -45,7 +46,12 @@
     }
   },
   "fmt": {
-    "lineWidth": 120
+    "lineWidth": 120,
+    "exclude": [
+      "public",
+      "static",
+      "templates"
+    ]
   },
   "nodeModulesDir": "auto",
   "allowScripts": {
