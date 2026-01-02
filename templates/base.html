@@ -5,7 +5,7 @@
   <body class="bg-base-100 text-base-content antialiased">
     <div class="drawer drawer-end">
       <input id="mobile-drawer" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content flex flex-col min-h-screen">
+      <div class="drawer-content flex flex-col min-h-screen pt-16">
         <header>
           {% include "partials/navbar.html" %}
         </header>
@@ -149,13 +149,11 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
         width: 100%;
-        min-height: 100vh;
       }
 
       .drawer-content {
         grid-column: 1;
         grid-row: 1;
-        min-height: 100vh;
         display: flex;
         flex-direction: column;
       }
@@ -170,7 +168,7 @@
         pointer-events: none;
         overflow-y: auto;
         overscroll-behavior: contain;
-        z-index: 9999;
+        z-index: 100;
       }
 
       .drawer-side > .drawer-overlay {
