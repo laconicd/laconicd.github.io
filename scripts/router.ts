@@ -25,23 +25,17 @@ class PagePresenter {
   public render(
     newDoc: Document,
     transitionType: string,
-    restoreScroll = false,
   ): void {
     if (!document.startViewTransition) {
-      this.updateDOM(newDoc, restoreScroll);
+      this.updateDOM(newDoc);
       return;
     }
 
     document.documentElement.dataset.transition = transitionType;
-    const transition = document.startViewTransition(() =>
-      this.updateDOM(newDoc, restoreScroll)
-    );
-    transition.finished.finally(() => {
-      // Optional: cleanup transition state
-    });
+    document.startViewTransition(() => this.updateDOM(newDoc));
   }
 
-  private updateDOM(newDoc: Document, restoreScroll = false): void {
+  private updateDOM(newDoc: Document): void {
     const currentTheme = this.themeManager.getCurrentTheme();
 
     // Find the main content area in both the current and new document
@@ -70,23 +64,6 @@ class PagePresenter {
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
-
-    if (restoreScroll) {
-      // deno-lint-ignore no-explicit-any
-      const nav = (globalThis as any).navigation;
-      const state = nav?.currentEntry?.state || globalThis.history.state;
-
-      if (state?.scrollPos) {
-        const { x, y } = state.scrollPos;
-        globalThis.scrollTo(x, y);
-      } else {
-        globalThis.scrollTo(0, 0);
-      }
-    } else {
-      globalThis.scrollTo(0, 0);
-    }
-
-    initSearch();
   }
 }
 
@@ -138,19 +115,9 @@ class SpaRouter {
           return;
         }
 
-        // Save current scroll position to the entry we are LEAVING
-        if (nav.currentEntry) {
-          const scrollPos = { x: globalThis.scrollX, y: globalThis.scrollY };
-          nav.updateCurrentEntry({
-            state: { ...nav.currentEntry.state, scrollPos },
-          });
-        }
-
         event.intercept({
-          scroll: "manual",
           handler: async () => {
-            const isBackForward = event.navigationType === "traverse";
-            await this.performNavigation(url.href, "slide", isBackForward);
+            await this.performNavigation(url.href, "slide");
           },
         });
       });
@@ -213,12 +180,11 @@ class SpaRouter {
   private async performNavigation(
     href: string,
     transitionType: string,
-    restoreScroll = false,
   ): Promise<void> {
     try {
       console.log(`[Router] Navigating to: ${href}`);
       const newDoc = await this.pageFetcher.fetch(href);
-      this.pagePresenter.render(newDoc, transitionType, restoreScroll);
+      this.pagePresenter.render(newDoc, transitionType);
     } catch (error) {
       console.error("Navigation failed:", error);
       globalThis.location.assign(href); // Fallback to full page load

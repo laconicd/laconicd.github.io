@@ -157,18 +157,19 @@ export class SearchController {
 /**
  * Main initialization entry point.
  */
+let isSearchInitialized = false;
+
 export function initSearch(): void {
   const input = document.getElementById("search-input") as HTMLInputElement;
   const resultsContainer = document.getElementById(
     "search-results",
   ) as HTMLElement;
 
-  if (!input || !resultsContainer) {
+  if (!input || !resultsContainer || isSearchInitialized) {
     return;
   }
 
   if (!globalThis.searchIndex) {
-    console.error("Search index not found.");
     return;
   }
 
@@ -177,4 +178,5 @@ export function initSearch(): void {
   const controller = new SearchController(input, service, presenter);
 
   controller.attach();
+  isSearchInitialized = true;
 }
