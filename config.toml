@@ -20,7 +20,7 @@ index_format = "fuse_javascript"
 
 [markdown]
 highlight_code = true
-highlight_theme = "ayu-light"
+highlight_theme = "css"
 render_emoji = true
 
 [extra]

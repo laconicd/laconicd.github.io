@@ -1,0 +1,52 @@
+/* --- 코드 하이라이트 변수 설정 --- */
+
+/* 1. 라이트 모드 (lofi 테마 기반) */
+[data-theme="lofi"] {
+  --hl-bg: #f8f9fa;
+  --hl-text: #24292e;
+  --hl-comment: #6a737d;
+  --hl-keyword: #d73a49;
+  --hl-string: #032f62;
+  --hl-function: #6f42c1;
+  --hl-variable: #e36209;
+  --hl-constant: #005cc5;
+  --hl-type: #22863a;
+}
+
+/* 2. 다크 모드 (dim 테마 기반) */
+[data-theme="dim"] {
+  --hl-bg: #1c212b;
+  --hl-text: #c9d1d9;
+  --hl-comment: #8b949e;
+  --hl-keyword: #ff7b72;
+  --hl-string: #a5d6ff;
+  --hl-function: #d2a8ff;
+  --hl-variable: #ffa657;
+  --hl-constant: #79c0ff;
+  --hl-type: #7ee787;
+}
+
+/* --- Zola 클래스 매핑 --- */
+pre {
+  background-color: var(--hl-bg);
+  color: var(--hl-text);
+  padding: 1.25rem;
+  border-radius: var(--rounded-box, 0.5rem);
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.z-comment  { color: var(--hl-comment); font-style: italic; }
+.z-keyword  { color: var(--hl-keyword); font-weight: 600; }
+.z-string   { color: var(--hl-string); }
+.z-function { color: var(--hl-function); }
+.z-variable { color: var(--hl-variable); }
+.z-constant { color: var(--hl-constant); }
+.z-type     { color: var(--hl-type); }
+.z-heading  { color: var(--hl-keyword); font-weight: bold; }
+.z-bold     { font-weight: bold; }
+.z-italic   { font-style: italic; }

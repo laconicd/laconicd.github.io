@@ -1,9 +1,7 @@
 @import "tailwindcss";
+@import "./base.css";
 @import "./transitions.css";
-
-html {
-  overflow-y: scroll;
-}
+@import "./syntax.css";
 
 @plugin "@tailwindcss/typography";
 
@@ -13,19 +11,4 @@ html {
 
 @theme {
   --font-sans: "Outfit", sans-serif;
-}
-
-/* View Transitions */
-.navbar {
-  view-transition-name: navbar;
-}
-
-footer {
-  view-transition-name: footer;
-}
-
-/* root 트랜지션만으로 부드럽게 전체 전환 (네비바/푸터 제외) */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.2s;
 }

@@ -1,0 +1,8 @@
+html {
+  overflow-y: scroll;
+}
+
+/* Add any other global base styles here */
+body {
+  @apply antialiased;
+}
