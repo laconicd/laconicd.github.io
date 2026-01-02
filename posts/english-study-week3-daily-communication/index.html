@@ -1,17 +1,17 @@
 <!doctype html><html data-theme=lofi lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1.0" name=viewport><title>The Blog</title><meta content="A blog about Rust, Zola, and modern web development. Featuring tutorials, insights, and personal projects." name=description><meta content="The Blog" property=og:title><meta content="A blog about Rust, Zola, and modern web development. Featuring tutorials, insights, and personal projects." property=og:description><meta content=website property=og:type><meta content=https://laconicd.github.io/posts/english-study-week3-daily-communication/ property=og:url><link href=https://laconicd.github.io/posts/english-study-week3-daily-communication/ rel=canonical><link href=https://laconicd.github.io/favicon.ico rel=icon><meta content=https://laconicd.github.io/default_og.png property=og:image><meta content=https://laconicd.github.io/default_og.png name=twitter:image><meta content=summary_large_image name=twitter:card><meta content="The Blog" name=twitter:title><meta content="A blog about Rust, Zola, and modern web development. Featuring tutorials, insights, and personal projects." name=twitter:description><link href=https://fonts.googleapis.com rel=preconnect><link crossorigin href=https://fonts.gstatic.com rel=preconnect><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=block" rel=stylesheet><link href=https://laconicd.github.io/styles.css rel=stylesheet><link href="https://laconicd.github.io/transitions.css?v=2" rel=stylesheet><script>// Initialize theme as early as possible to prevent FOUC
-  const getInitialTheme = () => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) return savedTheme;
+    const getInitialTheme = () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) return savedTheme;
 
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dim" : "lofi";
-  };
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dim" : "lofi";
+    };
 
-  document.documentElement.setAttribute("data-theme", getInitialTheme());</script><script type=speculationrules>
+    document.documentElement.setAttribute("data-theme", getInitialTheme());</script><script type=speculationrules>
   {
     "prerender": [
       {
         "source": "list",
-        "urls": ["/", "/posts"]
+        "urls": ["/", "/posts", "categories", "tags"]
       }
     ]
   }
