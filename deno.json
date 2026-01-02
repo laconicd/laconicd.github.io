@@ -4,10 +4,12 @@
     "router:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/router.ts",
     "zola:serve": "zola serve --port 8080",
     "zola:build": "zola build",
+    "copy:assets": "mkdir -p static && cp -r assets/images static",
     "common": {
       "dependencies": [
         "tailwindcss:build",
-        "router:build"
+        "router:build",
+        "copy:assets"
       ]
     },
     "dev": "deno task common && deno task zola:serve",
