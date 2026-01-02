@@ -156,10 +156,16 @@
         <loc>https://laconicd.github.io/tags/animation/</loc>
     </url>
     <url>
+        <loc>https://laconicd.github.io/tags/bash/</loc>
+    </url>
+    <url>
         <loc>https://laconicd.github.io/tags/communication/</loc>
     </url>
     <url>
         <loc>https://laconicd.github.io/tags/cs/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/css/</loc>
     </url>
     <url>
         <loc>https://laconicd.github.io/tags/devlog/</loc>
@@ -174,18 +180,45 @@
         <loc>https://laconicd.github.io/tags/frontend/</loc>
     </url>
     <url>
+        <loc>https://laconicd.github.io/tags/general/</loc>
+    </url>
+    <url>
         <loc>https://laconicd.github.io/tags/git/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/javascript/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/json/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/markdown/</loc>
     </url>
     <url>
         <loc>https://laconicd.github.io/tags/merge/</loc>
     </url>
     <url>
+        <loc>https://laconicd.github.io/tags/python/</loc>
+    </url>
+    <url>
         <loc>https://laconicd.github.io/tags/rebase/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/rust/</loc>
     </url>
     <url>
         <loc>https://laconicd.github.io/tags/test/</loc>
     </url>
     <url>
+        <loc>https://laconicd.github.io/tags/toml/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/typescript/</loc>
+    </url>
+    <url>
         <loc>https://laconicd.github.io/tags/workflow/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/yaml/</loc>
     </url>
 </urlset>
