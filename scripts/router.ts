@@ -124,14 +124,8 @@ class SpaRouter {
         const isBackForward = event.navigationType === "traverse";
 
         event.intercept({
-          scroll: "manual",
           handler: async () => {
             await this.performNavigation(url.href, "slide");
-            if (isBackForward) {
-              event.scroll();
-            } else {
-              globalThis.scrollTo(0, 0);
-            }
           },
         });
       });
