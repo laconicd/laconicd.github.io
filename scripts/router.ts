@@ -27,7 +27,7 @@ class PagePresenter {
     transitionType: string,
     shouldScrollToTop = true,
   ): void {
-    if (!document.startViewTransition || transitionType === "none") {
+    if (!document.startViewTransition) {
       this.updateDOM(newDoc, shouldScrollToTop);
       return;
     }
@@ -124,9 +124,7 @@ class SpaRouter {
 
         event.intercept({
           handler: async () => {
-            // 뒤로가기/앞으로가기 시에는 애니메이션(ViewTransition) 없이 바로 교체하고, 스크롤 복원은 브라우저에 맡깁니다.
-            const transitionType = isBackForward ? "none" : "slide";
-            await this.performNavigation(url.href, transitionType, !isBackForward);
+            await this.performNavigation(url.href, "slide", !isBackForward);
           },
         });
       });
