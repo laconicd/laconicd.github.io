@@ -100,6 +100,7 @@ class SpaRouter {
 
   public attach(): void {
     if ("navigation" in globalThis) {
+      alert("Navigation API is supported!");
       // deno-lint-ignore no-explicit-any
       const nav = (globalThis as any).navigation;
       nav.addEventListener("navigate", (event: any) => {
@@ -122,6 +123,7 @@ class SpaRouter {
         });
       });
     } else {
+      alert("Navigation API is NOT supported. Using fallback (click/popstate).");
       document.addEventListener("click", this.onLinkClick.bind(this));
       globalThis.addEventListener("popstate", this.onPopState.bind(this));
     }
