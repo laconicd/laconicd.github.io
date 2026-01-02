@@ -23,6 +23,14 @@ highlight_code = true
 highlight_theme = "css"
 render_emoji = true
 
+[[markdown.highlight_themes_css]]
+theme = "ayu-dark"
+filename = "ayu-dark.css"
+
+[[markdown.highlight_themes_css]]
+theme = "ayu-light"
+filename = "ayu-light.css"
+
 [extra]
 hero_title = "Writings"
 hero_subtitle = "The latest news, technologies, and resources from our team."

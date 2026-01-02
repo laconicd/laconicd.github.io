@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "./base.css";
 @import "./transitions.css";
-@import "./syntax.css";
 
 @plugin "@tailwindcss/typography";
 

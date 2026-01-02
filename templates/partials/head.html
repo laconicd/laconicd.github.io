@@ -2,23 +2,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{% block title %}{{ config.title }}{% endblock title %}</title>
 
-{% set page_description = "" %} {% if page %} {% set page_description = page.summary |
-default(value=config.description) %} {% elif section %} {% set page_description = section.description |
-default(value=config.description) %} {% else %} {% set page_description = config.description %} {% endif %}
+{% set page_description = "" %}
+{% if page %}
+{% set page_description = page.summary | default(value=config.description) %}
+{% elif section %}
+{% set page_description = section.description | default(value=config.description) %}
+{% else %}
+{% set page_description = config.description %}
+{% endif %}
 
 <meta name="description" content="{{ page_description | truncate(length=155) }}">
 <meta property="og:title" content="{% block og_title %}{{ config.title }}{% endblock og_title %}">
 <meta property="og:description" content="{{ page_description | truncate(length=155) }}">
 <meta property="og:type" content="{% if page and page.is_page %}article{% else %}website{% endif %}">
-{% set page_url = config.base_url %} {% if page %} {% set page_url = page.permalink %} {% elif section %} {% set
-page_url = section.permalink %} {% endif %}
+{% set page_url = config.base_url %}
+{% if page %}
+{% set page_url = page.permalink %}
+{% elif section %}
+{% set page_url = section.permalink %}
+{% endif %}
 
 <meta property="og:url" content="{{ page_url }}">
 <link rel="canonical" href="{{ page_url }}">
 <link rel="icon" href="{{ get_url(path='favicon.ico') }}">
-{% set image_url = "" %} {% if page.extra.image %} {% set image_url = get_url(path=page.extra.image) %} {% elif
-config.extra.default_image %} {% set image_url = get_url(path=config.extra.default_image) %} {% endif %} {% if
-image_url %}
+
+{% set image_url = "" %}
+{% if page.extra.image %}
+{% set image_url = get_url(path=page.extra.image) %}
+{% elif config.extra.default_image %}
+{% set image_url = get_url(path=config.extra.default_image) %}
+{% endif %}
+
+{% if image_url %}
 <meta property="og:image" content="{{ image_url }}">
 <meta name="twitter:image" content="{{ image_url }}">
 {% endif %}
@@ -27,24 +42,56 @@ image_url %}
 <meta name="twitter:title" content="{% block twitter_title %}{{ config.title }}{% endblock twitter_title %}">
 <meta name="twitter:description" content="{{ page_description | truncate(length=155) }}">
 
-<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=block" rel="stylesheet">
 
-<!-- TailwindCSS + DaisyUI -->
 <link rel="stylesheet" href="{{ get_url(path='styles.css') }}">
 
+{% if config.markdown.highlight_code %}
+<link rel="stylesheet" href="{{ get_url(path='syntax-light.css') | safe }}" id="hl-light">
+<link rel="stylesheet" href="{{ get_url(path='syntax-dark.css') | safe }}" id="hl-dark">
+{% endif %}
+
 <script>
-  // Initialize theme as early as possible to prevent FOUC
+  // 테마 상태를 감시하여 Syntax CSS를 토글하는 로직
+  const syncSyntaxTheme = () => {
+    const theme = document.documentElement.getAttribute("data-theme");
+    const lightStyle = document.getElementById("hl-light");
+    const darkStyle = document.getElementById("hl-dark");
+
+    if (lightStyle && darkStyle) {
+      const isDark = (theme === "dim");
+      lightStyle.disabled = isDark;
+      darkStyle.disabled = !isDark;
+    }
+  };
+
+  // 1. 초기 테마 설정 (FOUC 방지)
   const getInitialTheme = () => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) return savedTheme;
-
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dim" : "lofi";
   };
 
-  document.documentElement.setAttribute("data-theme", getInitialTheme());
+  const initialTheme = getInitialTheme();
+  document.documentElement.setAttribute("data-theme", initialTheme);
+
+  // 2. DOM이 로드된 후 초기 실행 및 속성 감시 시작
+  document.addEventListener("DOMContentLoaded", () => {
+    syncSyntaxTheme(); // 첫 로드 시 적용
+
+    // <html>의 data-theme 속성이 바뀔 때마다 실행되도록 감시
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "data-theme") {
+          syncSyntaxTheme();
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {attributes: true});
+  });
 </script>
 
 <script type="speculationrules">
@@ -65,5 +112,10 @@ image_url %}
 
   body {
     font-family: var(--font-main);
+  }
+
+  /* Zola 하이라이트 배경과 테마 배경이 충돌하지 않게 조정 (선택사항) */
+  pre {
+    background-color: transparent !important;
   }
 </style>
