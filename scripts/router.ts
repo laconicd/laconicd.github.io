@@ -25,18 +25,17 @@ class PagePresenter {
   public render(
     newDoc: Document,
     transitionType: string,
-    shouldScrollToTop = true,
   ): void {
     if (!document.startViewTransition) {
-      this.updateDOM(newDoc, shouldScrollToTop);
+      this.updateDOM(newDoc);
       return;
     }
 
     document.documentElement.dataset.transition = transitionType;
-    document.startViewTransition(() => this.updateDOM(newDoc, shouldScrollToTop));
+    document.startViewTransition(() => this.updateDOM(newDoc));
   }
 
-  private updateDOM(newDoc: Document, shouldScrollToTop = true): void {
+  private updateDOM(newDoc: Document): void {
     const currentTheme = this.themeManager.getCurrentTheme();
 
     // Find the main content area in both the current and new document
@@ -64,10 +63,6 @@ class PagePresenter {
     // Close any other focused elements by blurring the active element
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
-    }
-
-    if (shouldScrollToTop) {
-      globalThis.scrollTo(0, 0);
     }
   }
 }
@@ -124,7 +119,7 @@ class SpaRouter {
 
         event.intercept({
           handler: async () => {
-            await this.performNavigation(url.href, "slide", !isBackForward);
+            await this.performNavigation(url.href, "slide");
           },
         });
       });
@@ -160,7 +155,7 @@ class SpaRouter {
   }
 
   private onPopState(): void {
-    this.performNavigation(globalThis.location.href, "slide", false);
+    this.performNavigation(globalThis.location.href, "slide");
   }
 
   private findAnchor(event: MouseEvent): HTMLAnchorElement | null {
@@ -187,12 +182,11 @@ class SpaRouter {
   private async performNavigation(
     href: string,
     transitionType: string,
-    shouldScrollToTop = true,
   ): Promise<void> {
     try {
       console.log(`[Router] Navigating to: ${href}`);
       const newDoc = await this.pageFetcher.fetch(href);
-      this.pagePresenter.render(newDoc, transitionType, shouldScrollToTop);
+      this.pagePresenter.render(newDoc, transitionType);
     } catch (error) {
       console.error("Navigation failed:", error);
       globalThis.location.assign(href); // Fallback to full page load
