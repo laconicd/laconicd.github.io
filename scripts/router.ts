@@ -53,10 +53,23 @@ class PagePresenter {
     document.title = newDoc.title;
     this.themeManager.apply(currentTheme);
 
+    // Re-highlight code blocks
+    // @ts-ignore: Prism is global
+    if (globalThis.Prism) {
+      // @ts-ignore
+      globalThis.Prism.highlightAll();
+    }
+
     // Close mobile drawer if open
     const drawerToggle = document.getElementById("mobile-drawer") as HTMLInputElement;
     if (drawerToggle && drawerToggle.checked) {
       drawerToggle.checked = false;
+    }
+
+    // Close search modal if open
+    const searchModal = document.getElementById("search_modal") as HTMLDialogElement;
+    if (searchModal && searchModal.open) {
+      searchModal.close();
     }
 
     // Close any open dropdowns (like the hamburger menu)
@@ -126,6 +139,10 @@ class SpaRouter {
         event.intercept({
           handler: async () => {
             await this.performNavigation(url.href, "slide");
+            // Scroll to top on new navigation, but allow browser to handle traverse (back/forward)
+            if (event.navigationType !== "traverse") {
+              globalThis.scrollTo(0, 0);
+            }
           },
         });
       });
@@ -182,7 +199,9 @@ class SpaRouter {
 
   private navigate(href: string, transitionType: string): void {
     history.pushState({}, "", href);
-    this.performNavigation(href, transitionType);
+    this.performNavigation(href, transitionType).then(() => {
+      globalThis.scrollTo(0, 0);
+    });
   }
 
   private async performNavigation(

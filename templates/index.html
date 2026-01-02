@@ -14,7 +14,7 @@
     <section class="w-full">
       <!-- List Section -->
       <div class="flex flex-col">
-        {% for page in paginator.pages | slice(end=5) %} {% include
+        {% for page in paginator.pages %} {% include
         "partials/post_list_item.html" %} {% endfor %}
       </div>
     </section>
