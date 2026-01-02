@@ -1,12 +1,16 @@
 +++
-title = "Test Post 1"
+title = "Test Post 1 ()"
 date = 2026-01-02
-description = "This is test post number 1."
+description = "This is test post number 1 demonstrating  syntax highlighting using Shiki."
 [taxonomies]
 categories = ["test"]
-tags = ["test"]
+tags = ["test", ""]
 +++
 
-# Test Post 1
+# Test Post 1 - 
 
-This is a simple test post for performance and layout testing.
+This post demonstrates syntax highlighting for **** using **Shiki**.
+
+```
+
+```

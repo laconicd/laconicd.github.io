@@ -1,5 +1,6 @@
 import { initSearch } from "./fuse.ts";
 import { ThemeManager } from "./theme.ts";
+import { SyntaxHighlighter } from "./shiki.ts";
 
 /**
  * Handles fetching and parsing the page content.
@@ -22,12 +23,12 @@ class PageFetcher {
 class PagePresenter {
   constructor(private readonly themeManager: ThemeManager) {}
 
-  public render(
+  public async render(
     newDoc: Document,
     transitionType: string,
-  ): void {
+  ): Promise<void> {
     if (!document.startViewTransition) {
-      this.updateDOM(newDoc);
+      await this.updateDOM(newDoc);
       return;
     }
 
@@ -35,7 +36,7 @@ class PagePresenter {
     document.startViewTransition(() => this.updateDOM(newDoc));
   }
 
-  private updateDOM(newDoc: Document): void {
+  private async updateDOM(newDoc: Document): Promise<void> {
     const currentTheme = this.themeManager.getCurrentTheme();
 
     // Find the main content area in both the current and new document
@@ -54,11 +55,7 @@ class PagePresenter {
     this.themeManager.apply(currentTheme);
 
     // Re-highlight code blocks
-    // @ts-ignore: Prism is global
-    if (globalThis.Prism) {
-      // @ts-ignore
-      globalThis.Prism.highlightAll();
-    }
+    await SyntaxHighlighter.highlightAll();
 
     // Close mobile drawer if open
     const drawerToggle = document.getElementById("mobile-drawer") as HTMLInputElement;

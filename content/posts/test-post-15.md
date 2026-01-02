@@ -1,12 +1,16 @@
 +++
-title = "Test Post 15"
+title = "Test Post 15 (rust)"
 date = 2026-01-02
-description = "This is test post number 15."
+description = "This is test post number 15 demonstrating rust syntax highlighting using Shiki."
 [taxonomies]
 categories = ["test"]
-tags = ["test"]
+tags = ["test", "rust"]
 +++
 
-# Test Post 15
+# Test Post 15 - rust
 
-This is a simple test post for performance and layout testing.
+This post demonstrates syntax highlighting for **rust** using **Shiki**.
+
+```rust
+fn main() {\n    println!("Hello World");\n}
+```

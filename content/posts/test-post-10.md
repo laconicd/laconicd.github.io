@@ -1,12 +1,16 @@
 +++
-title = "Test Post 10"
+title = "Test Post 10 (toml)"
 date = 2026-01-02
-description = "This is test post number 10."
+description = "This is test post number 10 demonstrating toml syntax highlighting using Shiki."
 [taxonomies]
 categories = ["test"]
-tags = ["test"]
+tags = ["test", "toml"]
 +++
 
-# Test Post 10
+# Test Post 10 - toml
 
-This is a simple test post for performance and layout testing.
+This post demonstrates syntax highlighting for **toml** using **Shiki**.
+
+```toml
+message = "Hello World"
+```

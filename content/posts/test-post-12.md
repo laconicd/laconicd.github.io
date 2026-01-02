@@ -1,12 +1,16 @@
 +++
-title = "Test Post 12"
+title = "Test Post 12 (typescript)"
 date = 2026-01-02
-description = "This is test post number 12."
+description = "This is test post number 12 demonstrating typescript syntax highlighting using Shiki."
 [taxonomies]
 categories = ["test"]
-tags = ["test"]
+tags = ["test", "typescript"]
 +++
 
-# Test Post 12
+# Test Post 12 - typescript
 
-This is a simple test post for performance and layout testing.
+This post demonstrates syntax highlighting for **typescript** using **Shiki**.
+
+```typescript
+const hello: string = "Hello World";\nconsole.log(hello);
+```

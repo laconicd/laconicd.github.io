@@ -1,12 +1,16 @@
 +++
-title = "Test Post 6"
+title = "Test Post 6 (bash)"
 date = 2026-01-02
-description = "This is test post number 6."
+description = "This is test post number 6 demonstrating bash syntax highlighting using Shiki."
 [taxonomies]
 categories = ["test"]
-tags = ["test"]
+tags = ["test", "bash"]
 +++
 
-# Test Post 6
+# Test Post 6 - bash
 
-This is a simple test post for performance and layout testing.
+This post demonstrates syntax highlighting for **bash** using **Shiki**.
+
+```bash
+echo "Hello World"
+```
