@@ -1,16 +1,44 @@
 +++
-title = "Test Post 11 ()"
+title = "Test Post 11 (yaml)"
 date = 2026-01-02
-description = "This is test post number 11 demonstrating  syntax highlighting using Shiki."
+description = "This is test post number 11 demonstrating yaml syntax highlighting using Zola."
 [taxonomies]
 categories = ["test"]
-tags = ["test", ""]
+tags = ["test", "yaml"]
 +++
 
-# Test Post 11 - 
+# Test Post 11 - yaml
 
-This post demonstrates syntax highlighting for **** using **Shiki**.
+This post demonstrates syntax highlighting for **yaml** using **Zola**.
 
-```
+```yaml
+# GitHub Actions workflow example
 
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Build site
+        run: deno task prd
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
 ```

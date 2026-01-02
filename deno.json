@@ -36,7 +36,6 @@
     "@tailwindcss/cli": "npm:@tailwindcss/cli@^4.1.18",
     "daisyui": "npm:daisyui@^5.5.14",
     "fuse.js": "npm:fuse.js@^7.1.0",
-    "shiki": "npm:shiki@^3.20.0",
     "tailwindcss": "npm:tailwindcss@^4.1.18",
     "@tailwindcss/typography": "npm:@tailwindcss/typography@^0.5.19"
   }

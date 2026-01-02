@@ -1,7 +1,7 @@
 +++
 title = "Test Post 7 (json)"
 date = 2026-01-02
-description = "This is test post number 7 demonstrating json syntax highlighting using Shiki."
+description = "This is test post number 7 demonstrating json syntax highlighting using Zola."
 [taxonomies]
 categories = ["test"]
 tags = ["test", "json"]
@@ -9,8 +9,33 @@ tags = ["test", "json"]
 
 # Test Post 7 - json
 
-This post demonstrates syntax highlighting for **json** using **Shiki**.
+This post demonstrates syntax highlighting for **json** using **Zola**.
 
 ```json
-{\n  "message": "Hello World"\n}
+{
+  "project": {
+    "name": "laconicd.github.io",
+    "version": "1.0.0",
+    "description": "Zola blog with SPA features",
+    "author": {
+      "name": "laconicd",
+      "url": "https://github.com/laconicd"
+    },
+    "dependencies": {
+      "fuse.js": "^7.1.0",
+      "daisyui": "^5.0.0"
+    },
+    "features": [
+      "SPA Navigation",
+      "View Transitions",
+      "Full-text Search",
+      "Dark Mode"
+    ],
+    "config": {
+      "theme": "lofi",
+      "dark_theme": "dim",
+      "posts_per_page": 20
+    }
+  }
+}
 ```

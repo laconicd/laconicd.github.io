@@ -1,7 +1,7 @@
 +++
 title = "Test Post 9 (markdown)"
 date = 2026-01-02
-description = "This is test post number 9 demonstrating markdown syntax highlighting using Shiki."
+description = "This is test post number 9 demonstrating markdown syntax highlighting using Zola."
 [taxonomies]
 categories = ["test"]
 tags = ["test", "markdown"]
@@ -9,8 +9,35 @@ tags = ["test", "markdown"]
 
 # Test Post 9 - markdown
 
-This post demonstrates syntax highlighting for **markdown** using **Shiki**.
+This post demonstrates syntax highlighting for **markdown** using **Zola**.
 
 ```markdown
-# Hello World\n\nThis is a markdown test.
+# My Project Documentation
+
+This is a sample documentation written in Markdown.
+
+## Features
+
+- **Fast**: Built with Zola SSG.
+- **Dynamic**: SPA features with Deno.
+- **Beautiful**: Tailwind CSS v4 + DaisyUI.
+
+### Code Example
+
+```typescript
+function greet(name: string) {
+  return `Hello, ${name}!`;
+}
+```
+
+> "The best way to predict the future is to invent it."
+> — Alan Kay
+
+| Feature | Support |
+|---------|---------|
+| Search  | Yes     |
+| RSS     | Yes     |
+| Sitemap | Yes     |
+
+[Visit the website](https://laconicd.github.io)
 ```

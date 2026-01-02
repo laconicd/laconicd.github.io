@@ -1,7 +1,7 @@
 +++
 title = "Test Post 12 (typescript)"
 date = 2026-01-02
-description = "This is test post number 12 demonstrating typescript syntax highlighting using Shiki."
+description = "This is test post number 12 demonstrating typescript syntax highlighting using Zola."
 [taxonomies]
 categories = ["test"]
 tags = ["test", "typescript"]
@@ -9,8 +9,38 @@ tags = ["test", "typescript"]
 
 # Test Post 12 - typescript
 
-This post demonstrates syntax highlighting for **typescript** using **Shiki**.
+This post demonstrates syntax highlighting for **typescript** using **Zola**.
 
 ```typescript
-const hello: string = "Hello World";\nconsole.log(hello);
+// Advanced TypeScript: Generics and Mapped Types
+
+type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  published: boolean;
+}
+
+const updatePost = (id: string, fields: PartialBy<Post, "title" | "content">) => {
+  console.log(`Updating post ${id}...`);
+  // Implementation here
+};
+
+updatePost("123", { published: true });
+
+class Repository<T extends { id: string }> {
+  private items: T[] = [];
+
+  add(item: T) {
+    this.items.push(item);
+  }
+
+  getById(id: string): T | undefined {
+    return this.items.find(i => i.id === id);
+  }
+}
+
+const postRepo = new Repository<Post>();
 ```

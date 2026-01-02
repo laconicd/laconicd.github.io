@@ -1,6 +1,5 @@
 import { initSearch } from "./fuse.ts";
 import { ThemeManager } from "./theme.ts";
-import { SyntaxHighlighter } from "./shiki.ts";
 
 /**
  * Handles fetching and parsing the page content.
@@ -53,9 +52,6 @@ class PagePresenter {
 
     document.title = newDoc.title;
     this.themeManager.apply(currentTheme);
-
-    // Re-highlight code blocks
-    await SyntaxHighlighter.highlightAll();
 
     // Close mobile drawer if open
     const drawerToggle = document.getElementById("mobile-drawer") as HTMLInputElement;
