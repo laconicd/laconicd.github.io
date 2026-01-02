@@ -53,6 +53,12 @@ class PagePresenter {
     document.title = newDoc.title;
     this.themeManager.apply(currentTheme);
 
+    // Close mobile drawer if open
+    const drawerToggle = document.getElementById("mobile-drawer") as HTMLInputElement;
+    if (drawerToggle && drawerToggle.checked) {
+      drawerToggle.checked = false;
+    }
+
     // Close any open dropdowns (like the hamburger menu)
     document.querySelectorAll("details[open]").forEach((el) => {
       if (el instanceof HTMLDetailsElement) {
@@ -118,8 +124,14 @@ class SpaRouter {
         const isBackForward = event.navigationType === "traverse";
 
         event.intercept({
+          scroll: "manual",
           handler: async () => {
             await this.performNavigation(url.href, "slide");
+            if (isBackForward) {
+              event.scroll();
+            } else {
+              globalThis.scrollTo(0, 0);
+            }
           },
         });
       });

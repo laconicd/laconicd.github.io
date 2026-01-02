@@ -14,38 +14,17 @@ html {
   --font-sans: "Outfit", sans-serif;
 }
 
-#main-content {
-  view-transition-name: content;
+/* View Transitions */
+.navbar {
+  view-transition-name: navbar;
 }
 
-::view-transition-old(content),
-::view-transition-new(content) {
-  animation-duration: 0.3s;
-  animation-fill-mode: both;
+footer {
+  view-transition-name: footer;
 }
 
-::view-transition-old(content) {
-  animation-name: fade-out;
-}
-
-::view-transition-new(content) {
-  animation-name: fade-in;
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+/* root 트랜지션만으로 부드럽게 전체 전환 (네비바/푸터 제외) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.2s;
 }
