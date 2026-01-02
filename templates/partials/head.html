@@ -7,22 +7,10 @@
   default(value=config.description) %} {% elif section %} {% set page_description = section.description |
   default(value=config.description) %} {% else %} {% set page_description = config.description %} {% endif %}
 
-  <meta
-    name="description"
-    content="{{ page_description | truncate(length=155) }}"
-  >
-  <meta
-    property="og:title"
-    content="{% block og_title %}{{ config.title }}{% endblock og_title %}"
-  >
-  <meta
-    property="og:description"
-    content="{{ page_description | truncate(length=155) }}"
-  >
-  <meta
-    property="og:type"
-    content="{% if page and page.is_page %}article{% else %}website{% endif %}"
-  >
+  <meta name="description" content="{{ page_description | truncate(length=155) }}">
+  <meta property="og:title" content="{% block og_title %}{{ config.title }}{% endblock og_title %}">
+  <meta property="og:description" content="{{ page_description | truncate(length=155) }}">
+  <meta property="og:type" content="{% if page and page.is_page %}article{% else %}website{% endif %}">
   {% set page_url = config.base_url %} {% if page %} {% set page_url = page.permalink %} {% elif section %} {% set
   page_url = section.permalink %} {% endif %}
 
@@ -37,22 +25,13 @@
   {% endif %}
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta
-    name="twitter:title"
-    content="{% block twitter_title %}{{ config.title }}{% endblock twitter_title %}"
-  >
-  <meta
-    name="twitter:description"
-    content="{{ page_description | truncate(length=155) }}"
-  >
+  <meta name="twitter:title" content="{% block twitter_title %}{{ config.title }}{% endblock twitter_title %}">
+  <meta name="twitter:description" content="{{ page_description | truncate(length=155) }}">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=block"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=block" rel="stylesheet">
 
   <!-- TailwindCSS + DaisyUI -->
   <link rel="stylesheet" href="{{ get_url(path='styles.css') }}">
@@ -60,14 +39,14 @@
 
   <script>
     // Initialize theme as early as possible to prevent FOUC
-  const getInitialTheme = () => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) return savedTheme;
+    const getInitialTheme = () => {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) return savedTheme;
 
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dim" : "lofi";
-  };
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dim" : "lofi";
+    };
 
-  document.documentElement.setAttribute("data-theme", getInitialTheme());
+    document.documentElement.setAttribute("data-theme", getInitialTheme());
   </script>
 
   <script type="speculationrules">
@@ -75,7 +54,7 @@
     "prerender": [
       {
         "source": "list",
-        "urls": ["/", "/posts"]
+        "urls": ["/", "/posts", "categories", "tags"]
       }
     ]
   }
