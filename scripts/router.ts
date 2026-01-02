@@ -26,7 +26,7 @@ class PagePresenter {
     newDoc: Document,
     transitionType: string,
   ): void {
-    if (!document.startViewTransition) {
+    if (!document.startViewTransition || transitionType === "none") {
       this.updateDOM(newDoc);
       return;
     }
@@ -100,7 +100,6 @@ class SpaRouter {
 
   public attach(): void {
     if ("navigation" in globalThis) {
-      alert("Navigation API is supported!");
       // deno-lint-ignore no-explicit-any
       const nav = (globalThis as any).navigation;
       nav.addEventListener("navigate", (event: any) => {
@@ -116,14 +115,17 @@ class SpaRouter {
           return;
         }
 
+        const isBackForward = event.navigationType === "traverse";
+
         event.intercept({
           handler: async () => {
-            await this.performNavigation(url.href, "slide");
+            // 뒤로가기/앞으로가기 시에는 애니메이션(ViewTransition) 없이 바로 교체하는 것이 렉이 적습니다.
+            const transitionType = isBackForward ? "none" : "slide";
+            await this.performNavigation(url.href, transitionType);
           },
         });
       });
     } else {
-      alert("Navigation API is NOT supported. Using fallback (click/popstate).");
       document.addEventListener("click", this.onLinkClick.bind(this));
       globalThis.addEventListener("popstate", this.onPopState.bind(this));
     }
