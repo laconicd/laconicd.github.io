@@ -3401,34 +3401,14 @@
 html {
   overflow-y: scroll;
 }
-#main-content {
-  view-transition-name: content;
+.navbar {
+  view-transition-name: navbar;
 }
-::view-transition-old(content), ::view-transition-new(content) {
-  animation-duration: 0.3s;
-  animation-fill-mode: both;
+footer {
+  view-transition-name: footer;
 }
-::view-transition-old(content) {
-  animation-name: fade-out;
-}
-::view-transition-new(content) {
-  animation-name: fade-in;
-}
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+::view-transition-old(root), ::view-transition-new(root) {
+  animation-duration: 0.2s;
 }
 @layer base {
   :where(:root),:root:has(input.theme-controller[value=light]:checked),[data-theme=light] {
