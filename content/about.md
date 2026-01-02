@@ -3,6 +3,8 @@ title = "About Me"
 template = "page.html"
 date = 2025-01-01
 weight = 1
+[extra]
+comments = true  # 이 설정이 있는 포스트에만 댓글창이 나타납니다.
 +++
 
 # Hello, I'm a Developer 👋
