@@ -8,42 +8,36 @@
 
 {% set blog_section = get_section(path="posts/_index.md") %}
 <div class="max-w-3xl mx-auto px-2">
-  <div class="flex items-center gap-4 mb-8 opacity-30">
-    <h2 class="text-xs font-black uppercase tracking-widest">Latest Articles</h2>
+  <div class="flex items-center gap-4 mb-8 opacity-30 text-xs font-black uppercase tracking-widest">
+    <h2>Latest Articles</h2>
     <hr class="flex-1 border-base-content/20" />
   </div>
 
   <ul class="grid gap-2">
     {% for page in blog_section.pages %}
-    <li class="group relative flex items-center gap-6 p-4 rounded-3xl hover:bg-base-200/50 transition-all duration-300">
+    <li class="group relative flex items-center gap-6 p-4 rounded-3xl hover:bg-base-200/50 transition duration-300">
       <a href="{{ page.permalink }}" class="absolute inset-0 z-10"></a>
       
       <!-- Post Thumbnail -->
-      <div class="shrink-0 size-24 md:size-28 overflow-hidden rounded-2xl border border-base-300 shadow-sm transition-all duration-500 group-hover:shadow-md group-hover:border-primary/30">
-        {% if page.extra.image %}
-          <img src="{{ get_url(path=page.extra.image) | safe }}" 
-               alt="{{ page.title }}" 
-               class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
-        {% else %}
-          <img src="{{ get_url(path='images/default-post.jpg') | safe }}" 
-               alt="{{ page.title }}" 
-               class="h-full w-full object-cover opacity-40 transition-transform duration-700 group-hover:scale-110" />
-        {% endif %}
+      <div class="size-24 md:size-28 overflow-hidden rounded-2xl border border-base-300 shadow-sm">
+        <img src="{{ get_url(path=page.extra.image | default(value='images/default-post.jpg')) | safe }}" 
+             alt="{{ page.title }}" 
+             class="h-full w-full object-cover transition duration-700 group-hover:scale-110 {% if not page.extra.image %}opacity-40{% endif %}" />
       </div>
 
       <!-- Post Info -->
       <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-2 mb-1 text-xs font-bold uppercase tracking-tight">
+        <div class="flex items-center gap-2 mb-1 text-xs font-bold uppercase">
           <span class="text-primary">{{ page.authors | join(sep=", ") }}</span>
           <span class="opacity-20">•</span>
           <span class="opacity-40">{{ page.date | date(format="%B %d, %Y") }}</span>
         </div>
         
-        <h3 class="text-xl md:text-2xl font-black leading-tight tracking-tight mb-2 transition-colors group-hover:text-primary truncate">
+        <h3 class="text-xl md:text-2xl font-black leading-tight tracking-tight mb-2 group-hover:text-primary truncate">
           {{ page.title }}
         </h3>
         
-        <p class="text-sm opacity-50 line-clamp-1 md:line-clamp-2 leading-relaxed">
+        <p class="text-sm opacity-50 line-clamp-2 leading-relaxed">
           {{ page.summary | default(value="") | striptags | safe }}
         </p>
 
@@ -57,7 +51,7 @@
       </div>
 
       <!-- Arrow Icon -->
-      <div class="hidden md:flex items-center justify-center size-10 rounded-full bg-base-200 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-2">
+      <div class="hidden md:flex size-10 items-center justify-center rounded-full bg-base-200 opacity-0 transition duration-300 group-hover:opacity-100 group-hover:translate-x-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
           <path d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
