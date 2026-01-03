@@ -4,10 +4,9 @@ description = "A blog about Rust, Zola, and modern web development. Featuring tu
 build_search_index = true
 default_language = "ko"
 minify_html = true
-
 taxonomies = [
-    {name = "tags"},
-    {name = "categories"},
+  { name = "categories" },
+  { name = "tags" },
 ]
 
 [search]

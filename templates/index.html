@@ -1,24 +1,74 @@
-{% extends "base.html" %} {% block title %}{{ section.title }} | {{ config.title
-}}{% endblock title %} {% block content %}
+{% extends "base.html" %}
 
-<main>
-  <!-- Header Section -->
-  <header class="mb-20 text-center">
-    <h1 class="text-5xl font-bold tracking-tight mb-4">{{ section.title }}</h1>
-    <p class="text-xl text-base-content/70">Writings and thoughts.</p>
-  </header>
+{% block content %}
+<div class="mb-20 text-center">
+  <h1 class="text-5xl font-bold tracking-tight mb-4">{{ section.title }}</h1>
+  <p class="text-xl text-base-content/70 italic">Curated insights on technology, design, and the art of code.</p>
+</div>
 
-  <!-- Main Content Layout -->
-  <div class="max-w-4xl mx-auto">
-    <!-- Posts Column -->
-    <section class="w-full">
-      <!-- List Section -->
-      <div class="flex flex-col">
-        {% for page in paginator.pages %} {% include
-        "partials/post_list_item.html" %} {% endfor %}
-      </div>
-    </section>
+{% set blog_section = get_section(path="posts/_index.md") %}
+<div class="max-w-3xl mx-auto px-2">
+  <div class="flex items-center gap-4 mb-8 opacity-30 text-xs font-black uppercase tracking-widest">
+    <h2>Latest Articles</h2>
+    <hr class="flex-1 border-base-content/20" />
   </div>
-</main>
 
+  <ul class="grid gap-2">
+    {% for page in blog_section.pages %}
+    <li class="group relative flex items-center gap-4 md:gap-6 p-3 md:p-4 rounded-3xl hover:bg-base-200/50 transition duration-300">
+      <a href="{{ page.path }}" class="absolute inset-0 z-10"></a>
+      
+      <!-- Post Thumbnail -->
+      <div class="size-20 md:size-28 overflow-hidden rounded-2xl border border-base-300 shadow-sm shrink-0">
+        {% if page.extra.image %}
+          {# Use relative_path to get the actual filesystem path for resize_image #}
+          {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
+          {% set mini_thumb = resize_image(path=image_path, width=224, height=224, op="fill", format="webp", quality=80) %}
+          <img src="{{ mini_thumb.url }}" 
+               alt="{{ page.title }}" 
+               class="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+               loading="lazy" />
+        {% else %}
+          <img src="{{ get_url(path='assets/images/default-post.jpg') }}" 
+               alt="{{ page.title }}" 
+               class="h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-40"
+               loading="lazy" />
+        {% endif %}
+      </div>
+
+      <!-- Post Info -->
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 mb-1 text-[10px] md:text-xs font-bold uppercase">
+          <span class="text-primary">{{ page.authors | join(sep=", ") }}</span>
+          <span class="opacity-20">•</span>
+          <span class="opacity-40">{{ page.date | date(format="%B %d, %Y") }}</span>
+        </div>
+        
+        <h3 class="text-lg md:text-2xl font-black leading-tight tracking-tight mb-2 group-hover:text-primary line-clamp-2">
+          {{ page.title }}
+        </h3>
+        
+        <p class="text-sm opacity-50 line-clamp-1 md:line-clamp-2 leading-relaxed">
+          {{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}
+        </p>
+
+        {% if page.taxonomies.categories %}
+        <div class="mt-3 flex flex-wrap gap-1">
+          {% for cat in page.taxonomies.categories %}
+            <span class="badge badge-sm badge-ghost opacity-50 font-bold">{{ cat }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Arrow Icon -->
+      <div class="hidden md:flex size-10 items-center justify-center rounded-full bg-base-200 opacity-0 transition duration-300 group-hover:opacity-100 group-hover:translate-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+          <path d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock content %}

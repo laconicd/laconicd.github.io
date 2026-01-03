@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mb-12">
+  <a href="/categories" class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest opacity-40 hover:opacity-100 hover:text-primary transition-all group">
+    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+    Back to Categories
+  </a>
+</div>
+
+<header class="mb-20 text-center">
+  <div class="inline-block px-4 py-1.5 mb-6 rounded-2xl bg-primary/5 border border-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
+    Topic Explorer
+  </div>
+  <h1 class="text-6xl md:text-7xl font-black tracking-tighter mb-8 opacity-90">
+    {{ term.name }}
+  </h1>
+  <div class="flex items-center justify-center gap-4 text-sm font-bold opacity-40">
+    <span>{{ term.pages | length }} Articles</span>
+    <span class="size-1 bg-current rounded-full"></span>
+    <span>Curated Selection</span>
+  </div>
+</header>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+  {% for page in term.pages %}
+  <article class="group relative flex flex-col bg-base-100 rounded-3xl border border-base-200 overflow-hidden transition-all hover:shadow-xl">
+    <a href="{{ page.path }}" class="absolute inset-0 z-20" aria-label="{{ page.title }}"></a>
+
+    <div class="aspect-video bg-base-200 overflow-hidden relative">
+      {% if page.extra.image %}
+        {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
+        {% set thumb = resize_image(path=image_path, width=600, height=338, op="fill", format="webp") %}
+        <img src="{{ thumb.url }}" alt="" class="object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+      {% else %}
+        <img src="{{ get_url(path='assets/images/default-post.jpg') }}" alt="" class="object-cover transition duration-500 group-hover:scale-105 opacity-80" loading="lazy" />
+      {% endif %}
+      
+      <div class="absolute top-4 left-4 z-10">
+        <span class="badge badge-neutral font-bold uppercase text-xs tracking-wider border-none">
+          {{ page.date | date(format="%b %d, %Y") }}
+        </span>
+      </div>
+    </div>
+
+    <div class="p-8 flex flex-col flex-1">
+      <div class="flex items-center gap-3 mb-6 text-xs font-bold uppercase tracking-widest text-primary">
+        <div class="avatar">
+          <div class="size-7 rounded-lg ring ring-base-200 ring-offset-2">
+            <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="" />
+          </div>
+        </div>
+        <span>{{ page.authors | join(sep=", ") }}</span>
+      </div>
+
+      <h2 class="text-2xl font-black tracking-tight mb-4 group-hover:text-primary transition-colors">
+        {{ page.title }}
+      </h2>
+
+      <p class="text-sm opacity-60 line-clamp-3 mb-6">
+        {{ page.summary | default(value="") | striptags | safe }}
+      </p>
+
+      <div class="flex items-center justify-between pt-6 border-t border-base-200 mt-auto">
+        <span class="text-xs font-bold uppercase tracking-widest opacity-40 group-hover:opacity-100 group-hover:text-primary transition-colors">
+          Read More
+        </span>
+        <div class="size-8 rounded-full bg-base-200 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-content transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+  <h1 class="text-6xl md:text-7xl font-black tracking-tighter mb-8 bg-gradient-to-b from-base-content to-base-content/50 bg-clip-text text-transparent">
+    {{ term.name }}
+  </h1>
+  <div class="flex items-center justify-center gap-4 text-sm font-bold opacity-50">
+    <span>{{ term.pages | length }} Articles</span>
+    <span class="size-1 bg-base-content/20 rounded-full"></span>
+    <span>Curated Selection</span>
+  </div>
+</header>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+  {% for page in term.pages %}
+  <article class="group relative flex flex-col h-full bg-base-100 rounded-3xl border border-base-200 overflow-hidden transition-all duration-300 hover:shadow-xl">
+    <a href="{{ page.path }}" class="absolute inset-0 z-20" aria-label="{{ page.title }}"></a>
+
+    <div class="aspect-video bg-base-200 overflow-hidden relative">
+      {% if page.extra.image %}
+        {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
+        {% set thumb = resize_image(path=image_path, width=600, height=338, op="fill", format="webp") %}
+        <img src="{{ thumb.url }}" alt="" class="w-full h-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+      {% else %}
+        <img src="{{ get_url(path='assets/images/default-post.jpg') }}" alt="" class="w-full h-full object-cover transition duration-500 group-hover:scale-105 opacity-80" loading="lazy" />
+      {% endif %}
+      
+      <div class="absolute top-4 left-4 z-10">
+        <span class="badge badge-neutral font-black uppercase text-[10px] tracking-wider border-none">
+          {{ page.date | date(format="%b %d, %Y") }}
+        </span>
+      </div>
+    </div>
+
+    <div class="p-8 flex flex-col flex-1">
+      <div class="flex items-center gap-3 mb-6 text-[10px] font-black uppercase tracking-widest text-primary">
+        <div class="avatar">
+          <div class="size-7 rounded-lg ring ring-base-200 ring-offset-2">
+            <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="" />
+          </div>
+        </div>
+        <span>{{ page.authors | join(sep=", ") }}</span>
+      </div>
+
+      <h2 class="text-2xl font-black tracking-tight leading-tight mb-4 group-hover:text-primary transition-colors">
+        {{ page.title }}
+      </h2>
+
+      <p class="text-sm opacity-60 line-clamp-3 mb-6 flex-1">
+        {{ page.summary | default(value="") | striptags | safe }}
+      </p>
+
+      <div class="flex items-center justify-between pt-6 border-t border-base-200 mt-auto">
+        <span class="text-[10px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-100 group-hover:text-primary transition-all">
+          Read More
+        </span>
+        <div class="size-8 rounded-full bg-base-200 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-content transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock content %}

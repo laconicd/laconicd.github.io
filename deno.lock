@@ -1,6 +1,7 @@
 {
   "version": "5",
   "specifiers": {
+    "npm:@fontsource-variable/outfit@^5.2.8": "5.2.8",
     "npm:@tailwindcss/cli@^4.1.18": "4.1.18",
     "npm:@tailwindcss/typography@~0.5.19": "0.5.19_tailwindcss@4.1.18",
     "npm:daisyui@^5.5.14": "5.5.14",
@@ -8,6 +9,9 @@
     "npm:tailwindcss@^4.1.18": "4.1.18"
   },
   "npm": {
+    "@fontsource-variable/outfit@5.2.8": {
+      "integrity": "sha512-4oUDCZx/Tcz6HZP423w/niqEH31Gks5IsqHV2ZZz1qKHaVIZdj2f0/S1IK2n8jl6Xo0o3N+3RjNHlV9R73ozQA=="
+    },
     "@jridgewell/gen-mapping@0.3.13": {
       "integrity": "sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==",
       "dependencies": [
@@ -415,6 +419,7 @@
   },
   "workspace": {
     "dependencies": [
+      "npm:@fontsource-variable/outfit@^5.2.8",
       "npm:@tailwindcss/cli@^4.1.18",
       "npm:@tailwindcss/typography@~0.5.19",
       "npm:daisyui@^5.5.14",

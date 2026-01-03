@@ -1,14 +1,18 @@
 {
   "tasks": {
     "tailwindcss:build": "deno run -A @tailwindcss/cli -i assets/tailwind.css -o static/styles.css",
-    "router:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/router.ts",
+    "scripts:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/main.ts scripts/theme.ts",
+    "sw:build": "deno bundle --platform browser --minify --outdir static/ scripts/sw.ts",
+    "fonts:fetch": "deno run -A scripts/fetch-fonts.ts",
     "zola:serve": "zola serve --port 8080",
     "zola:build": "zola build",
     "copy:assets": "mkdir -p static && cp -r assets/images static",
     "common": {
       "dependencies": [
+        "fonts:fetch",
         "tailwindcss:build",
-        "router:build",
+        "scripts:build",
+        "sw:build",
         "copy:assets"
       ]
     },
@@ -35,6 +39,7 @@
     ]
   },
   "imports": {
+    "@fontsource-variable/outfit": "npm:@fontsource-variable/outfit@^5.2.8",
     "@tailwindcss/cli": "npm:@tailwindcss/cli@^4.1.18",
     "daisyui": "npm:daisyui@^5.5.14",
     "fuse.js": "npm:fuse.js@^7.1.0",

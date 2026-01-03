@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="lofi">
-{% include "partials/head.html" %}
 
-<body class="bg-base-100 text-base-content antialiased">
-  <div class="drawer drawer-end">
-    <input id="mobile-drawer" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content flex flex-col min-h-screen pt-16">
-      <header>
-        {% include "partials/navbar.html" %}
-      </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
 
-      <!-- Main Content -->
-      <div id="main-content" class="flex-grow container mx-auto max-w-screen-2xl px-4 py-8">
-        {% block content %} {% endblock content %}
-      </div>
+  <title>{{ config.title }}</title>
 
-      {% include "partials/footer.html" %}
-    </div>
+  <script src="/theme.js" type="module"></script>
+</head>
 
-    {% include "partials/search_modal.html" %} {% include
-    "partials/scripts.html" %}
+<body class="max-w-6xl mx-auto px-4">
+  <header>
+    {% include "partials/navbar.html" %}
+  </header>
+
+  <main id="main-content">
+    {% block content %} {% endblock content %}
+  </main>
+
+  <footer>
+    {% include "partials/footer.html" %}
+  </footer>
+
+  {% include "partials/search-modal.html" %}
+  {% include "partials/fab-flower-speed-dial.html" %}
+
+  <script src="/main.js" type="module"></script>
 </body>
 
 </html>
