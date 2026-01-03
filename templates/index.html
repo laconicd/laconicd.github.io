@@ -15,11 +15,11 @@
 
   <ul class="grid gap-2">
     {% for page in blog_section.pages %}
-    <li class="group relative flex items-center gap-6 p-4 rounded-3xl hover:bg-base-200/50 transition duration-300">
+    <li class="group relative flex items-center gap-4 md:gap-6 p-3 md:p-4 rounded-3xl hover:bg-base-200/50 transition duration-300">
       <a href="{{ page.path }}" class="absolute inset-0 z-10"></a>
       
       <!-- Post Thumbnail -->
-      <div class="size-24 md:size-28 overflow-hidden rounded-2xl border border-base-300 shadow-sm">
+      <div class="size-20 md:size-28 overflow-hidden rounded-2xl border border-base-300 shadow-sm shrink-0">
         {% if page.extra.image %}
           {# Use relative_path to get the actual filesystem path for resize_image #}
           {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
@@ -38,18 +38,18 @@
 
       <!-- Post Info -->
       <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-2 mb-1 text-xs font-bold uppercase">
+        <div class="flex items-center gap-2 mb-1 text-[10px] md:text-xs font-bold uppercase">
           <span class="text-primary">{{ page.authors | join(sep=", ") }}</span>
           <span class="opacity-20">•</span>
           <span class="opacity-40">{{ page.date | date(format="%B %d, %Y") }}</span>
         </div>
         
-        <h3 class="text-xl md:text-2xl font-black leading-tight tracking-tight mb-2 group-hover:text-primary truncate">
+        <h3 class="text-lg md:text-2xl font-black leading-tight tracking-tight mb-2 group-hover:text-primary line-clamp-2">
           {{ page.title }}
         </h3>
         
-        <p class="text-sm opacity-50 line-clamp-2 leading-relaxed">
-          {{ page.summary | default(value="") | striptags | safe }}
+        <p class="text-sm opacity-50 line-clamp-1 md:line-clamp-2 leading-relaxed">
+          {{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}
         </p>
 
         {% if page.taxonomies.categories %}
