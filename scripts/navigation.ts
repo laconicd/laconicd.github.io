@@ -43,15 +43,12 @@ class PagePresenter {
 
   private updateDOM(newDoc: Document, shouldScroll: boolean): void {
     const currentTheme = this.themeManager.getCurrentTheme();
-
-    // Find the main content area in both the current and new document
     const currentMain = document.getElementById("main-content");
     const newMain = newDoc.getElementById("main-content");
 
     if (currentMain && newMain) {
       currentMain.replaceWith(newMain);
     } else {
-      console.warn("Could not find #main-content, replacing body content");
       document.body.innerHTML = newDoc.body.innerHTML;
     }
 
@@ -62,31 +59,19 @@ class PagePresenter {
       window.scrollTo(0, 0);
     }
 
-    // Re-initialize specific components or trigger events
     window.dispatchEvent(new CustomEvent("page:updated"));
-
-    // UI Cleanup
     this.cleanupUI();
   }
 
   private cleanupUI() {
-    // Close mobile drawer
     const drawerToggle = document.getElementById("mobile-drawer") as HTMLInputElement;
-    if (drawerToggle && drawerToggle.checked) {
-      drawerToggle.checked = false;
-    }
+    if (drawerToggle && drawerToggle.checked) drawerToggle.checked = false;
 
-    // Close search modal
     const searchModal = document.getElementById("search_modal") as HTMLDialogElement;
-    if (searchModal && searchModal.open) {
-      searchModal.close();
-    }
+    if (searchModal && searchModal.open) searchModal.close();
 
-    // Close dropdowns
     document.querySelectorAll("details[open]").forEach((el) => {
-      if (el instanceof HTMLDetailsElement) {
-        el.open = false;
-      }
+      if (el instanceof HTMLDetailsElement) el.open = false;
     });
 
     if (document.activeElement instanceof HTMLElement) {
@@ -102,7 +87,6 @@ export class NavigationHandler {
   private readonly pageFetcher = new PageFetcher();
   private readonly pagePresenter: PagePresenter;
   private readonly themeManager = new ThemeManager();
-  private lastClickedAnchor: HTMLAnchorElement | null = null;
 
   constructor() {
     this.pagePresenter = new PagePresenter(this.themeManager);
@@ -114,60 +98,25 @@ export class NavigationHandler {
       const nav = (globalThis as any).navigation;
       nav.addEventListener("navigate", (event: any) => {
         const url = new URL(event.destination.url);
-        
-        // Always intercept same-origin navigations that are "interceptable"
-        const isSameOrigin = url.origin === location.origin;
-        
-        if (
-          !isSameOrigin ||
-          event.hashChange ||
-          !event.canIntercept ||
-          event.downloadRequest ||
-          event.formData
-        ) {
-          return;
-        }
+        if (url.origin !== location.origin || event.hashChange || !event.canIntercept || event.downloadRequest || event.formData) return;
 
         event.intercept({
           handler: async () => {
-            const isBack = event.navigationType === "traverse";
-            
-            // Try to determine transition type from the last clicked element if possible
-            // or default to slide/back
-            let transitionType = isBack ? "back" : "slide";
-            
-            // If we have a clicked element stored (see below)
-            if (this.lastClickedAnchor && this.lastClickedAnchor.href === url.href) {
-              transitionType = this.lastClickedAnchor.getAttribute("data-transition") || transitionType;
-            }
-            
             await this.performNavigation(
               url.href, 
-              transitionType,
-              !isBack
+              "fade-rise",
+              event.navigationType !== "traverse"
             );
           },
         });
       });
-    }
-
-    // Always listen for clicks to store the last clicked anchor for transition hints
-    document.addEventListener("click", (event) => {
-      const anchor = (event.target as Element).closest("a");
-      if (anchor) {
-        this.lastClickedAnchor = anchor;
-      }
-    }, { capture: true });
-    
-    if (!("navigation" in globalThis)) {
+    } else {
       document.addEventListener("click", this.onLinkClick.bind(this));
       globalThis.addEventListener("popstate", this.onPopState.bind(this));
     }
 
-    // BFCache handling
     window.addEventListener("pageshow", (event) => {
       if (event.persisted) {
-        console.log("[Navigation] Page restored from BFCache");
         window.dispatchEvent(new CustomEvent("page:updated"));
       }
     });
@@ -187,14 +136,12 @@ export class NavigationHandler {
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
 
     event.preventDefault();
-    const transitionType = anchor.getAttribute("data-transition") || "slide";
-    
     history.pushState({}, "", href);
-    this.performNavigation(href, transitionType, true);
+    this.performNavigation(href, "fade-rise", true);
   }
 
   private onPopState(): void {
-    this.performNavigation(globalThis.location.href, "back", false);
+    this.performNavigation(globalThis.location.href, "fade-rise", false);
   }
 
   private async performNavigation(
@@ -203,7 +150,6 @@ export class NavigationHandler {
     shouldScroll: boolean = true,
   ): Promise<void> {
     try {
-      console.log(`[Navigation] Navigating to: ${href} (type: ${transitionType})`);
       const newDoc = await this.pageFetcher.fetch(href);
       await this.pagePresenter.render(newDoc, transitionType, shouldScroll);
     } catch (error) {

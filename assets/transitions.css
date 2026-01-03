@@ -1,4 +1,4 @@
-/* View Transitions 핵심 요소 지정 */
+/* View Transitions - Unified Premium Effect */
 .navbar {
   view-transition-name: navbar;
 }
@@ -12,44 +12,27 @@ footer {
 }
 
 /* 
-   root(전체 배경)는 가만히 두고, 
-   main-content 영역만 슬라이드 애니메이션 적용
+   Single, elegant transition for all navigation:
+   Old content fades out, new content fades in and rises slightly.
 */
 
-/* 기본 설정: 페이드 및 타이밍 */
-::view-transition-old(main-content),
+::view-transition-old(main-content) {
+  animation: 150ms ease-out both fade-out;
+}
+
 ::view-transition-new(main-content) {
-  animation-duration: 0.3s;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  animation-fill-mode: both;
+  animation: 300ms cubic-bezier(0, 0, 0.2, 1) both fade-in,
+             300ms cubic-bezier(0, 0, 0.2, 1) both slide-up;
 }
 
-/* 앞으로 가기 (Slide Forward) */
-[data-transition="slide"]::view-transition-old(main-content) {
-  animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
-             0.3s cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+@keyframes fade-in {
+  from { opacity: 0; }
 }
 
-[data-transition="slide"]::view-transition-new(main-content) {
-  animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
-             0.3s cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+@keyframes fade-out {
+  to { opacity: 0; }
 }
 
-/* 뒤로 가기 (Slide Backward) */
-[data-transition="back"]::view-transition-old(main-content) {
-  animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
-             0.3s cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
+@keyframes slide-up {
+  from { transform: translateY(10px); }
 }
-
-[data-transition="back"]::view-transition-new(main-content) {
-  animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
-             0.3s cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
-}
-
-/* 키프레임 정의 */
-@keyframes fade-in { from { opacity: 0; } }
-@keyframes fade-out { to { opacity: 0; } }
-@keyframes slide-from-right { from { transform: translateX(30px); } }
-@keyframes slide-to-left { to { transform: translateX(-30px); } }
-@keyframes slide-from-left { from { transform: translateX(-30px); } }
-@keyframes slide-to-right { to { transform: translateX(30px); } }
