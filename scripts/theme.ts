@@ -10,11 +10,29 @@ export class ThemeManager {
    * Initializes the theme from localStorage or system preference.
    */
   public init(): void {
-    const savedTheme = localStorage.getItem(STORAGE_KEY) ||
-      (globalThis.matchMedia("(prefers-color-scheme: dark)").matches
+    const savedTheme = localStorage.getItem(STORAGE_KEY);
+    if (savedTheme) {
+      this.apply(savedTheme);
+    } else {
+      const systemTheme = globalThis.matchMedia("(prefers-color-scheme: dark)").matches
         ? DARK_THEME
-        : LIGHT_THEME);
-    this.apply(savedTheme);
+        : LIGHT_THEME;
+      this.apply(systemTheme);
+    }
+    this.setupSystemListener();
+  }
+
+  /**
+   * Listens for system theme changes and applies them if no manual preference is set.
+   */
+  private setupSystemListener(): void {
+    const mediaQuery = globalThis.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener("change", (e) => {
+      // Only react if the user hasn't explicitly set a theme
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        this.apply(e.matches ? DARK_THEME : LIGHT_THEME);
+      }
+    });
   }
 
   /**
