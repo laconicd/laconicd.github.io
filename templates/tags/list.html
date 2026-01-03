@@ -2,20 +2,28 @@
 
 {% block content %}
 {% set taxonomy_name = taxonomy.name | capitalize %}
+
 <header class="mb-20 text-center">
   <h1 class="text-5xl font-bold tracking-tight mb-4">{{ taxonomy_name }}</h1>
   <p class="text-xl text-base-content/70">Discover specific keywords and niche subjects.</p>
 </header>
 
-
-<div class="flex flex-wrap gap-2">
-  {% for term in terms %}
-  <a href="{{ term.permalink }}"
-    class="btn btn-outline btn-sm hover:btn-secondary rounded-full normal-case tracking-tight">
-    # {{ term.name }}
-    <span class="badge badge-ghost badge-xs">{{ term.pages | length }}</span>
-  </a>
-  {% endfor %}
+<div class="max-w-4xl mx-auto">
+  <div class="flex flex-wrap justify-center gap-4">
+    {% for term in terms %}
+    <a href="{{ term.permalink }}" class="group relative flex items-center gap-3 px-6 py-3 bg-base-100 border border-base-200 rounded-2xl transition-all duration-300 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1">
+      <span class="text-xl opacity-20 group-hover:text-primary group-hover:opacity-100 transition-all font-black">#</span>
+      <span class="text-lg font-bold tracking-tight">{{ term.name }}</span>
+      <span class="badge badge-sm badge-ghost font-black opacity-30 group-hover:opacity-100 group-hover:badge-primary transition-all">{{ term.pages | length }}</span>
+    </a>
+    {% endfor %}
+  </div>
+  
+  {% if terms | length == 0 %}
+  <div class="text-center py-20 opacity-20">
+    <p class="text-xl italic">No tags found yet.</p>
+  </div>
+  {% endif %}
 </div>
 
 {% endblock content %}
