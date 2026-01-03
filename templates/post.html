@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="max-w-4xl mx-auto px-4 py-12">
+  <!-- Post Header -->
+  <header class="mb-16 text-center">
+    <!-- Categories & Metadata -->
+    <div class="flex items-center justify-center gap-3 mb-6 text-xs font-black uppercase tracking-widest text-primary">
+      {% if page.taxonomies.categories %}
+        {% for cat in page.taxonomies.categories %}
+          <span>{{ cat }}</span>
+        {% endfor %}
+      {% endif %}
+      <span class="opacity-30">•</span>
+      <time class="opacity-50" datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-tight mb-8">
+      {{ page.title }}
+    </h1>
+
+    <!-- Author Info -->
+    <div class="flex items-center justify-center gap-4">
+      <div class="avatar">
+        <div class="size-12 rounded-2xl ring ring-base-200 ring-offset-4">
+          <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="{{ config.extra.author_name }}" />
+        </div>
+      </div>
+      <div class="text-left">
+        <div class="text-sm font-black uppercase tracking-widest text-base-content">{{ config.extra.author_name }}</div>
+        <div class="text-xs opacity-40 font-bold uppercase">{{ config.extra.author_role }}</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Featured Image -->
+  <div class="mb-16 aspect-video rounded-3xl overflow-hidden shadow-2xl border border-base-200">
+    <img src="{{ get_url(path=page.extra.image | default(value='images/default-post.jpg')) }}" 
+         alt="{{ page.title }}" 
+         class="w-full h-full object-cover" />
+  </div>
+
+  <!-- Content -->
+  <div class="prose prose-lg max-w-none 
+              prose-headings:font-black prose-headings:tracking-tighter 
+              prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+              prose-img:rounded-3xl prose-img:shadow-xl
+              prose-code:bg-base-200 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none
+              mb-16">
+    {{ page.content | safe }}
+  </div>
+
+  <!-- Post Footer: Tags & Navigation -->
+  <footer class="pt-12 border-t border-base-200">
+    {% if page.taxonomies.tags %}
+    <div class="flex flex-wrap gap-2 mb-16">
+      {% for tag in page.taxonomies.tags %}
+      <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}" class="badge badge-lg badge-ghost font-bold opacity-50 hover:opacity-100 transition-opacity">
+        #{{ tag }}
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Navigation -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {% if page.lower %}
+      <a href="{{ page.lower.permalink }}" class="group p-8 bg-base-100 border border-base-200 rounded-3xl hover:shadow-xl transition duration-300">
+        <div class="text-xs font-black uppercase tracking-widest opacity-30 mb-2 group-hover:text-primary transition-colors">Previous Post</div>
+        <div class="text-lg font-black tracking-tight line-clamp-1">{{ page.lower.title }}</div>
+      </a>
+      {% endif %}
+
+      {% if page.higher %}
+      <a href="{{ page.higher.permalink }}" class="group p-8 bg-base-100 border border-base-200 rounded-3xl text-right hover:shadow-xl transition duration-300">
+        <div class="text-xs font-black uppercase tracking-widest opacity-30 mb-2 group-hover:text-primary transition-colors">Next Post</div>
+        <div class="text-lg font-black tracking-tight line-clamp-1">{{ page.higher.title }}</div>
+      </a>
+      {% endif %}
+    </div>
+  </footer>
+</article>
+{% endblock content %}

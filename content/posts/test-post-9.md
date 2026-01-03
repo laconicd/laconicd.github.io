@@ -2,6 +2,7 @@
 title = "Test Post 9 (markdown)"
 date = 2026-01-02
 description = "This is test post number 9 demonstrating markdown syntax highlighting using Zola."
+authors = ["laconicd"]
 [taxonomies]
 categories = ["test"]
 tags = ["test", "markdown"]
@@ -11,10 +12,17 @@ image = "images/posts/test-post-9-markdown.jpg"
 
 # Test Post 9 - markdown
 
+
+
 This post demonstrates syntax highlighting for **markdown** using **Zola**.
+
+<!-- more -->
+
 
 ```markdown
 # My Project Documentation
+
+
 
 This is a sample documentation written in Markdown.
 

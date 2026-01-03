@@ -2,6 +2,7 @@
 title = "Test Post 18 (css)"
 date = 2026-01-02
 description = "This is test post number 18 demonstrating css syntax highlighting using Zola."
+authors = ["laconicd"]
 [taxonomies]
 categories = ["test"]
 tags = ["test", "css"]
@@ -11,7 +12,12 @@ image = "images/posts/test-post-18-css.jpg"
 
 # Test Post 18 - css
 
+
+
 This post demonstrates syntax highlighting for **css** using **Zola**.
+
+<!-- more -->
+
 
 ```css
 /* Modern CSS Features */

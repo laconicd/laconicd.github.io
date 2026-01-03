@@ -2,6 +2,7 @@
 title = "Test Post 17 (json)"
 date = 2026-01-02
 description = "This is test post number 17 demonstrating json syntax highlighting using Zola."
+authors = ["laconicd"]
 [taxonomies]
 categories = ["test"]
 tags = ["test", "json"]
@@ -11,7 +12,12 @@ image = "images/posts/test-post-17-json.jpg"
 
 # Test Post 17 - json
 
+
+
 This post demonstrates syntax highlighting for **json** using **Zola**.
+
+<!-- more -->
+
 
 ```json
 {

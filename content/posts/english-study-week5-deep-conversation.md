@@ -2,6 +2,7 @@
 title = "영어 공부 5주차: 고급 대화와 깊은 생각 (심화 소통)"
 date = 2025-12-29
 description = "일상을 넘어 가치관과 철학을 공유하고 원어민스러운 뉘앙스를 완성합니다."
+authors = ["laconicd"]
 
 [taxonomies]
 tags = ["english", "expression", "communication"]
@@ -9,6 +10,15 @@ categories = ["English Study"]
 [extra]
 image = "images/posts/5.jpg"
 +++
+
+# 영어 공부 5주차: 고급 대화와 깊은 생각 (Deep Dive)
+
+드디어 마지막 주차입니다. 이제는 일상의 대화를 넘어, 가치관과 철학을 공유하고 원어민들이 사용하는 미묘한 뉘앙스를 완성할 차례입니다. 한 차원 높은 수준의 영어를 통해 진정한 소통의 즐거움을 느껴보세요.
+
+<!-- more -->
+
+
+
 
 > **목표:** 일상을 넘어 가치관과 철학, 그리고 원어민스러운 뉘앙스 완성하기
 

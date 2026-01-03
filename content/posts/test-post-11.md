@@ -2,6 +2,7 @@
 title = "Test Post 11 (yaml)"
 date = 2026-01-02
 description = "This is test post number 11 demonstrating yaml syntax highlighting using Zola."
+authors = ["laconicd"]
 [taxonomies]
 categories = ["test"]
 tags = ["test", "yaml"]
@@ -11,10 +12,18 @@ image = "images/posts/test-post-11-yaml.jpg"
 
 # Test Post 11 - yaml
 
+
+
 This post demonstrates syntax highlighting for **yaml** using **Zola**.
+
+<!-- more -->
+
+
 
 ```yaml
 # GitHub Actions workflow example
+
+
 
 name: Deploy to GitHub Pages
 

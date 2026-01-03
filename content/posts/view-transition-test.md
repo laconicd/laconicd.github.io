@@ -1,7 +1,9 @@
 +++
 title = "View Transitions API Test"
 date = 2025-12-22
-description = "A sample post to test the native View Transitions API implementation."
+description = "네이티브 View Transitions API를 활용한 부드러운 페이지 전환 애니메이션 구현 테스트입니다."
+authors = ["laconicd"]
+
 [taxonomies]
 tags = ["test", "frontend", "animation"]
 categories = ["Development"]
@@ -9,7 +11,16 @@ categories = ["Development"]
 image = "images/posts/view-transitions-api-test.jpg"
 +++
 
-# Testing View Transitions
+# View Transitions: 웹의 차세대 애니메이션 표준
+
+최신 브라우저에서 제공하는 **View Transitions API**를 테스트하기 위한 샘플 포스트입니다. 별도의 무거운 라이브러리 없이도 네이티브 레벨에서 제공하는 우아한 슬라이드 및 페이드 효과를 확인해보세요.
+
+<!-- more -->
+
+
+
+
+## Testing View Transitions
 
 This is a test post to verify the **View Transitions API** implementation.
 

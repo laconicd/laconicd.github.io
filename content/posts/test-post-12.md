@@ -2,6 +2,7 @@
 title = "Test Post 12 (typescript)"
 date = 2026-01-02
 description = "This is test post number 12 demonstrating typescript syntax highlighting using Zola."
+authors = ["laconicd"]
 [taxonomies]
 categories = ["test"]
 tags = ["test", "typescript"]
@@ -12,7 +13,12 @@ comments = true  # 이 설정이 있는 포스트에만 댓글창이 나타납�
 
 # Test Post 12 - typescript
 
+
+
 This post demonstrates syntax highlighting for **typescript** using **Zola**.
+
+<!-- more -->
+
 
 ```typescript
 // Advanced TypeScript: Generics and Mapped Types

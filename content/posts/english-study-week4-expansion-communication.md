@@ -2,6 +2,7 @@
 title = "영어 공부 4주차: 마법의 뼈대 패턴 (확장 소통)"
 date = 2025-12-29
 description = "문장을 만드는 '틀'을 익혀 어떤 상황에서도 응용할 수 있는 능력을 키웁니다."
+authors = ["laconicd"]
 
 [taxonomies]
 tags = ["english", "expression", "communication"]
@@ -9,6 +10,15 @@ categories = ["English Study"]
 [extra]
 image = "images/posts/4.jpg"
 +++
+
+# 영어 공부 4주차: 마법의 뼈대 패턴 (Sentence Patterns)
+
+단순 암기는 한계가 있습니다. 4주차에는 문장을 만드는 '틀(Pattern)'을 익힙니다. 이 뼈대만 제대로 세워두면 단어 몇 개만 바꿔 끼우는 것만으로도 수백 가지의 문장을 자유자재로 응용할 수 있게 됩니다.
+
+<!-- more -->
+
+
+
 
 > **목표:** 문장을 만드는 '틀'을 익혀 어떤 상황에서도 응용하기
 

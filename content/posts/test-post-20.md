@@ -2,6 +2,7 @@
 title = "Test Post 20 (toml)"
 date = 2026-01-02
 description = "This is test post number 20 demonstrating toml syntax highlighting using Zola."
+authors = ["laconicd"]
 [taxonomies]
 categories = ["test"]
 tags = ["test", "toml"]
@@ -11,10 +12,17 @@ image = "images/posts/test-post-20-toml.jpg"
 
 # Test Post 20 - toml
 
+
+
 This post demonstrates syntax highlighting for **toml** using **Zola**.
+
+<!-- more -->
+
 
 ```toml
 # Deno project configuration
+
+
 
 [project]
 name = "laconicd.github.io"

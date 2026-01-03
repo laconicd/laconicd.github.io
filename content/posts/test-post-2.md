@@ -2,6 +2,7 @@
 title = "Test Post 2 (typescript)"
 date = 2026-01-02
 description = "This is test post number 2 demonstrating typescript syntax highlighting using Zola."
+authors = ["laconicd"]
 [taxonomies]
 categories = ["test"]
 tags = ["test", "typescript"]
@@ -11,7 +12,12 @@ image = "images/posts/test-post-2-typescript.jpg"
 
 # Test Post 2 - typescript
 
+
+
 This post demonstrates syntax highlighting for **typescript** using **Zola**.
+
+<!-- more -->
+
 
 ```typescript
 interface User {

@@ -2,6 +2,7 @@
 title = "Test Post 4 (python)"
 date = 2026-01-02
 description = "This is test post number 4 demonstrating python syntax highlighting using Zola."
+authors = ["laconicd"]
 [taxonomies]
 categories = ["test"]
 tags = ["test", "python"]
@@ -11,7 +12,12 @@ image = "images/posts/test-post-4-python.jpg"
 
 # Test Post 4 - python
 
+
+
 This post demonstrates syntax highlighting for **python** using **Zola**.
+
+<!-- more -->
+
 
 ```python
 import asyncio

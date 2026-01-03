@@ -2,6 +2,7 @@
 title = "영어 공부 2주차: 리액션과 의사표현 (사회적 소통)"
 date = 2025-12-29
 description = "상대방의 말에 세련되게 반응하고, 내 주장을 명확히 전달하는 법을 익힙니다."
+authors = ["laconicd"]
 
 [taxonomies]
 tags = ["english", "expression", "communication"]
@@ -9,6 +10,15 @@ categories = ["English Study"]
 [extra]
 image = "images/posts/2.jpg"
 +++
+
+# 영어 공부 2주차: 리액션과 의사표현 (Social Communication)
+
+사회 생활에서 가장 중요한 것은 내 말을 하는 것만큼이나 상대방의 말에 '어떻게 반응하느냐'입니다. 2주차에는 원어민들이 일상적으로 사용하는 세련된 리액션과, 내 주장을 정중하지만 명확하게 전달하는 법을 학습합니다.
+
+<!-- more -->
+
+
+
 
 > **목표:** 상대방의 말에 세련되게 반응하고, 내 주장을 명확히 전달하기
 

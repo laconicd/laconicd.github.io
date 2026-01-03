@@ -2,6 +2,7 @@
 title = "Test Post 14 (python)"
 date = 2026-01-02
 description = "This is test post number 14 demonstrating python syntax highlighting using Zola."
+authors = ["laconicd"]
 [taxonomies]
 categories = ["test"]
 tags = ["test", "python"]
@@ -11,10 +12,17 @@ image = "images/posts/test-post-14-python.jpg"
 
 # Test Post 14 - python
 
+
+
 This post demonstrates syntax highlighting for **python** using **Zola**.
+
+<!-- more -->
+
 
 ```python
 # Data Analysis with Python
+
+
 
 data = [
     {"name": "Alice", "score": 85},
@@ -40,6 +48,8 @@ print(f"Average Score: {stats['average']}")
 print(f"Top Student: {stats['highest_student']} with {stats['highest_score']}")
 
 # List comprehension filtering
+
+
 passing_students = [s["name"] for s in data if s["score"] >= 90]
 print(f"Passing Students (>=90): {', '.join(passing_students)}")
 ```

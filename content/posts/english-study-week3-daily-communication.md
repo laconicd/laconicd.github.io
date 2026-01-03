@@ -2,6 +2,7 @@
 title = "영어 공부 3주차: 일상과 고민 (생활 소통)"
 date = 2025-12-29
 description = "내가 처한 구체적인 문제와 일상의 작은 기쁨들을 영어로 표현해봅니다."
+authors = ["laconicd"]
 
 [taxonomies]
 tags = ["english", "expression", "communication"]
@@ -9,6 +10,15 @@ categories = ["English Study"]
 [extra]
 image = "images/posts/3.jpg"
 +++
+
+# 영어 공부 3주차: 일상과 고민 (Daily Life)
+
+3주차에는 우리 삶의 더 깊숙한 곳으로 들어갑니다. 커리어에 대한 진지한 고민부터 오늘 점심 메뉴 선택까지, 내가 처한 구체적인 문제와 일상의 작은 기쁨들을 영어로 생생하게 표현하는 연습을 합니다.
+
+<!-- more -->
+
+
+
 
 > **목표:** 내가 처한 구체적인 문제와 일상의 작은 기쁨들을 표현하기
 

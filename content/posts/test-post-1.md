@@ -2,7 +2,7 @@
 title = "Zola 요약 기능 마스터하기"
 date = 2026-01-03
 description = "Zola의 태그를 활용하여 리스트 페이지를 깔끔하게 만드는 방법"
-authors = ["hehehhe", "hohoho", "kekke"]
+authors = ["laconicd"]
 [taxonomies]
 categories = ["Tutorial"]
 tags = ["Zola", "StaticSite", "Web"]
@@ -11,7 +11,6 @@ image = "images/posts/zola.jpg"
 +++
 
 # Zola Summary 테스트
-
 
 이 문단은 블로그 리스트 페이지의 **카드 내부**에 나타납니다.
 Zola는 이 아래에 있는 `more` 주석을 발견하면 여기까지를 `page.summary`로 저장합니다.

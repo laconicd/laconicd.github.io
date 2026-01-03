@@ -2,6 +2,7 @@
 title = "영어 공부 1주차: 내 상태와 감정 (내면 소통)"
 date = 2025-12-29
 description = "나 자신과 대화하며 내 상태를 즉각적으로 인지하고 표현하는 법을 배웁니다."
+authors = ["laconicd"]
 
 [taxonomies]
 tags = ["english", "expression", "communication"]
@@ -9,6 +10,15 @@ categories = ["English Study"]
 [extra]
 image = "images/posts/1.jpg"
 +++
+
+# 영어 공부 1주차: 내면 소통하기
+
+영어 공부의 시작은 거창한 비즈니스 대화가 아니라, '지금 내 기분'을 정확히 표현하는 것에서 시작합니다. 1주차에는 나 자신과 대화하며 내 상태를 즉각적으로 인지하고 표현하는 핵심 문장들을 학습합니다.
+
+<!-- more -->
+
+
+
 
 > **목표:** 나 자신과 대화하며 내 상태를 즉각적으로 인지하고 표현하기
 
