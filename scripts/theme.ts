@@ -31,7 +31,19 @@ export class ThemeManager {
    */
   public apply(theme: string): void {
     document.documentElement.setAttribute("data-theme", theme);
+    this.updateSyntaxTheme(theme);
     this.syncControllers(theme);
+  }
+
+  /**
+   * Updates the syntax highlighting CSS link based on the theme.
+   */
+  private updateSyntaxTheme(theme: string): void {
+    const syntaxLink = document.getElementById("syntax-theme") as HTMLLinkElement | null;
+    if (syntaxLink) {
+      const fileName = theme === DARK_THEME ? "ayu-dark.css" : "ayu-light.css";
+      syntaxLink.href = `/${fileName}`;
+    }
   }
 
   /**
@@ -59,5 +71,16 @@ export class ThemeManager {
     const theme = localStorage.getItem(STORAGE_KEY) ||
       (globalThis.matchMedia("(prefers-color-scheme: dark)").matches ? DARK_THEME : LIGHT_THEME);
     document.documentElement.setAttribute("data-theme", theme);
+
+    // Initial syntax theme setup
+    const syntaxLink = document.getElementById("syntax-theme") as HTMLLinkElement | null;
+    if (syntaxLink) {
+      syntaxLink.href = `/${theme === DARK_THEME ? "ayu-dark.css" : "ayu-light.css"}`;
+    }
   }
+}
+
+// 즉시 실행하여 FOUC 방지
+if (typeof document !== "undefined") {
+  ThemeManager.initialize();
 }
