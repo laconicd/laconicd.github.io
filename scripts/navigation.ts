@@ -1,53 +1,32 @@
 import { ThemeManager } from "./theme.ts";
 
 /**
- * Handles fetching and parsing the page content.
+ * Handles fetching page content from a URL.
  */
-class PageFetcher {
-  public async fetch(url: string): Promise<Document> {
+class ContentLoader {
+  public async fetchDocument(url: string): Promise<Document> {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Failed to fetch page: ${response.status}`);
+      throw new Error(`Content loading failed: ${response.status}`);
     }
-    const text = await response.text();
-    const parser = new DOMParser();
-    return parser.parseFromString(text, "text/html");
+    const htmlText = await response.text();
+    return new DOMParser().parseFromString(htmlText, "text/html");
   }
 }
 
 /**
- * Handles rendering the new page content and managing view transitions.
+ * Handles UI updates and cleanup during navigation.
  */
-class PagePresenter {
+class UIController {
   constructor(private readonly themeManager: ThemeManager) {}
 
-  public async render(
-    newDoc: Document,
-    transitionType: string,
-    shouldScroll: boolean = true,
-  ): Promise<void> {
-    if (!document.startViewTransition) {
-      this.updateDOM(newDoc, shouldScroll);
-      return;
-    }
-
-    document.documentElement.dataset.transition = transitionType;
-    const transition = document.startViewTransition(() => this.updateDOM(newDoc, shouldScroll));
-    
-    try {
-      await transition.finished;
-    } finally {
-      delete document.documentElement.dataset.transition;
-    }
-  }
-
-  private updateDOM(newDoc: Document, shouldScroll: boolean): void {
+  public updateDOM(newDoc: Document, shouldScroll: boolean): void {
     const currentTheme = this.themeManager.getCurrentTheme();
-    const currentMain = document.getElementById("main-content");
-    const newMain = newDoc.getElementById("main-content");
+    const mainContent = document.getElementById("main-content");
+    const newMainContent = newDoc.getElementById("main-content");
 
-    if (currentMain && newMain) {
-      currentMain.replaceWith(newMain);
+    if (mainContent && newMainContent) {
+      mainContent.replaceWith(newMainContent);
     } else {
       document.body.innerHTML = newDoc.body.innerHTML;
     }
@@ -59,51 +38,62 @@ class PagePresenter {
       window.scrollTo(0, 0);
     }
 
-    window.dispatchEvent(new CustomEvent("page:updated"));
+    this.notifyPageUpdate();
     this.cleanupUI();
   }
 
-  private cleanupUI() {
-    const drawerToggle = document.getElementById("mobile-drawer") as HTMLInputElement;
-    if (drawerToggle && drawerToggle.checked) drawerToggle.checked = false;
+  private notifyPageUpdate(): void {
+    window.dispatchEvent(new CustomEvent("page:updated"));
+  }
 
-    const searchModal = document.getElementById("search_modal") as HTMLDialogElement;
-    if (searchModal && searchModal.open) searchModal.close();
-
-    document.querySelectorAll("details[open]").forEach((el) => {
-      if (el instanceof HTMLDetailsElement) el.open = false;
+  private cleanupUI(): void {
+    this.closeElement("mobile-drawer", (el) => (el as HTMLInputElement).checked = false);
+    this.closeElement("search_modal", (el) => (el as HTMLDialogElement).close());
+    
+    document.querySelectorAll<HTMLDetailsElement>("details[open]").forEach((el) => {
+      el.open = false;
     });
 
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
   }
+
+  private closeElement(id: string, closer: (el: HTMLElement) => void): void {
+    const el = document.getElementById(id);
+    if (el) closer(el);
+  }
 }
 
 /**
- * Orchestrates client-side navigation using Navigation API and fallbacks.
+ * Orchestrates navigation using the Navigation API or fallbacks.
  */
 export class NavigationHandler {
-  private readonly pageFetcher = new PageFetcher();
-  private readonly pagePresenter: PagePresenter;
+  private readonly loader = new ContentLoader();
+  private readonly ui: UIController;
   private readonly themeManager = new ThemeManager();
 
   constructor() {
-    this.pagePresenter = new PagePresenter(this.themeManager);
+    this.ui = new UIController(this.themeManager);
   }
 
   public init(): void {
+    this.setupNavigationListeners();
+    this.setupThemeListener();
+    this.setupPageShowListener();
+    this.themeManager.init();
+  }
+
+  private setupNavigationListeners(): void {
     if ("navigation" in globalThis) {
       // @ts-ignore: Navigation API
-      const nav = (globalThis as any).navigation;
-      nav.addEventListener("navigate", (event: any) => {
-        const url = new URL(event.destination.url);
-        if (url.origin !== location.origin || event.hashChange || !event.canIntercept || event.downloadRequest || event.formData) return;
+      (globalThis as any).navigation.addEventListener("navigate", (event: any) => {
+        if (!this.canIntercept(event)) return;
 
         event.intercept({
           handler: async () => {
             await this.performNavigation(
-              url.href, 
+              event.destination.url,
               "fade-rise",
               event.navigationType !== "traverse"
             );
@@ -111,36 +101,60 @@ export class NavigationHandler {
         });
       });
     } else {
-      document.addEventListener("click", this.onLinkClick.bind(this));
-      globalThis.addEventListener("popstate", this.onPopState.bind(this));
+      document.addEventListener("click", this.handleLinkClick.bind(this));
+      globalThis.addEventListener("popstate", this.handlePopState.bind(this));
     }
+  }
 
+  private canIntercept(event: any): boolean {
+    const url = new URL(event.destination.url);
+    return (
+      url.origin === location.origin &&
+      !event.hashChange &&
+      event.canIntercept &&
+      !event.downloadRequest &&
+      !event.formData
+    );
+  }
+
+  private setupThemeListener(): void {
+    document.addEventListener("change", (event) => {
+      const target = event.target as HTMLInputElement;
+      if (target.classList.contains("theme-controller")) {
+        this.themeManager.toggle(target.checked);
+      }
+    });
+  }
+
+  private setupPageShowListener(): void {
     window.addEventListener("pageshow", (event) => {
       if (event.persisted) {
         window.dispatchEvent(new CustomEvent("page:updated"));
       }
     });
-
-    this.themeManager.init();
   }
 
-  private onLinkClick(event: MouseEvent): void {
+  private handleLinkClick(event: MouseEvent): void {
     const anchor = (event.target as Element).closest("a");
-    if (!anchor) return;
-
-    const href = anchor.getAttribute("href");
-    if (!href || href.startsWith("#") || href.startsWith("javascript:") || anchor.target === "_blank") return;
-    
-    const url = new URL(anchor.href);
-    if (url.origin !== location.origin) return;
-    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    if (!anchor || !this.shouldInterceptLink(anchor, event)) return;
 
     event.preventDefault();
-    history.pushState({}, "", href);
-    this.performNavigation(href, "fade-rise", true);
+    history.pushState({}, "", anchor.href);
+    this.performNavigation(anchor.href, "fade-rise", true);
   }
 
-  private onPopState(): void {
+  private shouldInterceptLink(anchor: HTMLAnchorElement, event: MouseEvent): boolean {
+    const url = new URL(anchor.href);
+    return (
+      url.origin === location.origin &&
+      !anchor.getAttribute("href")?.startsWith("#") &&
+      !anchor.getAttribute("href")?.startsWith("javascript:") &&
+      anchor.target !== "_blank" &&
+      !(event.ctrlKey || event.metaKey || event.shiftKey || event.altKey)
+    );
+  }
+
+  private handlePopState(): void {
     this.performNavigation(globalThis.location.href, "fade-rise", false);
   }
 
@@ -150,11 +164,31 @@ export class NavigationHandler {
     shouldScroll: boolean = true,
   ): Promise<void> {
     try {
-      const newDoc = await this.pageFetcher.fetch(href);
-      await this.pagePresenter.render(newDoc, transitionType, shouldScroll);
+      const newDoc = await this.loader.fetchDocument(href);
+      await this.renderWithTransition(newDoc, transitionType, shouldScroll);
     } catch (error) {
       console.error("Navigation failed:", error);
       globalThis.location.assign(href);
+    }
+  }
+
+  private async renderWithTransition(
+    newDoc: Document,
+    transitionType: string,
+    shouldScroll: boolean
+  ): Promise<void> {
+    if (!document.startViewTransition) {
+      this.ui.updateDOM(newDoc, shouldScroll);
+      return;
+    }
+
+    document.documentElement.dataset.transition = transitionType;
+    const transition = document.startViewTransition(() => this.ui.updateDOM(newDoc, shouldScroll));
+    
+    try {
+      await transition.finished;
+    } finally {
+      delete document.documentElement.dataset.transition;
     }
   }
 }

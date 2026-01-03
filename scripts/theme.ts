@@ -1,19 +1,19 @@
+const STORAGE_KEY = "theme";
+const DARK_THEME = "dim";
+const LIGHT_THEME = "lofi";
+
 /**
  * ThemeManager: Handles theme switching, persistence, and UI synchronization.
  */
 export class ThemeManager {
-  private readonly STORAGE_KEY = "theme";
-  private readonly DARK_THEME = "dim";
-  private readonly LIGHT_THEME = "lofi";
-
   /**
    * Initializes the theme from localStorage or system preference.
    */
   public init(): void {
-    const savedTheme = localStorage.getItem(this.STORAGE_KEY) ||
+    const savedTheme = localStorage.getItem(STORAGE_KEY) ||
       (globalThis.matchMedia("(prefers-color-scheme: dark)").matches
-        ? this.DARK_THEME
-        : this.LIGHT_THEME);
+        ? DARK_THEME
+        : LIGHT_THEME);
     this.apply(savedTheme);
   }
 
@@ -21,9 +21,9 @@ export class ThemeManager {
    * Toggles the theme based on the checkbox state.
    */
   public toggle(isDark: boolean): void {
-    const theme = isDark ? this.DARK_THEME : this.LIGHT_THEME;
+    const theme = isDark ? DARK_THEME : LIGHT_THEME;
     this.apply(theme);
-    localStorage.setItem(this.STORAGE_KEY, theme);
+    localStorage.setItem(STORAGE_KEY, theme);
   }
 
   /**
@@ -38,11 +38,9 @@ export class ThemeManager {
    * Synchronizes all theme controller elements (e.g., checkboxes) with the current theme.
    */
   public syncControllers(theme: string): void {
-    const controllers = document.querySelectorAll(".theme-controller");
+    const controllers = document.querySelectorAll<HTMLInputElement>(".theme-controller");
     controllers.forEach((el) => {
-      if (el instanceof HTMLInputElement) {
-        el.checked = theme === this.DARK_THEME;
-      }
+      el.checked = theme === DARK_THEME;
     });
   }
 
@@ -50,7 +48,16 @@ export class ThemeManager {
    * Gets the current theme from the document.
    */
   public getCurrentTheme(): string {
-    return document.documentElement.getAttribute("data-theme") ||
-      this.LIGHT_THEME;
+    return document.documentElement.getAttribute("data-theme") || LIGHT_THEME;
+  }
+
+  /**
+   * Static initialization to prevent FOUC (Flash of Unstyled Content).
+   * This is intended to be called as early as possible.
+   */
+  public static initialize(): void {
+    const theme = localStorage.getItem(STORAGE_KEY) ||
+      (globalThis.matchMedia("(prefers-color-scheme: dark)").matches ? DARK_THEME : LIGHT_THEME);
+    document.documentElement.setAttribute("data-theme", theme);
   }
 }
