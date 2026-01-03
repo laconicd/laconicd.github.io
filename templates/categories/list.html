@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% set taxonomy_name = taxonomy.name | capitalize %}
+
+<header class="mb-20 text-center">
+  <h1 class="text-5xl font-bold tracking-tight mb-4">{{ taxonomy_name }}</h1>
+  <p class="text-xl text-base-content/70">Browse posts by {{ taxonomy_name }} </p>
+</header>
+
+<div class="flex flex-wrap gap-2">
+  {% for term in terms %}
+  <a href="{{ term.permalink }}"
+    class="btn btn-outline btn-sm hover:btn-secondary rounded-full normal-case tracking-tight">
+    # {{ term.name }}
+    <span class="badge badge-ghost badge-xs">{{ term.pages | length }}</span>
+  </a>
+  {% endfor %}
+</div>
+
+{% endblock content %}

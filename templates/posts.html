@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mb-20 text-center">
+  <h1 class="text-5xl font-bold tracking-tight mb-4">{{ section.title }}</h1>
+  <p class="text-xl text-base-content/70">Browse posts</p>
+</div>
+
+{% set blog_section = get_section(path="posts/_index.md") %}
+<div class="flex flex-wrap">
+  {% for page in blog_section.pages %}
+
+  <div class="card w-80 bg-base-100 card-md shadow-sm m-2">
+    <a href="{{ page.permalink }}" class="absolute inset-0"></a>
+    <time datetime="{{ page.date }}" class="p-4 pb-2 text-xs opacity-60 tracking-wide block">
+      {{ page.date | date(format="%B %d, %Y") }}
+    </time>
+    <div class="card-body">
+      <h2 class="card-title">{{ page.title }}</h2>
+      <p>{{ page.authors | join(sep=", ") }}</p>
+      <p>{{ page.summary | safe }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}
