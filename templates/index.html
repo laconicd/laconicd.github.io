@@ -3,47 +3,72 @@
 {% block content %}
 <div class="mb-20 text-center">
   <h1 class="text-5xl font-bold tracking-tight mb-4">{{ section.title }}</h1>
-  <p class="text-xl text-base-content/70">Writings and thoughts</p>
+  <p class="text-xl text-base-content/70">Curated insights on technology, design, and the art of code.</p>
 </div>
 
 {% set blog_section = get_section(path="posts/_index.md") %}
-<div class="space-y-4">
-  <ul class="list bg-base-100 rounded-box shadow-xl border border-base-200">
-    <li class="p-4 opacity-40 text-xs font-bold uppercase tracking-widest border-b border-base-200 bg-base-200/30">
-      Latest Articles
-    </li>
+<div class="max-w-3xl mx-auto">
+  <div class="flex items-center justify-between mb-8 px-2">
+    <h2 class="text-xs font-black uppercase tracking-[0.3em] opacity-30">Latest Articles</h2>
+    <div class="h-px flex-1 bg-base-300 ml-4 opacity-30"></div>
+  </div>
 
+  <ul class="flex flex-col gap-2">
     {% for page in blog_section.pages %}
-    <li class="list-row items-center hover:bg-base-200/50 transition-all relative py-6 px-6 group">
+    <li class="group relative flex items-center gap-6 p-4 rounded-[2rem] hover:bg-base-200/50 transition-all duration-500">
       <a href="{{ page.permalink }}" class="absolute inset-0 z-10"></a>
       
-      <div class="hidden md:block">
-        <div class="avatar">
-          <div class="size-14 rounded-2xl border border-base-300 shadow-sm group-hover:border-primary transition-colors overflow-hidden">
-            <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="{{ config.extra.author_name }}" />
+      <!-- Post Thumbnail -->
+      <div class="shrink-0">
+        <div class="relative size-24 md:size-28 overflow-hidden rounded-[1.5rem] border border-base-300 shadow-sm group-hover:shadow-lg group-hover:border-primary/30 transition-all duration-500">
+          {% if page.extra.image %}
+            <img src="{{ get_url(path=page.extra.image) | safe }}" 
+                 alt="{{ page.title }}" 
+                 class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
+          {% else %}
+            <img src="{{ get_url(path='images/default-post.jpg') | safe }}" 
+                 alt="{{ page.title }}" 
+                 class="h-full w-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700" />
+          {% endif %}
+          
+          <!-- Date Badge Overlay (Mobile/Small) -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2">
+             <span class="text-[9px] text-white font-bold uppercase tracking-tighter">
+               {{ page.date | date(format="%b %d") }}
+             </span>
           </div>
         </div>
       </div>
 
+      <!-- Post Info -->
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-2 mb-2">
-          <span class="text-xs font-bold text-primary opacity-80">{{ page.authors | join(sep=", ") }}</span>
-          <span class="text-[10px] opacity-30">•</span>
-          <span class="text-xs opacity-50">{{ page.date | date(format="%B %d, %Y") }}</span>
+          <span class="text-[10px] font-black text-primary uppercase tracking-widest">{{ page.authors | join(sep=", ") }}</span>
+          <span class="text-[10px] opacity-20">•</span>
+          <span class="text-[10px] font-bold opacity-40 uppercase tracking-tight">{{ page.date | date(format="%B %d, %Y") }}</span>
         </div>
         
-        <h2 class="text-xl font-extrabold tracking-tight mb-2 group-hover:text-primary transition-colors truncate">
+        <h3 class="text-xl md:text-2xl font-black leading-tight tracking-tighter mb-2 group-hover:text-primary transition-colors line-clamp-2">
           {{ page.title }}
-        </h2>
+        </h3>
         
-        <div class="text-sm opacity-60 line-clamp-2 leading-relaxed italic">
+        <p class="text-sm opacity-50 line-clamp-1 md:line-clamp-2 leading-relaxed">
           {{ page.summary | default(value="") | striptags | safe }}
+        </p>
+
+        {% if page.taxonomies.categories %}
+        <div class="mt-3 flex gap-1">
+          {% for cat in page.taxonomies.categories %}
+            <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-base-300/50 opacity-50">{{ cat }}</span>
+          {% endfor %}
         </div>
+        {% endif %}
       </div>
 
-      <div class="flex items-center justify-end pl-4 opacity-10 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-        <svg xmlns="http://www.w3.org/2000/svg" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+      <!-- Arrow (Desktop only) -->
+      <div class="hidden md:flex items-center justify-center size-10 rounded-full bg-base-200 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
       </div>
     </li>
