@@ -17,13 +17,15 @@
     {% include "partials/navbar.html" %}
   </header>
 
-  <main>
+  <main id="main-content">
     {% block content %} {% endblock content %}
   </main>
 
   <footer>
     {% include "partials/footer.html" %}
   </footer>
+
+  <script src="/main.js" type="module"></script>
 </body>
 
 </html>

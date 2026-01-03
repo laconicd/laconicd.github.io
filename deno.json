@@ -1,14 +1,16 @@
 {
   "tasks": {
     "tailwindcss:build": "deno run -A @tailwindcss/cli -i assets/tailwind.css -o static/styles.css",
-    "router:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/router.ts",
+    "scripts:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/main.ts",
+    "sw:build": "deno bundle --platform browser --minify --outdir static/ sw.ts",
     "zola:serve": "zola serve --port 8080",
     "zola:build": "zola build",
     "copy:assets": "mkdir -p static && cp -r assets/images static",
     "common": {
       "dependencies": [
         "tailwindcss:build",
-        "router:build",
+        "scripts:build",
+        "sw:build",
         "copy:assets"
       ]
     },
