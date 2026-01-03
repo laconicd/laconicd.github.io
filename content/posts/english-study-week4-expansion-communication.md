@@ -6,6 +6,8 @@ description = "문장을 만드는 '틀'을 익혀 어떤 상황에서도 응용
 [taxonomies]
 tags = ["english", "expression", "communication"]
 categories = ["English Study"]
+[extra]
+image = "images/posts/4.jpg"
 +++
 
 > **목표:** 문장을 만드는 '틀'을 익혀 어떤 상황에서도 응용하기

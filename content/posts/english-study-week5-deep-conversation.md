@@ -6,6 +6,8 @@ description = "일상을 넘어 가치관과 철학을 공유하고 원어민스
 [taxonomies]
 tags = ["english", "expression", "communication"]
 categories = ["English Study"]
+[extra]
+image = "images/posts/5.jpg"
 +++
 
 > **목표:** 일상을 넘어 가치관과 철학, 그리고 원어민스러운 뉘앙스 완성하기

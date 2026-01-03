@@ -5,6 +5,8 @@ description = "This is test post number 20 demonstrating toml syntax highlightin
 [taxonomies]
 categories = ["test"]
 tags = ["test", "toml"]
+[extra]
+image = "images/posts/test-post-20-toml.jpg"
 +++
 
 # Test Post 20 - toml

@@ -6,6 +6,7 @@ description = "This is test post number 12 demonstrating typescript syntax highl
 categories = ["test"]
 tags = ["test", "typescript"]
 [extra]
+image = "images/posts/test-post-12-typescript.jpg"
 comments = true  # 이 설정이 있는 포스트에만 댓글창이 나타납니다.
 +++
 

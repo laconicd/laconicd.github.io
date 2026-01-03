@@ -3,22 +3,72 @@
 {% block content %}
 <div class="mb-20 text-center">
   <h1 class="text-5xl font-bold tracking-tight mb-4">{{ section.title }}</h1>
-  <p class="text-xl text-base-content/70">Browse posts</p>
+  <p class="text-xl text-base-content/70">Explore our latest thoughts and articles.</p>
 </div>
 
-{% set blog_section = get_section(path="posts/_index.md") %}
-<div class="flex flex-wrap">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+  {% set blog_section = get_section(path="posts/_index.md") %}
   {% for page in blog_section.pages %}
+  <div class="group relative bg-base-100 rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-500 border border-base-200 flex flex-col overflow-hidden h-full">
+    <!-- Link overlay -->
+    <a href="{{ page.permalink }}" class="absolute inset-0 z-20"></a>
 
-  <div class="card w-80 bg-base-100 card-md shadow-sm m-2">
-    <a href="{{ page.permalink }}" class="absolute inset-0"></a>
-    <time datetime="{{ page.date }}" class="p-4 pb-2 text-xs opacity-60 tracking-wide block">
-      {{ page.date | date(format="%B %d, %Y") }}
-    </time>
-    <div class="card-body">
-      <h2 class="card-title">{{ page.title }}</h2>
-      <p>{{ page.authors | join(sep=", ") }}</p>
-      <p>{{ page.summary | safe }}</p>
+    <!-- Card Image/Header -->
+    <div class="aspect-[16/10] bg-base-200 relative overflow-hidden">
+      <!-- Featured Image from front matter or placeholder -->
+      {% if page.extra.image %}
+        <img src="{{ get_url(path=page.extra.image) }}" 
+             alt="{{ page.title }}" 
+             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+      {% else %}
+        <img src="{{ get_url(path='images/default-post.jpg') }}" 
+             alt="{{ page.title }}" 
+             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90 group-hover:opacity-100" />
+      {% endif %}
+      
+      <!-- Date Badge Overlay -->
+      <div class="absolute top-4 left-4 z-10">
+        <div class="bg-base-100/80 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg border border-white/20">
+          {{ page.date | date(format="%b %d, %Y") }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Body -->
+    <div class="p-8 flex flex-col flex-1">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="avatar">
+          <div class="size-8 rounded-xl border border-base-300">
+            <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="{{ config.extra.author_name }}" />
+          </div>
+        </div>
+        <div>
+          <div class="text-[10px] font-bold text-primary uppercase tracking-widest">{{ page.authors | join(sep=", ") }}</div>
+          {% if page.taxonomies.categories %}
+          <div class="text-[9px] font-medium opacity-40 uppercase">{{ page.taxonomies.categories | join(sep=", ") }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-black mb-4 group-hover:text-primary transition-colors leading-[1.1] tracking-tight">
+        {{ page.title }}
+      </h2>
+
+      <div class="text-sm opacity-60 line-clamp-3 mb-8 flex-1 leading-relaxed">
+        {{ page.summary | default(value="") | striptags | safe }}
+      </div>
+
+      <!-- Footer Link -->
+      <div class="flex items-center gap-2 pt-6 border-t border-base-200 mt-auto">
+        <span class="text-[10px] font-black uppercase tracking-[0.2em] opacity-40 group-hover:opacity-100 group-hover:text-primary transition-all">
+          View Article
+        </span>
+        <div class="size-6 rounded-full bg-base-200 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-content transition-all ml-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </div>
+      </div>
     </div>
   </div>
   {% endfor %}

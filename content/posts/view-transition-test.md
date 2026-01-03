@@ -5,6 +5,8 @@ description = "A sample post to test the native View Transitions API implementat
 [taxonomies]
 tags = ["test", "frontend", "animation"]
 categories = ["Development"]
+[extra]
+image = "images/posts/view-transitions-api-test.jpg"
 +++
 
 # Testing View Transitions

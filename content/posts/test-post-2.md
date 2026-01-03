@@ -5,6 +5,8 @@ description = "This is test post number 2 demonstrating typescript syntax highli
 [taxonomies]
 categories = ["test"]
 tags = ["test", "typescript"]
+[extra]
+image = "images/posts/test-post-2-typescript.jpg"
 +++
 
 # Test Post 2 - typescript

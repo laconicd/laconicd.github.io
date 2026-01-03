@@ -5,6 +5,8 @@ description = "This is test post number 8 demonstrating css syntax highlighting 
 [taxonomies]
 categories = ["test"]
 tags = ["test", "css"]
+[extra]
+image = "images/posts/test-post-8-css.jpg"
 +++
 
 # Test Post 8 - css

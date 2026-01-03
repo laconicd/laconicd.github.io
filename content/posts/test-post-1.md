@@ -6,6 +6,8 @@ authors = ["hehehhe", "hohoho", "kekke"]
 [taxonomies]
 categories = ["Tutorial"]
 tags = ["Zola", "StaticSite", "Web"]
+[extra]
+image = "images/posts/zola.jpg"
 +++
 
 # Zola Summary 테스트

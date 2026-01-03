@@ -5,6 +5,8 @@ description = "This is test post number 7 demonstrating json syntax highlighting
 [taxonomies]
 categories = ["test"]
 tags = ["test", "json"]
+[extra]
+image = "images/posts/test-post-7-json.jpg"
 +++
 
 # Test Post 7 - json

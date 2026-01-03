@@ -5,6 +5,8 @@ description = "This is test post number 4 demonstrating python syntax highlighti
 [taxonomies]
 categories = ["test"]
 tags = ["test", "python"]
+[extra]
+image = "images/posts/test-post-4-python.jpg"
 +++
 
 # Test Post 4 - python

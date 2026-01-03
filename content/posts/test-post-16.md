@@ -5,6 +5,8 @@ description = "This is test post number 16 demonstrating bash syntax highlightin
 [taxonomies]
 categories = ["test"]
 tags = ["test", "bash"]
+[extra]
+image = "images/posts/test-post-16-bash.jpg"
 +++
 
 # Test Post 16 - bash

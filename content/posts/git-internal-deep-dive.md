@@ -6,6 +6,8 @@ description = "Git이 왜 단순한 파일 복사가 아닌지, 내부적으로 
 [taxonomies]
 tags = ["git", "devlog", "cs"]
 categories = ["development"]
+[extra]
+image = "images/posts/git.jpg"
 +++
 
 # Git 내부 동작 원리 파헤치기

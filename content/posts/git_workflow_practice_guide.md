@@ -6,6 +6,8 @@ description = "rebase로 커밋 히스토리를 깔끔하게 정리하고, merge
 [taxonomies]
 tags = ["git", "workflow", "rebase", "merge"]
 categories = ["development"]
+[extra]
+image = "images/posts/git-rebase-merge.jpg"
 +++
 
 # 실전 Git 워크플로우 연습 가이드: Rebase와 Merge 혼합 전략

@@ -5,6 +5,8 @@ description = "This is test post number 19 demonstrating markdown syntax highlig
 [taxonomies]
 categories = ["test"]
 tags = ["test", "markdown"]
+[extra]
+image = "images/posts/test-post-19-markdown.jpg"
 +++
 
 # Test Post 19 - markdown

@@ -7,40 +7,47 @@
 </div>
 
 {% set blog_section = get_section(path="posts/_index.md") %}
-<ul class="list bg-base-100 rounded-box shadow-md">
+<div class="space-y-4">
+  <ul class="list bg-base-100 rounded-box shadow-xl border border-base-200">
+    <li class="p-4 opacity-40 text-xs font-bold uppercase tracking-widest border-b border-base-200 bg-base-200/30">
+      Latest Articles
+    </li>
 
-  {% for page in blog_section.pages %}
-  <time datetime="{{ page.date }}" class="p-4 pb-2 text-xs opacity-60 tracking-wide block">
-    {{ page.date | date(format="%B %d, %Y") }}
-  </time>
+    {% for page in blog_section.pages %}
+    <li class="list-row items-center hover:bg-base-200/50 transition-all relative py-6 px-6 group">
+      <a href="{{ page.permalink }}" class="absolute inset-0 z-10"></a>
+      
+      <div class="hidden md:block">
+        <div class="avatar">
+          <div class="size-14 rounded-2xl border border-base-300 shadow-sm group-hover:border-primary transition-colors overflow-hidden">
+            <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="{{ config.extra.author_name }}" />
+          </div>
+        </div>
+      </div>
 
-  <li class="list-row hover:shadow-lg relative">
-    <a href="{{ page.permalink }}" class="absolute inset-0"></a>
-    <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/1@94.webp" /></div>
-    <div>
-      <div>{{ page.authors | join(sep=", ") }}</div>
-      <div class="text-xs uppercase font-semibold opacity-60">{{ page.title }}</div>
-    </div>
-    <div class="list-col-wrap text-xs">
-      {{ page.summary | safe }}
-    </div>
-    <button class="btn btn-square btn-ghost">
-      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-          <path d="M6 3L20 12 6 21 6 3z"></path>
-        </g>
-      </svg>
-    </button>
-    <button class="btn btn-square btn-ghost">
-      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-          <path
-            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
-          </path>
-        </g>
-      </svg>
-    </button>
-  </li>
-  {% endfor %}
-</ul>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xs font-bold text-primary opacity-80">{{ page.authors | join(sep=", ") }}</span>
+          <span class="text-[10px] opacity-30">•</span>
+          <span class="text-xs opacity-50">{{ page.date | date(format="%B %d, %Y") }}</span>
+        </div>
+        
+        <h2 class="text-xl font-extrabold tracking-tight mb-2 group-hover:text-primary transition-colors truncate">
+          {{ page.title }}
+        </h2>
+        
+        <div class="text-sm opacity-60 line-clamp-2 leading-relaxed italic">
+          {{ page.summary | default(value="") | striptags | safe }}
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end pl-4 opacity-10 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock content %}

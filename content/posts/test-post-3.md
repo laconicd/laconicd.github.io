@@ -5,6 +5,8 @@ description = "This is test post number 3 demonstrating javascript syntax highli
 [taxonomies]
 categories = ["test"]
 tags = ["test", "javascript"]
+[extra]
+image = "images/posts/test-post-3-javascript.jpg"
 +++
 
 # Test Post 3 - javascript

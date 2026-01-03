@@ -5,6 +5,8 @@ description = "This is test post number 11 demonstrating yaml syntax highlightin
 [taxonomies]
 categories = ["test"]
 tags = ["test", "yaml"]
+[extra]
+image = "images/posts/test-post-11-yaml.jpg"
 +++
 
 # Test Post 11 - yaml
