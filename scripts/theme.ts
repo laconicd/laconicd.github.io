@@ -57,10 +57,20 @@ export class ThemeManager {
    * Updates the syntax highlighting CSS link based on the theme.
    */
   private updateSyntaxTheme(theme: string): void {
-    const syntaxLink = document.getElementById("syntax-theme") as HTMLLinkElement | null;
-    if (syntaxLink) {
-      const fileName = theme === DARK_THEME ? "ayu-dark.css" : "ayu-light.css";
-      syntaxLink.href = `/${fileName}`;
+    let syntaxLink = document.getElementById("syntax-theme") as HTMLLinkElement | null;
+    
+    if (!syntaxLink) {
+      syntaxLink = document.createElement("link");
+      syntaxLink.id = "syntax-theme";
+      syntaxLink.rel = "stylesheet";
+      document.head.appendChild(syntaxLink);
+    }
+    
+    const fileName = theme === DARK_THEME ? "ayu-dark.css" : "ayu-light.css";
+    const newHref = `/${fileName}`;
+    
+    if (syntaxLink.href !== newHref) {
+      syntaxLink.href = newHref;
     }
   }
 
@@ -91,10 +101,14 @@ export class ThemeManager {
     document.documentElement.setAttribute("data-theme", theme);
 
     // Initial syntax theme setup
-    const syntaxLink = document.getElementById("syntax-theme") as HTMLLinkElement | null;
-    if (syntaxLink) {
-      syntaxLink.href = `/${theme === DARK_THEME ? "ayu-dark.css" : "ayu-light.css"}`;
+    let syntaxLink = document.getElementById("syntax-theme") as HTMLLinkElement | null;
+    if (!syntaxLink) {
+      syntaxLink = document.createElement("link");
+      syntaxLink.id = "syntax-theme";
+      syntaxLink.rel = "stylesheet";
+      document.head.appendChild(syntaxLink);
     }
+    syntaxLink.href = `/${theme === DARK_THEME ? "ayu-dark.css" : "ayu-light.css"}`;
   }
 }
 

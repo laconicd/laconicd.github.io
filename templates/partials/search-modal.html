@@ -1,0 +1,47 @@
+<!-- Modern Search Modal -->
+<dialog id="search_modal" class="modal modal-bottom sm:modal-middle">
+  <div
+    class="modal-box p-0 max-w-2xl bg-base-100/95 border border-base-200 shadow-2xl flex flex-col min-h-24 max-h-[80vh] max-sm:h-[90vh] max-sm:max-h-none max-sm:rounded-t-3xl max-sm:rounded-b-none">
+    <!-- Search Input Header -->
+    <div class="flex items-center gap-4 p-4 border-b border-base-200 bg-base-100/50">
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-5 opacity-40" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input type="text" id="search-input" placeholder="Search articles..."
+        class="flex-1 bg-transparent outline-none text-lg placeholder:opacity-30" autocomplete="off" />
+      <kbd class="hidden sm:inline-flex kbd kbd-sm opacity-30 font-sans bg-base-200 border-none">ESC</kbd>
+      <form method="dialog" class="sm:hidden">
+        <button class="btn btn-ghost btn-circle btn-sm opacity-40">
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Results Area -->
+    <div id="search-results" class="flex-1 overflow-y-auto p-2 scrollbar-hide">
+      <div class="p-12 text-center opacity-30 text-sm font-medium">
+        Type to start searching...
+      </div>
+    </div>
+
+    <!-- Search Footer -->
+    <div
+      class="p-3 bg-base-200/50 border-t border-base-200 flex justify-between items-center text-xs font-bold uppercase tracking-widest opacity-40">
+      <div class="flex gap-4 ml-2">
+        <span class="hidden sm:flex items-center gap-1.5"><kbd class="kbd kbd-xs bg-base-300 border-none">↑↓</kbd>
+          navigate</span>
+        <span class="hidden sm:flex items-center gap-1.5"><kbd class="kbd kbd-xs bg-base-300 border-none">↵</kbd>
+          select</span>
+        <span class="sm:hidden">Search results</span>
+      </div>
+      <div class="mr-2 hidden sm:block">⌘K TO SEARCH</div>
+    </div>
+  </div>
+
+  <form method="dialog" class="modal-backdrop bg-base-900/30 backdrop-blur-md transition-all">
+    <button>close</button>
+  </form>
+</dialog>
