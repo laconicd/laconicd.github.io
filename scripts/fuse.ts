@@ -1,182 +1,174 @@
-import Fuse, { FuseResult } from "fuse.js";
-
-// -- Interfaces --
-
-interface Author {
-  firstName: string;
-  lastName: string;
-}
+import Fuse from "fuse.js";
 
 interface SearchItem {
   title: string;
-  author: Author;
-  permalink?: string;
-  path?: string;
-  description?: string;
-  content?: string;
+  description: string;
+  date: string;
+  path: string;
+  content: string;
 }
 
-declare global {
-  var searchIndex: SearchItem[];
+export async function initSearch() {
+  const searchInput = document.getElementById("search-input") as HTMLInputElement | null;
+  const searchResults = document.getElementById("search-results");
+  const modal = document.getElementById("search_modal") as any;
 
-  interface Document {
-    startViewTransition(
-      updateCallback: () => Promise<void> | void,
-    ): ViewTransition;
-  }
-}
+  if (!searchInput || !searchResults || !modal) return;
 
-/**
- * Service Layer: Handles the search logic and data indexing.
- */
-class SearchService {
-  private fuse: Fuse<SearchItem>;
+  let fuse: Fuse<SearchItem> | null = null;
 
-  constructor(data: SearchItem[]) {
-    this.fuse = new Fuse(data, {
-      keys: ["title", "body", "description", "content"],
-      includeMatches: true,
-      threshold: 0.4,
+  // Load search index lazily
+  const loadIndex = async () => {
+    if (fuse) return;
+    try {
+      // Zola produces search_index.[lang].js for fuse_javascript format
+      const response = await fetch("/search_index.ko.js");
+      if (!response.ok) throw new Error("Search index not found");
+      
+      const text = await response.text();
+      // Extract JSON from "window.searchIndex = [...];"
+      const jsonText = text.replace(/^window\.searchIndex\s*=\s*/, "").replace(/;$/, "");
+      const data = JSON.parse(jsonText);
+      
+      if (data) {
+        // Fuse index data can be the array itself or an object with a library property
+        let list: any[] = Array.isArray(data) ? data : data.library;
+        
+        if (list) {
+          // Remove duplicates based on path/url and filter out empty items
+          const seen = new Set();
+          list = list.filter(item => {
+            const id = item.path || item.url;
+            if (!id || seen.has(id)) return false;
+            seen.add(id);
+            // Filter out index pages like "/posts/", "/tags/", etc. if they have no content
+            if (id.endsWith("/") && !item.title && !item.body) return false;
+            return true;
+          });
+
+          fuse = new Fuse(list, {
+            keys: [
+              { name: "title", weight: 2.0 },
+              { name: "description", weight: 0.5 },
+              { name: "body", weight: 0.1 }
+            ],
+            threshold: 0.2,
+            location: 0,
+            distance: 100,
+            minMatchCharLength: 2,
+            ignoreLocation: false
+          });
+          console.log(`[Search] Index loaded with ${list.length} unique items.`);
+        }
+      }
+    } catch (e) {
+      console.error("[Search] Failed to load search index:", e);
+    }
+  };
+
+  // Listen for modal opening to load index and focus
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === "open" && modal.open) {
+        loadIndex();
+        setTimeout(() => searchInput.focus(), 50);
+      }
+    });
+  });
+  observer.observe(modal, { attributes: true });
+
+  let selectedIndex = -1;
+
+  // Shortcut key: Cmd+K or Ctrl+K
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      modal.showModal();
+      return;
+    }
+
+    if (modal.open) {
+      const results = searchResults.querySelectorAll("a");
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        selectedIndex = (selectedIndex + 1) % results.length;
+        updateSelection(results);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        selectedIndex = (selectedIndex - 1 + results.length) % results.length;
+        updateSelection(results);
+      } else if (e.key === "Enter" && selectedIndex >= 0) {
+        e.preventDefault();
+        results[selectedIndex].click();
+      } else if (e.key === "Escape") {
+        modal.close();
+      }
+    }
+  };
+
+  window.removeEventListener("keydown", handleKeyDown);
+  window.addEventListener("keydown", handleKeyDown);
+
+  function updateSelection(results: NodeListOf<HTMLAnchorElement>) {
+    results.forEach((el, i) => {
+      if (i === selectedIndex) {
+        el.classList.add("bg-primary/10", "border-primary/20");
+        el.scrollIntoView({ block: "nearest" });
+      } else {
+        el.classList.remove("bg-primary/10", "border-primary/20");
+      }
     });
   }
 
-  public search(query: string): FuseResult<SearchItem>[] {
-    return this.fuse.search(query);
-  }
-}
+  searchInput.addEventListener("input", async () => {
+    await loadIndex();
+    if (!fuse) return;
 
-/**
- * Presentation Layer: Handles HTML generation and UI updates.
- */
-class SearchPresenter {
-  constructor(private readonly container: HTMLElement) {}
-
-  public render(results: FuseResult<SearchItem>[], query: string): void {
-    if (results.length === 0) {
-      this.container.innerHTML =
-        `<li class="py-4 text-center text-base-content/50">No results found for "${query}"</li>`;
-      return;
-    }
-
-    this.container.innerHTML = results
-      .map((result) => this.createResultItemHTML(result))
-      .join("");
-  }
-
-  public clear(): void {
-    this.container.innerHTML = "";
-  }
-
-  private createResultItemHTML(result: FuseResult<SearchItem>): string {
-    const item = result.item;
-    const permalink = item.permalink || item.path || "#";
-
-    let title = item.title;
-    let description = item.description
-      ? item.description
-      : item.content
-      ? item.content.substring(0, 150) + "..."
-      : "";
-
-    if (result.matches) {
-      for (const match of result.matches) {
-        if (match.key === "title") {
-          title = this.highlight(
-            item.title,
-            match.indices as [number, number][],
-          );
-        } else if (match.key === "description" || match.key === "content") {
-          const text = item.description || item.content || "";
-          description = this.highlight(
-            text.substring(0, 150) + (text.length > 150 ? "..." : ""),
-            match.indices as [number, number][],
-          );
-        }
+    const query = searchInput.value;
+    selectedIndex = -1; 
+    
+    if (query.trim().length === 0) {
+      if (searchResults) {
+        searchResults.innerHTML = `
+          <div class="p-12 text-center opacity-30 text-sm font-medium">
+            Type to start searching...
+          </div>
+        `;
       }
-    }
-
-    return `
-      <li class="py-2 border-b border-base-200">
-        <a href="${permalink}" class="text-lg font-bold hover:text-primary transition-colors">${title}</a>
-        ${
-      description
-        ? `<p class="text-sm text-base-content/70 mt-1">${description}</p>`
-        : ""
-    }
-      </li>
-    `;
-  }
-
-  private highlight(text: string, indices: [number, number][]): string {
-    if (!indices || indices.length === 0) return text;
-
-    const sortedMatches = [...indices].sort((a, b) => b[0] - a[0]);
-    let highlightedText = text;
-
-    for (const [start, end] of sortedMatches) {
-      highlightedText = highlightedText.substring(0, start) +
-        `<mark class="bg-primary/30 text-primary-content rounded-sm px-0.5">${
-          highlightedText.substring(
-            start,
-            end + 1,
-          )
-        }</mark>` +
-        highlightedText.substring(end + 1);
-    }
-
-    return highlightedText;
-  }
-}
-
-/**
- * Application Layer: Orchestrates interactions between Service, Presenter, and DOM.
- */
-export class SearchController {
-  constructor(
-    private readonly input: HTMLInputElement,
-    private readonly service: SearchService,
-    private readonly presenter: SearchPresenter,
-  ) {}
-
-  public attach(): void {
-    this.input.addEventListener("input", () => this.handleInput());
-  }
-
-  private handleInput(): void {
-    const query = this.input.value.trim();
-    if (!query) {
-      this.presenter.clear();
       return;
     }
 
-    const results = this.service.search(query);
-    this.presenter.render(results, query);
+    const results = fuse.search(query).slice(0, 8);
+    renderResults(results);
+  });
+
+  function renderResults(results: any[]) {
+    if (!searchResults || !searchInput) return;
+    
+    if (results.length === 0) {
+      searchResults.innerHTML = `
+        <div class="p-12 text-center opacity-30 text-sm font-medium">
+          No matches found for "${searchInput.value}".
+        </div>
+      `;
+      return;
+    }
+
+    searchResults.innerHTML = results.map((result) => `
+      <a href="${result.item.path}" class="group flex items-center gap-4 p-3 rounded-xl hover:bg-base-200 transition-colors border border-transparent hover:border-base-300 mb-1 last:mb-0">
+        <div class="size-10 rounded-lg bg-base-200 flex items-center justify-center text-base-content/40 shrink-0 group-hover:bg-primary group-hover:text-primary-content transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-0.5">
+            <h3 class="font-bold tracking-tight group-hover:text-primary transition-colors truncate text-sm">${result.item.title}</h3>
+            <span class="text-[10px] font-black opacity-20 uppercase tracking-widest bg-base-300 px-1.5 py-0.5 rounded group-hover:opacity-100 transition-opacity ml-auto shrink-0">Post</span>
+          </div>
+          <p class="text-xs opacity-40 line-clamp-1 group-hover:opacity-70 transition-opacity font-medium">${result.item.description || result.item.body.substring(0, 100).replace(/[#*`]/g, "")}</p>
+        </div>
+      </a>
+    `).join("");
   }
-}
-
-/**
- * Main initialization entry point.
- */
-let isSearchInitialized = false;
-
-export function initSearch(): void {
-  const input = document.getElementById("search-input") as HTMLInputElement;
-  const resultsContainer = document.getElementById(
-    "search-results",
-  ) as HTMLElement;
-
-  if (!input || !resultsContainer || isSearchInitialized) {
-    return;
-  }
-
-  if (!globalThis.searchIndex) {
-    return;
-  }
-
-  const service = new SearchService(globalThis.searchIndex);
-  const presenter = new SearchPresenter(resultsContainer);
-  const controller = new SearchController(input, service, presenter);
-
-  controller.attach();
-  isSearchInitialized = true;
 }
