@@ -1,14 +1,55 @@
-/* View Transitions */
+/* View Transitions 핵심 요소 지정 */
 .navbar {
   view-transition-name: navbar;
+}
+
+#main-content {
+  view-transition-name: main-content;
 }
 
 footer {
   view-transition-name: footer;
 }
 
-/* root 트랜지션만으로 부드럽게 전체 전환 (네비바/푸터 제외) */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.2s;
+/* 
+   root(전체 배경)는 가만히 두고, 
+   main-content 영역만 슬라이드 애니메이션 적용
+*/
+
+/* 기본 설정: 페이드 및 타이밍 */
+::view-transition-old(main-content),
+::view-transition-new(main-content) {
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
 }
+
+/* 앞으로 가기 (Slide Forward) */
+[data-transition="slide"]::view-transition-old(main-content) {
+  animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
+             0.3s cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+}
+
+[data-transition="slide"]::view-transition-new(main-content) {
+  animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
+             0.3s cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+}
+
+/* 뒤로 가기 (Slide Backward) */
+[data-transition="back"]::view-transition-old(main-content) {
+  animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
+             0.3s cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
+}
+
+[data-transition="back"]::view-transition-new(main-content) {
+  animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
+             0.3s cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+}
+
+/* 키프레임 정의 */
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes fade-out { to { opacity: 0; } }
+@keyframes slide-from-right { from { transform: translateX(30px); } }
+@keyframes slide-to-left { to { transform: translateX(-30px); } }
+@keyframes slide-from-left { from { transform: translateX(-30px); } }
+@keyframes slide-to-right { to { transform: translateX(30px); } }

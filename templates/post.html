@@ -62,7 +62,7 @@
   </div>
 
   <!-- Post Footer: Tags & Navigation -->
-  <footer class="pt-12 border-t border-base-200">
+  <section class="pt-12 border-t border-base-200">
     {% if page.taxonomies.tags %}
     <div class="flex flex-wrap gap-2 mb-16">
       {% for tag in page.taxonomies.tags %}
@@ -76,19 +76,19 @@
     <!-- Navigation -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {% if page.lower %}
-      <a href="{{ page.lower.permalink }}" class="group p-8 bg-base-100 border border-base-200 rounded-3xl hover:shadow-xl transition duration-300">
+      <a href="{{ page.lower.path }}" class="group p-8 bg-base-100 border border-base-200 rounded-3xl hover:shadow-xl transition duration-300" data-transition="back">
         <div class="text-xs font-black uppercase tracking-widest opacity-30 mb-2 group-hover:text-primary transition-colors">Previous Post</div>
         <div class="text-lg font-black tracking-tight line-clamp-1">{{ page.lower.title }}</div>
       </a>
       {% endif %}
 
       {% if page.higher %}
-      <a href="{{ page.higher.permalink }}" class="group p-8 bg-base-100 border border-base-200 rounded-3xl text-right hover:shadow-xl transition duration-300">
+      <a href="{{ page.higher.path }}" class="group p-8 bg-base-100 border border-base-200 rounded-3xl text-right hover:shadow-xl transition duration-300" data-transition="slide">
         <div class="text-xs font-black uppercase tracking-widest opacity-30 mb-2 group-hover:text-primary transition-colors">Next Post</div>
         <div class="text-lg font-black tracking-tight line-clamp-1">{{ page.higher.title }}</div>
       </a>
       {% endif %}
     </div>
-  </footer>
+  </section>
 </article>
 {% endblock content %}

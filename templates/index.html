@@ -16,7 +16,7 @@
   <ul class="grid gap-2">
     {% for page in blog_section.pages %}
     <li class="group relative flex items-center gap-6 p-4 rounded-3xl hover:bg-base-200/50 transition duration-300">
-      <a href="{{ page.permalink }}" class="absolute inset-0 z-10"></a>
+      <a href="{{ page.path }}" class="absolute inset-0 z-10"></a>
       
       <!-- Post Thumbnail -->
       <div class="size-24 md:size-28 overflow-hidden rounded-2xl border border-base-300 shadow-sm">

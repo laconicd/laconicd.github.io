@@ -24,17 +24,24 @@ class PagePresenter {
   public async render(
     newDoc: Document,
     transitionType: string,
+    shouldScroll: boolean = true,
   ): Promise<void> {
     if (!document.startViewTransition) {
-      await this.updateDOM(newDoc);
+      this.updateDOM(newDoc, shouldScroll);
       return;
     }
 
     document.documentElement.dataset.transition = transitionType;
-    await document.startViewTransition(() => this.updateDOM(newDoc)).finished;
+    const transition = document.startViewTransition(() => this.updateDOM(newDoc, shouldScroll));
+    
+    try {
+      await transition.finished;
+    } finally {
+      delete document.documentElement.dataset.transition;
+    }
   }
 
-  private async updateDOM(newDoc: Document): Promise<void> {
+  private updateDOM(newDoc: Document, shouldScroll: boolean): void {
     const currentTheme = this.themeManager.getCurrentTheme();
 
     // Find the main content area in both the current and new document
@@ -44,12 +51,16 @@ class PagePresenter {
     if (currentMain && newMain) {
       currentMain.replaceWith(newMain);
     } else {
-      console.warn("Could not find #main-content, replacing body");
+      console.warn("Could not find #main-content, replacing body content");
       document.body.innerHTML = newDoc.body.innerHTML;
     }
 
     document.title = newDoc.title;
     this.themeManager.apply(currentTheme);
+
+    if (shouldScroll) {
+      window.scrollTo(0, 0);
+    }
 
     // Re-initialize specific components or trigger events
     window.dispatchEvent(new CustomEvent("page:updated"));
@@ -91,6 +102,7 @@ export class NavigationHandler {
   private readonly pageFetcher = new PageFetcher();
   private readonly pagePresenter: PagePresenter;
   private readonly themeManager = new ThemeManager();
+  private lastClickedAnchor: HTMLAnchorElement | null = null;
 
   constructor() {
     this.pagePresenter = new PagePresenter(this.themeManager);
@@ -102,9 +114,12 @@ export class NavigationHandler {
       const nav = (globalThis as any).navigation;
       nav.addEventListener("navigate", (event: any) => {
         const url = new URL(event.destination.url);
-
+        
+        // Always intercept same-origin navigations that are "interceptable"
+        const isSameOrigin = url.origin === location.origin;
+        
         if (
-          url.origin !== location.origin ||
+          !isSameOrigin ||
           event.hashChange ||
           !event.canIntercept ||
           event.downloadRequest ||
@@ -115,14 +130,36 @@ export class NavigationHandler {
 
         event.intercept({
           handler: async () => {
-            await this.performNavigation(url.href, "slide");
-            if (event.navigationType !== "traverse") {
-              globalThis.scrollTo(0, 0);
+            const isBack = event.navigationType === "traverse";
+            
+            // Try to determine transition type from the last clicked element if possible
+            // or default to slide/back
+            let transitionType = isBack ? "back" : "slide";
+            
+            // If we have a clicked element stored (see below)
+            if (this.lastClickedAnchor && this.lastClickedAnchor.href === url.href) {
+              transitionType = this.lastClickedAnchor.getAttribute("data-transition") || transitionType;
             }
+            
+            await this.performNavigation(
+              url.href, 
+              transitionType,
+              !isBack
+            );
           },
         });
       });
-    } else {
+    }
+
+    // Always listen for clicks to store the last clicked anchor for transition hints
+    document.addEventListener("click", (event) => {
+      const anchor = (event.target as Element).closest("a");
+      if (anchor) {
+        this.lastClickedAnchor = anchor;
+      }
+    }, { capture: true });
+    
+    if (!("navigation" in globalThis)) {
       document.addEventListener("click", this.onLinkClick.bind(this));
       globalThis.addEventListener("popstate", this.onPopState.bind(this));
     }
@@ -153,23 +190,22 @@ export class NavigationHandler {
     const transitionType = anchor.getAttribute("data-transition") || "slide";
     
     history.pushState({}, "", href);
-    this.performNavigation(href, transitionType).then(() => {
-      globalThis.scrollTo(0, 0);
-    });
+    this.performNavigation(href, transitionType, true);
   }
 
   private onPopState(): void {
-    this.performNavigation(globalThis.location.href, "slide");
+    this.performNavigation(globalThis.location.href, "back", false);
   }
 
   private async performNavigation(
     href: string,
     transitionType: string,
+    shouldScroll: boolean = true,
   ): Promise<void> {
     try {
-      console.log(`[Navigation] Navigating to: ${href}`);
+      console.log(`[Navigation] Navigating to: ${href} (type: ${transitionType})`);
       const newDoc = await this.pageFetcher.fetch(href);
-      await this.pagePresenter.render(newDoc, transitionType);
+      await this.pagePresenter.render(newDoc, transitionType, shouldScroll);
     } catch (error) {
       console.error("Navigation failed:", error);
       globalThis.location.assign(href);
