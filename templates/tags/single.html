@@ -1,1 +1,91 @@
-tags single
+{% extends "base.html" %}
+
+{% block content %}
+<header class="mb-20 text-center">
+  <div class="inline-block px-4 py-1.5 mb-6 rounded-full bg-secondary/10 text-secondary text-xs font-black uppercase tracking-[0.2em]">
+    Tag Archive
+  </div>
+  <h1 class="text-6xl font-black tracking-tighter mb-6">#{{ term.name }}</h1>
+  <p class="text-xl text-base-content/60 max-w-2xl mx-auto leading-relaxed">
+    Exploring all articles and resources tagged with <span class="text-base-content font-bold underline decoration-secondary/30 decoration-4 underline-offset-4">"{{ term.name }}"</span>.
+  </p>
+</header>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+  {% for page in term.pages %}
+  <div class="group relative flex flex-col h-full bg-base-100 rounded-3xl border border-base-200 overflow-hidden shadow-sm transition duration-500 hover:shadow-2xl">
+    <a href="{{ page.permalink }}" class="absolute inset-0 z-20"></a>
+
+    <!-- Card Media -->
+    <div class="aspect-video bg-base-200 overflow-hidden relative">
+      {% if page.extra.image %}
+        {# Use relative_path to get the actual filesystem path for resize_image #}
+        {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
+        {% set thumb = resize_image(path=image_path, width=600, height=338, op="fill", format="webp", quality=80) %}
+        <img src="{{ thumb.url }}" 
+             alt="{{ page.title }}" 
+             class="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+             loading="lazy" />
+      {% else %}
+        <img src="{{ get_url(path='assets/images/default-post.jpg') }}" 
+             alt="{{ page.title }}" 
+             class="w-full h-full object-cover transition duration-700 group-hover:scale-110 opacity-90"
+             loading="lazy" />
+      {% endif %}
+      
+      <div class="absolute top-4 left-4 z-10">
+        <span class="badge bg-neutral text-neutral-content border-none px-3 py-3 text-xs font-black uppercase tracking-widest">
+          {{ page.date | date(format="%b %d, %Y") }}
+        </span>
+      </div>
+
+      {% if page.taxonomies.categories %}
+      <div class="absolute bottom-4 left-4 z-10 flex flex-wrap gap-1">
+        {% for cat in page.taxonomies.categories %}
+          <span class="badge badge-primary badge-sm font-bold uppercase text-xs border-none px-2">
+            {{ cat }}
+          </span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Card Content -->
+    <div class="p-8 flex flex-col flex-1">
+      <div class="flex items-center gap-3 mb-6 text-xs font-black uppercase tracking-widest text-primary">
+        <div class="avatar">
+          <div class="size-8 rounded-xl ring ring-base-200 ring-offset-2">
+            <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="{{ config.extra.author_name }}" />
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span>{{ page.authors | join(sep=", ") }}</span>
+          <span class="opacity-40 mt-1">Author</span>
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-black tracking-tight leading-tight mb-4 group-hover:text-primary transition-colors">
+        {{ page.title }}
+      </h2>
+
+      <p class="text-sm opacity-60 leading-relaxed line-clamp-3 mb-6 flex-1">
+        {{ page.summary | default(value="") | striptags | safe }}
+      </p>
+
+      <!-- Card Footer -->
+      <div class="flex items-center justify-between pt-6 border-t border-base-200 mt-auto">
+        <span class="text-xs font-black uppercase tracking-widest opacity-40 group-hover:opacity-100 group-hover:text-primary transition-all">
+          Read More
+        </span>
+        <div class="size-8 rounded-full bg-base-200 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-content transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}
