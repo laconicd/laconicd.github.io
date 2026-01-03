@@ -11,29 +11,14 @@ export function initSpeculationRules() {
   const specScript = document.createElement("script");
   specScript.type = "speculationrules";
   
-  // Rules for pre-rendering local links on hover or moderate eagerness
+  // Aggressive rules for general mode testing
   const rules = {
     prerender: [
       {
         where: {
-          and: [
-            { href_matches: "/*" },
-            { not: { href_matches: ["/admin/*", "/*#*", "/*.*"] } },
-            { not: { selector_matches: "[rel~='nofollow']" } }
-          ]
+          href_matches: "/*"
         },
-        eagerness: "moderate" // Pre-render on hover
-      }
-    ],
-    prefetch: [
-       {
-        where: {
-          and: [
-            { href_matches: "/*" },
-            { not: { href_matches: ["/admin/*", "/*#*", "/*.*"] } }
-          ]
-        },
-        eagerness: "conservative" // Prefetch on pointer down
+        eagerness: "eager"
       }
     ]
   };
