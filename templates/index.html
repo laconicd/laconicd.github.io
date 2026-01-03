@@ -20,9 +20,20 @@
       
       <!-- Post Thumbnail -->
       <div class="size-24 md:size-28 overflow-hidden rounded-2xl border border-base-300 shadow-sm">
-        <img src="{{ get_url(path=page.extra.image | default(value='images/default-post.jpg')) | safe }}" 
-             alt="{{ page.title }}" 
-             class="h-full w-full object-cover transition duration-700 group-hover:scale-110 {% if not page.extra.image %}opacity-40{% endif %}" />
+        {% if page.extra.image %}
+          {# Use relative_path to get the actual filesystem path for resize_image #}
+          {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
+          {% set mini_thumb = resize_image(path=image_path, width=224, height=224, op="fill", format="webp", quality=80) %}
+          <img src="{{ mini_thumb.url }}" 
+               alt="{{ page.title }}" 
+               class="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+               loading="lazy" />
+        {% else %}
+          <img src="{{ get_url(path='assets/images/default-post.jpg') }}" 
+               alt="{{ page.title }}" 
+               class="h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-40"
+               loading="lazy" />
+        {% endif %}
       </div>
 
       <!-- Post Info -->
