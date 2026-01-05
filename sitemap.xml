@@ -20,6 +20,9 @@
         <loc>https://laconicd.github.io/categories/test/</loc>
     </url>
     <url>
+        <loc>https://laconicd.github.io/categories/tutorial/</loc>
+    </url>
+    <url>
         <loc>https://laconicd.github.io/page/1/</loc>
     </url>
     <url>
@@ -67,7 +70,7 @@
     </url>
     <url>
         <loc>https://laconicd.github.io/posts/test-post-1/</loc>
-        <lastmod>2026-01-02</lastmod>
+        <lastmod>2026-01-03</lastmod>
     </url>
     <url>
         <loc>https://laconicd.github.io/posts/test-post-10/</loc>
@@ -180,9 +183,6 @@
         <loc>https://laconicd.github.io/tags/frontend/</loc>
     </url>
     <url>
-        <loc>https://laconicd.github.io/tags/general/</loc>
-    </url>
-    <url>
         <loc>https://laconicd.github.io/tags/git/</loc>
     </url>
     <url>
@@ -207,6 +207,9 @@
         <loc>https://laconicd.github.io/tags/rust/</loc>
     </url>
     <url>
+        <loc>https://laconicd.github.io/tags/staticsite/</loc>
+    </url>
+    <url>
         <loc>https://laconicd.github.io/tags/test/</loc>
     </url>
     <url>
@@ -216,9 +219,15 @@
         <loc>https://laconicd.github.io/tags/typescript/</loc>
     </url>
     <url>
+        <loc>https://laconicd.github.io/tags/web/</loc>
+    </url>
+    <url>
         <loc>https://laconicd.github.io/tags/workflow/</loc>
     </url>
     <url>
         <loc>https://laconicd.github.io/tags/yaml/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/zola/</loc>
     </url>
 </urlset>
