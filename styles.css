@@ -4143,14 +4143,14 @@ app-shell, app-navbar, app-footer, app-search-content, article-list-view, posts-
   position: relative;
   width: 100%;
 }
-.navbar {
-  view-transition-name: navbar;
+#site-header {
+  view-transition-name: site-header;
 }
 #main-content {
   view-transition-name: main-content;
 }
-footer {
-  view-transition-name: footer;
+#site-footer {
+  view-transition-name: site-footer;
 }
 ::view-transition-old(main-content) {
   animation: 150ms ease-out both fade-out;
