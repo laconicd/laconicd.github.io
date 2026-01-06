@@ -30,6 +30,9 @@ filename = "ayu-dark.css"
 theme = "ayu-light"
 filename = "ayu-light.css"
 
+generate_feeds = true
+feed_filenames = ["atom.xml", "rss.xml"]
+
 [extra]
 hero_title = "Writings"
 hero_subtitle = "The latest news, technologies, and resources from our team."

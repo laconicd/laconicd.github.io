@@ -30,7 +30,12 @@
     {{ icons::share() }}
   </button>
 
-  <!-- 4. RSS Feed (Antenna/Signals) -->
+  <!-- 4. Atom Feed -->
+  <a href="{{ get_url(path='atom.xml') }}" target="_blank" class="btn btn-circle btn-lg bg-base-100 shadow-lg border-base-200" aria-label="Atom Feed">
+    {{ icons::atom() }}
+  </a>
+
+  <!-- 5. RSS Feed (Antenna/Signals) -->
   <a href="{{ get_url(path='rss.xml') }}" target="_blank" class="btn btn-circle btn-lg bg-base-100 shadow-lg border-base-200" aria-label="RSS Feed">
     {{ icons::rss() }}
   </a>

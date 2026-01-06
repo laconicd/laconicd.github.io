@@ -39,6 +39,11 @@
         {{ icons::search() }}
       </button>
 
+      <!-- Atom Feed -->
+      <a href="{{ get_url(path='atom.xml') }}" target="_blank" class="btn btn-ghost btn-sm btn-circle" aria-label="Atom Feed">
+        {{ icons::atom() }}
+      </a>
+
       <!-- RSS Feed -->
       <a href="{{ get_url(path='rss.xml') }}" target="_blank" class="btn btn-ghost btn-sm btn-circle" aria-label="RSS Feed">
         {{ icons::rss() }}

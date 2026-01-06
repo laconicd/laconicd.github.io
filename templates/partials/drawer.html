@@ -40,6 +40,12 @@
           </button>
         </li>
         <li>
+          <a href="{{ get_url(path='atom.xml') }}" target="_blank" class="flex items-center gap-4 py-3 px-4 rounded-xl hover:bg-base-200 transition-colors">
+            {{ icons::atom(class="opacity-60") }}
+            <span class="font-medium text-lg">Atom Feed</span>
+          </a>
+        </li>
+        <li>
           <a href="{{ get_url(path='rss.xml') }}" target="_blank" class="flex items-center gap-4 py-3 px-4 rounded-xl hover:bg-base-200 transition-colors">
             {{ icons::rss(class="opacity-60") }}
             <span class="font-medium text-lg">RSS Feed</span>

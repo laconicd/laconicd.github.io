@@ -46,6 +46,17 @@
 
   <link rel="stylesheet" href="{{ get_url(path='styles.css', cachebust=true) | safe }}">
   <script src="{{ get_url(path='theme.js', cachebust=true) | safe }}" type="module"></script>
+
+  {# Feed autodiscovery #}
+  {% if config.generate_feeds %}
+    {% for filename in config.feed_filenames %}
+      {% if filename == "atom.xml" %}
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="{{ get_url(path=filename, trailing_slash=false) }}">
+      {% elif filename == "rss.xml" %}
+        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{{ get_url(path=filename, trailing_slash=false) }}">
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 </head>
 
 <body class="min-h-screen">
