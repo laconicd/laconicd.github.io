@@ -3,6 +3,8 @@ title = "The Blog"
 description = "A blog about Rust, Zola, and modern web development. Featuring tutorials, insights, and personal projects."
 build_search_index = true
 default_language = "ko"
+generate_feeds = true
+feed_filenames = ["atom.xml", "rss.xml"]
 minify_html = true
 taxonomies = [
   { name = "categories" },
@@ -29,9 +31,6 @@ filename = "ayu-dark.css"
 [[markdown.highlight_themes_css]]
 theme = "ayu-light"
 filename = "ayu-light.css"
-
-generate_feeds = true
-feed_filenames = ["atom.xml", "rss.xml"]
 
 [extra]
 hero_title = "Writings"
