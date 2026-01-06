@@ -4146,11 +4146,19 @@ app-shell, app-navbar, app-footer, app-search-content, article-list-view, posts-
 #site-header {
   view-transition-name: site-header;
 }
+::view-transition-old(site-header), ::view-transition-new(site-header) {
+  animation: none;
+  mix-blend-mode: normal;
+}
 #main-content {
   view-transition-name: main-content;
 }
 #site-footer {
   view-transition-name: site-footer;
+}
+::view-transition-old(site-footer), ::view-transition-new(site-footer) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 ::view-transition-old(main-content) {
   animation: 150ms ease-out both fade-out;
