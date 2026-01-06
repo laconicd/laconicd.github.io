@@ -1,23 +1,20 @@
 {
   "tasks": {
-    "tailwindcss:build": "deno run -A @tailwindcss/cli -i assets/tailwind.css -o static/styles.css",
+    "tailwindcss:build": "deno run -A @tailwindcss/cli -i styles/tailwind.css -o static/styles.css",
     "scripts:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/main.ts scripts/theme.ts",
-    "sw:build": "deno bundle --platform browser --minify --outdir static/ scripts/sw.ts",
     "fonts:fetch": "deno run -A scripts/fetch-fonts.ts",
     "zola:serve": "zola serve --port 8080",
     "zola:build": "zola build",
-    "copy:assets": "mkdir -p static && cp -r assets/images static",
     "common": {
       "dependencies": [
         "fonts:fetch",
         "tailwindcss:build",
-        "scripts:build",
-        "sw:build",
-        "copy:assets"
+        "scripts:build"
       ]
     },
-    "dev": "deno task common && deno task zola:serve",
-    "prd": "deno task common && deno task zola:build"
+    "init": "mkdir -p static && deno task common",
+    "dev": "deno task init && deno task zola:serve",
+    "prd": "deno task init && deno task zola:build"
   },
   "compilerOptions": {
     "lib": [

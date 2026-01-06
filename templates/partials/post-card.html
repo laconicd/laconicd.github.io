@@ -1,0 +1,94 @@
+<post-card class="group">
+  <template shadowrootmode="open">
+    <style>
+      :host {
+        display: block;
+        position: relative;
+      }
+
+      .card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 1.5rem;
+        transition: background 0.3s;
+      }
+
+      @media (min-width: 768px) {
+        .card {
+          gap: 1.5rem;
+        }
+      }
+
+      :host(:hover) .card {
+        background-color: var(--fallback-b2, oklch(var(--b2)/0.5));
+      }
+
+      .thumb {
+        flex-shrink: 0;
+      }
+
+      .body {
+        flex: 1;
+        min-width: 0;
+      }
+    </style>
+    <li class="card">
+      <slot name="link"></slot>
+      <div class="thumb">
+        <slot name="image"></slot>
+      </div>
+      <div class="body">
+        <slot name="meta"></slot>
+        <slot name="title"></slot>
+        <slot name="summary"></slot>
+        <slot name="tags"></slot>
+      </div>
+      <slot name="action"></slot>
+    </li>
+  </template>
+
+  <a slot="link" href="{{ page.path }}" class="absolute inset-0 z-10"></a>
+
+  <div slot="image" class="size-20 md:size-28 overflow-hidden rounded-2xl border border-base-300 shadow-sm">
+    {% if page.extra.image %}
+    {# Use relative_path to get the actual filesystem path for resize_image #}
+    {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
+    {% set mini_thumb = resize_image(path=image_path, width=224, height=224, op="fill", format="webp", quality=80) %}
+    <img src="{{ mini_thumb.url }}" alt="{{ page.title }}"
+      class="h-full w-full object-cover transition duration-700 group-hover:scale-110" loading="lazy" />
+    {% else %}
+    <img src="{{ get_url(path='images/default-post.jpg') }}" alt="{{ page.title }}"
+      class="h-full w-full object-cover transition duration-700 group-hover:scale-110 opacity-40" loading="lazy" />
+    {% endif %}
+  </div>
+
+  <div slot="meta" class="flex items-center gap-2 mb-1 text-[10px] md:text-xs font-bold uppercase">
+    <span class="text-primary">{{ page.authors | join(sep=", ") }}</span>
+    <span class="opacity-20">•</span>
+    <span class="opacity-40">{{ page.date | date(format="%B %d, %Y") }}</span>
+  </div>
+
+  <h3 slot="title"
+    class="text-lg md:text-2xl font-black leading-tight tracking-tight mb-2 group-hover:text-primary line-clamp-2">
+    {{ page.title }}
+  </h3>
+
+  <p slot="summary" class="text-sm opacity-50 line-clamp-1 md:line-clamp-2 leading-relaxed">
+    {{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}
+  </p>
+
+  {% if page.taxonomies.categories %}
+  <div slot="tags" class="mt-3 flex flex-wrap gap-1">
+    {% for cat in page.taxonomies.categories %}
+    <span class="badge badge-sm badge-ghost opacity-50 font-bold">{{ cat }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div slot="action"
+    class="hidden md:flex size-10 items-center justify-center rounded-full bg-base-200 opacity-0 transition duration-300 group-hover:opacity-100 group-hover:translate-x-2">
+    {{ icons::arrow_right() }}
+  </div>
+</post-card>

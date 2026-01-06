@@ -1,13 +1,14 @@
 @import "tailwindcss";
+@import "../static/fonts/index.css";
 @import "./base.css";
 @import "./transitions.css";
 
 @plugin "@tailwindcss/typography";
 
 @plugin "daisyui" {
-  themes: all;
+  themes: lofi, dim;
 }
 
 @theme {
-  --font-sans: "Outfit", sans-serif;
+  --font-sans: "Outfit Variable", sans-serif;
 }

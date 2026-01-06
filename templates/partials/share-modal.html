@@ -1,0 +1,19 @@
+{% import "macros/icons.html" as icons %}
+<!-- Share Success Modal -->
+<dialog id="share_modal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box bg-base-100/95 border border-base-200 shadow-2xl p-8 text-center">
+    <div class="size-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+      {{ icons::check() }}
+    </div>
+    <h3 class="text-2xl font-black tracking-tight mb-2">Link Copied!</h3>
+    <p class="text-base-content/60 font-medium">The article link has been copied to your clipboard. Feel free to share it!</p>
+    <div class="modal-action justify-center">
+      <form method="dialog">
+        <button class="btn btn-primary px-8 rounded-xl">Got it</button>
+      </form>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop bg-base-900/30 backdrop-blur-md transition-all">
+    <button>close</button>
+  </form>
+</dialog>

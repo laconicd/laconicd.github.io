@@ -1,4 +1,13 @@
 node_modules/
 public/
-static/
 AGENTS.md
+
+# Build outputs in static/
+static/*.css
+static/*.js
+static/*.js.map
+static/fonts/
+static/processed_images/
+
+# Keep original images
+!static/images/

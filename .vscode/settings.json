@@ -1,0 +1,31 @@
+{
+  "deno.enable": true,
+  // 기본 포맷터는 Deno로 설정 (JS, TS, HTML 등 전담)
+  "editor.defaultFormatter": "denoland.vscode-deno",
+  "editor.formatOnSave": true,
+
+  // CSS 및 PostCSS 파일에 대해 Stylelint 자동 수정 활성화
+  "stylelint.validate": [
+    "css",
+    "postcss"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "always"
+  },
+
+  // 기본 CSS 유효성 검사 비활성화 (Stylelint와 충돌 방지)
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+
+  // 특정 파일 형식에 대한 명시적 설정
+  "[css]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+
+  // Tailwind IntelliSense 설정 (필요 시)
+  "tailwindCSS.includeLanguages": {
+    "css": "css",
+    "html": "html"
+  }
+}

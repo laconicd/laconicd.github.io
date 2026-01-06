@@ -1,0 +1,16 @@
+/* Custom Elements Base Styles */
+app-shell,
+app-navbar,
+app-footer,
+app-search-content,
+article-list-view,
+posts-view,
+categories-list-view,
+tag-list-view,
+post-detail-view,
+post-card,
+post-grid-card {
+  display: block;
+  position: relative;
+  width: 100%;
+}

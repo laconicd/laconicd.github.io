@@ -1,33 +1,150 @@
+{% import "macros/icons.html" as icons %}
 <!DOCTYPE html>
 <html lang="en" data-theme="lofi">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/styles.css">
 
-  <title>{{ config.title }}</title>
+  {% set title = config.title %}
+  {% set description = config.description %}
+  {% set og_image = get_url(path=config.extra.default_image) %}
 
-  <script src="/theme.js" type="module"></script>
+  {% if page %}
+  {% set title = page.title %}
+  {% set description = page.summary | default(value=page.description) | default(value=description) %}
+  {% if page.extra.image %}
+  {% set og_image = get_url(path=page.relative_path | replace(from="index.md", to=page.extra.image)) %}
+  {% endif %}
+  {% elif section %}
+  {% set title = section.title | default(value=title) %}
+  {% set description = section.description | default(value=description) %}
+  {% if section.extra.image %}
+  {% set og_image = get_url(path=section.extra.image) %}
+  {% endif %}
+  {% endif %}
+
+  {% set description = description | striptags | truncate(length=160) %}
+
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="canonical" href="{{ current_url | safe }}">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ current_url | safe }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:image" content="{{ og_image | safe }}">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="{{ current_url | safe }}">
+  <meta property="twitter:title" content="{{ title }}">
+  <meta property="twitter:description" content="{{ description }}">
+  <meta property="twitter:image" content="{{ og_image | safe }}">
+
+  <link rel="stylesheet" href="{{ get_url(path='styles.css', cachebust=true) | safe }}">
+  <script src="{{ get_url(path='theme.js', cachebust=true) | safe }}" type="module"></script>
 </head>
 
-<body class="max-w-6xl mx-auto px-4">
-  <header>
-    {% include "partials/navbar.html" %}
-  </header>
+<body class="min-h-screen">
+  <!-- [a11y] Skip link for keyboard users -->
+  <a href="#main-content"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-content focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-4 focus:ring-primary/20">
+    Skip to content
+  </a>
 
-  <main id="main-content">
-    {% block content %} {% endblock content %}
-  </main>
+  <!-- [a11y] Route announcer for screen readers -->
+  <div id="route-announcer" class="sr-only" aria-live="polite" aria-atomic="true">
+  </div>
 
-  <footer>
-    {% include "partials/footer.html" %}
-  </footer>
+  <app-shell>
+    <template shadowrootmode="open">
+      <style>
+        :host {
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        }
 
-  {% include "partials/search-modal.html" %}
-  {% include "partials/fab-flower-speed-dial.html" %}
+        .shell-header {
+          position: sticky;
+          top: 0;
+          z-index: 40;
+          width: 100%;
+        }
 
-  <script src="/main.js" type="module"></script>
+        .shell-header > slot {
+          display: block;
+          width: 100%;
+        }
+
+        .shell-main {
+          flex: 1;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-top: 1rem;
+          /* Ensure main content takes up enough space to push footer down */
+          min-height: calc(100vh - 4rem - 12rem);
+          /* Viewport height minus header and estimated footer height */
+        }
+
+        .shell-main > slot {
+          display: block;
+          width: 100%;
+          max-width: 64rem;
+        }
+
+        .shell-footer {
+          margin-top: auto;
+          width: 100%;
+        }
+
+        .shell-footer > slot {
+          display: block;
+          width: 100%;
+        }
+      </style>
+      <div class="shell-header">
+        <slot name="header"></slot>
+      </div>
+      <main class="shell-main">
+        <slot></slot>
+      </main>
+      <div class="shell-footer">
+        <slot name="footer"></slot>
+      </div>
+      <slot name="widgets"></slot>
+    </template>
+
+    <header slot="header"
+      class="w-full backdrop-blur-md bg-base-100/70 border-b border-base-300/50 transition-all duration-300">
+      <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {% include "partials/navbar.html" %}
+      </div>
+    </header>
+
+    <main id="main-content" class="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {% block content %} {% endblock content %}
+    </main>
+
+    <footer slot="footer" class="w-full border-t border-base-300/50 mt-8 bg-base-200/30">
+      <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {% include "partials/footer.html" %}
+      </div>
+    </footer>
+
+    <div slot="widgets">
+      {% include "partials/search-modal.html" %}
+      {% include "partials/share-modal.html" %}
+      {% include "partials/speed-dial.html" %}
+      {% include "partials/drawer.html" %}
+    </div>
+  </app-shell>
+
+  <script src="{{ get_url(path='main.js', cachebust=true) | safe }}" type="module"></script>
 </body>
 
 </html>

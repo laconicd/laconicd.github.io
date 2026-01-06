@@ -33,7 +33,7 @@ filename = "ayu-light.css"
 [extra]
 hero_title = "Writings"
 hero_subtitle = "The latest news, technologies, and resources from our team."
-default_image = "default_og.png"
+default_image = "images/default-post.jpg"
 date_format = "%B %d, %Y"
 author_name = "My Name"
 author_role = "Writer"

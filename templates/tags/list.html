@@ -3,22 +3,52 @@
 {% block content %}
 {% set taxonomy_name = taxonomy.name | capitalize %}
 
-<header class="mb-20 text-center">
-  <h1 class="text-5xl font-bold tracking-tight mb-4">{{ taxonomy_name }}</h1>
-  <p class="text-xl text-base-content/70 italic">Discover specific keywords and niche subjects.</p>
-</header>
+<tag-list-view>
+  <template shadowrootmode="open">
+    <style>
+      .header {
+        margin-bottom: 5rem;
+        text-align: center;
+      }
 
-<div class="max-w-4xl mx-auto">
-  <div class="flex flex-wrap justify-center gap-4 px-4">
-    {% for term in terms %}
-    <a href="{{ term.path }}" class="group flex items-center gap-3 px-6 py-3 bg-base-100 border border-base-200 rounded-2xl transition-all hover:shadow-xl hover:border-primary/30 hover:-translate-y-1">
-      <span class="text-xl font-bold opacity-20 group-hover:text-primary group-hover:opacity-100 transition-opacity">#</span>
-      <span class="text-lg font-bold tracking-tight">{{ term.name }}</span>
-      <span class="badge badge-sm badge-ghost font-bold opacity-40 group-hover:badge-primary group-hover:opacity-100 transition-all">
-        {{ term.pages | length }}
-      </span>
-    </a>
-    {% endfor %}
+      .container {
+        width: 100%;
+      }
+
+      .flex-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0;
+      }
+    </style>
+    <header class="header">
+      <slot name="header"></slot>
+    </header>
+    <div class="container">
+      <div class="flex-wrap">
+        <slot></slot>
+      </div>
+    </div>
+  </template>
+
+  <div slot="header">
+    <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4">{{ taxonomy_name }}</h1>
+    <p class="text-base md:text-xl text-base-content/60 italic">Small pieces that make up the whole.</p>
   </div>
-</div>
+
+  {% for term in terms %}
+  <a href="{{ term.path }}"
+    class="group flex items-center gap-3 px-6 py-3 bg-base-100 border border-base-200 rounded-2xl transition-all hover:shadow-xl hover:border-primary/30 hover:-translate-y-1">
+    <span
+      class="text-xl font-bold opacity-20 group-hover:text-primary group-hover:opacity-100 transition-opacity">#</span>
+    <span class="text-lg font-bold tracking-tight">{{ term.name }}</span>
+    <span
+      class="badge badge-sm badge-ghost font-bold opacity-40 group-hover:badge-primary group-hover:opacity-100 transition-all">
+      {{ term.pages | length }}
+    </span>
+  </a>
+  {% endfor %}
+</tag-list-view>
 {% endblock content %}

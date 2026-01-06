@@ -1,0 +1,71 @@
+{% import "macros/icons.html" as icons %}
+<!-- FAB Flower Speed Dial (Visible on all screens) -->
+<div class="fab fab-flower fixed bottom-6 right-6 z-60">
+  <!-- Main button with tabindex for browser compatibility -->
+  <div tabindex="0" role="button"
+    class="btn btn-circle btn-lg btn-primary shadow-2xl transition-transform duration-300 hover:scale-110">
+    {{ icons::lightning() }}
+  </div>
+
+  <!-- Main Action button (Minus icon when open) -->
+  <button class="fab-main-action btn btn-circle btn-lg btn-primary shadow-xl" aria-label="Minimize Tools">
+    {{ icons::minus() }}
+  </button>
+
+  <!-- 1. Scroll to Top (Arrow Up) -->
+  <button id="speed-dial-top" class="btn btn-circle btn-lg bg-base-100 shadow-lg border-base-200"
+    aria-label="Scroll to Top">
+    {{ icons::top() }}
+  </button>
+
+  <!-- 2. Search (Magnifying Glass) -->
+  <button id="speed-dial-search" class="btn btn-circle btn-lg bg-base-100 shadow-lg border-base-200"
+    aria-label="Search">
+    {{ icons::search() }}
+  </button>
+
+  <!-- 3. Share (Link) -->
+  <button id="speed-dial-share" class="btn btn-circle btn-lg bg-base-100 shadow-lg border-base-200" 
+    aria-label="Share">
+    {{ icons::share() }}
+  </button>
+
+  <!-- 4. RSS Feed (Antenna/Signals) -->
+  <a href="{{ get_url(path='rss.xml') }}" target="_blank" class="btn btn-circle btn-lg bg-base-100 shadow-lg border-base-200" aria-label="RSS Feed">
+    {{ icons::rss() }}
+  </a>
+
+  <script>
+    (function() {
+      const setupEvents = () => {
+        const topBtn = document.getElementById('speed-dial-top');
+        const searchBtn = document.getElementById('speed-dial-search');
+        const shareBtn = document.getElementById('speed-dial-share');
+        const searchModal = document.getElementById('search_modal');
+        const shareModal = document.getElementById('share_modal');
+
+        if (topBtn) {
+          topBtn.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+        if (searchBtn && searchModal) {
+          searchBtn.onclick = () => searchModal.showModal();
+        }
+        if (shareBtn && shareModal) {
+          shareBtn.onclick = async () => {
+            try {
+              await navigator.clipboard.writeText(window.location.href);
+              shareModal.showModal();
+            } catch (err) {
+              console.error('Failed to copy: ', err);
+            }
+          };
+        }
+      };
+
+      // Initial setup
+      setupEvents();
+      // Re-setup on page updates (for SPA navigation)
+      window.addEventListener('page:updated', setupEvents);
+    })();
+  </script>
+</div>

@@ -30,6 +30,8 @@ class UIController {
     } else {
       document.body.innerHTML = newDoc.body.innerHTML;
     }
+    
+    this.hydrateDSD(document.body);
 
     document.title = newDoc.title;
     this.themeManager.apply(currentTheme);
@@ -38,8 +40,36 @@ class UIController {
       window.scrollTo(0, 0);
     }
 
+    // [a11y] Focus management for SPA navigation
+    const announcer = document.getElementById("route-announcer");
+    if (announcer) {
+      announcer.textContent = `${newDoc.title} 페이지가 로드되었습니다.`;
+    }
+    
+    const mainElement = document.getElementById("main-content");
+    if (mainElement) {
+      mainElement.setAttribute("tabindex", "-1");
+      mainElement.focus({ preventScroll: true });
+    }
+
     this.notifyPageUpdate();
     this.cleanupUI();
+  }
+
+  public hydrateDSD(root: HTMLElement): void {
+    root.querySelectorAll("template[shadowrootmode]").forEach((template) => {
+      const mode = template.getAttribute("shadowrootmode") as "open" | "closed";
+      const host = template.parentNode as HTMLElement;
+      if (host && !host.shadowRoot) {
+        try {
+          const shadowRoot = host.attachShadow({ mode });
+          shadowRoot.appendChild((template as HTMLTemplateElement).content);
+        } catch (e) {
+          console.warn("Shadow DOM hydration failed for", host, e);
+        }
+      }
+      template.remove();
+    });
   }
 
   private notifyPageUpdate(): void {
@@ -82,6 +112,7 @@ export class NavigationHandler {
     this.setupThemeListener();
     this.setupPageShowListener();
     this.themeManager.init();
+    this.ui.hydrateDSD(document.body);
   }
 
   private setupNavigationListeners(): void {
@@ -130,12 +161,13 @@ export class NavigationHandler {
     window.addEventListener("pageshow", (event) => {
       if (event.persisted) {
         window.dispatchEvent(new CustomEvent("page:updated"));
+        this.ui.hydrateDSD(document.body);
       }
     });
   }
 
   private handleLinkClick(event: MouseEvent): void {
-    const anchor = (event.target as Element).closest("a");
+    const anchor = event.composedPath().find((el) => el instanceof HTMLAnchorElement) as HTMLAnchorElement | undefined;
     if (!anchor || !this.shouldInterceptLink(anchor, event)) return;
 
     event.preventDefault();

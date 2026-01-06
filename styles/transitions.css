@@ -22,17 +22,23 @@ footer {
 
 ::view-transition-new(main-content) {
   animation: 300ms cubic-bezier(0, 0, 0.2, 1) both fade-in,
-             300ms cubic-bezier(0, 0, 0.2, 1) both slide-up;
+    300ms cubic-bezier(0, 0, 0.2, 1) both slide-up;
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
+  from {
+    opacity: 0;
+  }
 }
 
 @keyframes fade-out {
-  to { opacity: 0; }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes slide-up {
-  from { transform: translateY(10px); }
+  from {
+    transform: translateY(10px);
+  }
 }
