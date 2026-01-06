@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>The Blog</title>
+      <link>https://laconicd.github.io</link>
+      <description>A blog about Rust, Zola, and modern web development. Featuring tutorials, insights, and personal projects.</description>
+      <generator>Zola</generator>
+      <language>ko</language>
+      <atom:link href="https://laconicd.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Tue, 06 Jan 2026 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Long Scroll &amp; Design Test Post</title>
+          <pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://laconicd.github.io/posts/long-scroll-test/</link>
+          <guid>https://laconicd.github.io/posts/long-scroll-test/</guid>
+          <description xml:base="https://laconicd.github.io/posts/long-scroll-test/">&lt;h1 id=&quot;art-colorful-design-scroll-test&quot;&gt;🎨 Colorful Design &amp;amp; Scroll Test&lt;&#x2F;h1&gt;
+&lt;p&gt;이 포스트는 헤더와 푸터의 레이아웃이 화면 끝까지 잘 확장되는지, 그리고 스크롤 시의 사용자 경험이 어떤지 테스트하기 위해 작성되었습니다.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;rainbow-colorful-typography-test&quot;&gt;🌈 Colorful Typography Test&lt;&#x2F;h2&gt;
+&lt;p&gt;표준 마크다운은 색상을 지원하지 않지만, HTML 태그를 사용하여 다양한 색상을 표현할 수 있습니다.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style=&quot;color: #ff5555; font-weight: bold;&quot;&gt;레드 텍스트: 에러나 경고를 나타낼 때 좋습니다.&lt;&#x2F;span&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;span style=&quot;color: #50fa7b; font-weight: bold;&quot;&gt;그린 텍스트: 성공이나 긍정적인 메시지.&lt;&#x2F;span&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;span style=&quot;color: #8be9fd; font-weight: bold;&quot;&gt;시안 텍스트: 정보나 링크 느낌.&lt;&#x2F;span&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;span style=&quot;color: #ffb86c; font-weight: bold;&quot;&gt;오렌지 텍스트: 주의 사항.&lt;&#x2F;span&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;span style=&quot;color: #bd93f9; font-weight: bold;&quot;&gt;퍼플 텍스트: 강조하고 싶은 특별한 부분.&lt;&#x2F;span&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;frame-photo-image-integration-test&quot;&gt;🖼️ Image Integration Test&lt;&#x2F;h2&gt;
+&lt;p&gt;스크롤을 내리면서 이미지가 어떻게 보이는지 확인해 보세요.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;default-post.jpg&quot; alt=&quot;Placeholder Image 1&quot; &#x2F;&gt;
+&lt;em&gt;기본 포스트 이미지입니다.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;scroll-long-content-section-1&quot;&gt;📜 Long Content Section 1&lt;&#x2F;h2&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&lt;&#x2F;p&gt;
+&lt;p&gt;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;sub-section-1-1&quot;&gt;Sub-section 1.1&lt;&#x2F;h3&gt;
+&lt;p&gt;동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세. 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세.&lt;&#x2F;p&gt;
+&lt;p&gt;남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세. 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;scroll-long-content-section-2&quot;&gt;📜 Long Content Section 2&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;posts&#x2F;view-transition-test&#x2F;view-transitions-api-test.jpg&quot; alt=&quot;View Transition Test&quot; &#x2F;&gt;
+&lt;em&gt;View Transition API 테스트 이미지입니다.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세. 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세.&lt;&#x2F;p&gt;
+&lt;p&gt;이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세. 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;scroll-long-content-section-3&quot;&gt;📜 Long Content Section 3&lt;&#x2F;h2&gt;
+&lt;p&gt;여기서부터는 스크롤을 아주 많이 내려야 합니다!&lt;&#x2F;p&gt;
+&lt;div style=&quot;height: 500px; background: linear-gradient(to bottom, #bd93f9, #8be9fd); border-radius: 1rem; margin: 2rem 0; display: flex; items-center; justify-content: center; color: white; font-weight: bold; font-size: 2rem;&quot;&gt;
+  그라데이션 블록 (500px height)
+&lt;&#x2F;div&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;scroll-long-content-section-4&quot;&gt;📜 Long Content Section 4&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;posts&#x2F;test-post-1&#x2F;zola.jpg&quot; alt=&quot;Zola Image&quot; &#x2F;&gt;
+&lt;em&gt;Zola 정적 사이트 생성기 로고입니다.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;다시 한 번 긴 텍스트가 이어집니다.&lt;&#x2F;p&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;gangjo-gumun-teseuteu&quot;&gt;강조 구문 테스트&lt;&#x2F;h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;중요:&lt;&#x2F;strong&gt; 스크롤을 내릴 때 헤더의 블러 처리가 자연스러운지, 푸터의 배경이 화면 끝까지 잘 차 있는지 확인해 주세요.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;checkered-flag-conclusion&quot;&gt;🏁 Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;드디어 마지막입니다! 여기까지 내려오셨다면 푸터의 레이아웃을 확인하실 수 있습니다.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;span style=&quot;font-size: 3rem; display: block; text-align: center; margin: 3rem 0;&quot;&gt;🚀&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;끝까지 읽어주셔서 감사합니다!&lt;&#x2F;p&gt;
+</description>
+      </item>
+      <item>
+          <title>Zola 요약 기능 마스터하기</title>
+          <pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-1/</link>
+          <guid>https://laconicd.github.io/posts/test-post-1/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-1/">&lt;h1 id=&quot;zola-summary-teseuteu&quot;&gt;Zola Summary 테스트&lt;&#x2F;h1&gt;
+&lt;p&gt;이 문단은 블로그 리스트 페이지의 &lt;strong&gt;카드 내부&lt;&#x2F;strong&gt;에 나타납니다.
+Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견하면 여기까지를 &lt;code&gt;page.summary&lt;&#x2F;code&gt;로 저장합니다.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 10 (toml)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-10/</link>
+          <guid>https://laconicd.github.io/posts/test-post-10/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-10/">&lt;h1 id=&quot;test-post-10-toml&quot;&gt;Test Post 10 - toml&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;toml&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 11 (yaml)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-11/</link>
+          <guid>https://laconicd.github.io/posts/test-post-11/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-11/">&lt;h1 id=&quot;test-post-11-yaml&quot;&gt;Test Post 11 - yaml&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;yaml&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 12 (typescript)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-12/</link>
+          <guid>https://laconicd.github.io/posts/test-post-12/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-12/">&lt;h1 id=&quot;test-post-12-typescript&quot;&gt;Test Post 12 - typescript&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;typescript&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 13 (javascript)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-13/</link>
+          <guid>https://laconicd.github.io/posts/test-post-13/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-13/">&lt;h1 id=&quot;test-post-13-javascript&quot;&gt;Test Post 13 - javascript&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;javascript&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 14 (python)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-14/</link>
+          <guid>https://laconicd.github.io/posts/test-post-14/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-14/">&lt;h1 id=&quot;test-post-14-python&quot;&gt;Test Post 14 - python&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;python&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 15 (rust)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-15/</link>
+          <guid>https://laconicd.github.io/posts/test-post-15/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-15/">&lt;h1 id=&quot;test-post-15-rust&quot;&gt;Test Post 15 - rust&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;rust&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 16 (bash)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-16/</link>
+          <guid>https://laconicd.github.io/posts/test-post-16/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-16/">&lt;h1 id=&quot;test-post-16-bash&quot;&gt;Test Post 16 - bash&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;bash&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 17 (json)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-17/</link>
+          <guid>https://laconicd.github.io/posts/test-post-17/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-17/">&lt;h1 id=&quot;test-post-17-json&quot;&gt;Test Post 17 - json&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;json&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 18 (css)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-18/</link>
+          <guid>https://laconicd.github.io/posts/test-post-18/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-18/">&lt;h1 id=&quot;test-post-18-css&quot;&gt;Test Post 18 - css&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;css&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 19 (markdown)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-19/</link>
+          <guid>https://laconicd.github.io/posts/test-post-19/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-19/">&lt;h1 id=&quot;test-post-19-markdown&quot;&gt;Test Post 19 - markdown&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;markdown&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 2 (typescript)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-2/</link>
+          <guid>https://laconicd.github.io/posts/test-post-2/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-2/">&lt;h1 id=&quot;test-post-2-typescript&quot;&gt;Test Post 2 - typescript&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;typescript&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 20 (toml)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-20/</link>
+          <guid>https://laconicd.github.io/posts/test-post-20/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-20/">&lt;h1 id=&quot;test-post-20-toml&quot;&gt;Test Post 20 - toml&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;toml&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 3 (javascript)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-3/</link>
+          <guid>https://laconicd.github.io/posts/test-post-3/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-3/">&lt;h1 id=&quot;test-post-3-javascript&quot;&gt;Test Post 3 - javascript&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;javascript&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 4 (python)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-4/</link>
+          <guid>https://laconicd.github.io/posts/test-post-4/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-4/">&lt;h1 id=&quot;test-post-4-python&quot;&gt;Test Post 4 - python&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;python&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 5 (rust)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-5/</link>
+          <guid>https://laconicd.github.io/posts/test-post-5/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-5/">&lt;h1 id=&quot;test-post-5-rust&quot;&gt;Test Post 5 - rust&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;rust&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 6 (bash)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-6/</link>
+          <guid>https://laconicd.github.io/posts/test-post-6/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-6/">&lt;h1 id=&quot;test-post-6-bash&quot;&gt;Test Post 6 - bash&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;bash&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 7 (json)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-7/</link>
+          <guid>https://laconicd.github.io/posts/test-post-7/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-7/">&lt;h1 id=&quot;test-post-7-json&quot;&gt;Test Post 7 - json&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;json&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 8 (css)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-8/</link>
+          <guid>https://laconicd.github.io/posts/test-post-8/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-8/">&lt;h1 id=&quot;test-post-8-css&quot;&gt;Test Post 8 - css&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;css&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Test Post 9 (markdown)</title>
+          <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/test-post-9/</link>
+          <guid>https://laconicd.github.io/posts/test-post-9/</guid>
+          <description xml:base="https://laconicd.github.io/posts/test-post-9/">&lt;h1 id=&quot;test-post-9-markdown&quot;&gt;Test Post 9 - markdown&lt;&#x2F;h1&gt;
+&lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;markdown&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>영어 공부 1주차: 내 상태와 감정 (내면 소통)</title>
+          <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/english-study-week1-internal-communication/</link>
+          <guid>https://laconicd.github.io/posts/english-study-week1-internal-communication/</guid>
+          <description xml:base="https://laconicd.github.io/posts/english-study-week1-internal-communication/">&lt;h1 id=&quot;yeongeo-gongbu-1juca-naemyeon-sotonghagi&quot;&gt;영어 공부 1주차: 내면 소통하기&lt;&#x2F;h1&gt;
+&lt;p&gt;영어 공부의 시작은 거창한 비즈니스 대화가 아니라, &#x27;지금 내 기분&#x27;을 정확히 표현하는 것에서 시작합니다. 1주차에는 나 자신과 대화하며 내 상태를 즉각적으로 인지하고 표현하는 핵심 문장들을 학습합니다.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>영어 공부 2주차: 리액션과 의사표현 (사회적 소통)</title>
+          <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/english-study-week2-social-communication/</link>
+          <guid>https://laconicd.github.io/posts/english-study-week2-social-communication/</guid>
+          <description xml:base="https://laconicd.github.io/posts/english-study-week2-social-communication/">&lt;h1 id=&quot;yeongeo-gongbu-2juca-riaegsyeongwa-yisapyohyeon-social-communication&quot;&gt;영어 공부 2주차: 리액션과 의사표현 (Social Communication)&lt;&#x2F;h1&gt;
+&lt;p&gt;사회 생활에서 가장 중요한 것은 내 말을 하는 것만큼이나 상대방의 말에 &#x27;어떻게 반응하느냐&#x27;입니다. 2주차에는 원어민들이 일상적으로 사용하는 세련된 리액션과, 내 주장을 정중하지만 명확하게 전달하는 법을 학습합니다.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>영어 공부 3주차: 일상과 고민 (생활 소통)</title>
+          <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/english-study-week3-daily-communication/</link>
+          <guid>https://laconicd.github.io/posts/english-study-week3-daily-communication/</guid>
+          <description xml:base="https://laconicd.github.io/posts/english-study-week3-daily-communication/">&lt;h1 id=&quot;yeongeo-gongbu-3juca-ilsanggwa-gomin-daily-life&quot;&gt;영어 공부 3주차: 일상과 고민 (Daily Life)&lt;&#x2F;h1&gt;
+&lt;p&gt;3주차에는 우리 삶의 더 깊숙한 곳으로 들어갑니다. 커리어에 대한 진지한 고민부터 오늘 점심 메뉴 선택까지, 내가 처한 구체적인 문제와 일상의 작은 기쁨들을 영어로 생생하게 표현하는 연습을 합니다.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>영어 공부 4주차: 마법의 뼈대 패턴 (확장 소통)</title>
+          <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/english-study-week4-expansion-communication/</link>
+          <guid>https://laconicd.github.io/posts/english-study-week4-expansion-communication/</guid>
+          <description xml:base="https://laconicd.github.io/posts/english-study-week4-expansion-communication/">&lt;h1 id=&quot;yeongeo-gongbu-4juca-mabeobyi-bbyeodae-paeteon-sentence-patterns&quot;&gt;영어 공부 4주차: 마법의 뼈대 패턴 (Sentence Patterns)&lt;&#x2F;h1&gt;
+&lt;p&gt;단순 암기는 한계가 있습니다. 4주차에는 문장을 만드는 &#x27;틀(Pattern)&#x27;을 익힙니다. 이 뼈대만 제대로 세워두면 단어 몇 개만 바꿔 끼우는 것만으로도 수백 가지의 문장을 자유자재로 응용할 수 있게 됩니다.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>영어 공부 5주차: 고급 대화와 깊은 생각 (심화 소통)</title>
+          <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/english-study-week5-deep-conversation/</link>
+          <guid>https://laconicd.github.io/posts/english-study-week5-deep-conversation/</guid>
+          <description xml:base="https://laconicd.github.io/posts/english-study-week5-deep-conversation/">&lt;h1 id=&quot;yeongeo-gongbu-5juca-gogeub-daehwawa-gipeun-saenggag-deep-dive&quot;&gt;영어 공부 5주차: 고급 대화와 깊은 생각 (Deep Dive)&lt;&#x2F;h1&gt;
+&lt;p&gt;드디어 마지막 주차입니다. 이제는 일상의 대화를 넘어, 가치관과 철학을 공유하고 원어민들이 사용하는 미묘한 뉘앙스를 완성할 차례입니다. 한 차원 높은 수준의 영어를 통해 진정한 소통의 즐거움을 느껴보세요.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>Git 내부 동작 원리 파헤치기: 스냅샷부터 팩파일까지</title>
+          <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/git-internal-deep-dive/</link>
+          <guid>https://laconicd.github.io/posts/git-internal-deep-dive/</guid>
+          <description xml:base="https://laconicd.github.io/posts/git-internal-deep-dive/">&lt;h1 id=&quot;git-naebu-dongjag-weonri-pahecigi&quot;&gt;Git 내부 동작 원리 파헤치기&lt;&#x2F;h1&gt;
+&lt;p&gt;Git을 사용하면서 흔히 마주치는 용어들과 그 뒤에 숨겨진 효율적인 데이터 관리 구조를 정리합니다. 단순히 명령어를 외우는 것을 넘어, Git이 데이터를 바라보는 관점을 이해하면 훨씬 더 강력하게 도구를 제어할 수 있습니다.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>실전 Git 워크플로우 연습 가이드: Rebase와 Merge 혼합 전략</title>
+          <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/git-workflow-practice-guide/</link>
+          <guid>https://laconicd.github.io/posts/git-workflow-practice-guide/</guid>
+          <description xml:base="https://laconicd.github.io/posts/git-workflow-practice-guide/">&lt;h1 id=&quot;siljeon-git-weokeupeulrou-yeonseub-gaideu-rebasewa-merge-honhab-jeonryag&quot;&gt;실전 Git 워크플로우 연습 가이드: Rebase와 Merge 혼합 전략&lt;&#x2F;h1&gt;
+&lt;p&gt;협업의 핵심인 Git 워크플로우, 제대로 활용하고 계신가요? 이 문서는 현대적인 개발팀과 오픈소스 프로젝트에서 널리 사용되는 전략을 마스터하기 위한 실무 중심의 가이드입니다.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>View Transitions API Test</title>
+          <pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate>
+          <author>laconicd</author>
+          <link>https://laconicd.github.io/posts/view-transition-test/</link>
+          <guid>https://laconicd.github.io/posts/view-transition-test/</guid>
+          <description xml:base="https://laconicd.github.io/posts/view-transition-test/">&lt;h1 id=&quot;view-transitions-webyi-casedae-aenimeisyeon-pyojun&quot;&gt;View Transitions: 웹의 차세대 애니메이션 표준&lt;&#x2F;h1&gt;
+&lt;p&gt;최신 브라우저에서 제공하는 &lt;strong&gt;View Transitions API&lt;&#x2F;strong&gt;를 테스트하기 위한 샘플 포스트입니다. 별도의 무거운 라이브러리 없이도 네이티브 레벨에서 제공하는 우아한 슬라이드 및 페이드 효과를 확인해보세요.&lt;&#x2F;p&gt;</description>
+      </item>
+      <item>
+          <title>About Me</title>
+          <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://laconicd.github.io/about/</link>
+          <guid>https://laconicd.github.io/about/</guid>
+          <description xml:base="https://laconicd.github.io/about/">&lt;h1 id=&quot;hello-i-m-a-developer-wave&quot;&gt;Hello, I&#x27;m a Developer 👋&lt;&#x2F;h1&gt;
+&lt;p&gt;Welcome to my personal blog. I am a software engineer passionate about building
+elegant solutions to complex problems.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-i-do&quot;&gt;What I Do&lt;&#x2F;h2&gt;
+&lt;p&gt;I specialize in modern web technologies and love exploring new frameworks and
+tools. My core interests include:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Frontend Development&lt;&#x2F;strong&gt;: Crafting beautiful and performant user interfaces
+with React, TypeScript, and Tailwind CSS.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;System Architecture&lt;&#x2F;strong&gt;: Designing scalable and maintainable systems.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Open Source&lt;&#x2F;strong&gt;: Contributing to the community and learning from others.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;about-this-blog&quot;&gt;About This Blog&lt;&#x2F;h2&gt;
+&lt;p&gt;This site is built using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;, a fast static site generator written in Rust.
+I use this space to document my learning journey, share technical tutorials, and
+post about my personal projects.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;get-in-touch&quot;&gt;Get In Touch&lt;&#x2F;h2&gt;
+&lt;p&gt;I&#x27;m always open to discussing new projects, creative ideas, or opportunities to
+be part of your visions. Feel free to reach out to me!&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;&lt;em&gt;Stay hungry, stay foolish.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+</description>
+      </item>
+    </channel>
+</rss>
