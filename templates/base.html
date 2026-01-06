@@ -14,7 +14,9 @@
   {% set title = page.title %}
   {% set description = page.summary | default(value=page.description) | default(value=description) %}
   {% if page.extra.image %}
-  {% set og_image = get_url(path=page.relative_path | replace(from="index.md", to=page.extra.image)) %}
+  {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
+  {% set og_image_processed = resize_image(path=image_path, width=1200, height=630, op="fill") %}
+  {% set og_image = og_image_processed.url %}
   {% endif %}
   {% elif section %}
   {% set title = section.title | default(value=title) %}

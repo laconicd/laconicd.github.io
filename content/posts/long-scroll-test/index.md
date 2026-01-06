@@ -48,7 +48,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 ## 📜 Long Content Section 2
 
-![View Transition Test](/view-transition-test/view-transitions-api-test.jpg)
+![View Transition Test](/posts/view-transition-test/view-transitions-api-test.jpg)
 *View Transition API 테스트 이미지입니다.*
 
 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세. 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세.
@@ -69,7 +69,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 ## 📜 Long Content Section 4
 
-![Zola Image](/test-post-1/zola.jpg)
+![Zola Image](/posts/test-post-1/zola.jpg)
 *Zola 정적 사이트 생성기 로고입니다.*
 
 다시 한 번 긴 텍스트가 이어집니다. 
