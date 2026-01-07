@@ -4,6 +4,7 @@
     "scripts:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/main.ts scripts/theme.ts",
     "fonts:fetch": "deno run -A scripts/fetch-fonts.ts",
     "zola:serve": "zola serve --port 8080",
+    "zola:serve:ext": "zola serve --interface 0.0.0.0 --base-url $(ipconfig getifaddr en0)",
     "zola:build": "zola build",
     "common": {
       "dependencies": [
@@ -14,6 +15,7 @@
     },
     "init": "mkdir -p static && deno task common",
     "dev": "deno task init && deno task zola:serve",
+    "dev:ext": "deno task init && deno task zola:serve:ext",
     "prd": "deno task init && deno task zola:build"
   },
   "compilerOptions": {
