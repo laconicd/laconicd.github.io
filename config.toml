@@ -18,13 +18,12 @@ external_links_no_follow = true
 lazy_async_image = true
 github_alerts = true
 insert_anchor_links = "left"
-# 2026년 기준, 정의 리스트도 켜두면 용어 정리 시 편리합니다.
 definition_list = true
 
 [markdown.highlighting]
+style = "class"
 light_theme = "github-light"
 dark_theme = "github-dark"
-error_on_missing_language = false # 엄격한 관리가 필요하면 true로
 
 [search]
 include_title = true
