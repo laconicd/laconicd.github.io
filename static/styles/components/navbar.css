@@ -129,7 +129,20 @@
 
   @media (width < 40rem) {
     .nav-center {
-      display: none;
+      /* Popover Styles */
+      margin: 0;
+      padding: 0;
+      border: none;
+      width: 100vw;
+      height: 100dvh;
+      max-width: 100vw;
+      max-height: 100dvh;
+      background: transparent;
+      inset: 0;
+      
+      &:popover-open {
+        display: block;
+      }
     }
     
     .sidebar-backdrop {
@@ -145,37 +158,43 @@
 
     .sidebar-content {
       position: fixed;
-      top: var(--space-4);
-      right: var(--space-4);
-      bottom: var(--space-4);
+      top: 0;
+      right: 0;
+      bottom: 0;
+      height: 100dvh;
       width: clamp(18rem, 80vw, 24rem);
       background: var(--color-base-100);
-      border-radius: var(--radius-2xl);
       box-shadow: var(--shadow-5);
       z-index: 100;
-      transform: translateX(120%) scale(0.95);
+      transform: translateX(100%);
       opacity: 0;
       transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transition-behavior: allow-discrete;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      border: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
+      border-inline-start: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
     }
 
-    /* Open State */
-    body:has(.drawer-toggle:checked) {
+    /* Open State via Popover API */
+    .nav-center:popover-open {
       .sidebar-backdrop {
         opacity: 1;
         visibility: visible;
+        @starting-style {
+          opacity: 0;
+          visibility: hidden;
+        }
       }
+      
       .sidebar-content {
-        transform: translateX(0) scale(1);
+        transform: translateX(0);
         opacity: 1;
+        @starting-style {
+          transform: translateX(100%);
+          opacity: 0;
+        }
       }
-    }
-
-    .drawer-toggle {
-      display: none;
     }
 
     .sidebar-header {
@@ -186,12 +205,13 @@
           text-transform: uppercase;
           letter-spacing: 0.2em;
           opacity: 0.3;
-          margin-bottom: var(--space-2);
+          margin-block-end: var(--space-2);
         }
         .sidebar-brand {
           font-size: 2rem;
           font-weight: 900;
           letter-spacing: -0.05em;
+          color: var(--color-base-content);
         }
       }
 
@@ -208,6 +228,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+          color: var(--color-base-content);
           transition: all 0.4s var(--ease-standard);
 
           &:active {
@@ -336,7 +357,7 @@
     .nav-divider {
       height: 1.25rem;
       margin: 0 var(--space-3);
-      border-left: 1.5px solid oklch(from var(--color-base-content) l c h / 0.1);
+      border-inline-start: 1.5px solid oklch(from var(--color-base-content) l c h / 0.1);
     }
 
     .sidebar-footer {

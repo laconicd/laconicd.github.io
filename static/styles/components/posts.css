@@ -3,11 +3,9 @@
     display: grid;
     gap: var(--space-20);
     padding-bottom: var(--space-20);
-    padding-left: var(--page-padding);
-    padding-right: var(--page-padding);
+    padding-inline: var(--page-padding);
     max-width: var(--container-width);
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
 
     @media (width < 48rem) {
       gap: var(--space-12);
