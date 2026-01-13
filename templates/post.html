@@ -373,7 +373,7 @@
   <!-- Featured Image -->
   <div class="post-visual">
     {% if page.extra.image %}
-      {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
+      {% set image_path = "static/media/" ~ page.relative_path | replace(from="index.md", to=page.extra.image) %}
       {% set resized = resize_image(path=image_path, width=1600, height=900, op="fill", format="webp") %}
       <img src="{{ resized.url }}" alt="{{ page.title }}" loading="eager" />
     {% else %}

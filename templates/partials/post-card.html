@@ -116,7 +116,7 @@
   <a href="{{ page.path }}" class="card-link">
     <div class="thumb">
       {% if page.extra.image %}
-        {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
+        {% set image_path = "static/media/" ~ page.relative_path | replace(from="index.md", to=page.extra.image) %}
         {% set mini_thumb = resize_image(path=image_path, width=200, height=200, op="fill", format="webp") %}
         <img src="{{ mini_thumb.url }}" alt="{{ page.title }}" loading="lazy" />
       {% else %}

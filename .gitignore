@@ -5,3 +5,4 @@ AGENTS.md
 static/*
 # Keep original images
 !static/images/
+!static/media/
