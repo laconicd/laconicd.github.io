@@ -65,7 +65,7 @@
   }
 
   .title {
-    font-size: 1.5rem;
+    font-size: var(--text-xl);
     font-weight: 800;
     line-height: 1.2;
     letter-spacing: -0.02em;
@@ -88,17 +88,8 @@
   }
 
   .action-arrow {
-    width: var(--space-9);
-    height: var(--space-9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: oklch(from var(--color-base-content) l c h / 0.03);
-    border: 1px solid oklch(from var(--color-base-content) l c h / 0.08);
-    color: var(--color-base-content);
     opacity: 0.5;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* transition maintained by utility, but we might want custom bezier? Utility has ease-standard. This had cubic-bezier. Let's stick to standard for consistency or override if needed. */
   }
 
   @media (width < 48rem) {
@@ -203,7 +194,7 @@
       }
 
       .title {
-        font-size: 1.75rem;
+        font-size: var(--text-h2);
         font-weight: 900;
         line-height: 1.1;
         letter-spacing: -0.03em;
@@ -257,16 +248,7 @@
       transition: color 0.3s;
 
       .arrow {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: var(--space-9);
-        height: var(--space-9);
-        border-radius: 50%;
-        background: oklch(from var(--color-base-content) l c h / 0.03);
-        border: 1px solid oklch(from var(--color-base-content) l c h / 0.08);
-        color: var(--color-base-content);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* Specific overrides if any */
       }
     }
   }

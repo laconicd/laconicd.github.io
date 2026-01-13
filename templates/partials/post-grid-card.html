@@ -3,16 +3,16 @@
 <article class="app-post-grid-card">
   <div class="card">
     <a href="{{ page.path }}" class="page-link" aria-label="Read: {{ page.title }}"></a>
-    
+
     <div class="media-area">
       {% if page.extra.image %}
-        {% set path_parts = page.relative_path | split(pat="/") %}
-        {% set dir_path = path_parts | slice(end=-1) | join(sep="/") %}
-        {% set image_path = "static/media/" ~ dir_path ~ "/" ~ page.extra.image %}
-        {% set thumb = resize_image(path=image_path, width=800, height=600, op="fill", format="webp") %}
-        <img src="{{ thumb.url }}" alt="{{ page.title }}" loading="lazy" />
+      {% set path_parts = page.relative_path | split(pat="/") %}
+      {% set dir_path = path_parts | slice(end=-1) | join(sep="/") %}
+      {% set image_path = "static/media/" ~ dir_path ~ "/" ~ page.extra.image %}
+      {% set thumb = resize_image(path=image_path, width=800, height=600, op="fill", format="webp") %}
+      <img src="{{ thumb.url }}" alt="{{ page.title }}" loading="lazy" />
       {% else %}
-        <img src="{{ get_url(path='images/default-post.jpg') }}" alt="" loading="lazy" />
+      <img src="{{ get_url(path='images/default-post.jpg') }}" alt="" loading="lazy" />
       {% endif %}
     </div>
 
@@ -40,7 +40,7 @@
 
     <div class="footer-area">
       <span>Read Story</span>
-      <span class="arrow">{{ icons::arrow_right(size=2.5) }}</span>
+      <span class="arrow btn-icon-circle">{{ icons::arrow_right(size=2.5) }}</span>
     </div>
   </div>
 </article>

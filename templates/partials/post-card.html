@@ -4,13 +4,13 @@
   <a href="{{ page.path }}" class="card-link">
     <div class="thumb">
       {% if page.extra.image %}
-        {% set path_parts = page.relative_path | split(pat="/") %}
-        {% set dir_path = path_parts | slice(end=-1) | join(sep="/") %}
-        {% set image_path = "static/media/" ~ dir_path ~ "/" ~ page.extra.image %}
-        {% set mini_thumb = resize_image(path=image_path, width=200, height=200, op="fill", format="webp") %}
-        <img src="{{ mini_thumb.url }}" alt="{{ page.title }}" loading="lazy" />
+      {% set path_parts = page.relative_path | split(pat="/") %}
+      {% set dir_path = path_parts | slice(end=-1) | join(sep="/") %}
+      {% set image_path = "static/media/" ~ dir_path ~ "/" ~ page.extra.image %}
+      {% set mini_thumb = resize_image(path=image_path, width=200, height=200, op="fill", format="webp") %}
+      <img src="{{ mini_thumb.url }}" alt="{{ page.title }}" loading="lazy" />
       {% else %}
-        <img src="{{ get_url(path='images/default-post.jpg') }}" alt="" style="opacity: 0.4;" loading="lazy" />
+      <img src="{{ get_url(path='images/default-post.jpg') }}" alt="" style="opacity: 0.4;" loading="lazy" />
       {% endif %}
     </div>
     <div class="body">
@@ -18,7 +18,7 @@
       <h3 class="title">{{ page.title }}</h3>
       <p class="summary">{{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}</p>
     </div>
-    <div class="action-arrow">
+    <div class="action-arrow btn-icon-circle">
       {{ icons::arrow_right(size=3) }}
     </div>
   </a>
