@@ -65,7 +65,17 @@
         font-size: 1.25rem;
         font-weight: 700;
         color: var(--color-base-content);
+        /* 사파리 기본 스타일 초기화 */
+        -webkit-appearance: none;
+        appearance: none;
+        
         &::placeholder { opacity: 0.3; }
+        
+        /* 검색창 X 버튼 제거 (선택사항) */
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration { display: none; }
       }
 
       & .search-kbd {
@@ -87,7 +97,6 @@
       min-height: 10rem;
       max-height: 50dvh;
 
-      /* 스크롤바 커스텀 */
       scrollbar-width: none;
       &::-webkit-scrollbar { display: none; }
 
