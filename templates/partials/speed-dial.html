@@ -1,108 +1,5 @@
 {% import "macros/icons.html" as icons %}
 
-<style>
-  @scope(.app-speed-dial) {
-    :scope {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      z-index: 60;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* 메인 플로팅 버튼 */
-    & .fab-trigger {
-      width: 4rem;
-      height: 4rem;
-      border-radius: 50%;
-      background-color: var(--color-base-content);
-      color: var(--color-base-100);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border: none;
-      box-shadow: var(--shadow-xl);
-      z-index: 2;
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      
-      &:hover { transform: scale(1.1); }
-      &:active { transform: scale(0.95); }
-
-      & .icon-close { display: none; }
-    }
-
-    &.open .fab-trigger {
-      & .icon-main { display: none; }
-      & .icon-close { display: flex; }
-    }
-
-    /* 개별 아이템 공통 스타일 */
-    & .dial-item {
-      position: absolute;
-      width: 3.5rem;
-      height: 3.5rem;
-      border-radius: 50%;
-      background-color: var(--color-base-100);
-      color: var(--color-base-content);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-      text-decoration: none;
-      
-      /* 기본 상태: 중앙에 숨김 */
-      opacity: 0;
-      pointer-events: none;
-      --tx: 0px;
-      --ty: 0px;
-      transform: translate(0, 0) scale(0);
-      transition: 
-        opacity 0.3s ease,
-        transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      z-index: 1;
-    }
-
-    /* 열림 상태: 각자의 좌표로 이동 */
-    &.open .dial-item {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translate(var(--tx), var(--ty)) scale(1);
-
-      /* 호버 시 좌표 유지하며 크기만 확대 */
-      &:hover {
-        background-color: var(--color-base-200);
-        transform: translate(var(--tx), var(--ty)) scale(1.1);
-        transition: transform 0.2s ease;
-      }
-    }
-
-    /* 좌표 설정 (부채꼴 레이아웃) */
-    & .dial-item:nth-child(1) { --tx: -5.5rem; --ty: 0; transition-delay: 0.05s; }
-    & .dial-item:nth-child(2) { --tx: -4.8rem; --ty: -4.8rem; transition-delay: 0.1s; }
-    & .dial-item:nth-child(3) { --tx: -2.2rem; --ty: -8.5rem; transition-delay: 0.15s; }
-    & .dial-item:nth-child(4) { --tx: 1.8rem; --ty: -10.5rem; transition-delay: 0.2s; }
-
-    /* 테마 토글 특별 스타일 */
-    & .theme-toggle {
-      padding: 0;
-      overflow: hidden;
-      & input { display: none; }
-      & .sun-icon, & .moon-icon {
-        position: absolute;
-        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
-      }
-      & .moon-icon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
-      & input:checked ~ .sun-icon { opacity: 0; transform: rotate(90deg) scale(0.5); }
-      & input:checked ~ .moon-icon { opacity: 1; transform: rotate(0) scale(1); }
-    }
-  }
-</style>
-
 <div class="app-speed-dial">
   <div class="dial-items">
     <button id="speed-dial-top" class="dial-item" aria-label="Scroll to Top">{{ icons::top(size=5) }}</button>
@@ -140,7 +37,6 @@
 
       if (!dial || !trigger) return;
 
-      // Sync checkbox state immediately on setup
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const isDark = currentTheme === 'dim';
       dial.querySelectorAll('.theme-controller').forEach(el => {

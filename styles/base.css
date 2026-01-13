@@ -1,17 +1,43 @@
-:root {
-  /* 2026 표준 이징 변수 */
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-in: cubic-bezier(0, 0, 0.2, 1);
-  --ease-out: cubic-bezier(0.4, 0, 1, 1);
-  /* 2026년형 머티리얼 표준 그림자 (DP: Density-independent Pixels 기준) */
-  --shadow-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); /* 평상시 카드 */
-  --shadow-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  --shadow-3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); /* 호버 시 추천 */
-  --shadow-4: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  --shadow-5: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); /* 모달/플로팅 */
+html {
+  scrollbar-color: oklch(from var(--color-base-content) l c h / 0.2) transparent;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
 }
 
-/* outfit-latin-ext-wght-normal */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Scroll lock when popover is open */
+body:has(:popover-open) {
+  overflow: hidden;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-shell > header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-shell > main {
+  flex: 1;
+}
+
+.app-shell > footer {
+  margin-top: auto;
+}
+
+/* Fonts */
 @font-face {
   font-family: 'Outfit Variable';
   font-style: normal;
@@ -21,7 +47,6 @@
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
-/* outfit-latin-wght-normal */
 @font-face {
   font-family: 'Outfit Variable';
   font-style: normal;
@@ -29,13 +54,4 @@
   font-weight: 100 900;
   src: url(/fonts/files/outfit-latin-wght-normal.woff2) format('woff2-variations');
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-
-html {
-  scrollbar-color: oklch(from var(--color-base-content) l c h / 0.2) transparent;
-  scrollbar-width: none;
-}
-
-body {
-  overflow-x: hidden;
 }

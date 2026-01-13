@@ -1,6 +1,5 @@
 {
   "tasks": {
-    "tailwindcss:build": "deno run -A @tailwindcss/cli -i styles/tailwind.css -o static/styles.css",
     "main:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/main.ts",
     "copy:fuse": "cp node_modules/fuse.js/dist/fuse.min.mjs static/",
     "copy:font:outfit:files": "cp -r node_modules/@fontsource-variable/outfit/files static/fonts/",
@@ -9,7 +8,6 @@
     "zola:build": "zola build",
     "common": {
       "dependencies": [
-        "tailwindcss:build",
         "copy:fuse",
         "copy:font:outfit:files"
       ]
@@ -41,10 +39,6 @@
   },
   "imports": {
     "@fontsource-variable/outfit": "npm:@fontsource-variable/outfit@^5.2.8",
-    "@tailwindcss/cli": "npm:@tailwindcss/cli@^4.1.18",
-    "daisyui": "npm:daisyui@^5.5.14",
-    "fuse.js": "npm:fuse.js@^7.1.0",
-    "tailwindcss": "npm:tailwindcss@^4.1.18",
-    "@tailwindcss/typography": "npm:@tailwindcss/typography@^0.5.19"
+    "fuse.js": "npm:fuse.js@^7.1.0"
   }
 }
