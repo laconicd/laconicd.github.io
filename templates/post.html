@@ -51,37 +51,58 @@
       }
 
       & .post-share-section {
-        margin: 4rem 0 2rem;
-        padding: 3rem;
-        background: var(--color-base-200);
-        border-radius: 2.5rem;
+        margin: 6rem 0 3rem;
+        padding: 4rem 2rem;
+        background: linear-gradient(145deg, var(--color-base-200), var(--color-base-100));
+        border-radius: 3rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 1.5rem;
+        gap: 2.5rem;
         text-align: center;
-        border: 1px solid oklch(from var(--color-base-content) l c h / 0.03);
+        border: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
+        box-shadow: var(--shadow-sm);
 
         & .share-title {
-          font-size: 1.25rem;
+          font-size: clamp(1.5rem, 4vw, 2rem);
           font-weight: 900;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.04em;
+          color: var(--color-base-content);
+          line-height: 1.1;
+          
+          & span {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0.4;
+            margin-bottom: 0.75rem;
+          }
         }
 
-        & .share-btn {
+        & .share-actions {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 1rem;
+        }
+
+        & .action-btn {
           background: var(--color-base-100);
-          border: 1.5px solid oklch(from var(--color-base-content) l c h / 0.1);
+          border: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
           color: var(--color-base-content);
-          padding: 0.8rem 1.8rem;
-          border-radius: 99px;
+          padding: 0.8rem 1.5rem;
+          border-radius: 1.25rem;
           cursor: pointer;
           transition: all 0.4s var(--ease-standard);
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          font-size: 1rem;
+          font-size: 0.95rem;
           font-weight: 800;
-          box-shadow: var(--shadow-2);
+          box-shadow: var(--shadow-1);
+          text-decoration: none;
           
           & .icon {
             display: flex;
@@ -91,9 +112,9 @@
           &:hover {
             border-color: var(--color-primary);
             color: var(--color-primary);
-            transform: translateY(-4px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-3);
-            & .icon { transform: rotate(15deg) scale(1.1); }
+            & .icon { transform: scale(1.1); }
           }
           
           &:active { 
@@ -101,19 +122,32 @@
             box-shadow: none;
           }
 
+          &.primary {
+            background: var(--color-base-content);
+            color: var(--color-base-100);
+            border-color: var(--color-base-content);
+            &:hover {
+              background: var(--color-primary);
+              border-color: var(--color-primary);
+              color: var(--color-primary-content);
+            }
+          }
+
           &.copied {
-            background: var(--color-primary);
-            border-color: var(--color-primary);
-            color: var(--color-primary-content);
+            background: #22c55e;
+            border-color: #22c55e;
+            color: white;
             & .icon { transform: scale(1.2); }
           }
         }
 
         @media (width < 48rem) {
-          padding: 2rem;
-          margin: 3rem 0 1rem;
-          border-radius: 1.5rem;
-          & .share-title { font-size: 1.1rem; }
+          padding: 3rem 1.5rem;
+          margin: 4rem 0 2rem;
+          border-radius: 2rem;
+          gap: 2rem;
+          & .share-actions { width: 100%; }
+          & .action-btn { flex: 1; min-width: 10rem; justify-content: center; }
         }
       }
 
@@ -427,11 +461,38 @@
 
   <!-- Share Section -->
   <section class="post-share-section">
-    <div class="share-title">Enjoyed this post? Share the knowledge!</div>
-    <button id="post-share-btn" class="share-btn" aria-label="Copy Link">
-      <span class="icon">{{ icons::link(size=5) }}</span>
-      <span class="text">Copy Link</span>
-    </button>
+    <div class="share-title">
+      <span>Sharing is Caring</span>
+      Enjoyed this post?
+    </div>
+    <div class="share-actions">
+      <button id="post-share-btn" class="action-btn primary" aria-label="Copy Link">
+        <span class="icon">{{ icons::link(size=5) }}</span>
+        <span class="text">Copy Link</span>
+      </button>
+      
+      <a href="https://twitter.com/intent/tweet?url={{ current_url | safe }}&text={{ page.title }}" 
+         target="_blank" rel="noopener noreferrer" class="action-btn" aria-label="Share on X">
+        <span class="icon">{{ icons::x(size=5) }}</span>
+        <span class="text">X</span>
+      </a>
+
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ current_url | safe }}" 
+         target="_blank" rel="noopener noreferrer" class="action-btn" aria-label="Share on LinkedIn">
+        <span class="icon">{{ icons::linkedin(size=5) }}</span>
+        <span class="text">LinkedIn</span>
+      </a>
+
+      <a href="{{ get_url(path='@/posts/_index.md') }}" class="action-btn" aria-label="Back to Archive">
+        <span class="icon">{{ icons::post(size=5) }}</span>
+        <span class="text">Archive</span>
+      </a>
+
+      <a href="/" class="action-btn" aria-label="Go Home">
+        <span class="icon">{{ icons::home(size=5) }}</span>
+        <span class="text">Home</span>
+      </a>
+    </div>
   </section>
 
   <!-- Footer -->
