@@ -168,7 +168,9 @@
     
     <div class="media-area">
       {% if page.extra.image %}
-        {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
+        {% set path_parts = page.relative_path | split(pat="/") %}
+        {% set dir_path = path_parts | slice(end=-1) | join(sep="/") %}
+        {% set image_path = "static/media/" ~ dir_path ~ "/" ~ page.extra.image %}
         {% set thumb = resize_image(path=image_path, width=800, height=600, op="fill", format="webp") %}
         <img src="{{ thumb.url }}" alt="{{ page.title }}" loading="lazy" />
       {% else %}
