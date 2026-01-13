@@ -2,15 +2,21 @@
 <style>
   /* popover는 전역 레이어(Top Layer)로 이동하므로 일반 선택자를 사용하고 스타일링을 강화합니다 */
   #search_modal {
-    inset: 0;
-    margin: auto;
-    width: fit-content;
-    height: fit-content;
-    border: none;
+    position: fixed;
+    inset: 0 !important; /* 전체 화면 점유 */
+    margin: 0 !important;
+    width: 100dvw;
+    height: 100dvh;
+    background: transparent !important;
+    border: none !important;
     padding: 0;
-    background: transparent;
     overflow: visible;
     display: none;
+    pointer-events: auto; /* 모든 이벤트 가로채기 */
+    
+    transition: 
+      display 0.4s allow-discrete, 
+      overlay 0.4s allow-discrete;
   }
 
   #search_modal:popover-open {
@@ -19,7 +25,22 @@
     justify-content: center;
   }
 
+  /* 배경 가림막 */
+  #search_modal .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: oklch(0 0 0 / 0.3);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-standard);
+    z-index: 1;
+  }
+  #search_modal:popover-open .modal-backdrop { opacity: 1; }
+
+  /* 실제 검색창 박스 */
   #search_modal .search-box {
+    position: relative;
+    z-index: 2;
     width: clamp(20rem, 90vw, 40rem);
     max-height: 80dvh;
     background-color: var(--color-base-100);
@@ -42,6 +63,7 @@
   }
 
   @starting-style {
+    #search_modal:popover-open .modal-backdrop { opacity: 0; }
     #search_modal:popover-open .search-box {
       opacity: 0;
       transform: scale(0.95) translateY(10px);
@@ -67,7 +89,6 @@
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--color-base-content);
-    /* 사파리 강제 초기화 */
     -webkit-appearance: none !important;
     appearance: none !important;
   }
@@ -148,22 +169,10 @@
     font-weight: 700;
     font-style: italic;
   }
-
-  #search_modal::backdrop {
-    background-color: oklch(0 0 0 / 0.3);
-    backdrop-filter: blur(12px);
-    opacity: 0;
-    transition: opacity 0.4s ease, display 0.4s allow-discrete, overlay 0.4s allow-discrete;
-  }
-
-  #search_modal:popover-open::backdrop { opacity: 1; }
-
-  @starting-style {
-    #search_modal:popover-open::backdrop { opacity: 0; }
-  }
 </style>
 
 <div id="search_modal" popover>
+  <div class="modal-backdrop" onclick="document.getElementById('search_modal').hidePopover()"></div>
   <div class="search-box">
     <div class="search-header">
       <span class="search-icon">{{ icons::search(size=6) }}</span>
@@ -199,10 +208,21 @@
         return;
       }
 
-      const results = fuse.search(query).slice(0, 10);
+      const rawResults = fuse.search(query);
+      
+      const uniqueResults = [];
+      const seenPaths = new Set();
+      
+      for (const res of rawResults) {
+        if (!seenPaths.has(res.item.path)) {
+          seenPaths.add(res.item.path);
+          uniqueResults.push(res);
+        }
+        if (uniqueResults.length >= 10) break;
+      }
 
-      if (results.length > 0) {
-        resultsContainer.innerHTML = results.map(result => `
+      if (uniqueResults.length > 0) {
+        resultsContainer.innerHTML = uniqueResults.map(result => `
           <a href="${result.item.path}" class="result-item">
             <span class="title">${result.item.title}</span>
             <span class="path">${result.item.path}</span>
