@@ -50,6 +50,31 @@
         & time { opacity: 0.6; }
       }
 
+      & .post-actions {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+
+        & .share-btn {
+          background: oklch(from var(--color-base-content) l c h / 0.05);
+          border: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+          color: var(--color-base-content);
+          padding: 0.5rem;
+          border-radius: 0.75rem;
+          cursor: pointer;
+          transition: all 0.2s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+          &:hover {
+            background: oklch(from var(--color-base-content) l c h / 0.1);
+            transform: translateY(-2px);
+          }
+          &:active { transform: scale(0.95); }
+        }
+      }
+
       & h1 {
         font-size: clamp(2.2rem, 8vw, 5rem);
         font-weight: 900;
@@ -328,6 +353,12 @@
 
     <h1>{{ page.title }}</h1>
 
+    <div class="post-actions">
+      <button id="post-share-btn" class="share-btn" aria-label="Share Post">
+        {{ icons::share(size=5) }}
+      </button>
+    </div>
+
     <div class="post-author">
       <div class="author-avatar">
         <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="{{ config.extra.author_name }}" />
@@ -383,5 +414,20 @@
       {% endif %}
     </nav>
   </footer>
+
+  <script>
+    (function() {
+      const shareBtn = document.getElementById('post-share-btn');
+      const shareModal = document.getElementById('share_modal');
+      if (shareBtn && shareModal) {
+        shareBtn.onclick = async () => {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            if (shareModal.showPopover) shareModal.showPopover();
+          } catch (err) { console.error(err); }
+        };
+      }
+    })();
+  </script>
 </article>
 {% endblock content %}

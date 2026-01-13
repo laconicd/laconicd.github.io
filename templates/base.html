@@ -77,6 +77,11 @@
 
 <body>
   <style>
+    /* 팝오버가 열려 있을 때 배경 스크롤 차단 (Pure CSS) */
+    body:has(:popover-open) {
+      overflow: hidden;
+    }
+
     @scope(.app-shell) {
       :scope {
         display: flex;
@@ -109,13 +114,16 @@
 
   <script>
     // Sync theme controller checkboxes with current theme
-    document.addEventListener('DOMContentLoaded', () => {
+    const syncThemeControllers = () => {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const isDark = currentTheme === 'dim';
       document.querySelectorAll('.theme-controller').forEach(el => {
         el.checked = isDark;
       });
-    });
+    };
+
+    document.addEventListener('DOMContentLoaded', syncThemeControllers);
+    window.addEventListener('page:updated', syncThemeControllers);
 
     // Handle theme toggle
     document.addEventListener('change', (e) => {
@@ -129,6 +137,11 @@
         if (link && window.__SYNTAX_THEME_URLS__) {
           link.href = window.__SYNTAX_THEME_URLS__[newTheme];
         }
+
+        // Sync all other controllers
+        document.querySelectorAll('.theme-controller').forEach(el => {
+          if (el !== e.target) el.checked = isDark;
+        });
       }
     });
   </script>

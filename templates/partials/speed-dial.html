@@ -86,6 +86,20 @@
     & .dial-item:nth-child(2) { --tx: -4.8rem; --ty: -4.8rem; transition-delay: 0.1s; }
     & .dial-item:nth-child(3) { --tx: -2.2rem; --ty: -8.5rem; transition-delay: 0.15s; }
     & .dial-item:nth-child(4) { --tx: 1.8rem; --ty: -10.5rem; transition-delay: 0.2s; }
+
+    /* 테마 토글 특별 스타일 */
+    & .theme-toggle {
+      padding: 0;
+      overflow: hidden;
+      & input { display: none; }
+      & .sun-icon, & .moon-icon {
+        position: absolute;
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+      }
+      & .moon-icon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+      & input:checked ~ .sun-icon { opacity: 0; transform: rotate(90deg) scale(0.5); }
+      & input:checked ~ .moon-icon { opacity: 1; transform: rotate(0) scale(1); }
+    }
   }
 </style>
 
@@ -93,8 +107,12 @@
   <div class="dial-items">
     <button id="speed-dial-top" class="dial-item" aria-label="Scroll to Top">{{ icons::top(size=5) }}</button>
     <button id="speed-dial-search" class="dial-item" aria-label="Search">{{ icons::search(size=5) }}</button>
-    <button id="speed-dial-share" class="dial-item" aria-label="Share">{{ icons::share(size=5) }}</button>
-    <a href="{{ get_url(path='rss.xml') }}" target="_blank" class="dial-item" aria-label="RSS Feed">{{ icons::rss(size=5) }}</a>
+    <label class="dial-item theme-toggle" aria-label="Toggle Theme">
+      <input type="checkbox" class="theme-controller" value="dim" />
+      <span class="sun-icon">{{ icons::sun(size=5) }}</span>
+      <span class="moon-icon">{{ icons::moon(size=5) }}</span>
+    </label>
+    <button id="speed-dial-random" class="dial-item" aria-label="Random Post">{{ icons::shuffle(size=5) }}</button>
   </div>
 
   <button id="speed-dial-trigger" class="fab-trigger" aria-label="Toggle Menu">
@@ -105,16 +123,29 @@
 
 <script>
   (function() {
+    const posts = [
+      {% set section = get_section(path="posts/_index.md") %}
+      {% for page in section.pages %}
+        "{{ page.permalink | safe }}",
+      {% endfor %}
+    ];
+
     const setupDial = () => {
       const dial = document.querySelector('.app-speed-dial');
       const trigger = document.getElementById('speed-dial-trigger');
       const topBtn = document.getElementById('speed-dial-top');
       const searchBtn = document.getElementById('speed-dial-search');
-      const shareBtn = document.getElementById('speed-dial-share');
-      const shareModal = document.getElementById('share_modal');
+      const randomBtn = document.getElementById('speed-dial-random');
       const searchModal = document.getElementById('search_modal');
 
       if (!dial || !trigger) return;
+
+      // Sync checkbox state immediately on setup
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const isDark = currentTheme === 'dim';
+      dial.querySelectorAll('.theme-controller').forEach(el => {
+        el.checked = isDark;
+      });
 
       trigger.onclick = (e) => {
         e.stopPropagation();
@@ -141,13 +172,13 @@
         };
       }
 
-      if (shareBtn && shareModal) {
-        shareBtn.onclick = async () => {
-          try {
-            await navigator.clipboard.writeText(window.location.href);
-            if (shareModal.showPopover) shareModal.showPopover();
-          } catch (err) { console.error(err); }
-          dial.classList.remove('open');
+      if (randomBtn && posts.length > 0) {
+        randomBtn.onclick = () => {
+          const currentPath = window.location.href;
+          const otherPosts = posts.filter(p => p !== currentPath);
+          const targetPosts = otherPosts.length > 0 ? otherPosts : posts;
+          const randomPost = targetPosts[Math.floor(Math.random() * targetPosts.length)];
+          window.location.href = randomPost;
         };
       }
     };
