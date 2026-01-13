@@ -69,7 +69,9 @@
     align-items: center !important;
     gap: 1rem !important;
     min-width: 0 !important;
+    width: 100% !important; /* Ensure full width in flex-column */
     color: var(--color-base-content) !important;
+    overflow: hidden !important; /* Contain the text */
   }
   .copy-card .url-display svg {
     opacity: 0.3 !important;
@@ -81,6 +83,8 @@
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
+    flex: 1 !important;
+    min-width: 0 !important;
   }
 
   /* 4. 복사 버튼 (검정 알약) */
