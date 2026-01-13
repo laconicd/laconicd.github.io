@@ -197,7 +197,9 @@
 
     const fuse = new Fuse(list, {
       includeScore: true,
-      keys: ['title', 'content', 'path']
+      threshold: 0.0, // 유사도 매칭 비활성화 (완전 일치만 허용)
+      ignoreLocation: true, // 위치에 상관없이 검색어 포함 여부 확인
+      keys: ['title', 'content']
     });
 
     searchInput.addEventListener('input', (e) => {
