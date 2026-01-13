@@ -12,11 +12,11 @@
 
 @scope (.app-footer) {
   .footer-inner {
-    max-width: 80rem;
+    max-width: var(--container-width);
     margin: 0 auto;
-    padding: 5rem 1.25rem 3rem;
+    padding: 5rem var(--page-padding) 3rem;
     display: grid;
-    gap: 4rem;
+    gap: var(--section-gap);
 
     @media (width < 48rem) {
       padding: 3rem 1.5rem 2rem;

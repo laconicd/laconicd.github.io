@@ -2,11 +2,11 @@
 @scope (.app-index) {
   :scope {
     display: grid;
-    gap: 4rem;
+    gap: var(--section-gap);
     padding-bottom: 5rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    max-width: 80rem;
+    padding-left: var(--page-padding);
+    padding-right: var(--page-padding);
+    max-width: var(--container-width);
     margin-left: auto;
     margin-right: auto;
 

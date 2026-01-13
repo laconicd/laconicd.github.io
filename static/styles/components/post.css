@@ -6,7 +6,7 @@
     padding: 4rem 1.5rem 10rem;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 4rem;
+    gap: var(--section-gap);
     animation: fadeIn 1.2s var(--ease-standard);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
