@@ -108,16 +108,7 @@
   }
 
   #search_modal input::placeholder { opacity: 0.3; }
-
-  #search_modal .search-kbd {
-    font-size: 0.7rem;
-    font-weight: 800;
-    padding: 0.4rem 0.6rem;
-    background: var(--color-base-200);
-    border-radius: 0.75rem;
-    opacity: 0.5;
-  }
-
+ 
   #search_modal .search-results {
     flex: 1;
     overflow-y: auto;
@@ -177,7 +168,6 @@
     <div class="search-header">
       <span class="search-icon">{{ icons::search(size=6) }}</span>
       <input type="search" id="modal-search-input" placeholder="Type to search articles..." autocomplete="off" />
-      <kbd class="search-kbd">ESC</kbd>
     </div>
     <div class="search-results" id="modal-search-results">
       <div class="empty-state">Start typing to find what you're looking for...</div>
