@@ -1,6 +1,7 @@
 @import "variables.css";
 @import "reset.css";
 @import "base.css";
+@import "animations.css";
 @import "transitions.css";
 
 /* Components */
@@ -9,4 +10,6 @@
 @import "components/search-modal.css";
 @import "components/speed-dial.css";
 @import "components/post-card.css";
-@import "components/content.css";
+@import "components/index.css";
+@import "components/posts.css";
+@import "components/post.css";
