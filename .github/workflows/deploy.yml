@@ -20,6 +20,9 @@ jobs:
       # 1. GitHub Action에서 사용할 소스 코드를 체크아웃합니다.
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # 2. Deno 설치 (deno bundle 사용을 위해 v1 stable 유지)
       - name: Install Deno
