@@ -15,6 +15,7 @@
       ]
     },
     "init": "mkdir -p static/fonts && deno task common",
+    "sync:assets": "cd static/media && git add . && git commit -m 'feat: update assets' && git push origin main && cd ../.. && git add static/media && git commit -m 'chore: update assets submodule reference'",
     "dev": "deno task init && deno task zola:serve",
     "dev:ext": "deno task init && deno task zola:serve:ext",
     "prd": "deno task init && deno task zola:build"

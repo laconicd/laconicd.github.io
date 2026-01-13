@@ -50,28 +50,70 @@
         & time { opacity: 0.6; }
       }
 
-      & .post-actions {
+      & .post-share-section {
+        margin: 4rem 0 2rem;
+        padding: 3rem;
+        background: var(--color-base-200);
+        border-radius: 2.5rem;
         display: flex;
-        gap: 0.5rem;
+        flex-direction: column;
         align-items: center;
+        gap: 1.5rem;
+        text-align: center;
+        border: 1px solid oklch(from var(--color-base-content) l c h / 0.03);
+
+        & .share-title {
+          font-size: 1.25rem;
+          font-weight: 900;
+          letter-spacing: -0.02em;
+        }
 
         & .share-btn {
-          background: oklch(from var(--color-base-content) l c h / 0.05);
-          border: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+          background: var(--color-base-100);
+          border: 1.5px solid oklch(from var(--color-base-content) l c h / 0.1);
           color: var(--color-base-content);
-          padding: 0.5rem;
-          border-radius: 0.75rem;
+          padding: 0.8rem 1.8rem;
+          border-radius: 99px;
           cursor: pointer;
-          transition: all 0.2s;
+          transition: all 0.4s var(--ease-standard);
           display: flex;
           align-items: center;
-          justify-content: center;
+          gap: 0.75rem;
+          font-size: 1rem;
+          font-weight: 800;
+          box-shadow: var(--shadow-2);
           
-          &:hover {
-            background: oklch(from var(--color-base-content) l c h / 0.1);
-            transform: translateY(-2px);
+          & .icon {
+            display: flex;
+            transition: transform 0.4s var(--ease-standard);
           }
-          &:active { transform: scale(0.95); }
+
+          &:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-3);
+            & .icon { transform: rotate(15deg) scale(1.1); }
+          }
+          
+          &:active { 
+            transform: scale(0.95); 
+            box-shadow: none;
+          }
+
+          &.copied {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: var(--color-primary-content);
+            & .icon { transform: scale(1.2); }
+          }
+        }
+
+        @media (width < 48rem) {
+          padding: 2rem;
+          margin: 3rem 0 1rem;
+          border-radius: 1.5rem;
+          & .share-title { font-size: 1.1rem; }
         }
       }
 
@@ -353,12 +395,6 @@
 
     <h1>{{ page.title }}</h1>
 
-    <div class="post-actions">
-      <button id="post-share-btn" class="share-btn" aria-label="Share Post">
-        {{ icons::share(size=5) }}
-      </button>
-    </div>
-
     <div class="post-author">
       <div class="author-avatar">
         <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="{{ config.extra.author_name }}" />
@@ -388,6 +424,15 @@
   <div class="post-content">
     {{ page.content | safe }}
   </div>
+
+  <!-- Share Section -->
+  <section class="post-share-section">
+    <div class="share-title">Enjoyed this post? Share the knowledge!</div>
+    <button id="post-share-btn" class="share-btn" aria-label="Copy Link">
+      <span class="icon">{{ icons::link(size=5) }}</span>
+      <span class="text">Copy Link</span>
+    </button>
+  </section>
 
   <!-- Footer -->
   <footer class="post-footer">
@@ -426,7 +471,19 @@
         shareBtn.onclick = async () => {
           try {
             await navigator.clipboard.writeText(window.location.href);
+            
+            // Visual feedback
+            const originalText = shareBtn.querySelector('.text').innerText;
+            shareBtn.classList.add('copied');
+            shareBtn.querySelector('.text').innerText = 'Copied!';
+            
             if (shareModal.showPopover) shareModal.showPopover();
+
+            setTimeout(() => {
+              shareBtn.classList.remove('copied');
+              shareBtn.querySelector('.text').innerText = originalText;
+            }, 2000);
+
           } catch (err) { console.error(err); }
         };
       }
