@@ -1,19 +1,128 @@
 {% import "macros/icons.html" as icons %}
-<!-- Share Success Modal -->
-<dialog id="share_modal" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box bg-base-100/95 border border-base-200 shadow-2xl p-8 text-center">
-    <div class="size-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<style>
+  @scope(#share_modal) {
+    :scope {
+      /* 사이드바와 동일하게 기본 레이아웃 설정 */
+      inset: 0;
+      margin: auto;
+      width: fit-content;
+      height: fit-content;
+      border: none;
+      padding: 0;
+      background: transparent;
+      overflow: visible;
+      display: none;
+    }
+
+    :scope:popover-open {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 실제 모달 창에 애니메이션 적용 */
+    & .modal-box {
+      width: clamp(20rem, 90vw, 32rem);
+      background-color: var(--color-base-100);
+      padding: 3.5rem 2.5rem;
+      text-align: center;
+      display: grid;
+      justify-items: center;
+      gap: 1.75rem;
+      border-radius: 3.5rem;
+      box-shadow: 0 30px 60px -12px rgba(0,0,0,0.25);
+      border: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
+      
+      /* 진입 애니메이션 */
+      opacity: 0;
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    :scope:popover-open .modal-box {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    @starting-style {
+      :scope:popover-open .modal-box {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+      }
+    }
+
+    & .icon-wrapper {
+      width: 5rem;
+      height: 5rem;
+      background-color: oklch(from var(--color-base-content) l c h / 0.05);
+      color: var(--color-base-content);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      & svg { width: 2rem; height: 2rem; }
+    }
+
+    & h3 {
+      font-size: 2.1rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--color-base-content);
+      margin: 0;
+    }
+
+    & p {
+      font-size: 1.15rem;
+      color: oklch(from var(--color-base-content) l c h / 0.5);
+      font-weight: 600;
+      line-height: 1.5;
+      margin: 0;
+      max-width: 22rem;
+      word-break: keep-all;
+    }
+
+    & .btn-confirm {
+      margin-top: 1rem;
+      background-color: var(--color-base-content);
+      color: var(--color-base-100);
+      padding: 1.25rem 3.5rem;
+      border-radius: 1.5rem;
+      font-weight: 800;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s;
+      
+      &:hover { transform: scale(1.05); }
+      &:active { transform: scale(0.95); }
+    }
+
+    &::backdrop {
+      background-color: oklch(0 0 0 / 0.3);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      transition: opacity 0.4s ease, display 0.4s allow-discrete, overlay 0.4s allow-discrete;
+    }
+
+    :scope:popover-open::backdrop {
+      opacity: 1;
+    }
+
+    @starting-style {
+      :scope:popover-open::backdrop {
+        opacity: 0;
+      }
+    }
+  }
+</style>
+
+<div id="share_modal" popover>
+  <div class="modal-box">
+    <div class="icon-wrapper">
       {{ icons::check() }}
     </div>
-    <h3 class="text-2xl font-black tracking-tight mb-2">Link Copied!</h3>
-    <p class="text-base-content/60 font-medium">The article link has been copied to your clipboard. Feel free to share it!</p>
-    <div class="modal-action justify-center">
-      <form method="dialog">
-        <button class="btn btn-primary px-8 rounded-xl">Got it</button>
-      </form>
-    </div>
+    <h3>Link Copied!</h3>
+    <p>The article link has been copied to your clipboard. Feel free to share it!</p>
+    <button class="btn-confirm" onclick="document.getElementById('share_modal').hidePopover()">Got it</button>
   </div>
-  <form method="dialog" class="modal-backdrop bg-base-900/30 backdrop-blur-md transition-all">
-    <button>close</button>
-  </form>
-</dialog>
+</div>

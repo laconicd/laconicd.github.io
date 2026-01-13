@@ -1,131 +1,206 @@
-<post-grid-card class="group">
-  <template shadowrootmode="open">
-    <style>
-      :host {
-        display: block;
-        height: 100%;
+{% import "macros/icons.html" as icons %}
+<style>
+  @scope(.app-post-grid-card) {
+    :scope {
+      display: block;
+      height: 100%;
+    }
+
+    & .card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      background: transparent;
+      transition: all 0.5s var(--ease-standard);
+
+      &:hover {
+        & .media-area {
+          transform: translateY(-8px);
+          box-shadow: var(--shadow-3);
+          & img { transform: scale(1.05); }
+        }
+        & .title { color: var(--color-primary); }
+        & .footer-area .arrow { 
+          transform: translateX(6px); 
+          background: var(--color-base-content);
+          color: var(--color-base-100);
+        }
       }
 
-      .card {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        background-color: var(--fallback-b1, oklch(var(--b1)));
-        border-radius: 1.5rem;
-        border: 1px solid var(--fallback-b2, oklch(var(--b2)));
+      & .page-link {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+      }
+
+      & .media-area {
+        width: 100%;
+        aspect-ratio: 4 / 3;
         overflow: hidden;
-        transition: all 0.3s;
-        position: relative;
+        border-radius: 2rem;
+        background: var(--color-base-200);
+        margin-bottom: 2rem;
+        transition: all 0.5s var(--ease-standard);
+        box-shadow: 0 0 0 1px oklch(from var(--color-base-content) l c h / 0.05);
+
+        & img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+        }
       }
 
-      :host(:hover) .card {
-        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-      }
-
-      .media-area {
-        position: relative;
-        aspect-ratio: 16 / 9;
-        background-color: var(--fallback-b2, oklch(var(--b2)));
-        overflow: hidden;
-      }
-
-      .content-area {
-        padding: 1.5rem;
+      & .content-area {
         display: flex;
         flex-direction: column;
         flex: 1;
-      }
+        padding: 0 0.5rem;
 
-      @media (min-width: 768px) {
-        .content-area {
-          padding: 2rem;
+        & .meta {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 1.25rem;
+          font-size: 0.75rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          opacity: 0.4;
+        }
+
+        & .title {
+          font-size: 1.75rem;
+          font-weight: 900;
+          line-height: 1.1;
+          letter-spacing: -0.03em;
+          margin-bottom: 1rem;
+          color: var(--color-base-content);
+          transition: color 0.3s var(--ease-standard);
+          
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        & .summary {
+          font-size: 1rem;
+          line-height: 1.6;
+          color: oklch(from var(--color-base-content) l c h / 0.5);
+          margin-bottom: 1.5rem;
+          flex: 1;
+          
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        & .tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          margin-top: auto;
+
+          & .tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            font-style: italic;
+            opacity: 0.3;
+          }
         }
       }
-    </style>
-    <article class="card">
-      <slot name="link"></slot>
-      <div class="media-area">
-        <slot name="image"></slot>
-        <slot name="badges"></slot>
+
+      & .footer-area {
+        margin-top: 1.5rem;
+        padding: 0 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.85rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: oklch(from var(--color-base-content) l c h / 0.5);
+        transition: color 0.3s;
+
+        & .arrow {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 2.25rem;
+          height: 2.25rem;
+          border-radius: 50%;
+          background: oklch(from var(--color-base-content) l c h / 0.03);
+          border: 1px solid oklch(from var(--color-base-content) l c h / 0.08);
+          color: var(--color-base-content);
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+      }
+
+      &:hover {
+        & .media-area {
+          transform: translateY(-8px);
+          box-shadow: var(--shadow-3);
+          & img { transform: scale(1.05); }
+        }
+        & .title { color: var(--color-primary); }
+        & .footer-area {
+          color: var(--color-base-content);
+          & .arrow { 
+            transform: translateX(8px) rotate(-45deg); 
+            background: var(--color-base-content);
+            color: var(--color-base-100);
+            box-shadow: var(--shadow-2);
+          }
+        }
+      }
+      }
+    }
+  }
+</style>
+
+<article class="app-post-grid-card">
+  <div class="card">
+    <a href="{{ page.path }}" class="page-link" aria-label="Read: {{ page.title }}"></a>
+    
+    <div class="media-area">
+      {% if page.extra.image %}
+        {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
+        {% set thumb = resize_image(path=image_path, width=800, height=600, op="fill", format="webp") %}
+        <img src="{{ thumb.url }}" alt="{{ page.title }}" loading="lazy" />
+      {% else %}
+        <img src="{{ get_url(path='images/default-post.jpg') }}" alt="" loading="lazy" />
+      {% endif %}
+    </div>
+
+    <div class="content-area">
+      <div class="meta">
+        <time datetime="{{ page.date }}">{{ page.date | date(format="%b %d, %Y") }}</time>
+        <span class="dot">•</span>
+        <span>{{ page.reading_time }} min read</span>
       </div>
-      <div class="content-area">
-        <slot name="author"></slot>
-        <slot name="title"></slot>
-        <slot name="summary"></slot>
-        <slot name="tags"></slot>
-        <slot name="footer"></slot>
+
+      <h3 class="title">{{ page.title }}</h3>
+
+      <p class="summary">
+        {{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}
+      </p>
+
+      {% if page.taxonomies.tags %}
+      <div class="tags">
+        {% for tag in page.taxonomies.tags | slice(end=3) %}
+        <span class="tag">#{{ tag }}</span>
+        {% endfor %}
       </div>
-    </article>
-  </template>
-
-  <a slot="link" href="{{ page.path }}" class="absolute inset-0 z-20" aria-label="{{ page.title }}"></a>
-
-  <div slot="image" class="w-full h-full">
-    {% if page.extra.image %}
-    {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
-    {% set thumb = resize_image(path=image_path, width=600, height=338, op="fill", format="webp") %}
-    <img src="{{ thumb.url }}" alt="" class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-      loading="lazy" />
-    {% else %}
-    <img src="{{ get_url(path='images/default-post.jpg') }}" alt=""
-      class="w-full h-full object-cover transition duration-500 group-hover:scale-105 opacity-80" loading="lazy" />
-    {% endif %}
-  </div>
-
-  <div slot="badges">
-    <div class="absolute top-4 left-4 z-10">
-      <span class="badge badge-neutral font-black uppercase text-[10px] tracking-wider border-none">
-        {{ page.date | date(format="%b %d, %Y") }}
-      </span>
+      {% endif %}
     </div>
 
-    {% if page.taxonomies.categories %}
-    <div class="absolute bottom-4 left-4 z-10 flex flex-wrap gap-1">
-      {% for cat in page.taxonomies.categories %}
-      <span class="badge badge-primary font-bold uppercase text-[9px] border-none px-2">
-        {{ cat }}
-      </span>
-      {% endfor %}
-    </div>
-    {% endif %}
-  </div>
-
-  <div slot="author"
-    class="flex items-center gap-3 mb-4 md:mb-6 text-[10px] md:text-xs font-black uppercase tracking-widest text-primary">
-    <div class="avatar">
-      <div class="size-6 md:size-7 rounded-lg ring ring-base-200 ring-offset-2">
-        <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="" />
-      </div>
-    </div>
-    <span>{{ page.authors | join(sep=", ") }}</span>
-  </div>
-
-  <h2 slot="title"
-    class="text-xl md:text-2xl font-black tracking-tight leading-tight mb-3 md:mb-4 group-hover:text-primary transition-colors line-clamp-2">
-    {{ page.title }}
-  </h2>
-
-  <p slot="summary" class="text-sm opacity-60 line-clamp-2 md:line-clamp-3 mb-4 md:mb-6 flex-1">
-    {{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}
-  </p>
-
-  {% if page.taxonomies.tags %}
-  <div slot="tags"
-    class="flex flex-wrap gap-x-2 mb-6 md:mb-8 text-[10px] md:text-xs font-bold text-base-content/40 italic">
-    {% for tag in page.taxonomies.tags %}
-    <span class="hover:text-primary transition-colors">#{{ tag }}</span>
-    {% endfor %}
-  </div>
-  {% endif %}
-
-  <div slot="footer" class="flex items-center justify-between pt-4 md:pt-6 border-t border-base-200 mt-auto">
-    <span
-      class="text-[10px] md:text-xs font-black uppercase tracking-widest opacity-40 group-hover:opacity-100 group-hover:text-primary transition-all">
-      Read More
-    </span>
-    <div
-      class="size-7 md:size-8 rounded-full bg-base-200 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-content transition-colors">
-      {{ icons::arrow_right(size=4) }}
+    <div class="footer-area">
+      <span>Read Story</span>
+      <span class="arrow">{{ icons::arrow_right(size=2.5) }}</span>
     </div>
   </div>
-</post-grid-card>
+</article>

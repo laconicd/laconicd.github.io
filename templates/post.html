@@ -1,166 +1,387 @@
 {% extends "base.html" %}
 
 {% block content %}
-<post-detail-view>
-  <template shadowrootmode="open">
-    <style>
-      .container {
-        width: 100%;
-        padding: 2rem 0;
+<style>
+  @scope(.app-post) {
+    :scope {
+      max-width: 55rem;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 10rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr); /* Grid 아이템이 너비를 초과하지 않도록 보장 */
+      gap: 4rem;
+      animation: fadeIn 1.2s var(--ease-standard);
+      
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      width: 100%;
+      box-sizing: border-box;
+
+      @media (width < 48rem) {
+        padding: 2rem 1.25rem 5rem;
+        gap: 2.5rem;
+      }
+    }
+
+    /* Header Section */
+    & .post-header {
+      text-align: center;
+      display: grid;
+      justify-items: center;
+      gap: 2rem;
+      animation: fadeInDown 0.8s var(--ease-standard);
+      min-width: 0;
+
+      @media (width < 48rem) {
+        gap: 1.5rem;
       }
 
-      @media (min-width: 768px) {
-        .container {
-          padding: 3rem 0;
+      & .post-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--color-primary);
+        
+        & .separator { opacity: 0.2; }
+        & time { opacity: 0.6; }
+      }
+
+      & h1 {
+        font-size: clamp(2.2rem, 8vw, 5rem);
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -0.05em;
+        background: linear-gradient(to bottom, var(--color-base-content) 60%, oklch(from var(--color-base-content) l c h / 0.3));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
+
+      & .post-author {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        text-align: left;
+
+        & .author-avatar {
+          width: clamp(3rem, 10vw, 3.5rem);
+          height: clamp(3rem, 10vw, 3.5rem);
+          border-radius: 50%;
+          overflow: hidden;
+          background: var(--color-base-300);
+          border: 2px solid oklch(from var(--color-base-content) l c h / 0.1);
+          box-shadow: var(--shadow-2);
+          flex-shrink: 0;
+          
+          & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        
+        & .author-info {
+          display: grid;
+          & .name {
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+          }
+          & .role {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            opacity: 0.4;
+          }
         }
       }
+    }
 
-      .header {
-        margin-bottom: 2.5rem;
-        text-align: center;
-      }
+    /* Featured Image */
+    & .post-visual {
+      position: relative;
+      border-radius: 2.5rem;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      box-shadow: var(--shadow-4);
+      border: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
+      animation: fadeInUp 1s var(--ease-standard) 0.2s both;
+      width: 100%;
 
-      @media (min-width: 768px) {
-        .header {
-          margin-bottom: 4rem;
-        }
-      }
-
-      .featured-image {
-        margin-bottom: 2.5rem;
-        aspect-ratio: 16 / 9;
+      @media (width < 48rem) {
         border-radius: 1.5rem;
-        overflow: hidden;
-        box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-        border: 1px solid var(--fallback-b2, oklch(var(--b2)));
       }
 
-      @media (min-width: 768px) {
-        .featured-image {
-          margin-bottom: 4rem;
-          border-radius: 2.25rem;
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    /* Content Area */
+    & .post-content {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      line-height: 1.7;
+      color: oklch(from var(--color-base-content) l c h / 0.8);
+      animation: fadeInUp 1s var(--ease-standard) 0.4s both;
+      min-width: 0;
+      width: 100%;
+
+      & h2, & h3, & h4 {
+        color: var(--color-base-content);
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        margin-top: clamp(2rem, 5vw, 3.5rem);
+        margin-bottom: 1.25rem;
+        overflow-wrap: break-word;
+      }
+
+      & h2 { font-size: clamp(1.75rem, 5vw, 2.25rem); line-height: 1.1; }
+      & h3 { font-size: clamp(1.4rem, 4vw, 1.75rem); }
+
+      & p { margin-bottom: 1.5rem; overflow-wrap: break-word; }
+
+      & a {
+        color: var(--color-primary);
+        text-decoration: none;
+        font-weight: 700;
+        border-bottom: 2px solid oklch(from var(--color-primary) l c h / 0.2);
+        transition: all 0.2s var(--ease-standard);
+        &:hover {
+          background: oklch(from var(--color-primary) l c h / 0.1);
+          border-bottom-color: var(--color-primary);
         }
       }
 
-      .content {
-        margin-bottom: 4rem;
+      & img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 2rem;
+        margin: clamp(1.5rem, 5vw, 3rem) 0;
+        box-shadow: var(--shadow-3);
+        @media (width < 48rem) { border-radius: 1rem; }
       }
 
-      .footer {
-        padding-top: 3rem;
-        border-top: 1px solid var(--fallback-b2, oklch(var(--b2)));
+      & code:not(pre code) {
+        background: var(--color-base-200);
+        padding: 0.2rem 0.5rem;
+        border-radius: 0.5rem;
+        font-size: 0.9em;
+        font-weight: 600;
+        word-break: break-all;
       }
-    </style>
-    <article class="container">
-      <header class="header">
-        <slot name="header"></slot>
-      </header>
 
-      <div class="featured-image">
-        <slot name="image"></slot>
-      </div>
+      & pre {
+        background: var(--color-base-300) !important;
+        padding: clamp(1.25rem, 4vw, 2rem);
+        border-radius: 1.5rem;
+        margin: 2rem 0;
+        overflow-x: auto; /* 내용이 넘치면 개별 스크롤 발생 */
+        font-size: 0.85em;
+        max-width: 100%;
+        width: 100%;
+        display: block;
+        box-sizing: border-box;
+        white-space: pre; /* 줄바꿈 없이 스크롤 유지 */
+        -webkit-overflow-scrolling: touch;
+        @media (width < 48rem) { border-radius: 1rem; }
+      }
 
-      <div class="content">
-        <slot></slot>
-      </div>
+      & blockquote {
+        border-left: 4px solid var(--color-primary);
+        padding-left: clamp(1rem, 4vw, 2rem);
+        font-style: italic;
+        margin: clamp(1.5rem, 5vw, 3rem) 0;
+        color: oklch(from var(--color-base-content) l c h / 0.6);
+      }
+    }
 
-      <footer class="footer">
-        <slot name="footer-tags"></slot>
-        <slot name="footer-nav"></slot>
-      </footer>
-    </article>
-  </template>
+    /* Footer Section */
+    & .post-footer {
+      margin-top: 4rem;
+      padding-top: 4rem;
+      border-top: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+      display: grid;
+      gap: clamp(2.5rem, 6vw, 4rem);
+      animation: fadeIn 1.5s var(--ease-standard) 0.6s both;
+      min-width: 0;
 
+      @media (width < 48rem) {
+        margin-top: 2rem;
+        padding-top: 2rem;
+      }
+
+      & .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+
+        & a {
+          font-size: 0.85rem;
+          font-weight: 800;
+          color: var(--color-base-content);
+          text-decoration: none;
+          background: oklch(from var(--color-base-content) l c h / 0.05);
+          padding: 0.5rem 1rem;
+          border-radius: 1rem;
+          opacity: 0.6;
+          transition: all 0.2s;
+          &:hover {
+            opacity: 1;
+            background: oklch(from var(--color-base-content) l c h / 0.1);
+            transform: translateY(-2px);
+          }
+        }
+      }
+
+      & .post-navigation {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+
+        @media (width < 48rem) {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        & .nav-card {
+          display: flex;
+          flex-direction: column;
+          padding: clamp(1.5rem, 4vw, 2.5rem);
+          background: var(--color-base-200);
+          border-radius: 2rem;
+          transition: all 0.4s var(--ease-standard);
+          text-decoration: none;
+          color: inherit;
+          border: 1px solid transparent;
+          min-width: 0;
+
+          @media (width < 48rem) { border-radius: 1.25rem; }
+
+          &:hover {
+            transform: translateY(-4px);
+            background: var(--color-base-300);
+            border-color: oklch(from var(--color-base-content) l c h / 0.1);
+            & .nav-label { color: var(--color-primary); }
+          }
+
+          &.next { text-align: right; }
+
+          & .nav-label {
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0.4;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s var(--ease-standard);
+          }
+
+          & .nav-title {
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.4;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  }
+</style>
+
+<article class="app-post">
   <!-- Post Header -->
-  <div slot="header">
-    <div
-      class="flex items-center justify-center gap-3 mb-4 md:mb-6 text-[10px] md:text-xs font-black uppercase tracking-widest text-primary">
+  <header class="post-header">
+    <div class="post-meta">
       {% if page.taxonomies.categories %}
-      {% for cat in page.taxonomies.categories %}
-      <span>{{ cat }}</span>
-      {% endfor %}
+        {% for cat in page.taxonomies.categories %}
+          <span>{{ cat }}</span>
+        {% endfor %}
+        <span class="separator">•</span>
       {% endif %}
-      <span class="opacity-30">•</span>
-      <time class="opacity-50" datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
+      <time datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time>
     </div>
 
-    <h1 class="text-3xl md:text-6xl font-black tracking-tighter leading-tight mb-6 md:mb-8 px-2">
-      {{ page.title }}
-    </h1>
+    <h1>{{ page.title }}</h1>
 
-    <div class="flex items-center justify-center gap-3 md:gap-4">
-      <div class="avatar">
-        <div class="size-10 md:size-12 rounded-2xl ring ring-base-200 ring-offset-2 md:ring-offset-4">
-          <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="{{ config.extra.author_name }}" />
-        </div>
+    <div class="post-author">
+      <div class="author-avatar">
+        <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="{{ config.extra.author_name }}" />
       </div>
-      <div class="text-left">
-        <div class="text-xs md:text-sm font-black uppercase tracking-widest text-base-content">{{
-          config.extra.author_name }}</div>
-        <div class="text-[10px] md:text-xs opacity-40 font-bold uppercase">{{ config.extra.author_role }}</div>
+      <div class="author-info">
+        <span class="name">{{ config.extra.author_name }}</span>
+        <span class="role">{{ config.extra.author_role }}</span>
       </div>
     </div>
-  </div>
+  </header>
 
   <!-- Featured Image -->
-  <div slot="image" class="w-full h-full">
+  <div class="post-visual">
     {% if page.extra.image %}
-    {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
-    {% set resized = resize_image(path=image_path, width=1200, height=675, op="fill", format="webp", quality=90) %}
-    <img src="{{ resized.url }}" alt="{{ page.title }}" class="w-full h-full object-cover" loading="eager" />
+      {% set image_path = page.relative_path | replace(from="index.md", to=page.extra.image) %}
+      {% set resized = resize_image(path=image_path, width=1600, height=900, op="fill", format="webp") %}
+      <img src="{{ resized.url }}" alt="{{ page.title }}" loading="eager" />
     {% else %}
-    <img src="{{ get_url(path='images/default-post.jpg') }}" alt="{{ page.title }}"
-      class="w-full h-full object-cover opacity-90" />
+      <img src="{{ get_url(path='images/default-post.jpg') }}" alt="{{ page.title }}" />
     {% endif %}
   </div>
 
   <!-- Content -->
-  <div
-    class="prose prose-lg max-w-none 
-              prose-headings:font-black prose-headings:tracking-tighter 
-              prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-              prose-img:rounded-3xl prose-img:shadow-xl
-              prose-code:bg-base-200 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none">
+  <div class="post-content">
     {{ page.content | safe }}
   </div>
 
-  <!-- Footer Tags -->
-  <div slot="footer-tags">
+  <!-- Footer -->
+  <footer class="post-footer">
     {% if page.taxonomies.tags %}
-    <div class="flex flex-wrap gap-2 mb-16">
-      {% for tag in page.taxonomies.tags %}
-      <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}"
-        class="badge badge-lg badge-ghost font-bold opacity-50 hover:opacity-100 transition-opacity">
-        #{{ tag }}
-      </a>
-      {% endfor %}
-    </div>
-    {% endif %}
-  </div>
-
-  <!-- Footer Navigation -->
-  <div slot="footer-nav" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-    {% if page.lower %}
-    <a href="{{ page.lower.path }}"
-      class="group p-6 md:p-8 bg-base-100 border border-base-200 rounded-3xl hover:shadow-xl transition duration-300"
-      data-transition="back">
-      <div
-        class="text-[10px] md:text-xs font-black uppercase tracking-widest opacity-30 mb-2 group-hover:text-primary transition-colors">
-        Previous Post</div>
-      <div class="text-base md:text-lg font-black tracking-tight line-clamp-1">{{ page.lower.title }}</div>
-    </a>
+      <div class="post-tags">
+        {% for tag in page.taxonomies.tags %}
+          <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}">
+            #{{ tag }}
+          </a>
+        {% endfor %}
+      </div>
     {% endif %}
 
-    {% if page.higher %}
-    <a href="{{ page.higher.path }}"
-      class="group p-6 md:p-8 bg-base-100 border border-base-200 rounded-3xl text-right hover:shadow-xl transition duration-300"
-      data-transition="slide">
-      <div
-        class="text-[10px] md:text-xs font-black uppercase tracking-widest opacity-30 mb-2 group-hover:text-primary transition-colors">
-        Next Post</div>
-      <div class="text-base md:text-lg font-black tracking-tight line-clamp-1">{{ page.higher.title }}</div>
-    </a>
-    {% endif %}
-  </div>
-</post-detail-view>
+    <nav class="post-navigation">
+      {% if page.lower %}
+        <a href="{{ page.lower.path }}" class="nav-card prev">
+          <span class="nav-label">Previous Post</span>
+          <span class="nav-title">{{ page.lower.title }}</span>
+        </a>
+      {% endif %}
+
+      {% if page.higher %}
+        <a href="{{ page.higher.path }}" class="nav-card next">
+          <span class="nav-label">Next Post</span>
+          <span class="nav-title">{{ page.higher.title }}</span>
+        </a>
+      {% endif %}
+    </nav>
+  </footer>
+</article>
 {% endblock content %}

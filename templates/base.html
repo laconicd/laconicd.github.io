@@ -1,10 +1,33 @@
 {% import "macros/icons.html" as icons %}
+
 <!DOCTYPE html>
 <html lang="en" data-theme="lofi">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {% include "partials/init-feat.html" %}
+
+  <script>
+    (function () {
+      const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dim' : 'lofi');
+      document.documentElement.setAttribute('data-theme', theme);
+      const link = document.createElement('link');
+      link.id = 'syntax-theme';
+      link.rel = 'stylesheet';
+      const darkUrl = "{{ get_url(path='giallo-dark.css') | safe }}";
+      const lightUrl = "{{ get_url(path='giallo-light.css') | safe }}";
+      link.href = theme === 'dim' ? darkUrl : lightUrl;
+      document.head.appendChild(link);
+
+      // Save URLs for the toggle script
+      window.__SYNTAX_THEME_URLS__ = {
+        dim: darkUrl,
+        lofi: lightUrl
+      };
+    })();
+  </script>
 
   {% set title = config.title %}
   {% set description = config.description %}
@@ -28,17 +51,13 @@
 
   {% set description = description | striptags | truncate(length=160) %}
 
-  <title>{{ title }}</title>
   <meta name="description" content="{{ description }}">
-  <link rel="canonical" href="{{ current_url | safe }}">
-
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ current_url | safe }}">
   <meta property="og:title" content="{{ title }}">
   <meta property="og:description" content="{{ description }}">
   <meta property="og:image" content="{{ og_image | safe }}">
-
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="{{ current_url | safe }}">
@@ -46,112 +65,73 @@
   <meta property="twitter:description" content="{{ description }}">
   <meta property="twitter:image" content="{{ og_image | safe }}">
 
+  <link rel="canonical" href="{{ current_url | safe }}">
   <link rel="stylesheet" href="{{ get_url(path='styles.css', cachebust=true) | safe }}">
-  <script src="{{ get_url(path='theme.js', cachebust=true) | safe }}" type="module"></script>
+  <link rel="alternate" type="application/atom+xml" title="Atom Feed"
+    href="{{ get_url(path='atom.xml', trailing_slash=false) }}">
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed"
+    href="{{ get_url(path='rss.xml', trailing_slash=false) }}">
 
-  {# Feed autodiscovery #}
-  {% if config.generate_feeds %}
-    {% for filename in config.feed_filenames %}
-      {% if filename == "atom.xml" %}
-        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="{{ get_url(path=filename, trailing_slash=false) }}">
-      {% elif filename == "rss.xml" %}
-        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{{ get_url(path=filename, trailing_slash=false) }}">
-      {% endif %}
-    {% endfor %}
-  {% endif %}
+  <title>{{ title }}</title>
 </head>
 
-<body class="min-h-screen">
-  <!-- [a11y] Skip link for keyboard users -->
-  <a href="#main-content"
-    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-content focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-4 focus:ring-primary/20">
-    Skip to content
-  </a>
+<body>
+  <style>
+    @scope(.app-shell) {
+      :scope {
+        display: flex;
+        flex-direction: column;
+      }
 
-  <!-- [a11y] Route announcer for screen readers -->
-  <div id="route-announcer" class="sr-only" aria-live="polite" aria-atomic="true">
+      & > header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      & main {}
+
+      & footer {}
+    }
+  </style>
+
+  <div class="app-shell">
+    <header>{% include "partials/navbar.html" %}</header>
+    <main>{% block content %} {% endblock content %}</main>
+    <footer class="mt-auto">{% include "partials/footer.html" %}</footer>
   </div>
 
-  <app-shell>
-    <template shadowrootmode="open">
-      <style>
-        :host {
-          display: flex;
-          flex-direction: column;
-          min-height: 100vh;
+  <div class="widgets">
+    {% include "partials/search-modal.html" %}
+    {% include "partials/share-modal.html" %}
+    {% include "partials/speed-dial.html" %}
+  </div>
+
+  <script>
+    // Sync theme controller checkboxes with current theme
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const isDark = currentTheme === 'dim';
+      document.querySelectorAll('.theme-controller').forEach(el => {
+        el.checked = isDark;
+      });
+    });
+
+    // Handle theme toggle
+    document.addEventListener('change', (e) => {
+      if (e.target.classList.contains('theme-controller')) {
+        const isDark = e.target.checked;
+        const newTheme = isDark ? 'dim' : 'lofi';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+
+        const link = document.getElementById('syntax-theme');
+        if (link && window.__SYNTAX_THEME_URLS__) {
+          link.href = window.__SYNTAX_THEME_URLS__[newTheme];
         }
-
-        .shell-header {
-          position: sticky;
-          top: 0;
-          z-index: 40;
-          width: 100%;
-        }
-
-        .shell-header > slot {
-          display: block;
-          width: 100%;
-        }
-
-        .shell-main {
-          flex: 1;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          margin-top: 1rem;
-          /* Ensure main content takes up enough space to push footer down */
-          min-height: calc(100vh - 4rem - 12rem);
-          /* Viewport height minus header and estimated footer height */
-        }
-
-        .shell-main > slot {
-          display: block;
-          width: 100%;
-          max-width: 64rem;
-        }
-
-        .shell-footer {
-`          grid-column: full;
-        }
-      </style>
-      <div class="shell-header">
-        <slot name="header"></slot>
-      </div>
-      <main class="shell-main">
-        <slot></slot>
-      </main>
-      <div class="shell-footer">
-        <slot name="footer"></slot>
-      </div>
-      <slot name="widgets"></slot>
-    </template>
-
-    <header slot="header"
-      class="w-full backdrop-blur-md bg-base-100/70 border-b border-base-300/50 transition-all duration-300">
-      <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {% include "partials/navbar.html" %}
-      </div>
-    </header>
-
-    <main id="main-content" class="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      {% block content %} {% endblock content %}
-    </main>
-
-    <footer slot="footer" class="w-full border-t border-base-300/50 mt-8 bg-base-200/30">
-      <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {% include "partials/footer.html" %}
-      </div>
-    </footer>
-
-    <div slot="widgets">
-      {% include "partials/search-modal.html" %}
-      {% include "partials/share-modal.html" %}
-      {% include "partials/speed-dial.html" %}
-      {% include "partials/drawer.html" %}
-    </div>
-  </app-shell>
-
-  <script src="{{ get_url(path='main.js', cachebust=true) | safe }}" type="module"></script>
+      }
+    });
+  </script>
 </body>
 
 </html>

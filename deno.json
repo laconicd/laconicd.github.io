@@ -1,16 +1,19 @@
 {
   "tasks": {
     "tailwindcss:build": "deno run -A @tailwindcss/cli -i styles/tailwind.css -o static/styles.css",
-    "scripts:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/main.ts scripts/theme.ts",
-    "fonts:fetch": "deno run -A scripts/fetch-fonts.ts",
+    "main:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/main.ts",
+    "copy:fuse": "cp node_modules/fuse.js/dist/fuse.min.mjs static/",
+    "copy:font:outfit:css": "cp -r node_modules/@fontsource-variable/outfit/index.css static/fonts/",
+    "copy:font:outfit:files": "cp -r node_modules/@fontsource-variable/outfit/files static/fonts/",
     "zola:serve": "zola serve --port 8080",
     "zola:serve:ext": "zola serve --interface 0.0.0.0 --base-url $(ipconfig getifaddr en0)",
     "zola:build": "zola build",
     "common": {
       "dependencies": [
-        "fonts:fetch",
         "tailwindcss:build",
-        "scripts:build"
+        "copy:fuse",
+        "copy:font:outfit:css",
+        "copy:font:outfit:files"
       ]
     },
     "init": "mkdir -p static && deno task common",

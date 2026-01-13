@@ -1,72 +1,109 @@
 {% extends "base.html" %}
+{% import "macros/icons.html" as icons %}
 
 {% block content %}
-<posts-view>
-  <template shadowrootmode="open">
-    <style>
-      .back-nav {
-        margin-bottom: 3rem;
-      }
+<style>
+  @scope(.category-single-page) {
+    :scope {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+      max-width: 80rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-      .header {
-        margin-bottom: 5rem;
-        text-align: center;
-      }
+    & .back-nav {
+      margin-bottom: 3rem;
+      
+      & .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        opacity: 0.4;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s;
 
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-        gap: 2rem;
-        margin-bottom: 5rem;
-      }
-
-      @media (min-width: 768px) {
-        .grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+        &:hover {
+          opacity: 1;
+          color: var(--color-primary);
+          transform: translateX(-4px);
         }
       }
+    }
 
-      @media (min-width: 1024px) {
-        .grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
+    & .page-header {
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      margin-bottom: 5rem;
+      margin-top: 1rem;
+
+      & h1 {
+        font-size: clamp(3.5rem, 8vw, 6rem);
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        line-height: 1.2;
+        padding: 0.05em 0.1em;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(to bottom, var(--color-base-content) 50%, oklch(from var(--color-base-content) l c h / 0.2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
-    </style>
-    <div class="back-nav">
-      <slot name="back"></slot>
-    </div>
-    <header class="header">
-      <slot name="header"></slot>
-    </header>
-    <div class="grid">
-      <slot></slot>
-    </div>
-  </template>
 
-  <a slot="back" href="/categories"
-    class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest opacity-40 hover:opacity-100 hover:text-primary transition-all group">
-    {{ icons::arrow_left(class="transition-transform group-hover:-translate-x-1") }}
-    Back to Categories
-  </a>
+      & p {
+        font-size: clamp(1.1rem, 2vw, 1.5rem);
+        color: oklch(from var(--color-base-content) l c h / 0.5);
+        font-style: italic;
+        max-width: 35rem;
+        line-height: 1.4;
+      }
+    }
 
-  <div slot="header">
-    <div
-      class="inline-block px-4 py-1.5 mb-6 rounded-2xl bg-primary/5 border border-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
-      Topic Explorer
-    </div>
-    <h1
-      class="text-6xl md:text-7xl font-black tracking-tighter mb-8 bg-linear-to-b from-base-content to-base-content/50 bg-clip-text text-transparent">
-      {{ term.name }}
-    </h1>
-    <div class="flex items-center justify-center gap-4 text-sm font-bold opacity-50">
-      <span>{{ term.pages | length }} Articles</span>
-      <span class="size-1 bg-base-content/20 rounded-full"></span>
-      <span>Curated Selection</span>
-    </div>
+    & .post-grid {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 4rem 2.5rem;
+      margin-bottom: 5rem;
+    }
+
+    @media (width >= 48rem) {
+      & .post-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (width >= 75rem) {
+      & .post-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  }
+</style>
+
+<div class="category-single-page">
+  <div class="back-nav">
+    <a href="/categories" class="back-link">
+      {{ icons::arrow_left(size=3) }}
+      Back to Categories
+    </a>
   </div>
 
-  {% for page in term.pages %}
-  {% include "partials/post-grid-card.html" %}
-  {% endfor %}
-</posts-view>
+  <div class="page-header">
+    <h1>{{ term.name }}</h1>
+    <p>{{ term.pages | length }} Articles Curated Selection. Exploring the depth of this topic.</p>
+  </div>
+
+  <div class="post-grid">
+    {% for page in term.pages %}
+    {% include "partials/post-grid-card.html" %}
+    {% endfor %}
+  </div>
+</div>
 {% endblock content %}

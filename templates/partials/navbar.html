@@ -1,79 +1,361 @@
 {% import "macros/icons.html" as icons %}
-<app-navbar>
-  <template shadowrootmode="open">
-    <style>
-      :host {
-        width: 100%;
-        display: block;
+<style>
+  @scope(.app-navbar) {
+    :scope {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: oklch(from var(--color-base-100) l c h / 0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+      padding: 0.75rem 1.25rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      overflow: visible;
+    }
+
+    & .nav-brand {
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -0.05em;
+      text-decoration: none;
+      color: var(--color-base-content);
+      transition: all 0.4s var(--ease-standard);
+      display: inline-block;
+      
+      &:hover { 
+        opacity: 0.7; 
+        transform: scale(1.05); /* 반응성 강화: 1.02 -> 1.05 */
+      }
+      &:active {
+        transform: scale(0.96); /* 클릭감 강화 */
+      }
+    }
+
+    /* 공통 아이콘 버튼 스타일 */
+    & .icon-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      transition: all 0.4s var(--ease-standard);
+      &:hover { 
+        background: oklch(from var(--color-base-content) l c h / 0.1); 
+        transform: translateY(-4px); /* 반응성 강화: -2px -> -4px */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      }
+      &:active {
+        transform: translateY(0) scale(0.92);
+      }
+    }
+
+    /* 테마 스위처 */
+    & .theme-toggle {
+      position: relative;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all 0.4s var(--ease-standard);
+      &:hover { 
+        background: oklch(from var(--color-base-content) l c h / 0.1); 
+        transform: translateY(-4px); /* 반응성 강화 */
+      }
+      &:active {
+        transform: translateY(0) scale(0.92);
       }
 
-      .navbar {
-        display: flex;
+      & input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0; width: 0;
+      }
+
+      & .sun-icon, & .moon-icon {
+        position: absolute;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
+      }
+
+      & .moon-icon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+      & input:checked ~ .sun-icon { opacity: 0; transform: rotate(90deg) scale(0.5); }
+      & input:checked ~ .moon-icon { opacity: 1; transform: rotate(0) scale(1); }
+    }
+
+    /* Breakpoint: sm (Mobile) < 640px */
+    @media (width < 40rem) {
+      & .nav-center {
+        position: fixed;
+        inset: 0 0 0 auto !important;
+        margin: 0 !important;
+        width: 85dvw;
+        height: 100dvh;
+        background: var(--color-base-100) !important;
+        border: none !important;
+        border-left: 1px solid oklch(from var(--color-base-content) l c h / 0.1) !important;
+        padding: 0 !important;
+        box-shadow: -20px 0 50px rgba(0,0,0,0.1);
+        display: none;
+        flex-direction: column;
+        transform: translateX(100%);
+        transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), overlay 0.5s allow-discrete, display 0.5s allow-discrete;
+
+        &:popover-open { display: flex; transform: translateX(0); }
+        @starting-style { &:popover-open { transform: translateX(100%); } }
+
+        &::backdrop {
+          background-color: rgba(0, 0, 0, 0.4);
+          backdrop-filter: blur(8px);
+          opacity: 0;
+          transition: opacity 0.5s ease, display 0.5s allow-discrete, overlay 0.5s allow-discrete;
+        }
+        &:popover-open::backdrop { opacity: 1; }
+
+        & .sidebar-header {
+          padding: 3rem 2rem 2rem;
+          & .sidebar-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0.3;
+            margin-bottom: 0.5rem;
+          }
+          & .sidebar-brand {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+          }
+        }
+
+        & .sidebar-menu {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          padding: 0 1rem;
+          & a {
+            padding: 1.25rem 1rem;
+            font-size: 1.25rem;
+            font-weight: 800;
+            border-radius: 1.25rem;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s var(--ease-standard);
+            
+            &:active { 
+              background: oklch(from var(--color-base-content) l c h / 0.08); 
+              transform: scale(0.95); /* 클릭감 강화 */
+            }
+            &::after { 
+              content: '→'; 
+              opacity: 0.2; 
+              font-weight: 400; 
+              transition: transform 0.5s var(--ease-standard);
+            }
+            &:active::after {
+              transform: translateX(12px); /* 반응성 강화: 6px -> 12px */
+              opacity: 0.5;
+            }
+          }
+        }
+
+        & .sidebar-footer {
+          padding: 2rem;
+          background: oklch(from var(--color-base-content) l c h / 0.02);
+          border-top: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
+          display: grid;
+          gap: 1.5rem;
+
+          & .nav-search-trigger {
+            width: 100%;
+            height: 3.5rem;
+            border-radius: 1.25rem;
+            background: oklch(from var(--color-base-content) l c h / 0.05);
+            display: flex;
+            align-items: center;
+            padding: 0 1.25rem;
+            gap: 1rem;
+            font-weight: 700;
+            color: oklch(from var(--color-base-content) l c h / 0.5);
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-standard);
+            
+            &:active { 
+              transform: scale(0.96); 
+              background: oklch(from var(--color-base-content) l c h / 0.1); 
+            }
+          }
+
+          & .nav-utils {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            & a {
+              width: 3.5rem;
+              height: 3.5rem;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: inherit;
+              transition: all 0.4s var(--ease-standard);
+              &:active { 
+                background: oklch(from var(--color-base-content) l c h / 0.1); 
+                transform: scale(0.85); 
+              }
+            }
+            & .theme-toggle { scale: 1.3; }
+          }
+        }
+      }
+    }
+
+    /* Common for Tablet and above */
+    @media (width >= 40rem) {
+      & .nav-center-btn { display: none; }
+
+      & .nav-center {
+        display: flex !important;
+        position: static !important;
+        background: transparent !important;
+        width: auto !important;
+        height: auto !important;
+        padding: 0 !important;
+        transform: none !important;
         align-items: center;
-        min-height: 4rem;
+        gap: 0.25rem;
+        overflow: visible;
       }
-    </style>
-    <nav aria-label="Main navigation" class="navbar">
-      <slot name="brand"></slot>
-      <slot name="menu"></slot>
-      <slot name="drawer-toggle"></slot>
-    </nav>
-  </template>
 
-  <div slot="brand" class="justify-start flex-1 text-xl font-bold tracking-tight px-2 sm:px-4">
-    <a href="/" class="btn btn-ghost btn-xl">{{ config.title }}</a>
-  </div>
+      & .sidebar-header, & .sidebar-title, & .sidebar-brand { display: none; }
+      & .sidebar-menu { display: flex; flex-direction: row; gap: 0.25rem; }
+      
+      & .sidebar-menu a {
+        font-size: 0.95rem;
+        font-weight: 700;
+        padding: 0.5rem 0.85rem;
+        border-radius: 0.75rem;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.4s var(--ease-standard);
+        &:hover { 
+          background: oklch(from var(--color-base-content) l c h / 0.08); 
+          color: var(--color-primary);
+          transform: translateY(-3px); /* 반응성 강화: -1px -> -3px */
+        }
+        &:active {
+          transform: translateY(0) scale(0.94);
+        }
+      }
 
-  <!-- Theme Toggle (Now only visible on desktop via sm:block container) -->
-  <div slot="menu" class="hidden sm:flex items-center gap-1 justify-end">
-    <a href="{{ get_url(path='@/posts/_index.md') }}" class="btn btn-ghost btn-sm">Posts</a>
-    <a href="{{ get_url(path='categories') }}" class="btn btn-ghost btn-sm">Categories</a>
-    <a href="{{ get_url(path='tags') }}" class="btn btn-ghost btn-sm">Tags</a>
-    
-    <!-- Vertical Divider -->
-    <div class="w-px h-4 bg-base-content/60 mx-2"></div>
+      & .nav-divider-vertical {
+        height: 1.25rem;
+        margin: 0 0.75rem;
+        border-left: 1.5px solid oklch(from var(--color-base-content) l c h / 0.1);
+      }
 
-    <div class="flex items-center gap-1">
-      <!-- Search Button (Icon only) -->
-      <button id="navbar-search-btn" class="btn btn-ghost btn-sm btn-circle" aria-label="Search">
-        {{ icons::search() }}
+      & .sidebar-footer {
+        display: contents;
+        & .nav-search-trigger {
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          transition: all 0.4s var(--ease-standard);
+          & span { display: none; }
+          &:hover { 
+            background: oklch(from var(--color-base-content) l c h / 0.1); 
+            transform: translateY(-4px); /* 반응성 강화 */
+          }
+          &:active {
+            transform: translateY(0) scale(0.92);
+          }
+        }
+        & .nav-utils { 
+          display: flex; 
+          align-items: center; 
+          gap: 0.25rem;
+          & a {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s var(--ease-standard);
+            &:hover { 
+              background: oklch(from var(--color-base-content) l c h / 0.1); 
+              transform: translateY(-4px); /* 반응성 강화 */
+            }
+            &:active {
+              transform: translateY(0) scale(0.92);
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<div class="app-navbar">
+  <a href="/" class="nav-brand">{{ config.title }}</a>
+
+  <button popovertarget="nav-center" class="nav-center-btn icon-btn">
+    {{ icons::menu() }}
+  </button>
+
+  <nav id="nav-center" popover class="nav-center">
+    <div class="sidebar-header">
+      <div class="sidebar-title">Navigation</div>
+      <div class="sidebar-brand">{{ config.title }}</div>
+    </div>
+
+    <div class="sidebar-menu">
+      <a href="{{ get_url(path='@/posts/_index.md') }}">Posts</a>
+      <a href="{{ get_url(path='categories') }}">Categories</a>
+      <a href="{{ get_url(path='tags') }}">Tags</a>
+    </div>
+
+    <div class="nav-divider-vertical"></div>
+
+    <div class="sidebar-footer">
+      <button popovertarget="search_modal" class="nav-search-trigger" aria-label="Open Search">
+        {{ icons::search(size=5) }}
+        <span>Search Articles...</span>
       </button>
 
-      <!-- Atom Feed -->
-      <a href="{{ get_url(path='atom.xml') }}" target="_blank" class="btn btn-ghost btn-sm btn-circle" aria-label="Atom Feed">
-        {{ icons::atom() }}
-      </a>
-
-      <!-- RSS Feed -->
-      <a href="{{ get_url(path='rss.xml') }}" target="_blank" class="btn btn-ghost btn-sm btn-circle" aria-label="RSS Feed">
-        {{ icons::rss() }}
-      </a>
-
-      <!-- Theme Toggle -->
-      <label class="swap swap-rotate btn btn-ghost btn-sm btn-circle">
-        <input type="checkbox" class="theme-controller" value="dim" />
-        {{ icons::sun(size=5, class="swap-off") }}
-        {{ icons::moon(size=5, class="swap-on") }}
-      </label>
+      <div class="nav-utils">
+        <a href="{{ get_url(path='atom.xml') }}" target="_blank" aria-label="Atom Feed">
+          {{ icons::atom() }}
+        </a>
+        <a href="{{ get_url(path='rss.xml') }}" target="_blank" aria-label="RSS Feed">
+          {{ icons::rss() }}
+        </a>
+        <label class="theme-toggle">
+          <input type="checkbox" class="theme-controller" value="dim" />
+          <span class="sun-icon">{{ icons::sun(size=5) }}</span>
+          <span class="moon-icon">{{ icons::moon(size=5) }}</span>
+        </label>
+      </div>
     </div>
-  </div>
-
-  <script>
-    (function() {
-      const setup = () => {
-        const searchBtn = document.getElementById('navbar-search-btn');
-        const modal = document.getElementById('search_modal');
-        if (searchBtn && modal) {
-          searchBtn.onclick = () => modal.showModal();
-        }
-      };
-      setup();
-      window.addEventListener('page:updated', setup);
-    })();
-  </script>
-
-  <!-- Hamburger Menu (Drawer Toggle) -->
-  <label slot="drawer-toggle" for="mobile-drawer" class="btn btn-ghost btn-sm btn-circle sm:hidden ml-1">
-    {{ icons::menu() }}
-  </label>
-</app-navbar>
+  </nav>
+</div>
