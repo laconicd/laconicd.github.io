@@ -3,7 +3,7 @@
   :scope {
     max-width: 55rem;
     margin: 0 auto;
-    padding: 4rem 1.5rem 10rem;
+    padding: var(--space-16) var(--space-6) 10rem;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: var(--section-gap);
@@ -14,8 +14,8 @@
     box-sizing: border-box;
 
     @media (width < 48rem) {
-      padding: 2rem 1.25rem 5rem;
-      gap: 2.5rem;
+      padding: var(--space-8) 1.25rem 5rem;
+      gap: var(--space-10);
     }
   }
 
@@ -23,12 +23,12 @@
     text-align: center;
     display: grid;
     justify-items: center;
-    gap: 2rem;
+    gap: var(--space-8);
     animation: fadeInDown 0.8s var(--ease-standard);
     min-width: 0;
 
     @media (width < 48rem) {
-      gap: 1.5rem;
+      gap: var(--space-6);
     }
 
     .post-meta {
@@ -109,7 +109,7 @@
 
   .post-visual {
     position: relative;
-    border-radius: 2.5rem;
+    border-radius: var(--radius-3xl);
     overflow: hidden;
     aspect-ratio: 16 / 9;
     box-shadow: var(--shadow-4);
@@ -118,7 +118,7 @@
     width: 100%;
 
     @media (width < 48rem) {
-      border-radius: 1.5rem;
+      border-radius: var(--radius-xl);
     }
 
     img {
@@ -156,7 +156,7 @@
     }
 
     p {
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--space-6);
       overflow-wrap: break-word;
     }
 
@@ -174,11 +174,11 @@
     img {
       max-width: 100%;
       height: auto;
-      border-radius: 2rem;
+      border-radius: var(--radius-3xl);
       margin: clamp(1.5rem, 5vw, 3rem) 0;
       box-shadow: var(--shadow-3);
       @media (width < 48rem) {
-        border-radius: 1rem;
+        border-radius: var(--radius-xl);
       }
     }
 
@@ -194,7 +194,7 @@
     pre {
       background: var(--color-base-300) !important;
       padding: clamp(1.25rem, 4vw, 2rem);
-      border-radius: 1.5rem;
+      border-radius: var(--radius-xl);
       margin: 2rem 0;
       overflow-x: auto;
       font-size: 0.85em;
@@ -205,7 +205,7 @@
       white-space: pre;
       -webkit-overflow-scrolling: touch;
       @media (width < 48rem) {
-        border-radius: 1rem;
+        border-radius: var(--radius-xl);
       }
     }
 
@@ -219,14 +219,14 @@
   }
 
   .post-share-section {
-    margin: 6rem auto 4rem;
-    padding: 4rem 2rem;
+    margin: var(--space-24) auto var(--space-16);
+    padding: var(--space-16) var(--space-8);
     background: var(--color-base-100);
-    border-radius: 4rem;
+    border-radius: var(--space-16);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3.5rem;
+    gap: var(--space-14);
     text-align: center;
     border: 1px solid oklch(from var(--color-base-content) l c h / 0.08);
     box-shadow: 0 40px 100px -20px oklch(0 0 0 / 0.04);
@@ -357,8 +357,8 @@
   }
 
   .post-footer {
-    margin-top: 4rem;
-    padding-top: 4rem;
+    margin-top: var(--space-16);
+    padding-top: var(--space-16);
     border-top: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
     display: grid;
     gap: clamp(2.5rem, 6vw, 4rem);
@@ -366,8 +366,8 @@
     min-width: 0;
 
     @media (width < 48rem) {
-      margin-top: 2rem;
-      padding-top: 2rem;
+      margin-top: var(--space-8);
+      padding-top: var(--space-8);
     }
 
     .post-tags {
