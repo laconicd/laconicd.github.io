@@ -19,66 +19,11 @@
 </div>
 
 <script>
-  (function() {
-    const posts = [
-      {% set section = get_section(path="posts/_index.md") %}
-      {% for page in section.pages %}
-        "{{ page.permalink | safe }}",
-      {% endfor %}
-    ];
-
-    const setupDial = () => {
-      const dial = document.querySelector('.app-speed-dial');
-      const trigger = document.getElementById('speed-dial-trigger');
-      const topBtn = document.getElementById('speed-dial-top');
-      const searchBtn = document.getElementById('speed-dial-search');
-      const randomBtn = document.getElementById('speed-dial-random');
-      const searchModal = document.getElementById('search_modal');
-
-      if (!dial || !trigger) return;
-
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const isDark = currentTheme === 'dim';
-      dial.querySelectorAll('.theme-controller').forEach(el => {
-        el.checked = isDark;
-      });
-
-      trigger.onclick = (e) => {
-        e.stopPropagation();
-        dial.classList.toggle('open');
-      };
-
-      document.addEventListener('click', (e) => {
-        if (!dial.contains(e.target)) dial.classList.remove('open');
-      });
-
-      if (topBtn) {
-        topBtn.onclick = () => {
-          window.scrollTo({top: 0, behavior: 'smooth'});
-          dial.classList.remove('open');
-        };
-      }
-
-      if (searchBtn) {
-        searchBtn.onclick = () => {
-          if (searchModal?.showPopover) {
-            searchModal.showPopover();
-          }
-          dial.classList.remove('open');
-        };
-      }
-
-      if (randomBtn && posts.length > 0) {
-        randomBtn.onclick = () => {
-          const currentPath = window.location.href;
-          const otherPosts = posts.filter(p => p !== currentPath);
-          const targetPosts = otherPosts.length > 0 ? otherPosts : posts;
-          const randomPost = targetPosts[Math.floor(Math.random() * targetPosts.length)];
-          window.location.href = randomPost;
-        };
-      }
-    };
-    setupDial();
-    window.addEventListener('page:updated', setupDial);
-  })();
+  window.__POST_LIST__ = [
+    {% set section = get_section(path="posts/_index.md") %}
+    {% for page in section.pages %}
+      "{{ page.permalink | safe }}",
+    {% endfor %}
+  ];
 </script>
+<script src="{{ get_url(path='scripts/speed-dial.js') | safe }}" defer></script>
