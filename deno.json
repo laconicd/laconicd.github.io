@@ -1,6 +1,9 @@
 {
   "tasks": {
-    "build:scripts": "deno bundle src/scripts/*.ts --outdir static/scripts --minify --platform browser --sourcemap=linked",
+    "build:scripts:theme": "deno bundle --platform browser --minify -o static/scripts/theme.js src/scripts/theme.ts",
+    "build:scripts:main": "deno bundle --platform browser --minify -o static/scripts/main.js src/scripts/main.ts",
+    "build:scripts:post": "deno bundle --platform browser --minify -o static/scripts/post.js src/scripts/post.ts",
+    "build:scripts": "deno bundle --platform browser --minify --outdir static/scripts src/scripts/*.ts",
     "copy:fuse": "cp node_modules/fuse.js/dist/fuse.min.mjs static/",
     "copy:font:outfit:files": "cp -r node_modules/@fontsource-variable/outfit/files static/fonts/",
     "zola:serve": "zola serve --port 8080",
