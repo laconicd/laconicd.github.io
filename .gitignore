@@ -2,8 +2,5 @@ node_modules/
 public/
 AGENTS.md
 
-static/*
-# Keep original images
-!static/images/
-!static/media/
-!static/styles/
+static/
+
