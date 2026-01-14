@@ -8,20 +8,24 @@
     "build:scripts": "deno bundle --platform browser --minify --outdir static/scripts scripts/*.ts",
     "copy:fuse": "cp node_modules/fuse.js/dist/fuse.min.mjs static/",
     "copy:font:outfit:files": "cp -r node_modules/@fontsource-variable/outfit/files static/fonts/",
-    "copy:assets": "cp -r assets/* static/",
+    "copy:images": "cp -r assets/images/* static/images/",
+    "copy:media": "cp -r assets/media/* static/media/",
+    "copy:styles": "cp -r styles/* static/styles/",
     "zola:serve": "zola serve --port 8080",
     "zola:serve:ext": "zola serve --interface 0.0.0.0 --base-url $(ipconfig getifaddr en0)",
     "zola:build": "zola build",
     "test": "deno test -A tests/",
     "common": {
       "dependencies": [
-        "copy:assets",
+        "copy:images",
+        "copy:media",
+        "copy:styles",
         "build:scripts",
         "copy:fuse",
         "copy:font:outfit:files"
       ]
     },
-    "init": "mkdir -p static/fonts static/images static/media && deno task common",
+    "init": "mkdir -p static/fonts static/images static/media static/styles && deno task common",
     "sync:assets": "cd assets/media && git add . && git commit -m 'feat: update assets' && git push origin main && cd ../.. && git add assets/media && git commit -m 'chore: update assets submodule reference'",
     "dev": "deno task init && deno task zola:serve",
     "dev:ext": "deno task init && deno task zola:serve:ext",
