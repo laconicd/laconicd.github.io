@@ -1,10 +1,9 @@
 {
   "tasks": {
     "init": "nu tools/setup.nu",
-    "build:scripts": "nu tools/bundle.nu --minify",
+    "build:scripts": "nu tools/bundle.nu",
     "sync:assets": "nu tools/sync-assets.nu",
-    "zola:serve": "zola serve --port 8080",
-    "zola:serve:ext": "zola serve --interface 0.0.0.0 --base-url $(ipconfig getifaddr en0)",
+    "zola:serve": "zola serve --interface 0.0.0.0 --base-url $(ipconfig getifaddr en0)",
     "zola:build": "zola build",
     "test": "deno test -A tests/",
     "dev": "deno task init && deno task build:scripts && deno task zola:serve",
