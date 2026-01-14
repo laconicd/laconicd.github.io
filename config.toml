@@ -21,8 +21,8 @@ definition_list = true
 
 [markdown.highlighting]
 style = "class"
-light_theme = "github-light"
-dark_theme = "github-dark"
+light_theme = "catppuccin-latte"
+dark_theme = "catppuccin-macchiato"
 
 [search]
 include_title = true
