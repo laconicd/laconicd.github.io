@@ -33,10 +33,16 @@ include_content = true
 index_format = "fuse_javascript"
 
 [extra]
-hero_title = "Writings"
-hero_subtitle = "The joy of learning, daily insights, and records of deep exploration."
+hero_title = "Curiosity & Exploration."
+hero_subtitle = "A collection of diverse thoughts, from technical deep dives to the nuances of daily learning."
 default_image = "images/default-post.jpg"
 date_format = "%B %d, %Y"
 author_name = "laconicd"
 author_role = "Writer & Learner"
 author_avatar = "images/avatar.svg"
+posts_subtitle = "A journey through varied interests. Documenting the process of learning and the insights found along the way."
+categories_subtitle = "Organizing thoughts into themes. Finding clarity through categorized exploration."
+tags_subtitle = "Tracing the threads of curiosity. Navigate through specific topics and keywords."
+github = "https://github.com/laconicd"
+twitter = "https://twitter.com/laconicd"
+linkedin = "https://linkedin.com/in/laconicd"

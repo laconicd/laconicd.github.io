@@ -18,7 +18,7 @@
 
     <div class="content-area">
       <div class="meta">
-        <time datetime="{{ page.date }}">{{ page.date | date(format="%b %d, %Y") }}</time>
+        <time datetime="{{ page.date }}">{{ page.date | date(format=config.extra.date_format) }}</time>
         <span class="dot">•</span>
         <span>{{ page.reading_time }} min read</span>
       </div>

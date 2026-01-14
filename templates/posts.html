@@ -5,7 +5,7 @@
 <div class="app-posts">
   <header class="app-posts-header">
     <h1>{{ section.title }}</h1>
-    <p>A journey through varied interests. Documenting the process of learning and the insights found along the way.</p>
+    <p>{{ config.extra.posts_subtitle }}</p>
   </header>
 
   {% set blog_section = get_section(path="posts/_index.md") %}
