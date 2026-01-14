@@ -1,13 +1,15 @@
 {
   "tasks": {
-    "main:build": "deno bundle --platform browser --minify --sourcemap=linked --outdir static/ scripts/main.ts",
+    "build:scripts": "deno bundle src/scripts/*.ts --outdir static/scripts --minify --platform browser",
     "copy:fuse": "cp node_modules/fuse.js/dist/fuse.min.mjs static/",
     "copy:font:outfit:files": "cp -r node_modules/@fontsource-variable/outfit/files static/fonts/",
     "zola:serve": "zola serve --port 8080",
     "zola:serve:ext": "zola serve --interface 0.0.0.0 --base-url $(ipconfig getifaddr en0)",
     "zola:build": "zola build",
+    "test": "deno test -A tests/",
     "common": {
       "dependencies": [
+        "build:scripts",
         "copy:fuse",
         "copy:font:outfit:files"
       ]
