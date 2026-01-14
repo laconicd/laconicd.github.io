@@ -17,6 +17,9 @@
         <loc>https://laconicd.github.io/categories/english-study/</loc>
     </url>
     <url>
+        <loc>https://laconicd.github.io/categories/internal/</loc>
+    </url>
+    <url>
         <loc>https://laconicd.github.io/categories/test/</loc>
     </url>
     <url>
@@ -30,6 +33,9 @@
     </url>
     <url>
         <loc>https://laconicd.github.io/page/3/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/page/4/</loc>
     </url>
     <url>
         <loc>https://laconicd.github.io/posts/</loc>
@@ -71,6 +77,10 @@
     </url>
     <url>
         <loc>https://laconicd.github.io/posts/page/2/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/posts/template-variable-test/</loc>
+        <lastmod>2026-01-14</lastmod>
     </url>
     <url>
         <loc>https://laconicd.github.io/posts/test-post-1/</loc>
@@ -167,6 +177,9 @@
     </url>
     <url>
         <loc>https://laconicd.github.io/tags/communication/</loc>
+    </url>
+    <url>
+        <loc>https://laconicd.github.io/tags/config/</loc>
     </url>
     <url>
         <loc>https://laconicd.github.io/tags/cs/</loc>
