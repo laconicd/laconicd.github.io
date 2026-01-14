@@ -10,23 +10,12 @@
   {% include "partials/init-feat.html" %}
 
   <script>
-    (function () {
-      const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dim' : 'lofi');
-      document.documentElement.setAttribute('data-theme', theme);
-      const link = document.createElement('link');
-      link.id = 'syntax-theme';
-      link.rel = 'stylesheet';
-      const darkUrl = "{{ get_url(path='giallo-dark.css') | safe }}";
-      const lightUrl = "{{ get_url(path='giallo-light.css') | safe }}";
-      link.href = theme === 'dim' ? darkUrl : lightUrl;
-      document.head.appendChild(link);
-
-      window.__SYNTAX_THEME_URLS__ = {
-        dim: darkUrl,
-        lofi: lightUrl
-      };
-    })();
+    window.__SYNTAX_THEME_URLS__ = {
+      dim: "{{ get_url(path='giallo-dark.css') | safe }}",
+      lofi: "{{ get_url(path='giallo-light.css') | safe }}"
+    };
   </script>
+  <script src="{{ get_url(path='scripts/theme.js') | safe }}"></script>
 
   {% set title = config.title %}
   {% set description = config.description %}
@@ -87,36 +76,7 @@
     {% include "partials/speed-dial.html" %}
   </div>
 
-  <script>
-    const syncThemeControllers = () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const isDark = currentTheme === 'dim';
-      document.querySelectorAll('.theme-controller').forEach(el => {
-        el.checked = isDark;
-      });
-    };
-
-    document.addEventListener('DOMContentLoaded', syncThemeControllers);
-    window.addEventListener('page:updated', syncThemeControllers);
-
-    document.addEventListener('change', (e) => {
-      if (e.target.classList.contains('theme-controller')) {
-        const isDark = e.target.checked;
-        const newTheme = isDark ? 'dim' : 'lofi';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-
-        const link = document.getElementById('syntax-theme');
-        if (link && window.__SYNTAX_THEME_URLS__) {
-          link.href = window.__SYNTAX_THEME_URLS__[newTheme];
-        }
-
-        document.querySelectorAll('.theme-controller').forEach(el => {
-          if (el !== e.target) el.checked = isDark;
-        });
-      }
-    });
-  </script>
+  <script src="{{ get_url(path='scripts/main.js') | safe }}"></script>
 </body>
 
 </html>
