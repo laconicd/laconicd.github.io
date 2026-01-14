@@ -1,1 +1,2 @@
 (function(){let e=document.getElementById("post-share-btn"),t=document.getElementById("share_modal");e&&(e.onclick=async()=>{try{await navigator.clipboard.writeText(window.location.href);let o=e.querySelector(".label"),n=o.innerText;e.classList.add("copied"),o.innerText="Copied!",t&&t.showPopover&&t.showPopover(),setTimeout(()=>{e.classList.remove("copied"),o.innerText=n},2e3)}catch(o){console.error(o)}})})();
+//# sourceMappingURL=post.js.map

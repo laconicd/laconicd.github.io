@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/scripts/post.ts"],
+  "sourcesContent": ["/**\n * Post page logic (Sharing, Navigation, etc.)\n */\n(function() {\n  const shareBtn = document.getElementById('post-share-btn');\n  const shareModal = document.getElementById('share_modal');\n  if (shareBtn) {\n    shareBtn.onclick = async () => {\n      try {\n        await navigator.clipboard.writeText(window.location.href);\n        \n        const label = shareBtn.querySelector('.label');\n        const originalText = label.innerText;\n        shareBtn.classList.add('copied');\n        label.innerText = 'Copied!';\n        \n        if (shareModal && shareModal.showPopover) shareModal.showPopover();\n\n        setTimeout(() => {\n          shareBtn.classList.remove('copied');\n          label.innerText = originalText;\n        }, 2000);\n      } catch (err) { \n        console.error(err);\n      }\n    };\n  }\n})();\n"],
+  "mappings": "CAGC,UAAA,CACC,IAAMA,EAAW,SAAS,eAAe,gBAAA,EACnCC,EAAa,SAAS,eAAe,aAAA,EACvCD,IACFA,EAAS,QAAU,SAAA,CACjB,GAAI,CACF,MAAM,UAAU,UAAU,UAAU,OAAO,SAAS,IAAI,EAExD,IAAME,EAAQF,EAAS,cAAc,QAAA,EAC/BG,EAAeD,EAAM,UAC3BF,EAAS,UAAU,IAAI,QAAA,EACvBE,EAAM,UAAY,UAEdD,GAAcA,EAAW,aAAaA,EAAW,YAAW,EAEhE,WAAW,IAAA,CACTD,EAAS,UAAU,OAAO,QAAA,EAC1BE,EAAM,UAAYC,CACpB,EAAG,GAAA,CACL,OAASC,EAAK,CACZ,QAAQ,MAAMA,CAAA,CAChB,CACF,EAEJ,GAAC",
+  "names": ["shareBtn", "shareModal", "label", "originalText", "err"]
+}
