@@ -1,35 +1,14 @@
 {
   "tasks": {
-    "build:scripts:theme": "deno bundle --platform browser --minify -o static/scripts/theme.js scripts/theme.ts",
-    "build:scripts:main": "deno bundle --platform browser --minify -o static/scripts/main.js scripts/main.ts",
-    "build:scripts:post": "deno bundle --platform browser --minify -o static/scripts/post.js scripts/post.ts",
-    "build:scripts:speed-dial": "deno bundle --platform browser --minify -o static/scripts/speed-dial.js scripts/speed-dial.ts",
-    "build:scripts:search": "deno bundle --platform browser --minify -o static/scripts/search.js scripts/search.ts",
-    "build:scripts": "deno bundle --platform browser --minify --outdir static/scripts scripts/*.ts",
-    "copy:fuse": "cp node_modules/fuse.js/dist/fuse.min.mjs static/",
-    "copy:font:outfit:files": "cp -r node_modules/@fontsource-variable/outfit/files static/fonts/outfit",
-    "copy:images": "cp -r assets/images/* static/images/",
-    "copy:media": "cp -r assets/media/* static/media/",
-    "copy:styles": "cp -r styles/* static/styles/",
+    "init": "nu tools/setup.nu",
+    "build:scripts": "nu tools/bundle.nu --minify",
+    "sync:assets": "nu tools/sync-assets.nu",
     "zola:serve": "zola serve --port 8080",
     "zola:serve:ext": "zola serve --interface 0.0.0.0 --base-url $(ipconfig getifaddr en0)",
     "zola:build": "zola build",
     "test": "deno test -A tests/",
-    "common": {
-      "dependencies": [
-        "copy:images",
-        "copy:media",
-        "copy:styles",
-        "build:scripts",
-        "copy:fuse",
-        "copy:font:outfit:files"
-      ]
-    },
-    "init": "mkdir -p static/fonts static/images static/media static/styles && deno task common",
-    "sync:assets": "cd assets/media && git add . && git commit -m 'feat: update assets' && git push origin main && cd ../.. && git add assets/media && git commit -m 'chore: update assets submodule reference'",
-    "dev": "deno task init && deno task zola:serve",
-    "dev:ext": "deno task init && deno task zola:serve:ext",
-    "prd": "deno task init && deno task zola:build"
+    "dev": "deno task init && deno task build:scripts && deno task zola:serve",
+    "prd": "deno task init && deno task build:scripts && deno task zola:build"
   },
   "compilerOptions": {
     "lib": [
