@@ -9,7 +9,7 @@ tags = ["test", "config", "zola"]
 categories = ["Internal"]
 
 [extra]
-image = "test-visual.jpg"
+# image = "test-visual.jpg"
 +++
 
 # Template Variable Test
