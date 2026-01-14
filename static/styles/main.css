@@ -14,3 +14,5 @@
 @import "components/index.css";
 @import "components/posts.css";
 @import "components/post.css";
+@import "components/categories.css";
+@import "components/tags.css";
