@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "build:scripts": "deno bundle src/scripts/*.ts --outdir static/scripts --minify --platform browser",
+    "build:scripts": "deno bundle src/scripts/*.ts --outdir static/scripts --minify --platform browser --sourcemap=linked",
     "copy:fuse": "cp node_modules/fuse.js/dist/fuse.min.mjs static/",
     "copy:font:outfit:files": "cp -r node_modules/@fontsource-variable/outfit/files static/fonts/",
     "zola:serve": "zola serve --port 8080",
