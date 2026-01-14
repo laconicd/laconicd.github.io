@@ -7,7 +7,7 @@
     "build:scripts:search": "deno bundle --platform browser --minify -o static/scripts/search.js scripts/search.ts",
     "build:scripts": "deno bundle --platform browser --minify --outdir static/scripts scripts/*.ts",
     "copy:fuse": "cp node_modules/fuse.js/dist/fuse.min.mjs static/",
-    "copy:font:outfit:files": "cp -r node_modules/@fontsource-variable/outfit/files static/fonts/",
+    "copy:font:outfit:files": "cp -r node_modules/@fontsource-variable/outfit/files static/fonts/outfit",
     "copy:images": "cp -r assets/images/* static/images/",
     "copy:media": "cp -r assets/media/* static/media/",
     "copy:styles": "cp -r styles/* static/styles/",
