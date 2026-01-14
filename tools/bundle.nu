@@ -1,30 +1,12 @@
 #!/usr/bin/env nu
 
-def main [--minify] {
+def main [] {
     print "📦 Bundling scripts..."
-    
+    print (pwd)
+
     let out_dir = "static/scripts"
-    if not ($out_dir | path exists) { mkdir $out_dir }
-
-    let flags = if $minify {
-        ["--platform" "browser" "--minify"]
-    } else {
-        ["--platform" "browser"]
-    }
-
-    # Bundle all TS files in scripts/
-    let scripts = (ls scripts/*.ts).name
-    
-    for script in $scripts {
-        let name = ($script | path parse).stem
-        print $"  ⚡ Bundling ($name)..."
-        
-        # Construct output path
-        let output = $"($out_dir)/($name).js"
-        
-        # Execute deno bundle
-        deno bundle ...$flags -o $output $script
-    }
+    let scripts = (glob scripts/*.ts)
+    deno bundle --platform browser --minify --sourcemap=linked --outdir $out_dir ...$scripts
 
     print "✅ All scripts bundled."
 }
