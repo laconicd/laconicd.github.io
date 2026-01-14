@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>The Blog</title>
     <subtitle>Deeply exploring everything of interest and freely sharing records of learning and growth.</subtitle>
     <link rel="self" type="application/atom+xml" href="https://laconicd.github.io/atom.xml"/>
@@ -7,7 +7,7 @@
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2026-01-06T00:00:00+00:00</updated>
     <id>https://laconicd.github.io/atom.xml</id>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Long Scroll &amp; Design Test Post</title>
         <published>2026-01-06T00:00:00+00:00</published>
         <updated>2026-01-06T00:00:00+00:00</updated>
@@ -77,7 +77,7 @@
 </content>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Zola 요약 기능 마스터하기</title>
         <published>2026-01-03T00:00:00+00:00</published>
         <updated>2026-01-03T00:00:00+00:00</updated>
@@ -96,7 +96,7 @@
 Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견하면 여기까지를 &lt;code&gt;page.summary&lt;&#x2F;code&gt;로 저장합니다.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 10 (toml)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -114,7 +114,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;toml&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 11 (yaml)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -132,7 +132,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;yaml&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 12 (typescript)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -150,7 +150,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;typescript&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 13 (javascript)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -168,7 +168,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;javascript&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 14 (python)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -186,7 +186,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;python&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 15 (rust)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -204,7 +204,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;rust&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 16 (bash)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -222,7 +222,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;bash&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 17 (json)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -240,7 +240,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;json&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 18 (css)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -258,7 +258,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;css&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 19 (markdown)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -276,7 +276,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;markdown&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 2 (typescript)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -294,7 +294,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;typescript&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 20 (toml)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -312,7 +312,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;toml&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 3 (javascript)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -330,7 +330,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;javascript&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 4 (python)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -348,7 +348,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;python&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 5 (rust)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -366,7 +366,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;rust&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 6 (bash)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -384,7 +384,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;bash&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 7 (json)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -402,7 +402,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;json&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 8 (css)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -420,7 +420,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;css&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Test Post 9 (markdown)</title>
         <published>2026-01-02T00:00:00+00:00</published>
         <updated>2026-01-02T00:00:00+00:00</updated>
@@ -438,7 +438,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;This post demonstrates syntax highlighting for &lt;strong&gt;markdown&lt;&#x2F;strong&gt; using &lt;strong&gt;Zola&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>영어 공부 1주차: 내 상태와 감정 (내면 소통)</title>
         <published>2025-12-29T00:00:00+00:00</published>
         <updated>2025-12-29T00:00:00+00:00</updated>
@@ -456,7 +456,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;영어 공부의 시작은 거창한 비즈니스 대화가 아니라, &#x27;지금 내 기분&#x27;을 정확히 표현하는 것에서 시작합니다. 1주차에는 나 자신과 대화하며 내 상태를 즉각적으로 인지하고 표현하는 핵심 문장들을 학습합니다.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>영어 공부 2주차: 리액션과 의사표현 (사회적 소통)</title>
         <published>2025-12-29T00:00:00+00:00</published>
         <updated>2025-12-29T00:00:00+00:00</updated>
@@ -474,7 +474,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;사회 생활에서 가장 중요한 것은 내 말을 하는 것만큼이나 상대방의 말에 &#x27;어떻게 반응하느냐&#x27;입니다. 2주차에는 원어민들이 일상적으로 사용하는 세련된 리액션과, 내 주장을 정중하지만 명확하게 전달하는 법을 학습합니다.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>영어 공부 3주차: 일상과 고민 (생활 소통)</title>
         <published>2025-12-29T00:00:00+00:00</published>
         <updated>2025-12-29T00:00:00+00:00</updated>
@@ -492,7 +492,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;3주차에는 우리 삶의 더 깊숙한 곳으로 들어갑니다. 커리어에 대한 진지한 고민부터 오늘 점심 메뉴 선택까지, 내가 처한 구체적인 문제와 일상의 작은 기쁨들을 영어로 생생하게 표현하는 연습을 합니다.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>영어 공부 4주차: 마법의 뼈대 패턴 (확장 소통)</title>
         <published>2025-12-29T00:00:00+00:00</published>
         <updated>2025-12-29T00:00:00+00:00</updated>
@@ -510,7 +510,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;단순 암기는 한계가 있습니다. 4주차에는 문장을 만드는 &#x27;틀(Pattern)&#x27;을 익힙니다. 이 뼈대만 제대로 세워두면 단어 몇 개만 바꿔 끼우는 것만으로도 수백 가지의 문장을 자유자재로 응용할 수 있게 됩니다.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>영어 공부 5주차: 고급 대화와 깊은 생각 (심화 소통)</title>
         <published>2025-12-29T00:00:00+00:00</published>
         <updated>2025-12-29T00:00:00+00:00</updated>
@@ -528,7 +528,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;드디어 마지막 주차입니다. 이제는 일상의 대화를 넘어, 가치관과 철학을 공유하고 원어민들이 사용하는 미묘한 뉘앙스를 완성할 차례입니다. 한 차원 높은 수준의 영어를 통해 진정한 소통의 즐거움을 느껴보세요.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>Git 내부 동작 원리 파헤치기: 스냅샷부터 팩파일까지</title>
         <published>2025-12-24T00:00:00+00:00</published>
         <updated>2025-12-24T00:00:00+00:00</updated>
@@ -546,7 +546,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;Git을 사용하면서 흔히 마주치는 용어들과 그 뒤에 숨겨진 효율적인 데이터 관리 구조를 정리합니다. 단순히 명령어를 외우는 것을 넘어, Git이 데이터를 바라보는 관점을 이해하면 훨씬 더 강력하게 도구를 제어할 수 있습니다.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>실전 Git 워크플로우 연습 가이드: Rebase와 Merge 혼합 전략</title>
         <published>2025-12-24T00:00:00+00:00</published>
         <updated>2025-12-24T00:00:00+00:00</updated>
@@ -564,7 +564,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;협업의 핵심인 Git 워크플로우, 제대로 활용하고 계신가요? 이 문서는 현대적인 개발팀과 오픈소스 프로젝트에서 널리 사용되는 전략을 마스터하기 위한 실무 중심의 가이드입니다.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>View Transitions API Test</title>
         <published>2025-12-22T00:00:00+00:00</published>
         <updated>2025-12-22T00:00:00+00:00</updated>
@@ -582,7 +582,7 @@ Zola는 이 아래에 있는 &lt;code&gt;more&lt;&#x2F;code&gt; 주석을 발견
 &lt;p&gt;최신 브라우저에서 제공하는 &lt;strong&gt;View Transitions API&lt;&#x2F;strong&gt;를 테스트하기 위한 샘플 포스트입니다. 별도의 무거운 라이브러리 없이도 네이티브 레벨에서 제공하는 우아한 슬라이드 및 페이드 효과를 확인해보세요.&lt;&#x2F;p&gt;</summary>
         
     </entry>
-    <entry xml:lang="ko">
+    <entry xml:lang="en">
         <title>About Me</title>
         <published>2025-01-01T00:00:00+00:00</published>
         <updated>2025-01-01T00:00:00+00:00</updated>
