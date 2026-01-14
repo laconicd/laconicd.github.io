@@ -1,7 +1,6 @@
 base_url = "https://laconicd.github.io"
 title = "The Blog"
 description = "Deeply exploring everything of interest and freely sharing records of learning and growth."
-default_language = "ko"
 build_search_index = true
 generate_feeds = true
 feed_filenames = ["atom.xml", "rss.xml"]
