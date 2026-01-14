@@ -3,7 +3,7 @@
     <channel>
       <title>The Blog</title>
       <link>https://laconicd.github.io</link>
-      <description>A blog about Rust, Zola, and modern web development.</description>
+      <description>Deeply exploring everything of interest and freely sharing records of learning and growth.</description>
       <generator>Zola</generator>
       <language>ko</language>
       <atom:link href="https://laconicd.github.io/rss.xml" rel="self" type="application/rss+xml"/>
