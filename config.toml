@@ -1,6 +1,6 @@
 base_url = "https://laconicd.github.io"
 title = "The Blog"
-description = "A blog about Rust, Zola, and modern web development."
+description = "Deeply exploring everything of interest and freely sharing records of learning and growth."
 default_language = "ko"
 build_search_index = true
 generate_feeds = true
@@ -35,9 +35,9 @@ index_format = "fuse_javascript"
 
 [extra]
 hero_title = "Writings"
-hero_subtitle = "The latest news, technologies, and resources from our team."
+hero_subtitle = "The joy of learning, daily insights, and records of deep exploration."
 default_image = "images/default-post.jpg"
 date_format = "%B %d, %Y"
-author_name = "My Name"
-author_role = "Writer"
+author_name = "laconicd"
+author_role = "Writer & Learner"
 author_avatar = "images/avatar.svg"
