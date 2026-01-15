@@ -1,17 +1,10 @@
 {% import "macros/icons.html" as icons %}
+{% import "macros/image.html" as image_macros %}
 
 <div class="app-post-card">
   <a href="{{ page.path }}" class="card-link">
     <div class="thumb">
-      {% if page.extra.image %}
-      {% set path_parts = page.relative_path | split(pat="/") %}
-      {% set dir_path = path_parts | slice(end=-1) | join(sep="/") %}
-      {% set image_path = "static/media/" ~ dir_path ~ "/" ~ page.extra.image %}
-      {% set mini_thumb = resize_image(path=image_path, width=200, height=200, op="fill", format="webp") %}
-      <img src="{{ mini_thumb.url }}" alt="{{ page.title }}" loading="lazy" />
-      {% else %}
-      <img src="{{ get_url(path='images/default-post.jpg') }}" alt="" style="opacity: 0.4;" loading="lazy" />
-      {% endif %}
+      <img src="{{ image_macros::get_url(page=page, width=200, height=200) }}" alt="{{ page.title }}" loading="lazy" />
     </div>
     <div class="body">
       <div class="meta">{{ page.date | date(format=config.extra.date_format) }}</div>
