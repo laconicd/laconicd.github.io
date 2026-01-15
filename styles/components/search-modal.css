@@ -1,11 +1,11 @@
 #search_modal {
   position: fixed;
-  inset: 0 !important;
-  margin: 0 !important;
+  inset: 0;
+  margin: 0;
   width: 100dvw;
   height: 100dvh;
-  background: transparent !important;
-  border: none !important;
+  background: transparent;
+  border: none;
   padding: 0;
   overflow: visible;
   display: none;
@@ -79,19 +79,19 @@
   input {
     flex: 1;
     background: transparent;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
+    border: none;
+    outline: none;
+    box-shadow: none;
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--color-base-content);
-    -webkit-appearance: none !important;
-    appearance: none !important;
+    -webkit-appearance: none;
+    appearance: none;
 
     &:focus {
-      outline: none !important;
-      box-shadow: none !important;
-      border: none !important;
+      outline: none;
+      box-shadow: none;
+      border: none;
     }
 
     &::-webkit-search-decoration,

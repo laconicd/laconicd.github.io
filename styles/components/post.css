@@ -192,7 +192,7 @@
     }
 
     pre {
-      background: var(--color-base-300) !important;
+      background: var(--color-base-300);
       padding: clamp(1.25rem, 4vw, 2rem);
       border-radius: var(--radius-xl);
       margin: 2rem 0;

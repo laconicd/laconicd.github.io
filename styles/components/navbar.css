@@ -304,19 +304,19 @@
   @media (width >= 40rem) {
     .menu-toggle-btn,
     .sidebar-backdrop {
-      display: none !important;
+      display: none;
     }
 
     .nav-center {
-      display: flex !important;
-      position: static !important;
-      background: transparent !important;
-      border: none !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      width: auto !important;
-      height: auto !important;
-      transform: none !important;
+      display: flex;
+      position: static;
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
+      width: auto;
+      height: auto;
+      transform: none;
       align-items: center;
       gap: var(--space-1);
       overflow: visible;
