@@ -5,7 +5,7 @@
     {% set image_path = "static/media/" ~ dir_path ~ "/" ~ page.extra.image %}
   {% else %}
     {# Deterministic random choice based on title length #}
-    {% set random_index = page.title | length % 10 + 1 %}
+    {% set random_index = page.title | length % 29 + 1 %}
     {% set image_path = "static/images/random/" ~ random_index ~ ".jpg" %}
   {% endif %}
   
