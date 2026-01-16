@@ -2,8 +2,8 @@
   position: fixed;
   inset: 0;
   margin: 0;
-  width: 100dvw;
-  height: 100dvh;
+  inline-size: 100dvw;
+  block-size: 100dvh;
   background: transparent;
   border: none;
   padding: 0;
@@ -35,8 +35,8 @@
   .search-box {
     position: relative;
     z-index: 2;
-    width: clamp(20rem, 90vw, 40rem);
-    max-height: 80dvh;
+    inline-size: clamp(20rem, 90vw, 40rem);
+    max-block-size: 80dvh;
     background-color: var(--color-base-100);
     border-radius: 2.5rem;
     box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.3);
@@ -65,8 +65,9 @@
   }
 
   .search-header {
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
+    padding-block: 1.5rem;
+    padding-inline: 2rem;
+    border-block-end: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -113,8 +114,8 @@
     padding: 1rem;
     display: grid;
     gap: 0.5rem;
-    min-height: 10rem;
-    max-height: 50dvh;
+    min-block-size: 10rem;
+    max-block-size: 50dvh;
     scrollbar-width: none;
     &::-webkit-scrollbar {
       display: none;
@@ -122,7 +123,8 @@
   }
 
   .result-item {
-    padding: 1.25rem 1.5rem;
+    padding-block: 1.25rem;
+    padding-inline: 1.5rem;
     border-radius: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -151,10 +153,12 @@
   }
 
   .empty-state {
-    padding: 4rem 2rem;
+    padding-block: 4rem;
+    padding-inline: 2rem;
     text-align: center;
     opacity: 0.3;
     font-weight: 700;
     font-style: italic;
   }
+}
 }

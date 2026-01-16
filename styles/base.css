@@ -9,7 +9,7 @@ body {
   background-color: var(--color-base-100);
   color: var(--color-base-content);
   overflow-x: hidden;
-  min-height: 100vh;
+  min-block-size: 100vh;
 }
 
 /* Scroll lock when popover is open */

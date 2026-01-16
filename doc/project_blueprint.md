@@ -61,21 +61,42 @@
 
 ## 5. Key Systems & Conventions
 
-### 4.1 Image Handling (Random Fallback System)
+### 5.1 Image Handling (Random Fallback System)
 - 포스트 프론트매터에 `image`가 지정되지 않은 경우, 랜덤 이미지를 사용합니다.
 - **로직**: `templates/macros/image.html` 매크로를 사용.
 - **방식**: 포스트 제목의 길이를 이미지 총 개수(현재 29개)로 나눈 나머지를 사용하여 포스트마다 고정된 랜덤 이미지를 할당 (`random_index = title_length % 29 + 1`).
 - **리사이징**: 모든 이미지는 `resize_image` 필터를 통해 최적화된 WebP 포맷으로 제공됩니다.
 
-### 4.2 Git Submodule
+### 5.2 Git Submodule
 - `assets/media`는 별도의 저장소(`laconicd/assets`)를 서브모듈로 사용합니다.
 - 포스트 관련 이미지는 이 서브모듈 내에 폴더별로 관리하는 것이 원칙입니다.
 
-### 4.3 CSS Convention
+### 5.3 CSS Convention
 - **Cascade Layers**: `base`, `components`, `utilities` 등 레이어를 사용하여 우선순위를 관리합니다.
+- **Logical Properties**: 다국어 대응 및 현대적인 레이아웃 구성을 위해 물리적 속성 대신 논리적 속성 사용을 원칙으로 합니다.
+  | 분류 | 물리적 속성 (Physical) | 논리적 속성 (Logical) | 단축 속성 (Shorthand) |
+  | :--- | :--- | :--- | :--- |
+  | 크기 (Size) | width, height | inline-size, block-size | - |
+  | | min/max-width | min/max-inline-size | - |
+  | | min/max-height | min/max-block-size | - |
+  | 여백 (Margin) | margin-top / bottom | margin-block-start / end | margin-block |
+  | | margin-left / right | margin-inline-start / end | margin-inline |
+  | 안쪽 여백 (Padding) | padding-top / bottom | padding-block-start / end | padding-block |
+  | | padding-left / right | padding-inline-start / end | padding-inline |
+  | 테두리 (Border) | border-top / bottom | border-block-start / end | border-block |
+  | | border-left / right | border-inline-start / end | border-inline |
+  | 모서리 (Radius) | border-top-left-radius | border-start-start-radius | - |
+  | | border-top-right-radius | border-start-end-radius | - |
+  | | border-bottom-left-radius | border-end-start-radius | - |
+  | | border-bottom-right-radius | border-end-end-radius | - |
+  | 위치 (Inset) | top / bottom | inset-block-start / end | inset-block |
+  | | left / right | inset-inline-start / end | inset-inline |
+  | | top/bottom/left/right | inset | - |
+  | 정렬 (Align) | text-align: left / right | text-align: start / end | - |
+  | | float: left / right | float: inline-start / end | - |
 - **Naming**: 가독성 중심의 클래스 네이밍을 사용하며, 특정 프레임워크에 의존하지 않습니다.
 
-## 5. Instructions for LLM Agents
+## 6. Instructions for LLM Agents
 1. **분석**: 변경 사항을 제안하기 전 반드시 `config.toml`과 `deno.json`을 먼저 확인하십시오.
 2. **코드 수정**: 템플릿 수정 시 중복 로직이 발생하지 않도록 `templates/macros/`에 공통 로직이 있는지 확인하십시오.
 3. **이미지**: 새로운 이미지를 추가할 때는 `static/media/` 구조를 따르고, 폴백 시스템은 `image.html` 매크로를 수정하십시오.

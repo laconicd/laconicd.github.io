@@ -1,19 +1,19 @@
 .container {
-  max-width: var(--container-width);
+  max-inline-size: var(--container-width);
   margin-inline: auto;
   padding-inline: var(--page-padding);
-  width: 100%;
+  inline-size: 100%;
 }
 
 .app-shell {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-block-size: 100vh;
 }
 
 .app-shell>header {
   position: sticky;
-  top: 0;
+  inset-block-start: 0;
   z-index: 10;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .app-shell>footer {
-  margin-top: auto;
+  margin-block-start: auto;
 }
 
 /* Shared Utilities */
@@ -35,8 +35,8 @@
   background: oklch(from var(--color-base-content) l c h / 0.03);
   border: 1px solid oklch(from var(--color-base-content) l c h / 0.08);
   color: var(--color-base-content);
-  width: 2.25rem;
-  height: 2.25rem;
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
 }
 
 .card-hover {

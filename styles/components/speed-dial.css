@@ -1,8 +1,8 @@
 @scope (.app-speed-dial) {
   :scope {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    inset-block-end: 2rem;
+    inset-inline-end: 2rem;
     z-index: 60;
     display: flex;
     align-items: center;
@@ -10,8 +10,8 @@
   }
 
   .fab-trigger {
-    width: 4rem;
-    height: 4rem;
+    inline-size: 4rem;
+    block-size: 4rem;
     border-radius: 50%;
     background-color: var(--color-base-content);
     color: var(--color-base-100);
@@ -47,8 +47,8 @@
 
   .dial-item {
     position: absolute;
-    width: 3.5rem;
-    height: 3.5rem;
+    inline-size: 3.5rem;
+    block-size: 3.5rem;
     border-radius: 50%;
     background-color: var(--color-base-100);
     color: var(--color-base-content);
