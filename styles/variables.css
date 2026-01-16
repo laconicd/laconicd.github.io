@@ -1,14 +1,34 @@
 :root {
   /* Common variables */
+  /* 1. 표준 (Standard): 가장 무난하고 자연스러운 움직임 */
+  /* 용도: 화면 내 요소의 위치 이동, 크기 변화 등 대부분의 상황 */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* 2. 등장 (Entering): 외부에서 안으로 빠르게 나타날 때 */
+  /* 효과: 사용자의 클릭에 즉각 반응하는 느낌 (끝에서 살짝 감속) */
+  /* 용도: 사이드바 열기, 팝업창 등장, 드롭다운 메뉴 */
   --ease-in: cubic-bezier(0, 0, 0.2, 1);
+
+  /* 3. 퇴장 (Exiting): 안에서 외부로 빠르게 사라질 때 */
+  /* 효과: 처음엔 머뭇거리다 나갈 때 가속도가 붙어 시원하게 사라짐 */
+  /* 용도: 창 닫기, 알림 메시지 삭제, 메뉴 접기 */
   --ease-out: cubic-bezier(0.4, 0, 1, 1);
 
-  --shadow-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  --shadow-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  --shadow-3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  --shadow-4: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  --shadow-5: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  /* 4. 반동 (Bouncy/Back): 쫀득하게 튕기는 탄성 효과 */
+  /* 효과: 목적지보다 살짝 더 갔다가 되돌아오는 자석 같은 느낌 */
+  /* 용도: 강조하고 싶은 버튼, 아이콘 호버(Hover), 생동감 있는 UI */
+  --ease-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* 5. 강조 (Sharp/Accent): 묵직하게 시작해서 채찍처럼 휘두르는 효과 */
+  /* 효과: 초반엔 아주 느리다가 끝에서 굉장히 빠르게 목적지에 도착 */
+  /* 용도: 대형 이미지 슬라이드 전환, 페이지 전체 섹션 이동 */
+  --ease-sharp: cubic-bezier(0.7, 0, 0.3, 1);
+
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  --shadow-3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  --shadow-4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  --shadow-5: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 
   --font-sans: "Outfit Variable", sans-serif;
 
@@ -24,26 +44,46 @@
   --text-xs: 0.75rem;
 
   /* Spacing Scale */
-  --space-0_5: 0.125rem; /* 2px */
-  --space-1: 0.25rem;   /* 4px */
-  --space-1_5: 0.375rem; /* 6px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-2_5: 0.625rem; /* 10px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-3_5: 0.875rem; /* 14px */
-  --space-4: 1rem;      /* 16px */
-  --space-5: 1.25rem;   /* 20px */
-  --space-6: 1.5rem;    /* 24px */
-  --space-7: 1.75rem;   /* 28px */
-  --space-8: 2rem;      /* 32px */
-  --space-9: 2.25rem;   /* 36px */
-  --space-10: 2.5rem;   /* 40px */
-  --space-12: 3rem;     /* 48px */
-  --space-14: 3.5rem;   /* 56px */
-  --space-16: 4rem;     /* 64px */
-  --space-20: 5rem;     /* 80px */
-  --space-24: 6rem;     /* 96px */
-  --space-32: 8rem;     /* 128px */
+  --space-0_5: 0.125rem;
+  /* 2px */
+  --space-1: 0.25rem;
+  /* 4px */
+  --space-1_5: 0.375rem;
+  /* 6px */
+  --space-2: 0.5rem;
+  /* 8px */
+  --space-2_5: 0.625rem;
+  /* 10px */
+  --space-3: 0.75rem;
+  /* 12px */
+  --space-3_5: 0.875rem;
+  /* 14px */
+  --space-4: 1rem;
+  /* 16px */
+  --space-5: 1.25rem;
+  /* 20px */
+  --space-6: 1.5rem;
+  /* 24px */
+  --space-7: 1.75rem;
+  /* 28px */
+  --space-8: 2rem;
+  /* 32px */
+  --space-9: 2.25rem;
+  /* 36px */
+  --space-10: 2.5rem;
+  /* 40px */
+  --space-12: 3rem;
+  /* 48px */
+  --space-14: 3.5rem;
+  /* 56px */
+  --space-16: 4rem;
+  /* 64px */
+  --space-20: 5rem;
+  /* 80px */
+  --space-24: 6rem;
+  /* 96px */
+  --space-32: 8rem;
+  /* 128px */
 
   /* Radius Scale */
   --radius-sm: 0.25rem;
