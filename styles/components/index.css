@@ -32,8 +32,8 @@
 
       margin-block-end: var(--space-6);
 
-      /* 그라디언트 방향도 논리적으로 변경 (to bottom -> to block-end) */
-      background: linear-gradient(to block-end,
+      /* 그라디언트 방향은 표준 물리적 속성 사용 (to block-end는 미지원 브라우저가 많음) */
+      background: linear-gradient(to bottom,
           var(--color-base-content) 50%,
           oklch(from var(--color-base-content) l c h / 0.2));
       -webkit-background-clip: text;

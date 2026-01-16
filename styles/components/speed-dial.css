@@ -102,7 +102,8 @@
   }
 
   .theme-toggle {
-    padding: 0;
+    padding-block: 0;
+    padding-inline: 0;
     overflow: hidden;
     & input {
       display: none;

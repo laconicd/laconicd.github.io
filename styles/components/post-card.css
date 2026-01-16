@@ -8,7 +8,8 @@
     display: flex;
     align-items: center;
     gap: var(--space-6);
-    padding: var(--space-6);
+    padding-block: var(--space-6);
+    padding-inline: var(--space-6);
     border-radius: var(--radius-3xl);
     background: transparent;
     transition: all 0.4s var(--ease-standard);
@@ -94,7 +95,8 @@
 
   @media (width < 48rem) {
     .card-link {
-      padding: var(--space-4);
+      padding-block: var(--space-4);
+      padding-inline: var(--space-4);
       gap: var(--space-4);
     }
     .thumb {
@@ -179,7 +181,8 @@
       display: flex;
       flex-direction: column;
       flex: 1;
-      padding: 0 var(--space-2);
+      padding-block: 0;
+      padding-inline: var(--space-2);
 
       .meta {
         display: flex;
@@ -236,7 +239,8 @@
 
     .footer-area {
       margin-block-start: var(--space-6);
-      padding: 0 var(--space-2);
+      padding-block: 0;
+      padding-inline: var(--space-2);
       display: flex;
       align-items: center;
       gap: var(--space-4);

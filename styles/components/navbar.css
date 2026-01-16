@@ -131,15 +131,18 @@
   @media (width < 40rem) {
     .nav-center {
       /* Popover Styles */
-      margin: 0;
-      padding: 0;
+      margin-block: 0;
+      margin-inline: 0;
+      padding-block: 0;
+      padding-inline: 0;
       border: none;
       inline-size: 100vw;
       block-size: 100dvh;
       max-inline-size: 100vw;
       max-block-size: 100dvh;
       background: transparent;
-      inset: 0;
+      inset-block: 0;
+      inset-inline: 0;
       
       &:popover-open {
         display: block;
@@ -148,7 +151,8 @@
     
     .sidebar-backdrop {
       position: fixed;
-      inset: 0;
+      inset-block: 0;
+      inset-inline: 0;
       background: rgba(0, 0, 0, 0.2);
       backdrop-filter: blur(4px);
       opacity: 0;
@@ -252,7 +256,8 @@
       }
 
       .sidebar-footer {
-        padding: var(--space-8);
+        padding-block: var(--space-8);
+        padding-inline: var(--space-8);
         background: oklch(from var(--color-base-content) l c h / 0.02);
         border-block-start: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
         display: grid;
@@ -314,8 +319,10 @@
       position: static;
       background: transparent;
       border: none;
-      padding: 0;
-      margin: 0;
+      padding-block: 0;
+      padding-inline: 0;
+      margin-block: 0;
+      margin-inline: 0;
       inline-size: auto;
       block-size: auto;
       transform: none;
