@@ -18,6 +18,11 @@
   <!-- theme.js must run early to prevent FOUC -->
   <script src="{{ get_url(path='scripts/theme.js') | safe }}"></script>
 
+  {% if current_url is defined %}
+  {% else %}
+    {% set current_url = config.base_url %}
+  {% endif %}
+
   {% set title = config.title %}
   {% set description = config.description %}
   {% set og_image = get_url(path=config.extra.default_image) %}

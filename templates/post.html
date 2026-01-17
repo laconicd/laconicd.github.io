@@ -6,7 +6,7 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "{{ page.title | replace(from='"', to='\"') | safe }}",
+  "headline": "{{ page.title | replace(from='"', to='\\"') | safe }}",
   "image": [
     "{{ image_macros::get_url(page=page, width=1200, height=630) }}"
   ],
@@ -17,7 +17,7 @@
     "name": "{{ config.extra.author_name }}",
     "url": "{{ config.base_url }}/about/"
   }],
-  "description": "{{ page.summary | default(value=page.description) | striptags | replace(from='"', to='\"') | safe }}"
+  "description": "{{ page.summary | default(value=page.description) | striptags | replace(from='"', to='\\"') | safe }}"
 }
 </script>
 
