@@ -14,11 +14,11 @@
     <hr />
   </div>
 
-  <div class="post-list">
+  <section class="post-list" aria-label="Latest Posts">
     {% set blog_section = get_section(path="posts/_index.md") %}
     {% for page in blog_section.pages | slice(end=10) %}
       {% include "partials/post-card.html" %}
     {% endfor %}
-  </div>
+  </section>
 </div>
 {% endblock content %}

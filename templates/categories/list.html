@@ -10,7 +10,7 @@
     <p>{{ config.extra.categories_subtitle }}</p>
   </div>
 
-  <div class="category-grid">
+  <section class="category-grid" aria-label="All Categories">
     {% for term in terms %}
     <a href="{{ term.path }}" class="category-card">
       <div class="card-content">
@@ -33,6 +33,6 @@
       <div class="decorative-blur"></div>
     </a>
     {% endfor %}
-  </div>
+  </section>
 </div>
 {% endblock content %}

@@ -1,7 +1,7 @@
 {% import "macros/icons.html" as icons %}
 {% import "macros/image.html" as image_macros %}
 
-<div class="app-post-card">
+<article class="app-post-card">
   <a href="{{ page.path }}" class="card-link">
     <div class="thumb">
       <img src="{{ image_macros::get_url(page=page, width=200, height=200) }}" alt="{{ page.title }}" loading="lazy" />
@@ -15,4 +15,4 @@
       {{ icons::arrow_right(size=3) }}
     </div>
   </a>
-</div>
+</article>

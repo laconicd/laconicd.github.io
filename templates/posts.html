@@ -37,11 +37,11 @@
     <hr>
   </div>
 
-  <div class="app-posts-grid">
+  <section class="app-posts-grid" aria-label="All Posts">
     {% for page in blog_section.pages | slice(start=1) %}
     {% include "partials/post-grid-card.html" %}
     {% endfor %}
-  </div>
+  </section>
   {% else %}
   <div style="padding: 8rem 0; text-align: center;">
     <p style="font-size: 1.5rem; font-weight: bold; opacity: 0.2; font-style: italic;">The ink hasn't dried yet...</p>
