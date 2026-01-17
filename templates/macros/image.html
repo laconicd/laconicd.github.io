@@ -12,3 +12,26 @@
   {% set resized = resize_image(path=image_path, width=width, height=height, op=op, format=format) %}
   {{ resized.url | safe }}
 {% endmacro %}
+
+{% macro img(page, width, height, alt="", class="", priority="auto", sizes="100vw") %}
+  {% set src = get_url(page=page, width=width, height=height) %}
+  {% set loading = "lazy" %}
+  {% set decoding = "async" %}
+  {% set fetchpriority = "auto" %}
+
+  {% if priority == "high" %}
+    {% set loading = "eager" %}
+    {% set fetchpriority = "high" %}
+  {% endif %}
+
+  <img 
+    src="{{ src }}" 
+    alt="{{ alt }}" 
+    class="{{ class }}"
+    width="{{ width }}"
+    height="{{ height }}"
+    loading="{{ loading }}"
+    decoding="{{ decoding }}"
+    fetchpriority="{{ fetchpriority }}"
+  />
+{% endmacro %}

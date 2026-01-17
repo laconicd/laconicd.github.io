@@ -2,6 +2,25 @@
 {% import "macros/image.html" as image_macros %}
 
 {% block content %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ page.title | replace(from='"', to='\"') | safe }}",
+  "image": [
+    "{{ image_macros::get_url(page=page, width=1200, height=630) }}"
+  ],
+  "datePublished": "{{ page.date }}",
+  "dateModified": "{{ page.updated | default(value=page.date) }}",
+  "author": [{
+    "@type": "Person",
+    "name": "{{ config.extra.author_name }}",
+    "url": "{{ config.base_url }}/about/"
+  }],
+  "description": "{{ page.summary | default(value=page.description) | striptags | replace(from='"', to='\"') | safe }}"
+}
+</script>
+
 <article class="app-post">
   <!-- Post Header -->
   <header class="post-header">

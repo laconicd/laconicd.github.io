@@ -13,20 +13,23 @@ body {
   min-block-size: 100vh;
 }
 
-:is(h1, h2, h3, h4, h5, h6) {
-  text-wrap: balance;
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: var(--color-primary-content);
+  padding: 1rem 2rem;
+  z-index: 9999;
+  border-radius: 0 0 1rem 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: top 0.3s;
 }
 
-p {
-  text-wrap: pretty;
-}
-
-body {
-  font-family: var(--font-sans);
-  background-color: var(--color-base-100);
-  color: var(--color-base-content);
-  overflow-x: hidden;
-  min-block-size: 100vh;
+.skip-link:focus {
+  top: 0;
 }
 
 :is(h1, h2, h3, h4, h5, h6) {
