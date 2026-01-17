@@ -19,3 +19,4 @@
 @import "components/post.css" layer(components);
 @import "components/categories.css" layer(components);
 @import "components/tags.css" layer(components);
+@import "components/error.css" layer(components);
