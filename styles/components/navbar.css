@@ -114,13 +114,15 @@
 
     /* Dark Theme State (Checked) */
     /* Checkbox logic: checked = dim (dark) based on input value="dim" */
-    & input:checked ~ .sun-icon {
-      opacity: 0;
-      transform: rotate(-90deg) scale(0.5);
-    }
-    & input:checked ~ .moon-icon {
-      opacity: 1;
-      transform: rotate(0) scale(1);
+    &:has(input:checked) {
+      .sun-icon {
+        opacity: 0;
+        transform: rotate(-90deg) scale(0.5);
+      }
+      .moon-icon {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+      }
     }
   }
 
