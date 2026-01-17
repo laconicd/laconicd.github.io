@@ -149,6 +149,45 @@
       margin-block-start: clamp(2rem, 5vw, 3.5rem);
       margin-block-end: 1.25rem;
       overflow-wrap: break-word;
+      position: relative;
+    }
+
+    /* --- Zola Anchor Links (Zero-Width Absolute Fix) --- */
+    .zola-anchor {
+      text-decoration: none;
+      border: none;
+      visibility: hidden; /* Hide the emoji/text */
+      width: 0;
+      display: inline-block;
+      white-space: nowrap;
+      position: relative;
+      opacity: 1;
+    }
+
+    .zola-anchor::after {
+      content: "#";
+      visibility: visible; /* Show only the hash */
+      position: absolute;
+      left: 0.5em; /* Exact one-character gap */
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.8em;
+      font-weight: 800;
+      color: var(--color-base-content);
+      opacity: 0;
+      transition: all 0.3s var(--ease-standard);
+    }
+
+    @media (width < 48rem) {
+      .zola-anchor::after {
+        opacity: 0.15;
+      }
+    }
+
+    :is(h1, h2, h3, h4):hover .zola-anchor::after {
+      opacity: 0.8;
+      color: var(--color-primary);
+      transform: translateY(-50%) scale(1.1);
     }
 
     h2 {
