@@ -2,6 +2,7 @@ html {
   scrollbar-color: oklch(from var(--color-base-content) l c h / 0.2) transparent;
   scrollbar-width: thin;
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -10,6 +11,30 @@ body {
   color: var(--color-base-content);
   overflow-x: hidden;
   min-block-size: 100vh;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
+  overflow-x: hidden;
+  min-block-size: 100vh;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 /* Scroll lock when popover is open */

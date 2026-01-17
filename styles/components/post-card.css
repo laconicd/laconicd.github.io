@@ -2,6 +2,7 @@
   :scope {
     display: block;
     margin-block-end: var(--space-2);
+    container-type: inline-size;
   }
 
   .card-link {
@@ -93,7 +94,7 @@
     /* transition maintained by utility, but we might want custom bezier? Utility has ease-standard. This had cubic-bezier. Let's stick to standard for consistency or override if needed. */
   }
 
-  @media (width < 48rem) {
+  @container (width < 35rem) {
     .card-link {
       padding-block: var(--space-4);
       padding-inline: var(--space-4);
