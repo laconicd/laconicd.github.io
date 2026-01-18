@@ -6,7 +6,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {% include "partials/init-feat.html" %}
+    <meta name="view-transition" content="same-origin" />
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "where": { "href_matches": "/*" },
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js", { scope: "/" });
+        });
+      }
+    </script>
 
     <script>
       window.__SYNTAX_THEME_URLS__ = {
@@ -94,6 +111,7 @@
     <meta property="twitter:description" content="{{ description }}" />
     <meta property="twitter:image" content="{{ og_image | safe }}" />
 
+    <link rel="manifest" href="manifest.json" />
     <link rel="canonical" href="{{ current_url | safe }}" />
     <link rel="stylesheet" href="{{ get_url(path='styles/main.css', cachebust=true) | safe }}" />
     <link
