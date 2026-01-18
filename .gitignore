@@ -2,3 +2,7 @@ node_modules/
 public/
 AGENTS.md
 static/js/
+static/giallo-dark.css
+static/giallo-light.css
+static/fuse.min.js
+static/fuse.min.mjs
