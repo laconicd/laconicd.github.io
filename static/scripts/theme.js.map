@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["theme.ts"],
-  "sourcesContent": ["/**\n * Theme Initialization\n * Sets the theme attribute on <html> to prevent FOUC.\n */\n(function () {\n  const theme =\n    localStorage.getItem(\"theme\") ||\n    (window.matchMedia(\"(prefers-color-scheme: dark)\").matches\n      ? \"dim\"\n      : \"lofi\");\n  document.documentElement.setAttribute(\"data-theme\", theme);\n\n  // Apply syntax theme\n  const link = document.createElement(\"link\");\n  link.id = \"syntax-theme\";\n  link.rel = \"stylesheet\";\n\n  const urls = window.__SYNTAX_THEME_URLS__ || {};\n  link.href = theme === \"dim\" ? urls.dim : urls.lofi;\n\n  if (link.href && link.href !== window.location.href) {\n    document.head.appendChild(link);\n  }\n})();\n"],
-  "mappings": "CAIC,UAAA,CACC,IAAMA,EACJ,aAAa,QAAQ,OAAA,IACpB,OAAO,WAAW,8BAAA,EAAgC,QAC/C,MACA,QACN,SAAS,gBAAgB,aAAa,aAAcA,CAAA,EAGpD,IAAMC,EAAO,SAAS,cAAc,MAAA,EACpCA,EAAK,GAAK,eACVA,EAAK,IAAM,aAEX,IAAMC,EAAO,OAAO,uBAAyB,CAAC,EAC9CD,EAAK,KAAOD,IAAU,MAAQE,EAAK,IAAMA,EAAK,KAE1CD,EAAK,MAAQA,EAAK,OAAS,OAAO,SAAS,MAC7C,SAAS,KAAK,YAAYA,CAAA,CAE9B,GAAC",
-  "names": ["theme", "link", "urls"]
-}

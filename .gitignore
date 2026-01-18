@@ -1,7 +1,8 @@
 node_modules/
 public/
 AGENTS.md
-static/js/
+static/scripts/
+static/fonts/outfit/
 static/giallo-dark.css
 static/giallo-light.css
 static/fuse.min.js
