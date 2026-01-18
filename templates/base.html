@@ -15,7 +15,7 @@
       };
     </script>
     <!-- theme.js must run early to prevent FOUC -->
-    <script src="{{ get_url(path='scripts/theme.js') | safe }}"></script>
+    <script src="{{ get_url(path='js/theme.js') | safe }}"></script>
 
     {% if current_url is defined %}{% else %}{%
       set current_url =
@@ -95,10 +95,7 @@
     <meta property="twitter:image" content="{{ og_image | safe }}" />
 
     <link rel="canonical" href="{{ current_url | safe }}" />
-    <link
-      rel="stylesheet"
-      href="{{ get_url(path='styles/main.css', cachebust=true) | safe }}"
-    />
+    <link rel="stylesheet" href="{{ get_url(path='styles/main.css', cachebust=true) | safe }}" />
     <link
       rel="alternate"
       type="application/atom+xml"
@@ -132,6 +129,6 @@
       {% include "partials/speed-dial.html" %}
     </div>
 
-    <script src="{{ get_url(path='scripts/main.js') | safe }}" defer></script>
+    <script src="{{ get_url(path='js/main.js') | safe }}" defer></script>
   </body>
 </html>

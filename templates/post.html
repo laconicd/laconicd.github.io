@@ -75,7 +75,7 @@
     </div>
 
     <div class="social-actions">
-      <a href="https://twitter.com/intent/tweet?url={{ current_url | safe }}&text={{ page.title }}" 
+      <a href="https://twitter.com/intent/tweet?url={{ current_url | safe }}&text={{ page.title }}"
          target="_blank" rel="noopener noreferrer" class="action-item" title="Share on X">
         {{ icons::x(size=6) }}
       </a>
@@ -119,6 +119,6 @@
     </nav>
   </footer>
 
-  <script src="{{ get_url(path='scripts/post.js') | safe }}"></script>
+  <script src="{{ get_url(path='js/post.js') | safe }}"></script>
 </article>
 {% endblock content %}

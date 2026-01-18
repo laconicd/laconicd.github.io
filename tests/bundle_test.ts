@@ -10,11 +10,7 @@ Deno.test("Check if bundled scripts exist", async () => {
   assertEquals(success, true, "Build scripts task should succeed");
 
   // Check for the existence of bundled files
-  const files = [
-    "static/scripts/main.js",
-    "static/scripts/post.js",
-    "static/scripts/theme.js",
-  ];
+  const files = ["static/js/main.js", "static/js/post.js", "static/js/theme.js"];
 
   for (const file of files) {
     assertEquals(existsSync(file), true, `File ${file} should exist after bundling`);
