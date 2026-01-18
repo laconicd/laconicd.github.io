@@ -24,9 +24,7 @@
   "nodeModulesDir": "auto",
   "allowScripts": {
     "allow": [],
-    "deny": [
-      "npm:@parcel/watcher@2.5.1"
-    ]
+    "deny": ["npm:@parcel/watcher@2.5.1"]
   },
   "imports": {
     "@fontsource-variable/outfit": "npm:@fontsource-variable/outfit@^5.2.8",

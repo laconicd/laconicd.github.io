@@ -1,117 +1,161 @@
-/**
- * Search Modal Logic using Fuse.js
- */
-import Fuse from "https://esm.sh/fuse.js@7.1.0";
+import Fuse from "fuse.js";
 
+export {};
+
+// 1. 전역 타입 정의
 interface SearchItem {
   title: string;
   path: string;
   content: string;
 }
 
-interface Window {
-  searchIndex?: SearchItem[];
+declare global {
+  interface Window {
+    searchIndex?: SearchItem[];
+  }
 }
 
-const setupSearch = () => {
-  const searchModal = document.getElementById("search_modal") as any;
-  const searchInput = document.getElementById(
-    "modal-search-input",
-  ) as HTMLInputElement;
-  const resultsContainer = document.getElementById("modal-search-results");
+class SearchManager {
+  private fuse: Fuse<SearchItem> | null = null;
+  private readonly searchModal: HTMLElement & { showPopover?: () => void; newState?: string };
+  private readonly searchInput: HTMLInputElement;
+  private readonly resultsContainer: HTMLElement;
 
-  if (!searchModal || !searchInput || !resultsContainer) return;
+  constructor() {
+    this.searchModal = document.getElementById("search_modal") as any;
+    this.searchInput = document.getElementById("modal-search-input") as HTMLInputElement;
+    this.resultsContainer = document.getElementById("modal-search-results") as HTMLElement;
 
-  const list = (window as any).searchIndex || [];
+    if (this.isValid()) {
+      this.initFuse();
+      this.initEvents();
+    }
+  }
 
-  const fuse = new Fuse(list, {
-    includeScore: true,
-    includeMatches: true,
-    threshold: 0.4, // 조정된 임계값
-    ignoreLocation: true,
-    keys: ["title", "content"],
-  });
+  private isValid(): boolean {
+    return !!(this.searchModal && this.searchInput && this.resultsContainer);
+  }
 
-  searchInput.addEventListener("input", (e: any) => {
-    const query = e.target.value.trim();
+  private initFuse(): void {
+    const list = window.searchIndex || [];
+    this.fuse = new Fuse(list, {
+      includeScore: true,
+      includeMatches: true,
+      threshold: 0.4,
+      ignoreLocation: true,
+      keys: ["title", "content"],
+    });
+  }
+
+  private initEvents(): void {
+    // 입력 이벤트
+    this.searchInput.addEventListener("input", (e) => this.handleInput(e));
+
+    // 모달 토글 이벤트 (Popover API 대응)
+    this.searchModal.addEventListener("toggle", (e: any) => {
+      if (e.newState === "open") {
+        setTimeout(() => this.searchInput.focus(), 100);
+      } else {
+        this.clearSearch();
+      }
+    });
+
+    // 단축키 (Cmd/Ctrl + K)
+    document.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        this.searchModal.showPopover?.();
+      }
+    });
+  }
+
+  private handleInput(e: Event): void {
+    const target = e.target as HTMLInputElement;
+    const query = target.value.trim();
 
     if (query.length === 0) {
-      resultsContainer.innerHTML =
-        '<div class="empty-state">Start typing to find what you\'re looking for...</div>';
+      this.renderEmptyState("Start typing to find what you're looking for...");
       return;
     }
 
-    const rawResults = fuse.search(query);
-
-    const uniqueResults: any[] = [];
-    const seenPaths = new Set();
-
-    for (const res of rawResults) {
-      if (!seenPaths.has(res.item.path)) {
-        seenPaths.add(res.item.path);
-        uniqueResults.push(res);
-      }
-      if (uniqueResults.length >= 10) break;
-    }
+    if (!this.fuse) return;
+    const rawResults = this.fuse.search(query);
+    const uniqueResults = this.getUniqueResults(rawResults, 10);
 
     if (uniqueResults.length > 0) {
-      resultsContainer.innerHTML = uniqueResults
-        .map((result) => {
-          let titleHTML = result.item.title;
-          const titleMatch = result.matches?.find((m) => m.key === "title");
-
-          if (titleMatch) {
-            let highlighted = "";
-            let lastIndex = 0;
-            const sortedIndices = [...titleMatch.indices].sort(
-              (a, b) => a[0] - b[0],
-            );
-
-            for (const [start, end] of sortedIndices) {
-              highlighted += result.item.title.substring(lastIndex, start);
-              highlighted += `<mark>${result.item.title.substring(start, end + 1)}</mark>`;
-              lastIndex = end + 1;
-            }
-            highlighted += result.item.title.substring(lastIndex);
-            titleHTML = highlighted;
-          }
-
-          return `
-        <a href="${result.item.path}" class="result-item">
-          <span class="title">${titleHTML}</span>
-          <span class="path">${result.item.path}</span>
-        </a>
-      `;
-        })
-        .join("");
+      this.renderResults(uniqueResults);
     } else {
-      resultsContainer.innerHTML =
-        '<div class="empty-state">No results found for your query.</div>';
+      this.renderEmptyState("No results found for your query.");
     }
-  });
+  }
 
-  searchModal.addEventListener("toggle", (e: any) => {
-    if (e.newState === "open") {
-      setTimeout(() => searchInput.focus(), 100);
-    } else {
-      searchInput.value = "";
-      resultsContainer.innerHTML =
-        '<div class="empty-state">Start typing to find what you\'re looking for...</div>';
+  /**
+   * 중복 경로 제거 및 개수 제한
+   */
+  private getUniqueResults(results: any[], limit: number): any[] {
+    const unique: any[] = [];
+    const seenPaths = new Set();
+
+    for (const res of results) {
+      if (!seenPaths.has(res.item.path)) {
+        seenPaths.add(res.item.path);
+        unique.push(res);
+      }
+      if (unique.length >= limit) break;
     }
-  });
+    return unique;
+  }
 
-  document.addEventListener("keydown", (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-      e.preventDefault();
-      searchModal.showPopover();
+  /**
+   * 검색 결과 하이라이트 및 렌더링
+   */
+  private renderResults(results: any[]): void {
+    this.resultsContainer.innerHTML = results
+      .map((result) => {
+        const titleHTML = this.highlightText(
+          result.item.title,
+          result.matches?.find((m: any) => m.key === "title"),
+        );
+
+        return `
+          <a href="${result.item.path}" class="result-item">
+            <span class="title">${titleHTML}</span>
+            <span class="path">${result.item.path}</span>
+          </a>
+        `;
+      })
+      .join("");
+  }
+
+  private highlightText(text: string, match: any): string {
+    if (!match) return text;
+
+    let highlighted = "";
+    let lastIndex = 0;
+    const sortedIndices = [...match.indices].sort((a, b) => a[0] - b[0]);
+
+    for (const [start, end] of sortedIndices) {
+      highlighted += text.substring(lastIndex, start);
+      highlighted += `<mark>${text.substring(start, end + 1)}</mark>`;
+      lastIndex = end + 1;
     }
-  });
-};
+    highlighted += text.substring(lastIndex);
+    return highlighted;
+  }
 
-// searchIndex가 로드된 후 실행되도록 약간의 지연 또는 체크 필요
-if ((window as any).searchIndex) {
-  setupSearch();
+  private renderEmptyState(message: string): void {
+    this.resultsContainer.innerHTML = `<div class="empty-state">${message}</div>`;
+  }
+
+  private clearSearch(): void {
+    this.searchInput.value = "";
+    this.renderEmptyState("Start typing to find what you're looking for...");
+  }
+}
+
+// 인스턴스 초기화
+if (window.searchIndex) {
+  new SearchManager();
 } else {
-  // searchIndex 로드를 기다림 (간단하게 DOMContentLoaded 이후 체크)
-  document.addEventListener("DOMContentLoaded", setupSearch);
+  document.addEventListener("DOMContentLoaded", () => new SearchManager());
 }

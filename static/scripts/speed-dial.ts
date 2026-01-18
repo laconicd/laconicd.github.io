@@ -1,66 +1,106 @@
-/**
- * Speed Dial (Floating Action Button) Logic
- */
+export {};
+
 declare global {
   interface Window {
     __POST_LIST__?: string[];
   }
 }
 
-const setupDial = () => {
-  const dial = document.querySelector('.app-speed-dial') as HTMLElement;
-  const trigger = document.getElementById('speed-dial-trigger');
-  const topBtn = document.getElementById('speed-dial-top');
-  const searchBtn = document.getElementById('speed-dial-search');
-  const randomBtn = document.getElementById('speed-dial-random');
-  const searchModal = document.getElementById('search_modal') as any;
+class SpeedDialManager {
+  private readonly dial: HTMLElement | null;
+  private readonly searchModal: (HTMLElement & { showPopover?: () => void }) | null;
+  private readonly posts: string[];
 
-  if (!dial || !trigger) return;
+  constructor() {
+    this.dial = document.querySelector(".app-speed-dial");
+    this.searchModal = document.getElementById("search_modal") as any;
+    this.posts = window.__POST_LIST__ || [];
 
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const isDark = currentTheme === 'dim';
-  dial.querySelectorAll('.theme-controller').forEach((el: any) => {
-    el.checked = isDark;
-  });
-
-  trigger.onclick = (e) => {
-    e.stopPropagation();
-    dial.classList.toggle('open');
-  };
-
-  document.addEventListener('click', (e) => {
-    if (!dial.contains(e.target as Node)) dial.classList.remove('open');
-  });
-
-  if (topBtn) {
-    topBtn.onclick = () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      dial.classList.remove('open');
-    };
+    if (this.dial) {
+      this.init();
+    }
   }
 
-  if (searchBtn) {
-    searchBtn.onclick = () => {
-      if (searchModal?.showPopover) {
-        searchModal.showPopover();
-      }
-      dial.classList.remove('open');
-    };
+  private init(): void {
+    // 초기 테마 상태 동기화
+    this.syncThemeState();
+
+    // 이벤트 리스너 등록
+    this.initClickEvents();
+
+    // 외부 클릭 시 닫기
+    document.addEventListener("click", (e) => this.handleOutsideClick(e));
+
+    // 페이지 업데이트 이벤트 대응
+    window.addEventListener("page:updated" as any, () => {
+      this.syncThemeState();
+      this.closeDial();
+    });
   }
 
-  const posts = window.__POST_LIST__ || [];
-  if (randomBtn && posts.length > 0) {
-    randomBtn.onclick = () => {
-      const currentPath = window.location.href;
-      const otherPosts = posts.filter((p: string) => p !== currentPath);
-      const targetPosts = otherPosts.length > 0 ? otherPosts : posts;
-      const randomPost = targetPosts[Math.floor(Math.random() * targetPosts.length)];
-      window.location.href = randomPost;
-    };
+  private initClickEvents(): void {
+    const trigger = document.getElementById("speed-dial-trigger");
+    const topBtn = document.getElementById("speed-dial-top");
+    const searchBtn = document.getElementById("speed-dial-search");
+    const randomBtn = document.getElementById("speed-dial-random");
+
+    // 메인 트리거 (토글)
+    trigger?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      this.dial?.classList.toggle("open");
+    });
+
+    // 위로 가기
+    topBtn?.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      this.closeDial();
+    });
+
+    // 검색 모달 열기
+    searchBtn?.addEventListener("click", () => {
+      this.searchModal?.showPopover?.();
+      this.closeDial();
+    });
+
+    // 랜덤 포스트 이동
+    if (randomBtn && this.posts.length > 0) {
+      randomBtn.addEventListener("click", () => this.handleRandomPost());
+    }
   }
-};
 
-document.addEventListener('DOMContentLoaded', setupDial);
-window.addEventListener('page:updated', setupDial);
+  private handleRandomPost(): void {
+    const currentPath = window.location.pathname; // href보다 pathname이 비교에 안전합니다.
+    const otherPosts = this.posts.filter((p) => !p.includes(currentPath));
+    const targetPosts = otherPosts.length > 0 ? otherPosts : this.posts;
 
-export {}; // Module scope
+    const randomPost = targetPosts[Math.floor(Math.random() * targetPosts.length)];
+    window.location.href = randomPost;
+  }
+
+  private syncThemeState(): void {
+    if (!this.dial) return;
+    const isDark = document.documentElement.getAttribute("data-theme") === "dim";
+
+    const controllers = this.dial.querySelectorAll<HTMLInputElement>(".theme-controller");
+    controllers.forEach((el) => {
+      el.checked = isDark;
+    });
+  }
+
+  private handleOutsideClick(e: MouseEvent): void {
+    if (this.dial && !this.dial.contains(e.target as Node)) {
+      this.closeDial();
+    }
+  }
+
+  private closeDial(): void {
+    this.dial?.classList.remove("open");
+  }
+}
+
+// 초기화
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => new SpeedDialManager());
+} else {
+  new SpeedDialManager();
+}
