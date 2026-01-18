@@ -2,23 +2,29 @@
 {% import "macros/image.html" as image_macros %}
 
 {% block content %}
-<div class="app-index">
-  <header class="app-index-header">
-    <h1>{{ config.extra.hero_title }}</h1>
-    <p>{{ config.extra.hero_subtitle }}</p>
-  </header>
+    <div class="app-index">
+        <header class="app-index-header">
+            <h1>{{ config.extra.hero_title }}</h1>
+            <p>{{ config.extra.hero_subtitle }}</p>
+        </header>
 
-  <div class="app-index-divider">
-    <hr />
-    <span>Latest Records</span>
-    <hr />
-  </div>
+        <div class="app-index-divider">
+            <hr />
+            <span>Latest Records</span>
+            <hr />
+        </div>
 
-  <section class="post-list" aria-label="Latest Posts">
-    {% set blog_section = get_section(path="posts/_index.md") %}
-    {% for page in blog_section.pages | slice(end=10) %}
-      {% include "partials/post-card.html" %}
-    {% endfor %}
-  </section>
-</div>
+        <section class="post-list" aria-label="Latest Posts">
+            {% set blog_section = get_section(path="posts/_index.md") %}
+            {%
+                for page
+                in blog_section.pages | slice(end=10)
+            %}
+                {%
+                    include
+                    "partials/post-card.html"
+                %}
+            {% endfor %}
+        </section>
+    </div>
 {% endblock content %}

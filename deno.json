@@ -30,6 +30,8 @@
   },
   "imports": {
     "@fontsource-variable/outfit": "npm:@fontsource-variable/outfit@^5.2.8",
-    "fuse.js": "npm:fuse.js@^7.1.0"
+    "fuse.js": "npm:fuse.js@^7.1.0",
+    "prettier-plugin-css-order": "npm:prettier-plugin-css-order@^2.2.0",
+    "prettier-plugin-jinja-template": "npm:prettier-plugin-jinja-template@^2.1.0"
   }
 }

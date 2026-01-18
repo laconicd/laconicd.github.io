@@ -2,14 +2,71 @@
   "version": "5",
   "specifiers": {
     "npm:@fontsource-variable/outfit@^5.2.8": "5.2.8",
-    "npm:fuse.js@^7.1.0": "7.1.0"
+    "npm:fuse.js@^7.1.0": "7.1.0",
+    "npm:prettier-plugin-css-order@^2.2.0": "2.2.0_prettier@3.8.0",
+    "npm:prettier-plugin-jinja-template@^2.1.0": "2.1.0_prettier@3.8.0"
   },
   "npm": {
     "@fontsource-variable/outfit@5.2.8": {
       "integrity": "sha512-4oUDCZx/Tcz6HZP423w/niqEH31Gks5IsqHV2ZZz1qKHaVIZdj2f0/S1IK2n8jl6Xo0o3N+3RjNHlV9R73ozQA=="
     },
+    "css-declaration-sorter@7.3.1_postcss@8.5.6": {
+      "integrity": "sha512-gz6x+KkgNCjxq3Var03pRYLhyNfwhkKF1g/yoLgDNtFvVu0/fOLV9C8fFEZRjACp/XQLumjAYo7JVjzH3wLbxA==",
+      "dependencies": [
+        "postcss"
+      ]
+    },
     "fuse.js@7.1.0": {
       "integrity": "sha512-trLf4SzuuUxfusZADLINj+dE8clK1frKdmqiJNb1Es75fmI5oY6X2mxLVUciLLjxqw/xr72Dhy+lER6dGd02FQ=="
+    },
+    "nanoid@3.3.11": {
+      "integrity": "sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==",
+      "bin": true
+    },
+    "picocolors@1.1.1": {
+      "integrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="
+    },
+    "postcss-less@6.0.0_postcss@8.5.6": {
+      "integrity": "sha512-FPX16mQLyEjLzEuuJtxA8X3ejDLNGGEG503d2YGZR5Ask1SpDN8KmZUMpzCvyalWRywAn1n1VOA5dcqfCLo5rg==",
+      "dependencies": [
+        "postcss"
+      ]
+    },
+    "postcss-scss@4.0.9_postcss@8.5.6": {
+      "integrity": "sha512-AjKOeiwAitL/MXxQW2DliT28EKukvvbEWx3LBmJIRN8KfBGZbRTxNYW0kSqi1COiTZ57nZ9NW06S6ux//N1c9A==",
+      "dependencies": [
+        "postcss"
+      ]
+    },
+    "postcss@8.5.6": {
+      "integrity": "sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==",
+      "dependencies": [
+        "nanoid",
+        "picocolors",
+        "source-map-js"
+      ]
+    },
+    "prettier-plugin-css-order@2.2.0_prettier@3.8.0": {
+      "integrity": "sha512-GCkwEgQ2roT7le+zpUFQThPDO4x5EXcZmY9Rj6rvO++I/nATTGBWdZdsooha/BlvIBbZclJzXsgJdlKWrys9+w==",
+      "dependencies": [
+        "css-declaration-sorter",
+        "postcss-less",
+        "postcss-scss",
+        "prettier"
+      ]
+    },
+    "prettier-plugin-jinja-template@2.1.0_prettier@3.8.0": {
+      "integrity": "sha512-mzoCp2Oy9BDSug80fw3B3J4n4KQj1hRvoQOL1akqcDKBb5nvYxrik9zUEDs4AEJ6nK7QDTGoH0y9rx7AlnQ78Q==",
+      "dependencies": [
+        "prettier"
+      ]
+    },
+    "prettier@3.8.0": {
+      "integrity": "sha512-yEPsovQfpxYfgWNhCfECjG5AQaO+K3dp6XERmOepyPDVqcJm+bjyCVO3pmU+nAPe0N5dDvekfGezt/EIiRe1TA==",
+      "bin": true
+    },
+    "source-map-js@1.2.1": {
+      "integrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA=="
     }
   },
   "remote": {
@@ -53,7 +110,9 @@
   "workspace": {
     "dependencies": [
       "npm:@fontsource-variable/outfit@^5.2.8",
-      "npm:fuse.js@^7.1.0"
+      "npm:fuse.js@^7.1.0",
+      "npm:prettier-plugin-css-order@^2.2.0",
+      "npm:prettier-plugin-jinja-template@^2.1.0"
     ]
   }
 }

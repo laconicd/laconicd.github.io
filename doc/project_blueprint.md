@@ -12,11 +12,9 @@
 
 ## 2. Directory Structure
 
-- `assets/`: 원본 에셋 (이미지, 미디어 등).
-  - `assets/media/`: **Git Submodule**. 포스트별 이미지가 저장되는 곳.
 - `content/`: Markdown 포스트 파일들.
-- `static/`: 빌드 없이 제공되는 정적 파일들.
-  - `static/media/`: `assets/media` 서브모듈의 실제 경로 (빌드 시 참조).
+- `static/`: 빌드 없이 제공되는 정적 파일들 (이미지, 미디어, 폰트, 스타일 등).
+  - `static/media/`: **Git Submodule**. 포스트별 이미지가 저장되는 곳.
   - `static/images/random/`: 포스트에 이미지가 없을 때 사용되는 랜덤 폴백 이미지들.
 - `templates/`: Tera 기반 템플릿 파일들.
   - `templates/macros/`: 공통 로직 (예: 이미지 처리 매크로).
@@ -30,7 +28,7 @@
 이 프로젝트는 `deno.json`에 정의된 테스크를 통해 운영됩니다.
 
 - **`deno task init`**: 초기 환경 설정 (`tools/setup.nu`).
-- **`deno task sync:assets`**: `assets/`와 `static/` 간의 파일 동기화 및 서브모듈 관리 (`tools/sync-assets.nu`).
+- **`deno task sync:assets`**: `static/media` 서브모듈의 변경사항을 동기화 (`tools/sync-assets.nu`).
 - **`deno task build:scripts`**: `scripts/` 내 TS 파일을 번들링 (`tools/bundle.nu`).
 - **`deno task dev`**: 로컬 개발 서버 실행 (init + 번들링 + zola serve).
 - **`deno task prd`**: 배포용 빌드 생성.
@@ -42,8 +40,8 @@
 ### 4.1 `tools/setup.nu` (Environment Initialization)
 - **목적**: 빌드에 필요한 정적 파일 구조를 생성하고 외부 의존성을 준비합니다.
 - **주요 동작**:
-  1. `static/` 하위 폴더(fonts, images, media, styles, scripts)를 생성합니다.
-  2. `assets/` 및 `styles/`의 모든 파일을 `static/`으로 복사합니다.
+  1. `static/` 하위의 일부 폴더(fonts, styles, scripts)를 생성합니다.
+  2. `styles/`의 모든 파일을 `static/`으로 복사합니다.
   3. `node_modules`에서 `fuse.js`와 `Outfit` 폰트 파일을 `static/`의 적절한 위치로 복사합니다.
 
 ### 4.2 `tools/bundle.nu` (Script Bundling)
@@ -53,9 +51,9 @@
   2. 결과물을 `static/scripts/`에 저장하며, `--minify`와 소스맵(`--sourcemap`)을 생성합니다.
 
 ### 4.3 `tools/sync-assets.nu` (Submodule & Asset Sync)
-- **목적**: 이미지 서브모듈(`assets/media`)의 변경 사항을 원격 저장소에 반영하고 메인 저장소의 참조를 갱신합니다.
+- **목적**: 이미지 서브모듈(`static/media`)의 변경 사항을 원격 저장소에 반영하고 메인 저장소의 참조를 갱신합니다.
 - **주요 동작**:
-  1. `assets/media` 내부에 변경 사항이 있으면 자동으로 커밋하고 원격(`origin main`)으로 푸시합니다.
+  1. `static/media` 내부에 변경 사항이 있으면 자동으로 커밋하고 원격(`origin main`)으로 푸시합니다.
   2. 메인 저장소에서 서브모듈의 최신 커밋 참조를 업데이트하고 이를 메인 저장소에도 커밋합니다.
   3. 이를 통해 이미지 자산의 버전 관리를 자동화합니다.
 
@@ -68,7 +66,7 @@
 - **리사이징**: 모든 이미지는 `resize_image` 필터를 통해 최적화된 WebP 포맷으로 제공됩니다.
 
 ### 5.2 Git Submodule
-- `assets/media`는 별도의 저장소(`laconicd/assets`)를 서브모듈로 사용합니다.
+- `static/media`는 별도의 저장소(`laconicd/assets`)를 서브모듈로 사용합니다.
 - 포스트 관련 이미지는 이 서브모듈 내에 폴더별로 관리하는 것이 원칙입니다.
 
 ### 5.3 CSS Convention

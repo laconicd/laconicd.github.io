@@ -6,12 +6,10 @@ def main [] {
     # 1. Create necessary directories in static/
     let static_dirs = [
         "static/fonts/outfit",
-        "static/images",
-        "static/media",
         "static/styles",
         "static/scripts"
     ]
-    
+
     for dir in $static_dirs {
         if not ($dir | path exists) {
             print $"📁 Creating ($dir)..."
@@ -19,10 +17,8 @@ def main [] {
         }
     }
 
-    # 2. Copy Assets
-    print "📋 Copying assets to static/..."
-    cp -r assets/images/* static/images/
-    cp -r assets/media/* static/media/
+    # 2. Copy Styles
+    print "📋 Copying styles to static/..."
     cp -r styles/* static/styles/
 
     # 3. Copy Dependencies (Node Modules)
