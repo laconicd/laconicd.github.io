@@ -8,13 +8,16 @@
 - **Runtime & Task Runner**: [Deno](https://deno.land/)
 - **Scripting**: [Nushell](https://www.nushell.sh/) (used for build tools in `tools/*.nu`)
 - **Styling**: Modern CSS with **Cascade Layers (@layer)**. No CSS frameworks; custom-built styles located in `styles/`.
-- **Scripting (Frontend)**: TypeScript/JavaScript located in `scripts/`, bundled during build.
+- **Scripting (Frontend)**: TypeScript source files located in `static/scripts/`, bundled into `static/js/` during build.
 
 ## 2. Directory Structure
 
 - `content/`: Markdown 포스트 파일들.
-- `static/`: 빌드 없이 제공되는 정적 파일들 (이미지, 미디어, 폰트, 스타일 등).
+- `static/`: 빌드 없이 제공되는 정적 파일들 및 빌드 소스/결과물.
+  - `static/scripts/`: **TypeScript 소스 파일**. Git에서 추적됨.
+  - `static/js/`: **번들링된 JavaScript 결과물**. 빌드 시 자동 생성되며 Git에서 제외됨.
   - `static/media/`: **Git Submodule**. 포스트별 이미지가 저장되는 곳.
+  - `static/fonts/outfit/`: 빌드 시 자동 생성되는 폰트 파일. Git에서 제외됨.
   - `static/images/random/`: 포스트에 이미지가 없을 때 사용되는 랜덤 폴백 이미지들.
 - `templates/`: Tera 기반 템플릿 파일들.
   - `templates/macros/`: 공통 로직 (예: 이미지 처리 매크로).
@@ -45,10 +48,10 @@
   3. `node_modules`에서 `fuse.js`와 `Outfit` 폰트 파일을 `static/`의 적절한 위치로 복사합니다.
 
 ### 4.2 `tools/bundle.nu` (Script Bundling)
-- **목적**: `scripts/` 폴더의 TypeScript 소스들을 브라우저에서 실행 가능한 JavaScript로 번들링합니다.
+- **목적**: `static/scripts/` 폴더의 TypeScript 소스들을 브라우저에서 실행 가능한 JavaScript로 번들링합니다.
 - **주요 동작**:
-  1. `deno bundle`을 사용하여 TypeScript 파일을 번들링합니다.
-  2. 결과물을 `static/scripts/`에 저장하며, `--minify`와 소스맵(`--sourcemap`)을 생성합니다.
+  1. `deno bundle`을 사용하여 `static/scripts/*.ts` 파일들을 번들링합니다.
+  2. 결과물을 `static/js/`에 저장하며, `--minify`와 소스맵(`--sourcemap`)을 생성합니다.
 
 ### 4.3 `tools/sync-assets.nu` (Submodule & Asset Sync)
 - **목적**: 이미지 서브모듈(`static/media`)의 변경 사항을 원격 저장소에 반영하고 메인 저장소의 참조를 갱신합니다.
