@@ -23,7 +23,7 @@ categories = ["development"]
 > 이 대원칙 위에 현대 CSS는 컨테이너의 맥락을 더해 더 유연한 구조를 지향한다.
 
 | Technology | Situation | Power (Why use it?) | Trade-off |
-| :--- | :--- | :--- | :--- |
+| :--- | :---: | :---: | ---: |
 | **Grid** | 전체 구조 (**2차원**) | 가로/세로 축 동시 제어 및 명시적 영역 설계 | 제어 vs 복잡 |
 | **Flexbox** | 요소 배열 (**1차원**) | 내용물 크기에 기반한 유동적 공간 배분과 정렬 | 간결 vs 1D 한계 |
 | **Subgrid** | 계층적 정렬 | 부모 그리드 눈금 상속을 통한 정교한 정렬 동기화 | 정밀 vs 호환성 |
@@ -133,7 +133,7 @@ categories = ["development"]
 
 ### ⚖️ text-wrap: balance vs pretty
 - **`balance`**: (제목용) 줄 길이를 균등하게 맞추어 시각적 무게 중심을 잡음.
-- **`pretty`**: (본문용) 문단 끝 고립 단어를 방지하여 가독성 향상.
+- **`pretty`**: (본문용) 문단 끝에 단어 하나만 남는 'Orphan' 현상을 방지하여 가독성 향상.
 
 ```css
 article p {
