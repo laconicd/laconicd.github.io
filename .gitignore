@@ -5,3 +5,9 @@ static/js/
 static/fonts/outfit/
 static/giallo-dark.css
 static/giallo-light.css
+
+# OS generated files
+.DS_Store
+
+# Zola image processing cache
+static/processed_images/
