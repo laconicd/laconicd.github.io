@@ -145,20 +145,52 @@ JS 없이 스크롤 위치에 따른 애니메이션의 '진행률'을 정의한
 
 ## 5. 🏗️ 아키텍처와 지능형 선택자 (Architecture)
 
-### 🪜 @layer를 활용한 명시도 전쟁 종결
-```css
-@layer reset, base, components, utilities;
+### 🪜 Cascade & 지능형 선택자
 
-@layer components {
-  .btn { background: blue; } /* 레이어 내 우선순위 적용 */
+명시도(Specificity) 전쟁을 끝내고 코드를 간결하게 만드는 현대적 선택자들이다.
+
+#### 1. `:is()` - 복잡한 그룹화의 단순화
+여러 선택자에 동일한 스타일을 적용할 때 중복을 줄여준다. 특징은 **"가장 높은 명시도"**를 가진 선택자를 따라간다는 점이다.
+```css
+/* 옛날 방식 */
+header a:hover, main a:hover, footer a:hover { color: red; }
+
+/* 현대적 방식 */
+:is(header, main, footer) a:hover { color: red; }
+```
+
+#### 2. `:where()` - 명시도 제로(0)의 마법
+`:is()`와 문법은 같지만, 안에 무엇이 들어가든 **명시도가 항상 0**이다. 기본 스타일(Reset)을 잡을 때 매우 유용하며, 나중에 어떤 클래스로도 쉽게 덮어쓸 수 있다.
+```css
+/* 라이브러리나 베이스 스타일에서 사용 */
+:where(article, section) p {
+  line-height: 1.6;
 }
 
-@layer base {
-  a { color: red !important; } /* 레이어 순서상 components가 무조건 이김 */
+/* 나중에 어디서든 한 줄로 덮어쓰기 가능 (명시도 싸움 없음) */
+.special-p { line-height: 2; }
+```
+
+#### 3. Native CSS Nesting - 네이티브 중첩
+더 이상 Sass 없이도 계층 구조를 명확하게 작성할 수 있다.
+```css
+.card {
+  padding: 1rem;
+  background: white;
+
+  & .title { /* 부모(.card)를 참조 */
+    font-weight: bold;
+    
+    &:hover { color: blue; }
+  }
+
+  @media (width < 600px) {
+    padding: 0.5rem;
+  }
 }
 ```
 
-### 🕸️ :has() - 부모 선택자의 혁명
+#### 4. `:has()` - 부모 선택자의 혁명
 자식의 상태나 존재 여부에 따라 부모의 레이아웃을 바꾼다.
 ```css
 /* 이미지가 포함된 카드만 패딩을 없앤다 */
