@@ -17,7 +17,6 @@ def main [] {
 
     # 2. Copy Dependencies (Node Modules)
     print "📦 Copying library dependencies..."
-    cp node_modules/fuse.js/dist/fuse.min.mjs static/
     cp -r node_modules/@fontsource-variable/outfit/files/* static/fonts/outfit/
 
     print "✨ Setup complete!"
