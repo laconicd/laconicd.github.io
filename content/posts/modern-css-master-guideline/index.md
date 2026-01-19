@@ -225,13 +225,64 @@ JS 한 줄 없이 스크롤에 반응하게 만들 수 있다.
 
 ---
 
-## 6. 🖋️ 타이포그래피 마스터링
+## 6. 🖋️ 타이포그래피 마스터링 (Advanced Typography)
 
-글자는 읽히기 위해 존재한다. 가독성을 위한 최신 속성들을 잊지 말자.
+글자는 단순히 정보를 전달하는 도구가 아니라, 디자인의 핵심이다. 가독성과 심미성을 동시에 잡는 현대적 기법들을 적용하자.
 
-- **`text-wrap: balance`**: 제목이 두 줄이 될 때, 양쪽 길이를 예쁘게 맞춰준다.
-- **`text-wrap: pretty`**: 문단 마지막에 한 단어만 덜렁 남는 '고립 단어(Orphan)' 현상을 방지한다.
-- **`initial-letter`**: 잡지처럼 첫 글자를 크게 키우는 효과. 디자인 퀄리티가 달라진다.
+### 📏 유연한 크기 조절 (Fluid Typography)
+미디어 쿼리 없이 화면 크기에 따라 폰트 크기가 부드럽게 변하게 만든다.
+```css
+h1 {
+  /* 최소 2rem, 최대 5rem 사이에서 브라우저 너비의 8% 크기를 유지 */
+  font-size: clamp(2rem, 8vw, 5rem);
+  line-height: 1.2;
+}
+```
+
+### 🧩 가변 폰트 (Variable Fonts) 활용
+하나의 폰트 파일로 굵기, 너비, 기울기 등을 미세하게 조정한다. `font-weight` 대신 `font-variation-settings`를 쓰면 더 세밀한 표현이 가능하다.
+```css
+.dynamic-text {
+  font-family: "Pretendard Variable";
+  /* 굵기(wght) 600, 너비(wdth) 110으로 설정 */
+  font-variation-settings: "wght" 600, "wdth" 110;
+}
+```
+
+### ⚖️ 텍스트 균형과 가독성
+- **`text-wrap: balance`**: 제목이나 짧은 문구의 줄바꿈을 균등하게 맞춘다. (제목에 필수)
+- **`text-wrap: pretty`**: 문단 마지막 줄에 단어 하나만 남는 현상을 방지하여 시각적 불편함을 해소한다.
+- **`max-inline-size: 65ch`**: 한 줄의 길이를 약 65자 내외로 제한한다. 인간이 가장 편안하게 읽을 수 있는 너비다.
+
+```css
+article p {
+  max-inline-size: 65ch; /* 읽기 최적 너비 제한 */
+  text-wrap: pretty;     /* 고립 단어 방지 */
+  line-height: 1.6;      /* 여유 있는 줄 간격 */
+}
+```
+
+### 🔢 숫자와 장식 스타일링
+데이터나 가격을 표시할 때는 숫자의 높이를 맞추는 것이 중요하다.
+- **`font-variant-numeric: tabular-nums`**: 숫자의 너비를 동일하게 맞추어 표나 리스트에서 정렬이 흐트러지지 않게 한다.
+- **`initial-letter`**: 문단의 첫 글자를 강조한다.
+
+```css
+.price-list {
+  font-variant-numeric: tabular-nums; /* 숫자 너비 통일 */
+}
+
+.intro-text::first-letter {
+  initial-letter: 3 2; /* 3줄 높이만큼 키우고 2줄만큼 내려쓰기 */
+  margin-inline-end: 0.5rem;
+  font-weight: bold;
+}
+```
+
+> [!TIP]
+> **폰트 렌더링 최적화**
+> `text-rendering: optimizeLegibility;`를 사용하면 커닝(글자 간격)과 리가처(합자)가 더 정교하게 표현된다. 단, 너무 긴 본문에 쓰면 성능에 영향을 줄 수 있으니 제목 위주로 사용하자.
+
 
 ---
 
