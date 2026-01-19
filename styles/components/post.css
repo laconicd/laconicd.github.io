@@ -222,9 +222,36 @@
       font-weight: 900;
       font-size: 0.75rem;
       letter-spacing: 0.15em;
-      text-align: left;
       text-transform: uppercase;
       border: none;
+    }
+
+    /* ... tr styles ... */
+
+    td {
+      padding: 1.5rem;
+      border-bottom: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
+      color: oklch(from var(--color-base-content) l c h / 0.8);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      word-break: keep-all;
+    }
+
+    /* --- Universal Markdown Alignment --- */
+    :is(th, td) {
+      text-align: left; /* Default */
+    }
+
+    :is(th, td)[align="center"] {
+      text-align: center;
+    }
+
+    :is(th, td)[align="right"] {
+      text-align: right;
+    }
+
+    :is(th, td)[align="left"] {
+      text-align: left;
     }
 
     tr {
