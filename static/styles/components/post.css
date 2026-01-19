@@ -293,6 +293,7 @@
         @media (width < 48rem) {
           text-align: left;
           line-height: 1.4;
+          margin-bottom: 0.25rem;
           &::before {
             content: "SITUATION";
             display: block;
@@ -326,61 +327,7 @@
       }
     }
 
-    a {
-      transition: all 0.2s var(--ease-standard);
-      border-block-end: 2px solid oklch(from var(--color-primary) l c h / 0.2);
-      color: var(--color-primary);
-      font-weight: 700;
-
-      &:hover {
-        border-block-end-color: var(--color-primary);
-        background: oklch(from var(--color-primary) l c h / 0.1);
-      }
-    }
-
-    img {
-      margin-inline: 0;
-      margin-block: clamp(1.5rem, 5vw, 3rem);
-      box-shadow: var(--shadow-3);
-      border-radius: var(--radius-3xl);
-      max-inline-size: 100%;
-      block-size: auto;
-
-      @media (width < 48rem) {
-        border-radius: var(--radius-xl);
-      }
-    }
-
-    code:not(pre code) {
-      border-radius: 0.5rem;
-      background: var(--color-base-200);
-      padding: 0.2rem 0.5rem;
-      font-weight: 600;
-      font-size: 0.9em;
-      word-break: break-all;
-    }
-
-    pre {
-      display: block;
-      box-sizing: border-box;
-      margin-inline: 0;
-      margin-block: 2rem;
-      border-radius: var(--radius-xl);
-      background: var(--color-base-300);
-      padding-inline: clamp(1.25rem, 4vw, 2rem);
-      padding-block: clamp(1.25rem, 4vw, 2rem);
-      inline-size: 100%;
-      max-inline-size: 100%;
-      overflow-x: auto;
-      font-size: 0.85em;
-      white-space: pre;
-      -webkit-overflow-scrolling: touch;
-
-      @media (width < 48rem) {
-        border-radius: var(--radius-xl);
-      }
-    }
-
+    /* --- GitHub Alerts (Modern Floating Offset Style) --- */
     blockquote {
       margin-inline: 0;
       margin-block: 2rem;
@@ -390,92 +337,99 @@
       font-style: italic;
 
       &[class*="markdown-alert"] {
-        margin-block: 2.5rem;
+        position: relative;
+        margin-block: 3.5rem 2.5rem;
         padding-inline: 1.75rem;
-        padding-block: 1.5rem;
-        border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
-        border: none;
-        border-inline-start: 4px solid var(--alert-color);
-        background: oklch(from var(--alert-color) l c h / 0.05);
+        padding-block: 2.25rem 1.5rem;
+        border-radius: var(--radius-xl);
+        border: 1.5px solid oklch(from var(--alert-color) l c h / 0.25);
+        background: oklch(from var(--alert-color) l c h / 0.03);
         font-style: normal;
+        transition: all 0.4s var(--ease-standard);
+        overflow: visible !important;
         box-shadow: none;
-        transition: background 0.3s ease;
 
         &:hover {
-          transform: none;
-          background: oklch(from var(--alert-color) l c h / 0.08);
+          border-color: oklch(from var(--alert-color) l c h / 0.4);
+          background: oklch(from var(--alert-color) l c h / 0.05);
         }
 
-        /* Title Style (Minimal Text) */
+        /* Title Style (Floating Pill sitting ON the line) */
         & > .markdown-alert-title {
-          display: flex;
+          position: absolute;
+          top: 0;
+          left: 1.5rem;
+          transform: translateY(-50%);
+          display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
-          margin-block-start: 0;
-          margin-block-end: 0.75rem;
-          color: var(--alert-color);
-          font-weight: 900;
-          font-size: 0.85rem;
-          letter-spacing: 0.05em;
+          gap: 0.4rem;
+          background: var(--alert-color) !important;
+          color: white !important;
+          font-weight: 950;
+          font-size: 0.65rem;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
+          padding: 0.35rem 1rem !important;
+          border-radius: 100px !important;
+          box-shadow: 0 4px 12px -2px oklch(from var(--alert-color) l c h / 0.4);
+          z-index: 10;
         }
 
-        /* Icon Mask Adjustment */
         & > .markdown-alert-title::before {
           mask: var(--alert-mask) no-repeat center / contain;
           -webkit-mask: var(--alert-mask) no-repeat center / contain;
           background-color: currentColor;
-          inline-size: 1rem;
-          block-size: 1rem;
+          inline-size: 0.8rem;
+          block-size: 0.8rem;
           content: "";
         }
 
-        /* Content Styling: 모든 p 태그는 기본적으로 본문 색상을 따름 */
+        /* Content Styling */
         & > p {
           margin: 0;
           padding: 0;
           color: oklch(from var(--color-base-content) l c h / 0.8) !important;
           font-size: 1rem;
           line-height: 1.6;
-          
-          /* 강조된 텍스트(제목 대용)만 포인트 컬러 적용 */
+
+          /* 마크다운에서 첫 줄에 **제목**만 썼을 때 자동으로 알약 배지 적용 */
           strong:first-child:only-child {
-            color: var(--alert-color);
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            letter-spacing: 0.02em;
+            position: absolute;
+            top: 0;
+            left: 1.5rem;
+            transform: translateY(-50%);
+            display: inline-flex;
+            background: var(--alert-color);
+            color: white;
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 950;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px -2px oklch(from var(--alert-color) l c h / 0.4);
           }
         }
 
-        /* 리스트 아이템 등 다른 요소들도 본문 색상 유지 */
-        & > ul, & > ol {
-          color: oklch(from var(--color-base-content) l c h / 0.8);
-        }
-
+        /* Type-specific Variables (Modern Muted Palette) */
         &.markdown-alert-note {
-          --alert-color: var(--color-info);
-          --alert-content: var(--color-info-content);
+          --alert-color: oklch(65% 0.08 250); 
           --alert-mask: var(--icon-alert-note);
         }
         &.markdown-alert-tip {
-          --alert-color: var(--color-success);
-          --alert-content: var(--color-success-content);
+          --alert-color: oklch(70% 0.1 160);
           --alert-mask: var(--icon-alert-tip);
         }
         &.markdown-alert-important {
-          --alert-color: var(--color-primary);
-          --alert-content: var(--color-primary-content);
+          --alert-color: oklch(65% 0.1 300);
           --alert-mask: var(--icon-alert-important);
         }
         &.markdown-alert-warning {
-          --alert-color: var(--color-warning);
-          --alert-content: var(--color-warning-content);
+          --alert-color: oklch(75% 0.12 70);
           --alert-mask: var(--icon-alert-warning);
         }
         &.markdown-alert-caution {
-          --alert-color: var(--color-error);
-          --alert-content: var(--color-error-content);
+          --alert-color: oklch(65% 0.12 25);
           --alert-mask: var(--icon-alert-caution);
         }
       }
