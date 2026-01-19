@@ -42,7 +42,7 @@ jobs:
       - uses: hustcer/setup-nu@v3
         with:
           check-latest: true
-      - run: print $'Nu version info:(char nl)'; version
+      - run: echo "Nu version info:"; nu --version
 
       # 5. 웹사이트 빌드 (TailwindCSS 및 Router 번들링 포함)
       - name: Build site
