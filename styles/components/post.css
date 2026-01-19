@@ -212,18 +212,19 @@
     }
 
     thead {
-      background: oklch(from var(--color-base-content) l c h / 0.03);
+      background: oklch(from var(--color-base-content) l c h / 0.05);
+      border-bottom: 1.5px solid oklch(from var(--color-base-content) l c h / 0.1);
     }
 
     th {
       padding: 1.25rem 1.5rem;
-      color: oklch(from var(--color-base-content) l c h / 0.4);
+      color: oklch(from var(--color-base-content) l c h / 0.5);
       font-weight: 900;
       font-size: 0.75rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
       text-align: center;
       text-transform: uppercase;
-      border-bottom: 2px solid oklch(from var(--color-base-content) l c h / 0.05);
+      border: none;
     }
 
     tr {
