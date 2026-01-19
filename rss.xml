@@ -9,12 +9,12 @@
       <atom:link href="https://laconicd.github.io/rss.xml" rel="self" type="application/rss+xml"/>
       <lastBuildDate>Fri, 16 Jan 2026 00:00:00 +0000</lastBuildDate>
       <item>
-          <title>현대 CSS 마스터 가이드라인 (v2.5 Final)</title>
+          <title>현대 CSS 마스터 가이드라인</title>
           <pubDate>Fri, 16 Jan 2026 00:00:00 +0000</pubDate>
           <author>laconicd</author>
           <link>https://laconicd.github.io/posts/modern-css-master-guideline/</link>
           <guid>https://laconicd.github.io/posts/modern-css-master-guideline/</guid>
-          <description xml:base="https://laconicd.github.io/posts/modern-css-master-guideline/">&lt;h1 id=&quot;art-hyeondae-css-maseuteo-gaideurain-v2-6-personal&quot;&gt;🎨 현대 CSS 마스터 가이드라인 (v2.6 Personal)&lt;a class=&quot;zola-anchor&quot; href=&quot;#art-hyeondae-css-maseuteo-gaideurain-v2-6-personal&quot; aria-label=&quot;Anchor link for: art-hyeondae-css-maseuteo-gaideurain-v2-6-personal&quot;&gt;🔗&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+          <description xml:base="https://laconicd.github.io/posts/modern-css-master-guideline/">&lt;h1 id=&quot;art-hyeondae-css-maseuteo-gaideurain&quot;&gt;🎨 현대 CSS 마스터 가이드라인&lt;a class=&quot;zola-anchor&quot; href=&quot;#art-hyeondae-css-maseuteo-gaideurain&quot; aria-label=&quot;Anchor link for: art-hyeondae-css-maseuteo-gaideurain&quot;&gt;🔗&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
 &lt;p&gt;유지보수성, 독립성, 접근성. 이 세 가지를 놓치면 결국 나중에 내가 고생한다. 현대 CSS의 핵심 패턴들을 내 것으로 만들고, 실전에서 바로 꺼내 쓸 수 있게 정리해두자.&lt;&#x2F;p&gt;</description>
       </item>
       <item>
