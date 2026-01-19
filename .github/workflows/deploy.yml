@@ -38,11 +38,17 @@ jobs:
         with:
           tool: zola
 
-      # 4. 웹사이트 빌드 (TailwindCSS 및 Router 번들링 포함)
+      # 4. Zola 설치
+      - uses: hustcer/setup-nu@v3
+        with:
+          check-latest: true
+      - run: print $'Nu version info:(char nl)'; version
+
+      # 5. 웹사이트 빌드 (TailwindCSS 및 Router 번들링 포함)
       - name: Build site
         run: deno task prd
 
-      # 5. 'public' 폴더의 내용을 GitHub Pages에 배포합니다.
+      # 6. 'public' 폴더의 내용을 GitHub Pages에 배포합니다.
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
