@@ -38,11 +38,15 @@ jobs:
         with:
           tool: zola
 
-      # 4. Zola 설치
-      - uses: hustcer/setup-nu@v3
+      # 4. Nushell 설치
+      - name: Setup Nushell
+        uses: hustcer/setup-nu@v3
         with:
           check-latest: true
-      - run: echo "Nu version info:"; nu --version
+      - name: Verify Nu Installation
+        run: |
+          which nu || echo "nu not found in path"
+          nu --version
 
       # 5. 웹사이트 빌드 (TailwindCSS 및 Router 번들링 포함)
       - name: Build site
