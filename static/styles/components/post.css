@@ -222,7 +222,7 @@
       font-weight: 900;
       font-size: 0.75rem;
       letter-spacing: 0.15em;
-      text-align: center;
+      text-align: left;
       text-transform: uppercase;
       border: none;
     }
@@ -245,7 +245,7 @@
       color: oklch(from var(--color-base-content) l c h / 0.8);
       font-size: 0.95rem;
       line-height: 1.5;
-      text-align: center;
+      text-align: left;
       word-break: keep-all;
     }
 
