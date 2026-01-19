@@ -17,14 +17,6 @@
       }
     </script>
     <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/sw.js", { scope: "/" });
-        });
-      }
-    </script>
-
-    <script>
       window.__SYNTAX_THEME_URLS__ = {
         dim: "{{ get_url(path='giallo-dark.css') | safe }}",
         lofi: "{{ get_url(path='giallo-light.css') | safe }}",
@@ -57,7 +49,6 @@
     <meta property="twitter:description" content="{{ description }}" />
     <meta property="twitter:image" content="{{ og_image | safe }}" />
 
-    <link rel="manifest" href="manifest.json" />
     <link rel="icon" type="image/svg+xml" href="{{ get_url(path='images/avatar.svg') | safe }}" />
     <link rel="canonical" href="{{ current_url | safe }}" />
     <link rel="stylesheet" href="{{ get_url(path='styles/main.css', cachebust=true) | safe }}" />
