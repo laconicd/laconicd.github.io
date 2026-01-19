@@ -225,7 +225,7 @@
 
     thead tr {
       display: grid;
-      grid-template-columns: 130px 1.6fr 1.1fr 1.3fr;
+      grid-template-columns: 140px 1fr 1fr 1fr;
       gap: 1.5rem;
       border: none !important;
       background: transparent !important;
@@ -238,57 +238,20 @@
 
     tr {
       display: grid;
-      grid-template-columns: 130px 1.6fr 1.1fr 1.3fr;
+      grid-template-columns: 140px 1fr 1fr 1fr;
       align-items: center;
       gap: 1.5rem;
-      transition: all 0.3s var(--ease-standard);
-      border-bottom: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
-      background: transparent;
-      padding: 1.5rem 2rem;
-
+...
+      /* Fourth Column: Trade-off */
       &:last-child {
-        border-bottom: none;
-      }
-
-      &:hover {
-        background: oklch(from var(--color-primary) l c h / 0.02);
-      }
-
-      @media (width < 48rem) {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-        padding: 1.5rem;
-      }
-    }
-
-    th {
-      border: none !important;
-      background: transparent !important;
-      padding: 0;
-      color: oklch(from var(--color-base-content) l c h / 0.3);
-      font-weight: 900;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-align: center;
-      text-transform: uppercase;
-    }
-
-    td {
-      border: none !important;
-      padding: 0;
-      font-size: 0.95rem;
-
-      /* First Column: Tech */
-      &:first-child {
-        color: var(--color-primary);
-        font-weight: 900;
-        font-size: 1.2rem;
-        letter-spacing: -0.02em;
+        opacity: 0.7;
+        font-size: 0.85rem;
+        line-height: 1.4;
         text-align: center;
+        text-wrap: pretty;
 
         @media (width < 48rem) {
-          margin-bottom: 0.5rem;
-          font-size: 1.5rem;
+          line-height: 1.5;
           text-align: left;
         }
       }
