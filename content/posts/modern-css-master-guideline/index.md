@@ -24,12 +24,12 @@ categories = ["development"]
 >
 > 이 대원칙 위에 현대 CSS는 컨테이너의 맥락을 더해 더 유연한 구조를 지향한다.
 
-| Technology | Situation | Power | Trade-off |
-| :---: | :---: | :---: | :---: |
-| **Grid** | 전체 구조 (**2차원 격자**) | 정교한 설계 | 제어 vs 복잡 |
-| **Flexbox** | 요소 배열 (**1차원 선형**) | 높은 유연성 | 간결 vs 1D 한계 |
-| **Subgrid** | 부모 그리드 상속 | 일관된 정렬 | 정밀 vs 호환성 |
-| **@container** | 독립적 컴포넌트 | 위치별 최적화 | 모듈화 vs 오버헤드 |
+| Technology | Situation | Power (Why use it?) | Trade-off |
+| :---: | :---: | :--- | :---: |
+| **Grid** | 전체 구조 (**2차원**) | 가로/세로 축 동시 제어 및 명시적 영역 설계 | 제어 vs 복잡 |
+| **Flexbox** | 요소 배열 (**1차원**) | 내용물 크기에 기반한 유동적 공간 배분과 정렬 | 간결 vs 1D 한계 |
+| **Subgrid** | 계층적 정렬 | 부모 그리드 눈금 상속을 통한 정교한 정렬 동기화 | 정밀 vs 호환성 |
+| **@container** | 독립적 부품 | 배치된 컨테이너 크기에 따른 컴포넌트 자율 제어 | 모듈화 vs 오버헤드 |
 
 > [!TIP]
 > **설계 전략: Grid for Rooms, Flexbox for Furniture**
