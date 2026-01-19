@@ -1,10 +1,11 @@
 .app-footer {
   display: block;
-  width: 100%;
   margin-block-start: var(--space-32);
-  border-top: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+  border-block-start: 1px solid
+    oklch(from var(--color-base-content) l c h / 0.1);
   background-color: oklch(from var(--color-base-content) l c h / 0.02);
-  
+  inline-size: 100%;
+
   @media (width < 48rem) {
     margin-block-start: var(--space-16);
   }
@@ -12,15 +13,17 @@
 
 @scope (.app-footer) {
   .footer-inner {
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: var(--space-20) var(--page-padding) var(--space-12);
     display: grid;
     gap: var(--section-gap);
+    margin-inline: auto;
+    padding-inline: var(--page-padding);
+    padding-block: var(--space-20) var(--space-12);
+    max-inline-size: var(--container-width);
 
     @media (width < 48rem) {
-      padding: var(--space-12) var(--space-6) var(--space-8);
       gap: var(--space-12);
+      padding-inline: var(--space-6);
+      padding-block: var(--space-12) var(--space-8);
     }
   }
 
@@ -44,24 +47,24 @@
     gap: var(--space-5);
 
     .brand-name {
-      font-size: 1.75rem;
-      font-weight: 900;
-      letter-spacing: -0.05em;
       color: var(--color-base-content);
+      font-weight: 900;
+      font-size: 1.75rem;
+      letter-spacing: -0.05em;
       @media (width < 48rem) {
         font-size: var(--text-xl);
       }
     }
 
     .brand-desc {
+      max-inline-size: 24rem;
+      color: oklch(from var(--color-base-content) l c h / 0.5);
+      font-weight: 500;
       font-size: var(--text-body);
       line-height: 1.6;
-      color: oklch(from var(--color-base-content) l c h / 0.5);
-      max-width: 24rem;
-      font-weight: 500;
       @media (width < 48rem) {
-        font-size: 0.9rem;
         grid-column: span 2;
+        font-size: 0.9rem;
       }
     }
 
@@ -76,11 +79,11 @@
     gap: var(--space-5);
 
     h4 {
-      font-size: 0.7rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
       opacity: 0.3;
+      font-weight: 900;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
     }
 
     ul {
@@ -88,40 +91,40 @@
       gap: 0.6rem;
 
       a {
-        font-size: var(--text-body);
-        font-weight: 700;
-        color: var(--color-base-content);
         opacity: 0.6;
         transition: all 0.2s;
+        color: var(--color-base-content);
+        font-weight: 700;
+        font-size: var(--text-body);
         @media (width < 48rem) {
           font-size: 0.95rem;
         }
         &:hover {
-          opacity: 1;
           transform: translateX(4px);
+          opacity: 1;
         }
       }
     }
   }
 
   .footer-bottom {
-    padding-block-start: var(--space-12);
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: var(--space-8);
+    padding-block-start: var(--space-12);
 
     @media (width < 48rem) {
       flex-direction: column-reverse;
-      text-align: center;
-      padding-block-start: var(--space-8);
       gap: var(--space-6);
+      padding-block-start: var(--space-8);
+      text-align: center;
     }
 
     .copyright {
-      font-size: var(--text-sm);
-      font-weight: 600;
       opacity: 0.3;
+      font-weight: 600;
+      font-size: var(--text-sm);
     }
 
     .social-links {
@@ -129,15 +132,15 @@
       gap: var(--space-6);
 
       a {
-        color: var(--color-base-content);
+        display: flex;
+        justify-content: center;
+        align-items: center;
         opacity: 0.4;
         transition: all 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        color: var(--color-base-content);
         &:hover {
-          opacity: 1;
           transform: translateY(-3px);
+          opacity: 1;
         }
       }
     }

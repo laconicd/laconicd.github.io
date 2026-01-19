@@ -1,6 +1,7 @@
 @scope (.app-post-card) {
   :scope {
     display: block;
+    container-type: inline-size;
     margin-block-end: var(--space-2);
   }
 
@@ -8,18 +9,19 @@
     display: flex;
     align-items: center;
     gap: var(--space-6);
-    padding: var(--space-6);
+    transition: all 0.4s var(--ease-standard);
+    border: 1px solid transparent;
     border-radius: var(--radius-3xl);
     background: transparent;
-    transition: all 0.4s var(--ease-standard);
+    padding-inline: var(--space-6);
+    padding-block: var(--space-6);
     color: inherit;
-    border: 1px solid transparent;
 
     &:hover {
-      background: var(--color-base-200);
       transform: translateY(-4px);
-      border-color: oklch(from var(--color-base-content) l c h / 0.05);
       box-shadow: var(--shadow-2);
+      border-color: oklch(from var(--color-base-content) l c h / 0.05);
+      background: var(--color-base-200);
 
       & .thumb img {
         transform: scale(1.1);
@@ -27,61 +29,61 @@
       & .action-arrow {
         transform: translateX(6px) rotate(-45deg);
         opacity: 1;
+        box-shadow: var(--shadow-2);
         background: var(--color-base-content);
         color: var(--color-base-100);
-        box-shadow: var(--shadow-2);
       }
     }
   }
 
   .thumb {
     flex-shrink: 0;
-    width: var(--space-24);
-    height: var(--space-24);
     border-radius: var(--radius-2xl);
-    overflow: hidden;
     background: var(--color-base-300);
+    inline-size: var(--space-24);
+    block-size: var(--space-24);
+    overflow: hidden;
 
     & img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
       transition: transform 0.6s var(--ease-standard);
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
     }
   }
 
   .body {
     flex: 1;
-    min-width: 0;
+    min-inline-size: 0;
   }
 
   .meta {
-    font-size: 0.7rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
     opacity: 0.4;
     margin-block-end: var(--space-2);
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   .title {
-    font-size: var(--text-xl);
+    display: -webkit-box;
+    margin-block-end: var(--space-2);
+    -webkit-line-clamp: 1;
     font-weight: 800;
+    font-size: var(--text-xl);
     line-height: 1.2;
     letter-spacing: -0.02em;
-    margin-block-end: var(--space-2);
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    overflow: hidden;
     transition: color 0.3s;
+    overflow: hidden;
   }
 
   .summary {
-    font-size: 0.95rem;
-    color: oklch(from var(--color-base-content) l c h / 0.5);
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    color: oklch(from var(--color-base-content) l c h / 0.5);
+    font-size: 0.95rem;
     -webkit-box-orient: vertical;
     overflow: hidden;
     line-height: 1.5;
@@ -92,19 +94,20 @@
     /* transition maintained by utility, but we might want custom bezier? Utility has ease-standard. This had cubic-bezier. Let's stick to standard for consistency or override if needed. */
   }
 
-  @media (width < 48rem) {
+  @container (width < 35rem) {
     .card-link {
-      padding: var(--space-4);
       gap: var(--space-4);
+      padding-inline: var(--space-4);
+      padding-block: var(--space-4);
     }
     .thumb {
-      width: 4.5rem;
-      height: 4.5rem;
       border-radius: var(--radius-xl);
+      inline-size: 4.5rem;
+      block-size: 4.5rem;
     }
     .title {
-      font-size: 1.15rem;
       margin-block-end: var(--space-1);
+      font-size: 1.15rem;
     }
     .summary {
       display: none;
@@ -118,16 +121,16 @@
 @scope (.app-post-grid-card) {
   :scope {
     display: block;
-    height: 100%;
+    block-size: 100%;
   }
 
   .card {
     display: flex;
-    flex-direction: column;
-    height: 100%;
     position: relative;
-    background: transparent;
+    flex-direction: column;
     transition: all 0.5s var(--ease-standard);
+    background: transparent;
+    block-size: 100%;
 
     &:hover {
       .media-area {
@@ -144,77 +147,78 @@
         color: var(--color-base-content);
         .arrow {
           transform: translateX(8px) rotate(-45deg);
+          box-shadow: var(--shadow-2);
           background: var(--color-base-content);
           color: var(--color-base-100);
-          box-shadow: var(--shadow-2);
         }
       }
     }
 
     .page-link {
       position: absolute;
-      inset: 0;
       z-index: 10;
+      inset: 0;
     }
 
     .media-area {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
+      transition: all 0.5s var(--ease-standard);
+      margin-block-end: var(--space-8);
+      box-shadow: 0 0 0 1px oklch(from var(--color-base-content) l c h / 0.05);
       border-radius: var(--radius-3xl);
       background: var(--color-base-200);
-      margin-block-end: var(--space-8);
-      transition: all 0.5s var(--ease-standard);
-      box-shadow: 0 0 0 1px oklch(from var(--color-base-content) l c h / 0.05);
+      aspect-ratio: 4 / 3;
+      inline-size: 100%;
+      overflow: hidden;
 
       & img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
         transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
       }
     }
 
     .content-area {
       display: flex;
-      flex-direction: column;
       flex: 1;
-      padding: 0 var(--space-2);
+      flex-direction: column;
+      padding-inline: var(--space-2);
+      padding-block: 0;
 
       .meta {
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        margin-block-end: 1.25rem;
-        font-size: 0.75rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
         opacity: 0.4;
+        margin-block-end: 1.25rem;
+        font-weight: 800;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
       }
 
       .title {
-        font-size: var(--text-h2);
+        display: -webkit-box;
+        transition: color 0.3s var(--ease-standard);
+        margin-block-end: var(--space-4);
+        -webkit-line-clamp: 2;
+        color: var(--color-base-content);
         font-weight: 900;
+        font-size: var(--text-h2);
         line-height: 1.1;
         letter-spacing: -0.03em;
-        margin-block-end: var(--space-4);
-        color: var(--color-base-content);
-        transition: color 0.3s var(--ease-standard);
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
 
       .summary {
+        display: -webkit-box;
+        flex: 1;
+        margin-block-end: var(--space-6);
+        -webkit-line-clamp: 3;
+        color: oklch(from var(--color-base-content) l c h / 0.5);
         font-size: 1rem;
         line-height: 1.6;
-        color: oklch(from var(--color-base-content) l c h / 0.5);
-        margin-block-end: var(--space-6);
-        flex: 1;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
@@ -226,26 +230,27 @@
         margin-block-start: auto;
 
         .tag {
-          font-size: 0.75rem;
-          font-weight: 800;
-          font-style: italic;
           opacity: 0.3;
+          font-style: italic;
+          font-weight: 800;
+          font-size: 0.75rem;
         }
       }
     }
 
     .footer-area {
-      margin-block-start: var(--space-6);
-      padding: 0 var(--space-2);
       display: flex;
       align-items: center;
       gap: var(--space-4);
-      font-size: 0.85rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: oklch(from var(--color-base-content) l c h / 0.5);
       transition: color 0.3s;
+      margin-block-start: var(--space-6);
+      padding-inline: var(--space-2);
+      padding-block: 0;
+      color: oklch(from var(--color-base-content) l c h / 0.5);
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
 
       .arrow {
         /* Specific overrides if any */

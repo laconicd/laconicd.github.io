@@ -1,18 +1,22 @@
-@import "variables.css";
-@import "reset.css";
-@import "base.css";
-@import "font.css";
-@import "animations.css";
-@import "transitions.css";
+@layer reset, base, components, utilities;
+
+@import "variables.css" layer(base);
+@import "reset.css" layer(reset);
+@import "base.css" layer(base);
+@import "font.css" layer(base);
+@import "animations.css" layer(base);
+@import "transitions.css" layer(base);
+@import "utilities.css" layer(utilities);
 
 /* Components */
-@import "components/navbar.css";
-@import "components/footer.css";
-@import "components/search-modal.css";
-@import "components/speed-dial.css";
-@import "components/post-card.css";
-@import "components/index.css";
-@import "components/posts.css";
-@import "components/post.css";
-@import "components/categories.css";
-@import "components/tags.css";
+@import "components/navbar.css" layer(components);
+@import "components/footer.css" layer(components);
+@import "components/search-modal.css" layer(components);
+@import "components/speed-dial.css" layer(components);
+@import "components/post-card.css" layer(components);
+@import "components/index.css" layer(components);
+@import "components/posts.css" layer(components);
+@import "components/post.css" layer(components);
+@import "components/categories.css" layer(components);
+@import "components/tags.css" layer(components);
+@import "components/error.css" layer(components);

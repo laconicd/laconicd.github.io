@@ -1,0 +1,57 @@
+/* 404 Error Page */
+@scope (.error-page) {
+  :scope {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-inline: var(--page-padding);
+    padding-block: var(--space-10);
+    min-block-size: 60vh;
+    text-align: center;
+  }
+
+  h1 {
+    margin-block-end: var(--space-4);
+    color: oklch(from var(--color-base-content) l c h / 0.1);
+    font-weight: 900;
+    font-size: clamp(4rem, 15vw, 8rem);
+    line-height: 1;
+    user-select: none;
+  }
+
+  h2 {
+    margin-block-end: var(--space-6);
+    font-weight: 800;
+    font-size: var(--text-h2);
+  }
+
+  p {
+    opacity: 0.6;
+    margin-block-end: var(--space-10);
+    max-inline-size: 30rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s var(--ease-standard);
+    border-radius: 99px;
+    background: var(--color-base-content);
+    padding-inline: 2rem;
+    padding-block: 1rem;
+    color: var(--color-base-100);
+    font-weight: 800;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
