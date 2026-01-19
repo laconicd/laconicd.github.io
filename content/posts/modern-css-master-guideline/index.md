@@ -23,16 +23,16 @@ categories = ["development"]
 > **핵심 원칙: 2차원은 Grid, 1차원은 Flexbox**
 > 이 대원칙 위에 현대 CSS는 컨테이너의 맥락을 더해 더 유연한 구조를 지향한다.
 
-| Technology | Situation (WHEN) | Power (KEY) | Trade-off |
+| Technology | Situation | Power | Trade-off |
 | :--- | :--- | :--- | :--- |
 | **Grid** | 전체 구조, 2D 격자 | 정교한 설계 | 제어력 vs 복잡도 |
-| **Flexbox** | 1D 배열, 유동적 요소 | 높은 유연성 | 간편함 vs 2D 한계 |
+| **Flexbox** | 1D 배열, 유동 요소 | 높은 유연성 | 간편함 vs 2D 한계 |
 | **Subgrid** | 부모 그리드 상속 | 일관된 정렬 | 정밀도 vs 호환성 |
 | **@container** | 독립적 컴포넌트 | 위치별 최적화 | 모듈화 vs 설정 비용 |
 
 > [!TIP]
 > **레이아웃 설계 팁**
-> 큰 틀(Layout)은 Grid로 짜고, 그 안의 작은 부품(Components)들은 Flexbox로 배치하는 것이 유지보수에 가장 유리하다.
+> 큰 틀(Layout)은 Grid로 짜고, 그 안의 작은 부품(Components)들은 Flexbox로 배치하는 것이 유지보수에 유리하다.
 
 ---
 
@@ -41,12 +41,12 @@ categories = ["development"]
 ### 닻을 내리다: Anchor Positioning
 더 이상 툴팁이나 팝오버 배치를 위해 무거운 JS 계산을 돌리지 말자.
 
-- **장점**: JS 없이 툴팁/팝오버를 브라우저 네이티브로 완벽하게 배치 가능.
+- **장점**: JS 없이 툴팁/팝오버를 브라우저 네이티브로 완벽 배치 가능.
 - **단점**: 아직 Chromium 계열 위주 지원. 복잡한 예외 상황 설정이 까다로움.
 
 > [!IMPORTANT]
 > **모바일 주소창 대응 (dvh)**
-> 100vh를 쓰면 모바일 브라우저의 주소창 높이 때문에 레이아웃이 가려질 수 있다. 무조건 `dvh`나 `svh`를 쓰는 습관을 들이자.
+> 100vh를 쓰면 모바일 브라우저 주소창 높이 때문에 레이아웃이 가려질 수 있다. 무조건 `dvh`나 `svh`를 쓰는 습관을 들이자.
 
 ### 📏 Logical vs Physical Properties
 방향 지향(left/right)에서 흐름 지향(inline/block)으로 사고를 전환하라.
@@ -84,21 +84,21 @@ categories = ["development"]
 
 > [!WARNING]
 > **RCS 대체 수단 (Fallback)**
-> `oklch(from ...)` 문법은 구형 브라우저에서 무시된다. 배경이 사라지는 대참사를 막으려면 기본 컬러값을 상단에 먼저 선언해두자.
+> `oklch(from ...)` 문법은 구형 브라우저에서 무시된다. 배경 소멸을 막으려면 기본 컬러값을 상단에 먼저 선언해두자.
 
 ---
 
 ## 4. 🔄 모션 시스템 (Motion Design)
 
 ### 📽️ View Transitions API
-페이지 이동이나 요소 상태 변화 시 흐름을 끊지 않는 부드러운 전환을 선언적으로 구현한다.
+페이지 이동이나 요소 상태 변화 시 흐름을 끊지 않는 부드러운 전환을 구현한다.
 
-- **장점**: 복잡한 JS 라이브러리 없이 앱 같은 부드러운 화면 전환이 가능.
+- **장점**: 복잡한 JS 라이브러리 없이 앱 같은 부드러운 화면 전환 가능.
 - **단점**: 다중 동시 전환 제어가 어렵고 세밀한 타이밍 커스텀이 까다로움.
 
 > [!CAUTION]
-> **접근성 최우선**
-> 화려한 모션에 취해 접근성을 놓치지 말자. `prefers-reduced-motion` 미디어 쿼리는 단순한 옵션이 아니라 필수다.
+> **접근성 최우선 고려**
+> 화려한 모션에 취해 접근성을 놓치지 말자. `prefers-reduced-motion` 미디어 쿼리는 필수다.
 
 ---
 
@@ -108,15 +108,15 @@ categories = ["development"]
 명시도(Specificity) 전쟁을 끝내고 코드를 간결하게 만드는 현대적 선택자들이다.
 
 #### 1. `:is()` - 복잡한 그룹화의 단순화
-- **장점**: 여러 선택자를 하나로 묶어 중복 제거. 그룹 내 가장 강한 명시도를 상속받아 스타일 적용 보장.
-- **단점**: 그룹 내 ID 선택자가 포함될 경우 전체 명시도가 높아져 오버라이드가 매우 힘들어짐.
+- **장점**: 여러 선택자를 하나로 묶어 중복 제거. 그룹 내 가장 강한 명시도 상속.
+- **단점**: ID 선택자가 섞일 경우 명시도가 폭발하여 오버라이드가 힘들어짐.
 
 #### 2. `:where()` - 명시도 제로(0)의 마법
-- **장점**: 명시도가 항상 0. 라이브러리나 기본 Reset 스타일 정의 시 커스텀을 방해하지 않음.
+- **장점**: 명시도가 항상 0. 기본 Reset 스타일 정의 시 커스텀을 방해하지 않음.
 - **단점**: 너무 약해서 아주 기본적인 태그 선택자에게도 순위가 밀릴 수 있음.
 
 #### 3. Native CSS Nesting
-- **장점**: Sass 없이 계층 구조를 명확히 작성. 코드 가독성 향상 및 빌드 도구 의존성 감소.
+- **장점**: Sass 없이 계층 구조 작성. 코드 가독성 향상 및 빌드 도구 의존성 감소.
 - **단점**: 중첩이 깊어지면 명시도 계산이 꼬임 (최대 3단계 권장).
 
 ---
@@ -125,11 +125,11 @@ categories = ["development"]
 
 ### 📏 유연한 크기 조절 (Fluid Typography)
 - **장점**: `clamp()`를 이용해 브라우저 너비에 따라 폰트 크기가 부드럽게 가변함.
-- **단점**: 고정값(`px`) 혼용 시 사용자 폰트 확대 설정이 무시될 수 있으므로 반드시 `rem` 기반 설계 필요.
+- **단점**: 고정값(`px`) 혼용 시 사용자 폰트 확대 설정이 무시될 위험이 있음.
 
 ### ⚖️ text-wrap: balance vs pretty
 - **`balance`**: (제목용) 줄 길이를 균등하게 맞추어 시각적 무게 중심을 잡음.
-- **`pretty`**: (본문용) 문단 끝에 단어 하나만 남는 'Orphan' 현상을 방지하여 가독성 향상.
+- **`pretty`**: (본문용) 문단 끝 고립 단어를 방지하여 가독성 향상.
 
 ```css
 article p {
@@ -145,21 +145,21 @@ article p {
 
 > [!IMPORTANT]
 > **속성 선언 순서: "바깥에서 안으로 (Outside-In)"**
-> 1. **Layout**: `display`, `position`, `grid`, `flex`, `z-index`
-> 2. **Box Model**: `width`, `height`, `margin`, `padding`, `border`
-> 3. **Typography**: `font`, `line-height`, `color`, `letter-spacing`
-> 4. **Visual**: `background`, `border-radius`, `box-shadow`, `opacity`
-> 5. **Interaction**: `transition`, `animation`, `transform`
+> 1. **Layout**: display, position, grid, flex, z-index
+> 2. **Box Model**: width, height, margin, padding, border
+> 3. **Typography**: font, line-height, color, letter-spacing
+> 4. **Visual**: background, border-radius, box-shadow, opacity
+> 5. **Interaction**: transition, animation, transform
 
 ---
 
 ## 8. 🔄 실전 개발 루틴 (The 7-Step Routine)
 
 1. **박스 분해**: Grid와 Flex로 구현할 영역을 논리적으로 먼저 나눈다.
-2. **변수 선언**: 해당 컴포넌트에서만 사용될 전용 변수를 먼저 정의한다.
-3. **뼈대 구축**: Layout 속성들을 사용해 전체적인 배치 구조를 잡는다.
+2. **변수 선언**: 해당 컴포넌트에서 전용 변수를 먼저 정의한다.
+3. **뼈대 구축**: Layout 속성들로 전체적인 배치 구조를 잡는다.
 4. **간격 조절**: 내/외부 간격(`padding`, `margin`)을 세부 조정한다.
-5. **디테일링**: 폰트, 색상, 배경 등 시각적 스타일을 적용한다.
+5. **디테일링**: 폰트, 색상, 배경 등 시각 스타일을 적용한다.
 6. **반응형 대응**: `clamp()`나 `@container`를 적용해 유동성을 부여한다.
 7. **모션 & 접근성**: 애니메이션을 추가하고 포커스 스타일을 점검한다.
 

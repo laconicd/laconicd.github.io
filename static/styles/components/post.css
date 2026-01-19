@@ -202,48 +202,57 @@
     table {
       display: flex;
       flex-direction: column;
-      width: 100%;
-      border-collapse: collapse;
       margin-block: 2.5rem;
-      background: var(--color-base-100);
-      border-radius: var(--radius-2xl);
-      border: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
       box-shadow: var(--shadow-2);
+      border: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+      border-radius: var(--radius-2xl);
+      border-collapse: collapse;
+      background: var(--color-base-100);
+      width: 100%;
       overflow: hidden;
     }
 
     thead {
       display: block;
-      padding: 1.25rem 2rem;
       border-bottom: 2px solid oklch(from var(--color-base-content) l c h / 0.05);
       background: transparent;
+      padding: 1.25rem 2rem;
 
-      @media (width < 48rem) { display: none; }
+      @media (width < 48rem) {
+        display: none;
+      }
     }
 
     thead tr {
       display: grid;
-      grid-template-columns: 140px 1.5fr 2fr;
-      gap: 2rem;
-      padding: 0;
+      grid-template-columns: 120px 1.2fr 1.5fr 1.5fr;
+      gap: 1.5rem;
       border: none !important;
       background: transparent !important;
+      padding: 0;
     }
 
-    tbody { display: block; }
+    tbody {
+      display: block;
+    }
 
     tr {
       display: grid;
-      grid-template-columns: 140px 1.5fr 2fr;
-      gap: 2rem;
+      grid-template-columns: 120px 1.2fr 1.5fr 1.5fr;
       align-items: center;
-      padding: 1.5rem 2rem;
-      border-bottom: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
+      gap: 1.5rem;
       transition: all 0.3s var(--ease-standard);
+      border-bottom: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
       background: transparent;
+      padding: 1.5rem 2rem;
 
-      &:last-child { border-bottom: none; }
-      &:hover { background: oklch(from var(--color-primary) l c h / 0.02); }
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: oklch(from var(--color-primary) l c h / 0.02);
+      }
 
       @media (width < 48rem) {
         grid-template-columns: 1fr;
@@ -253,75 +262,96 @@
     }
 
     th {
-      font-weight: 900;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: oklch(from var(--color-base-content) l c h / 0.3);
-      text-align: center;
       border: none !important;
       background: transparent !important;
       padding: 0;
+      color: oklch(from var(--color-base-content) l c h / 0.3);
+      font-weight: 900;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-align: center;
+      text-transform: uppercase;
     }
 
     td {
+      border: none !important;
       padding: 0;
-      border: none !important; 
       font-size: 0.95rem;
 
       /* First Column: Tech */
       &:first-child {
+        color: var(--color-primary);
         font-weight: 900;
         font-size: 1.2rem;
-        color: var(--color-primary);
         letter-spacing: -0.02em;
         text-align: center;
 
         @media (width < 48rem) {
-          text-align: left;
-          font-size: 1.5rem;
           margin-bottom: 0.5rem;
+          font-size: 1.5rem;
+          text-align: left;
         }
       }
 
       /* Second Column: Situation */
       &:nth-child(2) {
-        font-weight: 700;
         color: var(--color-base-content);
+        font-weight: 700;
         text-align: center;
 
         @media (width < 48rem) {
-          text-align: left;
-          line-height: 1.4;
           margin-bottom: 0.25rem;
+          line-height: 1.4;
+          text-align: left;
+
           &::before {
-            content: "SITUATION";
             display: block;
-            font-size: 0.6rem;
             opacity: 0.3;
-            letter-spacing: 0.1em;
             margin-bottom: 0.2rem;
+            content: "SITUATION";
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
           }
         }
       }
 
-      /* Third Column: Reason */
-      &:last-child {
-        font-size: 0.9rem;
-        line-height: 1.5;
+      /* Third Column: Power */
+      &:nth-child(3) {
         opacity: 0.7;
+        font-size: 0.9rem;
+        text-align: center;
+
+        @media (width < 48rem) {
+          text-align: left;
+          &::before {
+            display: block;
+            opacity: 0.3;
+            margin-bottom: 0.2rem;
+            content: "POWER";
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+          }
+        }
+      }
+
+      /* Fourth Column: Trade-off */
+      &:last-child {
+        opacity: 0.7;
+        font-size: 0.85rem;
+        line-height: 1.4;
         text-align: left;
         text-wrap: pretty;
 
         @media (width < 48rem) {
-          line-height: 1.6;
+          line-height: 1.5;
+
           &::before {
-            content: "REASON";
             display: block;
-            font-size: 0.6rem;
             opacity: 0.3;
-            letter-spacing: 0.1em;
             margin-bottom: 0.2rem;
+            content: "TRADE-OFF";
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
           }
         }
       }
@@ -338,16 +368,16 @@
 
       &[class*="markdown-alert"] {
         position: relative;
+        transition: all 0.4s var(--ease-standard);
         margin-block: 3.5rem 2.5rem;
+        box-shadow: none;
+        border: 1.5px solid oklch(from var(--alert-color) l c h / 0.25);
+        border-radius: var(--radius-xl);
+        background: oklch(from var(--alert-color) l c h / 0.03);
         padding-inline: 1.75rem;
         padding-block: 2.25rem 1.5rem;
-        border-radius: var(--radius-xl);
-        border: 1.5px solid oklch(from var(--alert-color) l c h / 0.25);
-        background: oklch(from var(--alert-color) l c h / 0.03);
-        font-style: normal;
-        transition: all 0.4s var(--ease-standard);
         overflow: visible !important;
-        box-shadow: none;
+        font-style: normal;
 
         &:hover {
           border-color: oklch(from var(--alert-color) l c h / 0.4);
@@ -356,23 +386,23 @@
 
         /* Title Style (Floating Pill sitting ON the line) */
         & > .markdown-alert-title {
+          display: inline-flex;
           position: absolute;
           top: 0;
           left: 1.5rem;
-          transform: translateY(-50%);
-          display: inline-flex;
           align-items: center;
           gap: 0.4rem;
+          transform: translateY(-50%);
+          z-index: 10;
+          box-shadow: 0 4px 12px -2px oklch(from var(--alert-color) l c h / 0.4);
+          border-radius: 100px !important;
           background: var(--alert-color) !important;
+          padding: 0.35rem 1rem !important;
           color: white !important;
           font-weight: 950;
           font-size: 0.65rem;
           letter-spacing: 0.1em;
           text-transform: uppercase;
-          padding: 0.35rem 1rem !important;
-          border-radius: 100px !important;
-          box-shadow: 0 4px 12px -2px oklch(from var(--alert-color) l c h / 0.4);
-          z-index: 10;
         }
 
         & > .markdown-alert-title::before {
@@ -394,40 +424,44 @@
 
           /* 마크다운에서 첫 줄에 **제목**만 썼을 때 자동으로 알약 배지 적용 */
           strong:first-child:only-child {
+            display: inline-flex;
             position: absolute;
             top: 0;
             left: 1.5rem;
             transform: translateY(-50%);
-            display: inline-flex;
-            background: var(--alert-color);
-            color: white;
-            padding: 0.35rem 1rem;
+            box-shadow: 0 4px 12px -2px oklch(from var(--alert-color) l c h / 0.4);
             border-radius: 100px;
-            font-size: 0.65rem;
+            background: var(--alert-color);
+            padding: 0.35rem 1rem;
+            color: white;
             font-weight: 950;
+            font-size: 0.65rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            box-shadow: 0 4px 12px -2px oklch(from var(--alert-color) l c h / 0.4);
           }
         }
 
         /* Type-specific Variables (Modern Muted Palette) */
         &.markdown-alert-note {
-          --alert-color: oklch(65% 0.08 250); 
+          --alert-color: oklch(65% 0.08 250);
           --alert-mask: var(--icon-alert-note);
         }
+
         &.markdown-alert-tip {
           --alert-color: oklch(70% 0.1 160);
           --alert-mask: var(--icon-alert-tip);
         }
+
         &.markdown-alert-important {
           --alert-color: oklch(65% 0.1 300);
           --alert-mask: var(--icon-alert-important);
         }
+
         &.markdown-alert-warning {
           --alert-color: oklch(75% 0.12 70);
           --alert-mask: var(--icon-alert-warning);
         }
+
         &.markdown-alert-caution {
           --alert-color: oklch(65% 0.12 25);
           --alert-mask: var(--icon-alert-caution);
