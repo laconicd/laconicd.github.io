@@ -17,211 +17,165 @@ categories = ["development"]
 
 ---
 
-## 1. 🧱 레이아웃 결정 매트릭스 (Layout Decision Matrix)
+## 1. 🧱 레이아웃 결정 매트릭스 (The Layout Engine)
 
-> **원칙은 심플하다: "2차원은 Grid, 1차원은 Flexbox"**
+> **"2차원은 Grid, 1차원은 Flexbox"**라는 대원칙 위에, 현대 CSS는 **컨테이너의 맥락**을 더했다.
 
-표의 직관적인 비교 기능과 모던한 레이아웃을 합친 가이드다. 상황에 맞는 최적의 도구를 골라보자.
+| Technology | Situation (WHEN) | Power (KEY) |
+| :--- | :--- | :--- |
+| **Grid** | 복잡한 대시보드, 매거진 레이아웃 | `grid-template-areas`를 통한 시맨틱 레이아웃 정의 |
+| **Flexbox** | 네비게이션, 버튼 그룹, 카드 내부 정렬 | `gap`과 `flex-basis`를 이용한 유연한 분배 |
+| **Subgrid** | 부모 그리드와 줄을 맞춰야 하는 중첩 요소 | `grid-template-columns: subgrid;`로 부모 간격 상속 |
+| **@container** | 배치되는 위치에 따라 모습이 바뀌어야 할 때 | `container-type: inline-size;`를 통한 컴포넌트 독립성 |
 
-| Technology | Situation (WHEN)       | Reason (WHY)                                                 |
-| ---------- | ---------------------- | ------------------------------------------------------------ |
-| Grid       | 전체 구조 및 2D 격자   | 가로와 세로 축을 동시에 완벽하게 제어할 수 있다.             |
-| Flexbox    | 메뉴, 버튼 등 1D 배열  | 한 축을 따라 흐르는 유연한 컴포넌트 구조에 최적이다.         |
-| Subgrid    | 부모 Grid 상속         | 다른 섹션 간에도 줄 맞춤을 일관되게 유지해준다.              |
-| @container | 독립적인 부품(카드 등) | 부모 크기에 반응하므로 어디에 배치해도 레이아웃이 안 깨진다. |
+### 🧩 Subgrid: 중첩 요소의 정렬 종결자
+카드의 제목이나 본문 길이가 달라도, 여러 카드 사이의 줄을 완벽하게 맞출 수 있다.
+```css
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
 
-### 💡 실전 예제: 복합 레이아웃
-
-단순히 하나만 쓰는 게 아니라, Grid로 큰 틀을 잡고 내부에서 Flexbox로 정렬하는 것이 국룰이다.
-
-```html
-<section class="grid-layout">
-  <header>상단 (Grid Item)</header>
-  <nav class="flex-menu">
-    <!-- Grid 내부의 Flexbox -->
-    <button>Menu 1</button>
-    <button>Menu 2</button>
-  </nav>
-  <main>본문 (Grid Item)</main>
-</section>
+.card {
+  grid-row: span 3; /* 카드가 3개의 그리드 로우를 차지하게 설정 */
+  display: grid;
+  grid-template-rows: subgrid; /* 부모의 로우 가이드라인을 그대로 사용 */
+}
 ```
 
-> [!WARNING]
-> **주의할 점**
->
-> - **Grid 지옥**: 너무 모든 걸 Grid로만 해결하려 하지 말자. 단순 일렬 배치는 Flexbox가 훨씬 유연하고 코드도 짧다.
-> - **Subgrid 호환성**: Subgrid는 아주 강력하지만, 구형 브라우저 대응이 필요하다면 반드시 `fallback` 레이아웃을 고려해야 한다.
+### 📦 @container 스타일 쿼리 (Next Level)
+크기뿐만 아니라 부모의 **특정 스타일 상태**에 따라 자식을 변화시킬 수 있다.
+```css
+.parent { container-name: card; }
+
+@container card style(--theme: dark) {
+  .child { color: white; background: black; }
+}
+```
+
+---
+
+## 2. 📍 정밀 배치와 가변 크기 (Precision & Sizing)
+
+### 닻을 내리다: Anchor Positioning
+더 이상 툴팁을 띄우기 위해 `getBoundingClientRect()` 같은 무거운 JS를 돌리지 말자.
+```css
+.anchor-btn { anchor-name: --menu-trigger; }
+
+.popover-menu {
+  position: absolute;
+  position-anchor: --menu-trigger;
+  /* 버튼의 하단 중앙에 자동 배치 */
+  inset-area: bottom span-all;
+  position-try-options: flip-block, flip-inline; /* 공간 없으면 반대로 자동 반전 */
+}
+```
+
+### 📏 고정 크기 대신 내재적 크기 (Intrinsic Sizing)
+`width: 300px` 같은 고정값은 위험하다. 콘텐츠의 양에 반응하는 속성을 쓰자.
+- **`min-content`**: 최소한의 너비 (단어가 깨지지 않는 선)
+- **`max-content`**: 줄바꿈 없는 최대 너비
+- **`fit-content(500px)`**: 콘텐츠에 맞추되, 최대 500px을 넘지 않음
+
+```css
+.chip {
+  width: fit-content;
+  padding: 0.5em 1em;
+  white-space: nowrap;
+}
+```
 
 > [!TIP]
-> **복합 레이아웃의 정석**
-> 큰 틀(Layout)은 Grid로 짜고, 그 안의 작은 부품(Components)들은 Flexbox로 배치하는 게 나중에 수정하기 훨씬 편하다.
-
-### 📦 Container Queries: 부모 크기가 기준이다
-
-브라우저 너비가 아니라, 실제 나를 감싸고 있는 **부모 컨테이너** 크기에 따라 컴포넌트가 스스로 판단하게 만드는 게 핵심이다.
-
-```css
-.card-container {
-  container-type: inline-size;
-}
-
-@container (width > 400px) {
-  .card {
-    display: flex;
-    gap: 2rem;
-  } /* 넓어지면 가로 배치로 바꾼다 */
-}
-```
+> **Viewports의 신세계**
+> 모바일 상단바/하단바가 변할 때 레이아웃이 출렁이는 게 싫다면 `svh`(Small), `lvh`(Large) 대신 상황에 따라 유동적인 **`dvh`**(Dynamic)를 기본값으로 사용하라.
 
 ---
 
-## 2. 📍 배치 및 크기 공식 (Positioning & Sizing)
+## 3. 🎨 색상 시스템 (Color Science)
 
-- **Position**: `Relative`는 기준점일 뿐, `Absolute`는 공중에 띄우는 유령, `Sticky`는 부모 안에서만 끈끈하게 붙는다.
-- **Anchor Positioning (New)**: 툴팁이나 메뉴를 특정 요소에 붙일 때 더 이상 JS 계산에 목매지 말자. `anchor-name`과 `position-anchor`로 선언하면 끝이다.
-  ```css
-  .anchor-element {
-    anchor-name: --my-anchor;
-  }
-  .tooltip {
-    position: absolute;
-    position-anchor: --my-anchor;
-    inset-block-end: anchor(top); /* 대상의 위에 딱 붙인다 */
-  }
-  ```
-- **Sizing**: 글자나 외부 간격은 **`rem`**, 컴포넌트 내부 간격은 **`em`**으로 묶어서 유연하게 관리하자. 가변 크기는 **`clamp()`** 하나면 끝난다.
-- **Viewport**: 모바일 주소창 때문에 레이아웃 깨지는 꼴 보기 싫으면 무조건 **`dvh`**를 쓴다.
-
-### 💡 실전 예제: 반응형 카드 크기
-
-```css
-.card {
-  padding: em(20px); /* 폰트 크기에 비례하는 내부 여백 */
-  /* 최소 300px, 최대 600px 사이에서 브라우저 너비의 50%를 유지한다 */
-  width: clamp(300px, 50%, 600px);
-}
-```
-
-> [!WARNING]
-> **주의할 점**
->
-> - **`rem` vs `em`**: 전역 설정(rem)과 컴포넌트 지역 설정(em)을 혼동하면 레이아웃이 꼬인다. "바깥은 rem, 안은 em" 공식을 몸에 익히자.
-> - **Anchor Positioning**: 아직 모든 브라우저에서 지원하는 것은 아니니, 중요한 UI라면 폴리필이나 fallback 처리가 필수다.
-
-> [!IMPORTANT]
-> **모바일 주소창 대응 (`dvh`)**
-> 100vh를 쓰면 모바일 브라우저의 주소창 높이 때문에 레이아웃이 툭툭 끊기거나 가려질 수 있다. 무조건 `dvh`나 `svh`를 쓰는 습관을 들이자.
-
----
-
-## 3. 🎨 색상 시스템: OKLCH & Relative Syntax
-
-> **공식: "정의는 OKLCH로, 변주는 Relative Color Syntax로 처리한다"**
+### OKLCH: 인간 중심의 컬러 모델
+RGB나 HEX는 컴퓨터를 위한 값이다. **OKLCH**는 사람이 느끼는 '밝기(L)', '채도(C)', '색상(H)'을 기준으로 한다.
+- **L (Lightness)**: 0%~100%. 동일한 L값이면 파란색이든 노란색이든 눈에 느껴지는 밝기가 같다.
+- **C (Chroma)**: 색의 선명도. 0(무채색)부터 이론상 제한이 없으나 보통 0.4 미만을 쓴다.
 
 ```css
 :root {
   --primary: oklch(65% 0.15 250);
-}
-
-.card {
-  /* 밝기(l)만 살짝 조정해서 테두리 색상 만들기 */
-  border: 1px solid oklch(from var(--primary) calc(l - 0.1) c h);
-  /* Relative Color Syntax: 기존 색상에서 투명도만 50%로 뽑아내기 */
-  background: oklch(from var(--primary) l c h / 0.5);
+  /* Relative Color Syntax로 변주 생성 */
+  --primary-light: oklch(from var(--primary) calc(l + 0.1) c h);
+  --primary-muted: oklch(from var(--primary) l 0.05 h);
 }
 ```
 
-### 💡 실전 예제: 테마 대응 컬러
-
-```css
-:root {
-  --brand: oklch(60% 0.15 250);
-}
-.active {
-  /* 브랜드 컬러를 기반으로 80% 투명한 강조 효과 만들기 */
-  background: oklch(from var(--brand) l c h / 0.8);
-}
-```
-
-> [!WARNING]
-> **주의할 점**
->
-> - **RCS 브라우저 지원**: Relative Color Syntax는 매우 최신 기능이다. 지원하지 않는 브라우저를 위해 기본 컬러값을 먼저 선언해주는 센스가 필요하다.
-> - **OKLCH 인지**: 사람이 느끼는 밝기가 일정하다는 장점이 있지만, 기존 HEX 코드 방식에 익숙하다면 색상값이 직관적으로 안 보일 수 있으니 연습이 필요하다.
-
-> [!WARNING]
-> **Color Syntax Fallback**
-> `oklch(from ...)` 문법은 구형 브라우저에서 통째로 무시된다. `background: oklch(60% 0.1 250);` 처럼 기본값을 위에 먼저 써두지 않으면 배경이 아예 안 나오는 대참사가 발생할 수 있다.
+### 🌗 다크모드와 콘트라스트 (APCA)
+단순히 흰색을 검은색으로 바꾸는 게 아니다.
+1.  **Lightness Shifting**: 배경은 어둡게(L 10%~20%), 텍스트는 밝게(L 90%+) 설정하되 순수한 검정(#000)보다는 짙은 무채색을 선호하라.
+2.  **Chroma Reduction**: 다크모드에서 채도가 너무 높으면 눈이 피로하다. C값을 미세하게 낮춰라.
 
 ---
 
-## 4. 🔄 모션 시스템: 트랜지션 & 애니메이션
+## 4. 🔄 모션 시스템 (Motion Design)
 
-> **핵심: "상태 반응(A→B)은 Transition, 시나리오가 있으면 Animation"**
-
-### 🧪 5종 모션 황금 비율 변수
-
-이 값들은 무조건 챙겨두자. 감각이 다르다.
-
+### 📽️ View Transitions API
+페이지 이동이나 요소 추가/삭제 시 흐름을 끊지 않는 부드러운 전환을 구현한다.
 ```css
-:root {
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* 표준: 가장 자연스럽다 */
-  --ease-in: cubic-bezier(0, 0, 0.2, 1); /* 등장: 쓱 나타날 때 */
-  --ease-out: cubic-bezier(0.4, 0, 1, 1); /* 퇴장: 휙 사라질 때 */
-  --ease-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1); /* 반동: 쫀득한 탄성 */
-  --ease-sharp: cubic-bezier(0.7, 0, 0.3, 1); /* 강조: 묵직하게 가속 */
+/* 요소에 고유 이름을 부여하면 브라우저가 이동 경로를 추적한다 */
+.card-detail {
+  view-transition-name: card-active;
 }
 ```
 
-### 📜 스크롤 기반 애니메이션 (Scroll-driven)
-
-JS 한 줄 없이 스크롤에 반응하게 만들 수 있다.
-
+### 📜 스크롤 기반 정밀 제어 (Scroll-Timeline)
+JS 없이 스크롤 위치에 따른 애니메이션의 '진행률'을 정의한다.
 ```css
-.scroll-progress {
-  transform-origin: left;
-  scale: 0 1;
-  animation: grow auto linear;
-  animation-timeline: scroll();
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-@keyframes grow {
-  to {
-    scale: 1 1;
-  }
+
+.reveal-element {
+  animation: slide-in linear;
+  animation-timeline: view(); /* 뷰포트에 들어올 때 실행 */
+  animation-range: entry 10% cover 30%; /* 나타나기 시작해서 30% 지점까지 */
 }
 ```
-
-### ⚡ 성능 및 접근성 최적화
-
-- **View Transitions**: 페이지 전환할 때 툭 끊기지 않게 부드러운 흐름을 주자.
-- **성능**: 위치는 `translate`, 크기는 `scale`, 투명도는 `opacity`. GPU 가속을 써야 안 버벅인다.
-- **접근성**: 멀미 느끼는 사용자들을 위해 `prefers-reduced-motion`은 예의다.
-
-> [!CAUTION]
-> **과한 애니메이션은 독이다**
-> 화려한 모션에 취해 접근성을 놓치지 말자. `prefers-reduced-motion` 미디어 쿼리는 단순한 옵션이 아니라 필수다. 사용자의 OS 설정이 '동작 줄이기'라면 모션을 최소화하거나 즉시 멈춰야 한다.
 
 ---
 
-## 5. 🏗️ 아키텍처 및 모던 셀렉터
+## 5. 🏗️ 아키텍처와 지능형 선택자 (Architecture)
 
-### 🪜 CSS Cascade Layers (`@layer`)
-
-지긋지긋한 명시도 싸움은 `@layer`로 종결한다. 하위 레이어는 아무리 발버둥 쳐도 상위 레이어를 못 이긴다.
-
+### 🪜 @layer를 활용한 명시도 전쟁 종결
 ```css
-@layer base, layout, components, utilities;
+@layer reset, base, components, utilities;
+
+@layer components {
+  .btn { background: blue; } /* 레이어 내 우선순위 적용 */
+}
+
+@layer base {
+  a { color: red !important; } /* 레이어 순서상 components가 무조건 이김 */
+}
 ```
 
-### 🕸️ Modern Selectors & Queries
+### 🕸️ :has() - 부모 선택자의 혁명
+자식의 상태나 존재 여부에 따라 부모의 레이아웃을 바꾼다.
+```css
+/* 이미지가 포함된 카드만 패딩을 없앤다 */
+.card:has(img) { padding: 0; }
 
-- **Popover API**: JS 없이 선언적으로 팝업을 만든다. `z-index` 지옥에서 탈출하는 유일한 길이다.
-- **`:has()`**: 부모 선택자의 끝판왕. `.card:has(:checked)` 처럼 자식의 상태에 따라 부모 스타일을 바꾸는 미친 짓이 가능해졌다.
-- **Scroll-state Queries (Experimental)**: 요소가 스크롤되어 '상단에 고정(stuck)'되었는지를 감지해서 스타일을 바꿀 수 있다.
+/* 특정 입력창에 에러가 있으면 폼 전체에 흔들리는 효과 */
+form:has(.input:invalid) { animation: shake 0.5s; }
+```
 
-> [!NOTE]
-> **`:where()`의 마법**
-> `:where()` 안에 들어가는 선택자는 명시도가 **0**이다. 기본 스타일을 정의할 때 이걸 쓰면, 나중에 아무리 약한 클래스 선택자로도 덮어쓸 수 있어서 유지보수성이 수직 상승한다.
+### 🎯 @scope - 스타일 오염 방지
+특정 범위 내에서만 스타일이 적용되도록 제한한다.
+```css
+@scope (.card) to (.card-footer) {
+  /* .card 내부부터 .card-footer 전까지만 적용 */
+  p { color: gray; }
+}
+```
 
 ---
 
