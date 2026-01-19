@@ -198,18 +198,62 @@
       overflow-wrap: break-word;
     }
 
-    /* --- Modern Table Matrix --- */
+    /* --- Universal Modern Table --- */
     table {
-      display: flex;
-      flex-direction: column;
-      margin-block: 2.5rem;
+      margin-block: 3rem;
       box-shadow: var(--shadow-2);
       border: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
       border-radius: var(--radius-2xl);
-      border-collapse: collapse;
       background: var(--color-base-100);
-      width: 100%;
-      overflow: hidden;
+      inline-size: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden; /* rounded corners 유지 */
+    }
+
+    thead {
+      background: oklch(from var(--color-base-content) l c h / 0.03);
+    }
+
+    th {
+      padding: 1.25rem 1.5rem;
+      color: oklch(from var(--color-base-content) l c h / 0.4);
+      font-weight: 900;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-align: center;
+      text-transform: uppercase;
+      border-bottom: 2px solid oklch(from var(--color-base-content) l c h / 0.05);
+    }
+
+    tr {
+      transition: all 0.3s var(--ease-standard);
+      
+      &:hover {
+        background: oklch(from var(--color-primary) l c h / 0.03);
+      }
+      
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+
+    td {
+      padding: 1.5rem;
+      border-bottom: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
+      color: oklch(from var(--color-base-content) l c h / 0.8);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      text-align: center;
+      word-break: keep-all;
+    }
+
+    /* 표가 너무 길어질 때를 대비한 가로 스크롤 래퍼 (선택 사항) */
+    .table-wrapper {
+      inline-size: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: var(--radius-2xl);
     }
 
     thead {
