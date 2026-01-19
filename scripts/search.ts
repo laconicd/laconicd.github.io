@@ -6,12 +6,14 @@ export {};
 interface SearchItem {
   title: string;
   path: string;
-  content: string;
+  url?: string;
+  content?: string;
+  body?: string;
 }
 
 declare global {
   interface Window {
-    searchIndex?: SearchItem[];
+    searchIndex?: SearchItem[] | { docs: SearchItem[] };
   }
 }
 
@@ -37,13 +39,23 @@ class SearchManager {
   }
 
   private initFuse(): void {
-    const list = window.searchIndex || [];
+    const rawData = window.searchIndex;
+    let list: SearchItem[] = [];
+
+    if (Array.isArray(rawData)) {
+      list = rawData;
+    } else if (rawData && typeof rawData === "object" && "docs" in rawData) {
+      list = (rawData as any).docs;
+    }
+
+    if (!list || list.length === 0) return;
+
     this.fuse = new Fuse(list, {
       includeScore: true,
       includeMatches: true,
       threshold: 0.4,
       ignoreLocation: true,
-      keys: ["title", "content"],
+      keys: ["title", "content", "body"],
     });
   }
 
@@ -78,7 +90,11 @@ class SearchManager {
       return;
     }
 
-    if (!this.fuse) return;
+    if (!this.fuse) {
+      this.initFuse();
+      if (!this.fuse) return;
+    }
+
     const rawResults = this.fuse.search(query);
     const uniqueResults = this.getUniqueResults(rawResults, 10);
 
@@ -97,8 +113,9 @@ class SearchManager {
     const seenPaths = new Set();
 
     for (const res of results) {
-      if (!seenPaths.has(res.item.path)) {
-        seenPaths.add(res.item.path);
+      const path = res.item.path || res.item.url;
+      if (!seenPaths.has(path)) {
+        seenPaths.add(path);
         unique.push(res);
       }
       if (unique.length >= limit) break;
@@ -116,11 +133,12 @@ class SearchManager {
           result.item.title,
           result.matches?.find((m: any) => m.key === "title"),
         );
+        const path = result.item.path || result.item.url || "#";
 
         return `
-          <a href="${result.item.path}" class="result-item">
+          <a href="${path}" class="result-item">
             <span class="title">${titleHTML}</span>
-            <span class="path">${result.item.path}</span>
+            <span class="path">${path}</span>
           </a>
         `;
       })
@@ -154,8 +172,8 @@ class SearchManager {
 }
 
 // 인스턴스 초기화
-if (window.searchIndex) {
-  new SearchManager();
-} else {
+if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => new SearchManager());
+} else {
+  new SearchManager();
 }
