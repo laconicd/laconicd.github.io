@@ -3,49 +3,56 @@
 {% import "macros/image.html" as image_macros %}
 
 {% block content %}
-<div class="app-posts">
-  <header class="app-posts-header">
-    <h1>{{ section.title }}</h1>
-    <p>{{ config.extra.posts_subtitle }}</p>
-  </header>
+  <div class="app-posts">
+    <header class="hero-title">
+      <h1>{{ section.title }}</h1>
+      <p>{{ config.extra.posts_subtitle }}</p>
+    </header>
 
-  {% set blog_section = get_section(path="posts/_index.md") %}
+    {% set blog_section = get_section(path="posts/_index.md") %}
 
-  {% if blog_section.pages | length > 0 %}
-  {# Latest Post as Featured #}
-  {% set featured = blog_section.pages[0] %}
-  <section class="featured-section">
-    <a href="{{ featured.path }}" class="featured-card">
-      <div class="featured-image">
-        <img src="{{ image_macros::get_url(page=featured, width=1200, height=800) }}" alt="{{ featured.title }}" loading="lazy">
+    {% if blog_section.pages | length > 0 %}
+      {# Latest Post as Featured #}
+      {% set featured = blog_section.pages[0] %}
+
+      <section class="hero-card">
+        <a href="{{ featured.path }}" class="featured-card">
+          <div class="featured-image">
+            <img
+              src="{{ image_macros::get_url(page=featured, width=1200, height=800) }}"
+              alt="{{ featured.title }}"
+              loading="lazy"
+            />
+          </div>
+          <div class="featured-content">
+            <span class="featured-badge">Featured</span>
+            <h2>{{ featured.title }}</h2>
+            <p>{{ featured.summary | default(value=featured.description) | default(value="") | striptags | safe }}</p>
+            <div class="featured-footer">
+              <span>Keep Reading</span>
+              <span class="arrow btn-icon-circle">{{ icons::arrow_right(size=4) }}</span>
+            </div>
+          </div>
+        </a>
+      </section>
+
+      <div class="section-divider">
+        <hr />
+        <span>The Collection</span>
+        <hr />
       </div>
-      <div class="featured-content">
-        <span class="featured-badge">Featured</span>
-        <h2>{{ featured.title }}</h2>
-        <p>{{ featured.summary | default(value=featured.description) | default(value="") | striptags | safe }}</p>
-        <div class="featured-footer">
-          <span>Keep Reading</span>
-          <span class="arrow btn-icon-circle">{{ icons::arrow_right(size=4) }}</span>
-        </div>
+
+      <section class="app-posts-grid" aria-label="All Posts">
+        {% for page in blog_section.pages | slice(start=1) %}
+          {% include "partials/post-grid-card.html" %}
+        {% endfor %}
+      </section>
+    {% else %}
+      <div style="padding: 8rem 0; text-align: center;">
+        <p style="font-size: 1.5rem; font-weight: bold; opacity: 0.2; font-style: italic;">
+          The ink hasn't dried yet...
+        </p>
       </div>
-    </a>
-  </section>
-
-  <div class="grid-divider">
-    <hr>
-    <span>The Collection</span>
-    <hr>
+    {% endif %}
   </div>
-
-  <section class="app-posts-grid" aria-label="All Posts">
-    {% for page in blog_section.pages | slice(start=1) %}
-    {% include "partials/post-grid-card.html" %}
-    {% endfor %}
-  </section>
-  {% else %}
-  <div style="padding: 8rem 0; text-align: center;">
-    <p style="font-size: 1.5rem; font-weight: bold; opacity: 0.2; font-style: italic;">The ink hasn't dried yet...</p>
-  </div>
-  {% endif %}
-</div>
 {% endblock content %}

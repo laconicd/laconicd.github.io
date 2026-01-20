@@ -1,2 +1,190 @@
-@scope (.drawer-sidebar) {
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  animation: fadeIn 1.5s var(--ease-standard) 0.6s both;
+  margin-block: var(--space-4); /* 이미 논리적 속성 (상하) */
+  & hr {
+    flex: 1;
+    border: none;
+    border-block-start: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+  }
+  & span {
+    opacity: 0.25;
+    font-weight: 900;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+}
+
+.hero-title {
+  display: grid;
+  justify-items: center;
+  animation: fadeInDown 0.8s var(--ease-standard);
+  margin-block-start: var(--space-12);
+  text-align: center;
+
+  & h1 {
+    margin-block-end: var(--space-6);
+    /* 그라디언트 방향은 표준 물리적 속성 사용 (to block-end는 미지원 브라우저가 많음) */
+    background: linear-gradient(
+      to bottom,
+      var(--color-base-content) 50%,
+      oklch(from var(--color-base-content) l c h / 0.2)
+    );
+    background-clip: text;
+    padding-inline: 0.1em;
+    padding-block: 0.05em;
+    font-weight: 800;
+    font-size: var(--text-display);
+    line-height: 1.2; /* 논리적 속성으로 변경 */
+    letter-spacing: -0.05em;
+    -webkit-text-fill-color: transparent;
+  }
+  & p {
+    max-inline-size: 35rem; /* 이미 논리적 속성 */
+    color: oklch(from var(--color-base-content) l c h / 0.5);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    line-height: 1.4;
+  }
+}
+
+.item-list {
+  display: grid;
+  gap: var(--space-2);
+  animation: fadeInUp 1s var(--ease-standard) 0.4s both;
+}
+
+.hero-card {
+  animation: fadeInUp 1s var(--ease-standard) 0.2s both;
+
+  & .featured-card {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    transition: all 0.5s var(--ease-standard);
+    box-shadow: 0 0 0 1px oklch(from var(--color-base-content) l c h / 0.05);
+    border-radius: var(--radius-3xl);
+    background: var(--color-base-200);
+    min-block-size: 35rem;
+    overflow: hidden;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-4);
+      & .featured-image img {
+        transform: scale(1.05);
+      }
+      & .featured-footer .arrow {
+        transform: translateX(6px);
+      }
+    }
+
+    & .featured-image {
+      position: relative;
+      inline-size: 100%;
+      block-size: 100%;
+      overflow: hidden;
+      & img {
+        transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+      }
+    }
+
+    & .featured-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-8);
+      padding: var(--space-16);
+
+      & .featured-badge {
+        align-self: flex-start;
+        border-radius: 99px;
+        background: var(--color-primary);
+        padding: 0.6rem 1.2rem;
+        color: var(--color-primary-content);
+        font-weight: 900;
+        font-size: var(--text-xs);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      & h2 {
+        font-weight: 900;
+        font-size: var(--text-h2);
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+
+      & p {
+        display: -webkit-box;
+        opacity: 0.6;
+        -webkit-line-clamp: 4;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      & .featured-footer {
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
+        margin-block-start: var(--space-4);
+        font-weight: 800;
+        font-size: var(--text-body);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+
+        & .arrow {
+          background: var(--color-base-content);
+          color: var(--color-base-100);
+          /* Structural styles handled by .btn-icon-circle */
+        }
+      }
+    }
+
+    @media (width < 64rem) {
+      grid-template-columns: 1fr;
+      min-block-size: auto;
+      & .featured-content {
+        padding: var(--space-12);
+      }
+      & .featured-image {
+        aspect-ratio: 16/10;
+      }
+    }
+
+    @media (width < 48rem) {
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius-xl);
+
+      & .featured-image {
+        aspect-ratio: 16/9;
+        inline-size: 100%;
+        block-size: auto;
+      }
+
+      & .featured-content {
+        gap: 1.25rem;
+        padding: var(--space-8);
+      }
+
+      & h2 {
+        font-size: 1.75rem;
+      }
+      & p {
+        -webkit-line-clamp: 3;
+        font-size: 1rem;
+      }
+      & .featured-footer {
+        font-size: 0.8rem;
+      }
+    }
+  }
 }

@@ -25,17 +25,37 @@
     <!-- theme.js must run early to prevent FOUC -->
     <script src="{{ get_url(path='js/theme.js') | safe }}"></script>
 
-    {% if current_url is defined %}{% else %}{% set current_url = config.base_url %}{% endif %} {% set title =
-    config.title %} {% set description = config.description %} {% set og_image =
-    get_url(path=config.extra.default_image) %} {% if page %}{% set title = page.title %} {% set description =
-    page.summary | default(value=page.description) | default(value=description) %} {% if page.extra.image %} {% set
-    path_parts = page.relative_path | split(pat="/") %} {% set dir_path = path_parts | slice(end=-1) | join(sep="/") %}
-    {% set image_path = "static/media/" ~ dir_path ~ "/" ~ page.extra.image %} {% set og_image_processed =
-    resize_image(path=image_path, width=1200, height=630, op="fill") %} {% set og_image = og_image_processed.url %} {%
-    endif %}{% elif section %}{% set title = section.title | default(value=title) %} {% set description =
-    section.description | default(value=description) %} {% if section.extra.image %}{% set og_image =
-    get_url(path=section.extra.image) %}{% endif %}{% endif %} {% set description = description | striptags |
-    truncate(length=160) %}
+    {% if current_url is defined %}
+
+    {% else %}
+      {% set current_url = config.base_url %}
+    {% endif %}
+
+    {% set title = config.title %}
+    {% set description = config.description %}
+    {% set og_image = get_url(path=config.extra.default_image) %}
+
+    {% if page %}
+      {% set title = page.title %}
+      {% set description = page.summary | default(value=page.description) | default(value=description) %}
+      {% if page.extra.image %}
+        {% set path_parts = page.relative_path | split(pat="/") %}
+        {% set dir_path = path_parts | slice(end=-1) | join(sep="/") %}
+        {% set image_path = "static/media/" ~ dir_path ~ "/" ~ page.extra.image %}
+        {% set og_image_processed = resize_image(path=image_path, width=1200, height=630, op="fill") %}
+        {% set og_image = og_image_processed.url %}
+      {% endif %}
+    {% elif section %}
+      {% set title = section.title | default(value=title) %}
+      {% set description = section.description | default(value=description) %}
+
+      {% if section.extra.image %}{%
+        set og_image =
+        get_url(path=section.extra.image)
+      %}{% endif %}
+    {% endif %}
+
+    {% set description = description | striptags | truncate(length=160) %}
 
     <meta name="description" content="{{ description }}" />
     <meta property="og:type" content="website" />
@@ -77,8 +97,11 @@
     </div>
 
     <div class="widgets">
-      {% include "partials/search-modal.html" %} {% include "partials/share-modal.html" %} {% include
-      "partials/speed-dial.html" %}
+      {% include "partials/search-modal.html" %} {% include "partials/share-modal.html" %}
+      {%
+        include
+        "partials/speed-dial.html"
+      %}
     </div>
 
     <script src="{{ get_url(path='js/main.js') | safe }}" defer></script>
