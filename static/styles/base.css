@@ -2,7 +2,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-color: oklch(from var(--color-base-content) l c h / 0.2) transparent;
   scrollbar-gutter: stable;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
 
 body {

@@ -39,9 +39,9 @@
   --text-h3: clamp(1.3rem, 3vw, 1.6rem);
   --text-xl: 1.5rem;
   --text-lg: 1.25rem;
-  --text-body: 1rem;
-  --text-sm: 0.85rem;
-  --text-xs: 0.75rem;
+  --text-md: 1rem;
+  --text-sm: 0.75rem;
+  --text-xs: 0.5rem;
 
   /* Spacing Scale */
   --space-0_5: 0.125rem;

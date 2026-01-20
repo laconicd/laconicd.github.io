@@ -8,7 +8,9 @@
 @import "transitions.css" layer(base);
 @import "utilities.css" layer(utilities);
 
-/* Components */
+@import "components/actions.css" layer(components);
+@import "components/layout.css" layer(components);
+@import "components/shell.css" layer(components);
 @import "components/navbar.css" layer(components);
 @import "components/footer.css" layer(components);
 @import "components/search-modal.css" layer(components);

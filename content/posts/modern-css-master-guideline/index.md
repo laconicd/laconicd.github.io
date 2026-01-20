@@ -22,12 +22,12 @@ categories = ["development"]
 >
 > 이 대원칙 위에 현대 CSS는 컨테이너의 맥락을 더해 더 유연한 구조를 지향한다.
 
-| Technology | Situation | Power (Why use it?) | Trade-off |
-| :--- | :---: | :---: | ---: |
-| **Grid** | 전체 구조 (**2차원**) | 가로/세로 축 동시 제어 및 명시적 영역 설계 | 제어 vs 복잡 |
-| **Flexbox** | 요소 배열 (**1차원**) | 내용물 크기에 기반한 유동적 공간 배분과 정렬 | 간결 vs 1D 한계 |
-| **Subgrid** | 계층적 정렬 | 부모 그리드 눈금 상속을 통한 정교한 정렬 동기화 | 정밀 vs 호환성 |
-| **@container** | 독립적 부품 | 배치된 컨테이너 크기에 따른 컴포넌트 자율 제어 | 모듈화 vs 오버헤드 |
+| Technology     |       Situation       |               Power (Why use it?)               |          Trade-off |
+| :------------- | :-------------------: | :---------------------------------------------: | -----------------: |
+| **Grid**       | 전체 구조 (**2차원**) |   가로/세로 축 동시 제어 및 명시적 영역 설계    |       제어 vs 복잡 |
+| **Flexbox**    | 요소 배열 (**1차원**) |  내용물 크기에 기반한 유동적 공간 배분과 정렬   |    간결 vs 1D 한계 |
+| **Subgrid**    |      계층적 정렬      | 부모 그리드 눈금 상속을 통한 정교한 정렬 동기화 |     정밀 vs 호환성 |
+| **@container** |      독립적 부품      | 배치된 컨테이너 크기에 따른 컴포넌트 자율 제어  | 모듈화 vs 오버헤드 |
 
 > [!TIP]
 > **설계 전략: Grid for Rooms, Flexbox for Furniture**
@@ -40,6 +40,7 @@ categories = ["development"]
 ## 2. 📍 정밀 배치와 가변 크기 (Precision & Sizing)
 
 ### 닻을 내리다: Anchor Positioning
+
 더 이상 툴팁이나 팝오버 배치를 위해 무거운 JS 계산을 돌리지 말자.
 
 > [!TIP]
@@ -58,12 +59,15 @@ categories = ["development"]
 > 100vh를 쓰면 모바일 브라우저 주소창 높이 때문에 레이아웃이 가려질 수 있다. 무조건 `dvh`나 `svh`를 쓰는 습관을 들이자.
 
 ### 📏 Logical vs Physical Properties
+
 방향 지향(left/right)에서 흐름 지향(inline/block)으로 사고를 전환하라.
 
 #### Logical (inline-size, margin-block)
+
 다국어(RTL) 대응이 자동화되며, 사람의 논리적 사고(가로/세로 흐름)에 부합하여 유지보수가 쉽다.
 
 #### Physical (width, margin-top)
+
 직관적이며 오랜 표준으로 사용되어 왔으나, 레이아웃 방향이 바뀌면 모든 수치를 수동으로 수정해야 한다.
 
 ---
@@ -71,6 +75,7 @@ categories = ["development"]
 ## 3. 🎨 색상 시스템 (Color Science)
 
 ### 🌈 OKLCH vs RGB/HEX
+
 인간의 인지 체계에 맞춘 OKLCH를 표준으로 삼고, 색상 변주를 논리적으로 관리하자.
 
 > [!TIP]
@@ -86,7 +91,7 @@ categories = ["development"]
 ```css
 :root {
   --primary: oklch(65% 0.15 250);
-  
+
   /* Relative Color Syntax로 변주 생성 */
   --primary-light: oklch(from var(--primary) calc(l + 0.1) c h);
   --primary-muted: oklch(from var(--primary) l 0.05 h);
@@ -103,6 +108,7 @@ categories = ["development"]
 ## 4. 🔄 모션 시스템 (Motion Design)
 
 ### 📽️ View Transitions API
+
 페이지 이동이나 요소 상태 변화 시 흐름을 끊지 않는 부드러운 전환을 구현한다.
 
 > [!TIP]
@@ -125,15 +131,19 @@ categories = ["development"]
 ## 5. 🏗️ 아키텍처와 지능형 선택자 (Architecture)
 
 ### 🪜 Cascade & 지능형 선택자
+
 명시도(Specificity) 전쟁을 끝내고 코드를 간결하게 만드는 현대적 선택자들이다.
 
 #### 1. :is() - 그룹화의 단순화
+
 여러 선택자를 하나로 묶어 중복을 제거하며, 그룹 내 가장 강한 명시도를 상속받아 스타일 적용을 보장한다.
 
 #### 2. :where() - 명시도 제로(0)
+
 명시도가 항상 0으로 유지되어, 라이브러리 제작자나 기본 Reset 스타일 정의 시 사용자의 커스텀을 방해하지 않는다.
 
 #### 3. Native CSS Nesting
+
 Sass 없이 계층 구조 작성이 가능하여 코드 가독성이 향상되고 빌드 도구 의존성이 감소한다.
 
 ---
@@ -141,6 +151,7 @@ Sass 없이 계층 구조 작성이 가능하여 코드 가독성이 향상되�
 ## 6. 🖋️ 타이포그래피 마스터링 (Advanced Typography)
 
 ### 📏 유연한 크기 조절 (Fluid Typography)
+
 `clamp()`를 이용해 화면 너비에 따라 폰트 크기가 부드럽게 가변하며 미디어 쿼리 의존도를 낮춘다.
 
 > [!CAUTION]
@@ -149,14 +160,15 @@ Sass 없이 계층 구조 작성이 가능하여 코드 가독성이 향상되�
 > 고정값(px) 혼용 시 사용자의 폰트 확대 설정이 무시될 위험이 있으므로 반드시 rem 기반 설계가 필요하다.
 
 ### ⚖️ text-wrap: balance vs pretty
+
 - **`balance`**: (제목용) 줄 길이를 균등하게 맞추어 시각적 무게 중심을 잡는다.
 - **`pretty`**: (본문용) 문단 끝 고립 단어를 방지하여 가독성을 향상시킨다.
 
 ```css
 article p {
   max-inline-size: 65ch; /* 읽기 최적 너비 제한 */
-  text-wrap: pretty;     /* 고립 단어 방지 */
-  line-height: 1.6;      /* 여유 있는 줄 간격 */
+  line-height: 1.6; /* 여유 있는 줄 간격 */
+  text-wrap: pretty; /* 고립 단어 방지 */
 }
 ```
 
