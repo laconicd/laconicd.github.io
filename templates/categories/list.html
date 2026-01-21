@@ -2,12 +2,16 @@
 {% import "macros/icons.html" as icons %}
 
 {% block content %}
-  {% set taxonomy_name = taxonomy.name | capitalize %}
-
   <div class="category-list-page">
     <div class="hero-title">
-      <h1>{{ taxonomy_name }}</h1>
+      <h1>{{ taxonomy.name | capitalize }}</h1>
       <p>{{ config.extra.categories_subtitle }}</p>
+    </div>
+
+    <div class="section-divider">
+      <hr />
+      <span>Latest Records</span>
+      <hr />
     </div>
 
     <section class="category-grid" aria-label="All Categories">

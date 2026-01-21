@@ -2,3 +2,14 @@
   margin-inline: var(--space-3);
   border-inline-start: 1.5px solid oklch(from var(--color-base-content) l c h / 0.1);
 }
+
+/* Shared Utilities */
+
+.card-hover {
+  transition: all 0.5s var(--ease-standard);
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-4);
+}

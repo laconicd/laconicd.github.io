@@ -1,58 +1,46 @@
-.btn {
-  --btn-bg: var(transparent, --color-base-100);
+@scope (.btn ) {
+  :scope {
+    --btn-bg: var(transparent, --color-base-100);
 
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  border: none;
-  border-radius: var(--radius-lg);
-  background-color: var(--btn-bg);
-  padding-inline: var(--space-3);
-  block-size: var(--space-10);
-  overflow: hidden;
-  color: var(--color-base-content);
-  font-weight: 700;
-  font-size: var(--text-md);
-  font-family: var(--font-sans);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius-lg);
+    background-color: var(--btn-bg);
+    padding-inline: var(--space-3);
+    block-size: var(--space-10);
+    overflow: hidden;
+    color: var(--color-base-content);
+    font-weight: 700;
+    font-size: var(--text-md);
+    font-family: var(--font-sans);
+  }
 
   &:hover {
     background-color: var(--color-base-300);
   }
 }
 
-.btn-circle {
-  flex-shrink: 0;
-  border-radius: 50%;
-  padding: 0;
-  aspect-ratio: 1/1;
-  inline-size: 2.5rem;
-}
-
-.anchor {
-  transition: all 0.4s var(--ease-standard);
-  color: var(--color-base-content);
-  font-weight: 500;
-  font-size: var(--text-md);
-  letter-spacing: -0.05em;
-
-  &:hover {
-    transform: scale(1.05);
-    opacity: 0.7;
-  }
-
-  &:active {
-    transform: scale(0.96);
+@scope (.btn-circle ) {
+  :scope {
+    flex-shrink: 0;
+    border-radius: 50%;
+    padding: 0;
+    aspect-ratio: 1/1;
+    inline-size: 2.5rem;
   }
 }
 
-.theme-toggle {
-  /* 단일 테마 스위처 유틸리티 */
-  display: grid;
-  place-items: center; /* 자식 요소들을 중앙 정렬 */
-  transition: background-color 0.3s;
-  cursor: pointer;
+@scope (.theme-toggle ) {
+  :scope {
+    display: grid; /* 단일 테마 스위처 유틸리티 */
+    place-items: center; /* 자식 요소들을 중앙 정렬 */
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
 
   /* input은 숨기되 기능은 유지 */
   & .theme-controller {

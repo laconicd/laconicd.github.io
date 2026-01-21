@@ -8,10 +8,13 @@
 @import "transitions.css" layer(base);
 @import "utilities.css" layer(utilities);
 
-@import "components/content.css" layer(components);
+@import "components/index.css" layer(components);
+@import "components/posts.css" layer(components);
+@import "components/categories.css" layer(components);
+@import "components/tags.css" layer(components);
 @import "components/actions.css" layer(components);
 @import "components/layout.css" layer(components);
-@import "components/shell.css" layer(components);
+@import "components/app-shell.css" layer(components);
 @import "components/navbar.css" layer(components);
 @import "components/footer.css" layer(components);
 @import "components/search-modal.css" layer(components);
@@ -19,6 +22,5 @@
 @import "components/speed-dial.css" layer(components);
 @import "components/post-card.css" layer(components);
 @import "components/post.css" layer(components);
-@import "components/tags.css" layer(components);
 @import "components/error.css" layer(components);
 @import "components/data-display.css" layer(components);
