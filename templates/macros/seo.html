@@ -1,0 +1,40 @@
+{% macro head(page=false, section=false, config=false, current_url=false) %}
+  {% set current_url = current_url | default(value=config.base_url) %}
+  {% set title = config.title %}
+  {% set description = config.description %}
+  {% set og_image = get_url(path=config.extra.default_image) %}
+
+  {% if page %}
+    {% set title = page.title %}
+    {% set description = page.summary | default(value=page.description) | default(value=description) %}
+    {% if page.extra.image %}
+      {% set path_parts = page.relative_path | split(pat="/") %}
+      {% set dir_path = path_parts | slice(end=-1) | join(sep="/") %}
+      {% set image_path = "static/media/" ~ dir_path ~ "/" ~ page.extra.image %}
+      {% set og_image_processed = resize_image(path=image_path, width=1200, height=630, op="fill") %}
+      {% set og_image = og_image_processed.url %}
+    {% endif %}
+  {% elif section %}
+    {% set title = section.title | default(value=title) %}
+    {% set description = section.description | default(value=description) %}
+    {% if section.extra.image %}
+      {% set og_image = get_url(path=section.extra.image) %}
+    {% endif %}
+  {% endif %}
+
+  {% set description = description | striptags | truncate(length=160) %}
+
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ current_url | safe }}" />
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:description" content="{{ description }}" />
+  <meta property="og:image" content="{{ og_image | safe }}" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="{{ current_url | safe }}" />
+  <meta property="twitter:title" content="{{ title }}" />
+  <meta property="twitter:description" content="{{ description }}" />
+  <meta property="twitter:image" content="{{ og_image | safe }}" />
+  <link rel="canonical" href="{{ current_url | safe }}" />
+{% endmacro %}
