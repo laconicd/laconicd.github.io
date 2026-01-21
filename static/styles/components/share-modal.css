@@ -1,0 +1,124 @@
+@scope (#share_modal) {
+  :scope {
+    display: none;
+    margin: auto;
+    /* 사이드바와 동일하게 기본 레이아웃 설정 */
+    inset: 0;
+    border: none;
+    background: transparent;
+    padding: 0;
+    width: fit-content;
+    height: fit-content;
+    overflow: visible;
+  }
+
+  :scope:popover-open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 실제 모달 창에 애니메이션 적용 */
+  & .modal-box {
+    display: grid;
+    justify-items: center;
+    gap: 1.75rem;
+    transform: scale(0.9) translateY(20px);
+
+    /* 진입 애니메이션 */
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
+    border-radius: 3.5rem;
+    background-color: var(--color-base-100);
+    padding: 3.5rem 2.5rem;
+    width: clamp(20rem, 90vw, 32rem);
+    text-align: center;
+  }
+
+  :scope:popover-open .modal-box {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  @starting-style {
+    :scope:popover-open .modal-box {
+      transform: scale(0.9) translateY(20px);
+      opacity: 0;
+    }
+  }
+
+  & .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: oklch(from var(--color-base-content) l c h / 0.05);
+    width: 5rem;
+    height: 5rem;
+    color: var(--color-base-content);
+    & svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  & h3 {
+    margin: 0;
+    color: var(--color-base-content);
+    font-weight: 900;
+    font-size: 2.1rem;
+    letter-spacing: -0.04em;
+  }
+
+  & p {
+    margin: 0;
+    max-width: 22rem;
+    color: oklch(from var(--color-base-content) l c h / 0.5);
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+
+  & .btn-confirm {
+    transition: transform 0.2s;
+    cursor: pointer;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 1.5rem;
+    background-color: var(--color-base-content);
+    padding: 1.25rem 3.5rem;
+    color: var(--color-base-100);
+    font-weight: 800;
+    font-size: 1.1rem;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &::backdrop {
+    opacity: 0;
+    backdrop-filter: blur(12px);
+    transition:
+      opacity 0.4s ease,
+      display 0.4s allow-discrete,
+      overlay 0.4s allow-discrete;
+    background-color: oklch(0 0 0 / 0.3);
+  }
+
+  :scope:popover-open::backdrop {
+    opacity: 1;
+  }
+
+  @starting-style {
+    :scope:popover-open::backdrop {
+      opacity: 0;
+    }
+  }
+}

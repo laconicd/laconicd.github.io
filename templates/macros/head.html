@@ -1,4 +1,43 @@
-{% macro head(page=false, section=false, config=false, current_url=false) %}
+{#
+############################################################################
+###  [ 📋 SECTION: DOCUMENT HEAD & METADATA ]
+############################################################################
+#}
+
+{% macro link() %}
+  <link rel="icon" type="image/svg+xml" href="{{ get_url(path='images/avatar.svg') | safe }}" />
+  <link rel="stylesheet" href="{{ get_url(path='styles/main.css', cachebust=true) | safe }}" />
+  <link
+    rel="alternate"
+    type="application/atom+xml"
+    title="Atom Feed"
+    href="{{ get_url(path='atom.xml', trailing_slash=false) }}"
+  />
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title="RSS Feed"
+    href="{{ get_url(path='rss.xml', trailing_slash=false) }}"
+  />
+{% endmacro %}
+
+{% macro script() %}
+  <script type="speculationrules">
+    { "prerender": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }] }
+  </script>
+
+  <script>
+    window.__SYNTAX_THEME_URLS__ = {
+      dim: "{{ get_url(path='giallo-dark.css') | safe }}",
+      lofi: "{{ get_url(path='giallo-light.css') | safe }}",
+    };
+  </script>
+
+  <!-- theme.js must run early to prevent FOUC -->
+  <script src="{{ get_url(path='js/theme.js') | safe }}"></script>
+{% endmacro %}
+
+{% macro seo(page=false, section=false, config=false, current_url=false) %}
   {% set current_url = current_url | default(value=config.base_url) %}
   {% set title = config.title %}
   {% set description = config.description %}
@@ -7,6 +46,7 @@
   {% if page %}
     {% set title = page.title %}
     {% set description = page.summary | default(value=page.description) | default(value=description) %}
+
     {% if page.extra.image %}
       {% set path_parts = page.relative_path | split(pat="/") %}
       {% set dir_path = path_parts | slice(end=-1) | join(sep="/") %}
@@ -17,6 +57,7 @@
   {% elif section %}
     {% set title = section.title | default(value=title) %}
     {% set description = section.description | default(value=description) %}
+
     {% if section.extra.image %}
       {% set og_image = get_url(path=section.extra.image) %}
     {% endif %}
@@ -25,6 +66,9 @@
   {% set description = description | striptags | truncate(length=160) %}
 
   <title>{{ title }}</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="view-transition" content="same-origin" />
   <meta name="description" content="{{ description }}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="{{ current_url | safe }}" />
@@ -36,5 +80,4 @@
   <meta property="twitter:title" content="{{ title }}" />
   <meta property="twitter:description" content="{{ description }}" />
   <meta property="twitter:image" content="{{ og_image | safe }}" />
-  <link rel="canonical" href="{{ current_url | safe }}" />
 {% endmacro %}

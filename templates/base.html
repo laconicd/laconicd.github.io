@@ -1,227 +1,34 @@
-{#
-################################################################################
-###  [ ⚙️  SECTION: MACRO IMPORTS & GLOBAL CONFIGURATION ]
-################################################################################
-#}
 {% import "macros/icons.html" as icons %}
-{% import "macros/seo.html" as seo %}
+{% import "macros/head.html" as head %}
+{% import "macros/components.html" as ui %}
 
 <!doctype html>
 <html lang="en" data-theme="lofi">
   <head>
-    {#
-    ############################################################################
-    ###  [ 📋 SECTION: DOCUMENT HEAD & METADATA ]
-    ############################################################################
-    #}
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="view-transition" content="same-origin" />
-
-    <script type="speculationrules">
-      {
-        "prerender": [
-          {
-            "where": { "href_matches": "/*" },
-            "eagerness": "moderate"
-          }
-        ]
-      }
-    </script>
-
-    <script>
-      window.__SYNTAX_THEME_URLS__ = {
-        dim: "{{ get_url(path='giallo-dark.css') | safe }}",
-        lofi: "{{ get_url(path='giallo-light.css') | safe }}",
-      };
-    </script>
-
-    <!-- theme.js must run early to prevent FOUC -->
-    <script src="{{ get_url(path='js/theme.js') | safe }}"></script>
-
+    {{ head::link() }}
+    {{ head::script() }}
     {% set current_url = current_url | default(value=config.base_url) %}
-    {{ seo::head(page=page | default(value=false), section=section | default(value=false), config=config, current_url=current_url) }}
-
-    <link rel="icon" type="image/svg+xml" href="{{ get_url(path='images/avatar.svg') | safe }}" />
-    <link rel="stylesheet" href="{{ get_url(path='styles/main.css', cachebust=true) | safe }}" />
-    <link
-      rel="alternate"
-      type="application/atom+xml"
-      title="Atom Feed"
-      href="{{ get_url(path='atom.xml', trailing_slash=false) }}"
-    />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="RSS Feed"
-      href="{{ get_url(path='rss.xml', trailing_slash=false) }}"
-    />
+    {{ head::seo(page=page | default(value=false), section=section | default(value=false), config=config, current_url=current_url) }}
   </head>
 
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <div class="app-shell">
-      <header>
-        {#
-        ########################################################################
-        ###  [ 🧩 SECTION: NAVIGATION (NAVBAR & SIDEBAR) ]
-        ########################################################################
-        #}
-        <nav class="app-navbar" aria-label="Main">
-          <a href="/" class="anchor nav-brand">{{ config.title }}</a>
-
-          <button popovertarget="nav-center" class="nav-menu-btn btn btn-circle">{{ icons::menu() }}</button>
-
-          <nav id="nav-center" popover class="nav-center">
-            <div class="sidebar-header">
-              <div class="sidebar-title">Navigation</div>
-              <a href="/" class="anchor nav-brand">{{ config.title }}</a>
-            </div>
-
-            <div class="sidebar-menu">
-              <a href="{{ get_url(path='@/posts/_index.md') }}" class="btn">Posts</a>
-              <a href="{{ get_url(path='categories') }}" class="btn">Categories</a>
-              <a href="{{ get_url(path='tags') }}" class="btn">Tags</a>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="sidebar-footer">
-              <button popovertarget="search_modal" class="search-trigger btn btn-circle" aria-label="Open Search">
-                {{ icons::search(size=5) }}
-              </button>
-              <a href="{{ get_url(path='atom.xml') }}" target="_blank" aria-label="Atom Feed" class="btn btn-circle">
-                {{ icons::atom() }}
-              </a>
-              <a href="{{ get_url(path='rss.xml') }}" target="_blank" aria-label="RSS Feed" class="btn btn-circle">
-                {{ icons::rss() }}
-              </a>
-              <label class="theme-toggle btn-circle">
-                <input type="checkbox" class="theme-controller" value="dim" />
-                <span class="sun-icon">{{ icons::sun(size=5) }}</span>
-                <span class="moon-icon">{{ icons::moon(size=5) }}</span>
-              </label>
-            </div>
-          </nav>
-          {# /nav-center #}
-        </nav>
-        {# /app-navbar #}
-      </header>
-
-      {#
-      ##########################################################################
-      ###  [ 🚀 SECTION: MAIN CONTENT AREA ]
-      ##########################################################################
-      #}
+      <header>{{ ui::app_navbar(config=config) }}</header>
       <main id="main-content">{% block content %}{% endblock content %}</main>
-
-      <footer class="app-footer">
-        {#
-        ########################################################################
-        ###  [ 🏗️ SECTION: SITE FOOTER ]
-        ########################################################################
-        #}
-        <div class="footer-inner">
-          <div class="footer-main">
-            <div class="footer-brand">
-              <p class="brand-desc">{{ config.description }}</p>
-            </div>
-
-            <nav class="footer-nav-group" aria-label="Explore">
-              <h4>Explore</h4>
-              <ul>
-                <li><a href="{{ get_url(path='@/posts/_index.md') }}">Articles</a></li>
-                <li><a href="{{ get_url(path='categories') }}">Categories</a></li>
-                <li><a href="{{ get_url(path='tags') }}">Tags</a></li>
-              </ul>
-            </nav>
-
-            <nav class="footer-nav-group" aria-label="Information">
-              <h4>Information</h4>
-              <ul>
-                <li><a href="/about/">About me</a></li>
-                <li><a href="/atom.xml">Atom Feed</a></li>
-                <li><a href="/rss.xml">RSS Feed</a></li>
-              </ul>
-            </nav>
-          </div>
-
-          <div class="footer-bottom">
-            <div class="copyright">© {{ now() | date(format="%Y") }} {{ config.title }}. Built with Zola.</div>
-
-            <div class="social-links">
-              <a href="{{ config.extra.twitter }}" aria-label="Twitter"> {{ icons::twitter() }} </a>
-              <a href="{{ config.extra.linkedin }}" aria-label="LinkedIn"> {{ icons::linkedin() }} </a>
-              <a href="{{ config.extra.github }}" aria-label="GitHub"> {{ icons::github() }} </a>
-            </div>
-          </div>
-        </div>
-        {# /footer-inner #}
-      </footer>
-      {# /app-footer #}
+      <footer class="app-footer">{{ ui::app_footer(config=config) }}</footer>
     </div>
-    {# /app-shell #}
 
     <div class="widgets">
-      {#
-      ##########################################################################
-      ###  [ 🛠️ SECTION: WIDGETS (SEARCH, SHARE & SPEED DIAL) ]
-      ##########################################################################
-      #}
-      <div id="search_modal" popover>
-        <div class="modal-backdrop" onclick="document.getElementById('search_modal').hidePopover()"></div>
-        <div class="search-box">
-          <div class="search-header">
-            <span class="search-icon">{{ icons::search(size=6) }}</span>
-            <input type="search" id="modal-search-input" placeholder="Type to search articles..." autocomplete="off" />
-          </div>
-          <div class="search-results" id="modal-search-results">
-            <div class="empty-state">Start typing to find what you're looking for...</div>
-          </div>
-        </div>
-      </div>
-
-      <script src="/search_index.en.js" defer></script>
-      <script src="{{ get_url(path='js/search.js') | safe }}" defer></script>
-
-      <div id="share_modal" popover>
-        <div class="modal-box">
-          <div class="icon-wrapper">{{ icons::check() }}</div>
-          <h3>Link Copied!</h3>
-          <p>The article link has been copied to your clipboard. Feel free to share it!</p>
-          <button class="btn-confirm" onclick="document.getElementById('share_modal').hidePopover()">Got it</button>
-        </div>
-      </div>
-
-      <div class="app-speed-dial">
-        <div class="dial-items">
-          <button id="speed-dial-top" class="dial-item" aria-label="Scroll to Top">{{ icons::top(size=5) }}</button>
-          <button id="speed-dial-search" class="dial-item" aria-label="Search">{{ icons::search(size=5) }}</button>
-          <label class="dial-item theme-toggle" aria-label="Toggle Theme">
-            <input type="checkbox" class="theme-controller" value="dim" />
-            <span class="sun-icon">{{ icons::sun(size=5) }}</span>
-            <span class="moon-icon">{{ icons::moon(size=5) }}</span>
-          </label>
-          <button id="speed-dial-random" class="dial-item" aria-label="Random Post">
-            {{ icons::shuffle(size=5) }}
-          </button>
-        </div>
-
-        <button id="speed-dial-trigger" class="fab-trigger" aria-label="Toggle Menu">
-          <span class="icon-main">{{ icons::lightning(size=6) }}</span>
-          <span class="icon-close">{{ icons::minus(size=6) }}</span>
-        </button>
-      </div>
-      <script src="{{ get_url(path='js/speed-dial.js') | safe }}" defer></script>
+      {{ ui::search_modal() }}
+      {{ ui::share_modal() }}
+      {{ ui::speed_dial() }}
     </div>
-    {# /widgets #}
 
-    {#
-    ############################################################################
-    ###  [ ⚡ SECTION: GLOBAL SCRIPTS ]
-    ############################################################################
-    #}
+    <script src="{{ get_url(path='/search_index.en.js') | safe }}" defer></script>
     <script src="{{ get_url(path='js/main.js') | safe }}" defer></script>
+    <script src="{{ get_url(path='js/speed-dial.js') | safe }}" defer></script>
+    <script src="{{ get_url(path='js/search.js') | safe }}" defer></script>
   </body>
 </html>

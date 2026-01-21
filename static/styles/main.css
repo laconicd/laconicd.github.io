@@ -15,6 +15,7 @@
 @import "components/navbar.css" layer(components);
 @import "components/footer.css" layer(components);
 @import "components/search-modal.css" layer(components);
+@import "components/share-modal.css" layer(components);
 @import "components/speed-dial.css" layer(components);
 @import "components/post-card.css" layer(components);
 @import "components/post.css" layer(components);
