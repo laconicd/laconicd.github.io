@@ -21,3 +21,4 @@
 @import "components/categories.css" layer(components);
 @import "components/tags.css" layer(components);
 @import "components/error.css" layer(components);
+@import "components/data-display.css" layer(components);

@@ -2,37 +2,33 @@
 {% import "macros/icons.html" as icons %}
 
 {% block content %}
-{% set taxonomy_name = taxonomy.name | capitalize %}
+  {% set taxonomy_name = taxonomy.name | capitalize %}
 
-<div class="category-list-page">
-  <div class="page-header">
-    <h1>{{ taxonomy_name }}</h1>
-    <p>{{ config.extra.categories_subtitle }}</p>
-  </div>
+  <div class="category-list-page">
+    <div class="hero-title">
+      <h1>{{ taxonomy_name }}</h1>
+      <p>{{ config.extra.categories_subtitle }}</p>
+    </div>
 
-  <section class="category-grid" aria-label="All Categories">
-    {% for term in terms %}
-    <a href="{{ term.path }}" class="category-card">
-      <div class="card-content">
-        <div class="card-top">
-          <span class="type-label">Category</span>
-          <div class="icon-box">
-            {{ icons::category() }}
+    <section class="category-grid" aria-label="All Categories">
+      {% for term in terms %}
+        <a href="{{ term.path }}" class="category-card">
+          <div class="card-content">
+            <div class="card-top">
+              <span class="type-label">Category</span>
+              <div class="icon-box">{{ icons::category() }}</div>
+            </div>
+            <h2 class="card-title">{{ term.name }}</h2>
           </div>
-        </div>
-        <h2 class="card-title">{{ term.name }}</h2>
-      </div>
 
-      <div class="card-bottom">
-        <span class="count-label">{{ term.pages | length }} Articles</span>
-        <div class="explore-label">
-          Explore {{ icons::arrow_right(size=3) }}
-        </div>
-      </div>
+          <div class="card-bottom">
+            <span class="count-label">{{ term.pages | length }} Articles</span>
+            <div class="explore-label">Explore {{ icons::arrow_right(size=3) }}</div>
+          </div>
 
-      <div class="decorative-blur"></div>
-    </a>
-    {% endfor %}
-  </section>
-</div>
+          <div class="decorative-blur"></div>
+        </a>
+      {% endfor %}
+    </section>
+  </div>
 {% endblock content %}

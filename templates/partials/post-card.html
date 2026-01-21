@@ -1,18 +1,37 @@
 {% import "macros/icons.html" as icons %}
 {% import "macros/image.html" as image_macros %}
 
-<article class="app-post-card">
-  <a href="{{ page.path }}" class="card-link">
-    <div class="thumb">
-      <img src="{{ image_macros::get_url(page=page, width=200, height=200) }}" alt="{{ page.title }}" loading="lazy" />
+<article class="post-card">
+  <div class="card">
+    <a href="{{ page.path }}" class="page-link" aria-label="Read: {{ page.title }}"></a>
+
+    <div class="media-area">
+      <img src="{{ image_macros::get_url(page=page, width=800, height=600) }}" alt="{{ page.title }}" loading="lazy" />
     </div>
-    <div class="body">
-      <div class="meta">{{ page.date | date(format=config.extra.date_format) }}</div>
+
+    <div class="content-area">
+      <div class="meta">
+        <time datetime="{{ page.date }}">{{ page.date | date(format=config.extra.date_format) }}</time>
+        <span class="dot">•</span>
+        <span>{{ page.reading_time }} min read</span>
+      </div>
+
       <h3 class="title">{{ page.title }}</h3>
+
       <p class="summary">{{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}</p>
+
+      {% if page.taxonomies.tags %}
+        <div class="tags">
+          {% for tag in page.taxonomies.tags | slice(end=3) %}
+            <span class="tag">#{{ tag }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
-    <div class="action-arrow btn-icon-circle">
-      {{ icons::arrow_right(size=3) }}
+
+    <div class="footer-area">
+      <span>Read Story</span>
+      <span class="arrow btn-icon-circle">{{ icons::arrow_right(size=2.5) }}</span>
     </div>
-  </a>
+  </div>
 </article>

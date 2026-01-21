@@ -1,5 +1,5 @@
 .btn {
-  --btn-bg: var(--color-base-100);
+  --btn-bg: var(transparent, --color-base-100);
 
   display: inline-flex;
   justify-content: center;

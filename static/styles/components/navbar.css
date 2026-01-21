@@ -104,18 +104,10 @@
 
       & .sidebar-menu {
         display: flex;
-
-        & a {
-          --btn-bg: transparent;
-        }
       }
 
       & .sidebar-footer {
         display: flex;
-
-        & .btn {
-          --btn-bg: transparent;
-        }
       }
     }
   }

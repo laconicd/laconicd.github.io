@@ -44,7 +44,7 @@
 
       <section class="app-posts-grid" aria-label="All Posts">
         {% for page in blog_section.pages | slice(start=1) %}
-          {% include "partials/post-grid-card.html" %}
+          {% include "partials/post-card.html" %}
         {% endfor %}
       </section>
     {% else %}
