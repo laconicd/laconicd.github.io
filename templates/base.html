@@ -1,12 +1,23 @@
+{#
+################################################################################
+###  [ ⚙️  SECTION: MACRO IMPORTS & GLOBAL CONFIGURATION ]
+################################################################################
+#}
 {% import "macros/icons.html" as icons %}
 {% import "macros/seo.html" as seo %}
 
 <!doctype html>
 <html lang="en" data-theme="lofi">
   <head>
+    {#
+    ############################################################################
+    ###  [ 📋 SECTION: DOCUMENT HEAD & METADATA ]
+    ############################################################################
+    #}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="view-transition" content="same-origin" />
+
     <script type="speculationrules">
       {
         "prerender": [
@@ -17,12 +28,14 @@
         ]
       }
     </script>
+
     <script>
       window.__SYNTAX_THEME_URLS__ = {
         dim: "{{ get_url(path='giallo-dark.css') | safe }}",
         lofi: "{{ get_url(path='giallo-light.css') | safe }}",
       };
     </script>
+
     <!-- theme.js must run early to prevent FOUC -->
     <script src="{{ get_url(path='js/theme.js') | safe }}"></script>
 
@@ -47,8 +60,14 @@
 
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <div class="app-shell">
       <header>
+        {#
+        ########################################################################
+        ###  [ 🧩 SECTION: NAVIGATION (NAVBAR & SIDEBAR) ]
+        ########################################################################
+        #}
         <nav class="app-navbar" aria-label="Main">
           <a href="/" class="anchor nav-brand">{{ config.title }}</a>
 
@@ -85,12 +104,24 @@
               </label>
             </div>
           </nav>
+          {# /nav-center #}
         </nav>
+        {# /app-navbar #}
       </header>
 
+      {#
+      ##########################################################################
+      ###  [ 🚀 SECTION: MAIN CONTENT AREA ]
+      ##########################################################################
+      #}
       <main id="main-content">{% block content %}{% endblock content %}</main>
 
       <footer class="app-footer">
+        {#
+        ########################################################################
+        ###  [ 🏗️ SECTION: SITE FOOTER ]
+        ########################################################################
+        #}
         <div class="footer-inner">
           <div class="footer-main">
             <div class="footer-brand">
@@ -126,10 +157,18 @@
             </div>
           </div>
         </div>
+        {# /footer-inner #}
       </footer>
+      {# /app-footer #}
     </div>
+    {# /app-shell #}
 
     <div class="widgets">
+      {#
+      ##########################################################################
+      ###  [ 🛠️ SECTION: WIDGETS (SEARCH, SHARE & SPEED DIAL) ]
+      ##########################################################################
+      #}
       <div id="search_modal" popover>
         <div class="modal-backdrop" onclick="document.getElementById('search_modal').hidePopover()"></div>
         <div class="search-box">
@@ -176,7 +215,13 @@
       </div>
       <script src="{{ get_url(path='js/speed-dial.js') | safe }}" defer></script>
     </div>
+    {# /widgets #}
 
+    {#
+    ############################################################################
+    ###  [ ⚡ SECTION: GLOBAL SCRIPTS ]
+    ############################################################################
+    #}
     <script src="{{ get_url(path='js/main.js') | safe }}" defer></script>
   </body>
 </html>
