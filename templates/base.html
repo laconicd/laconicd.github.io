@@ -1,6 +1,6 @@
-{% import "macros/icons.html" as icons %}
 {% import "macros/head.html" as head %}
 {% import "macros/components.html" as ui %}
+{% import "macros/icons.html" as icons %}
 
 <!doctype html>
 <html lang="en" data-theme="lofi">
@@ -12,11 +12,9 @@
   </head>
 
   <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
     <div class="app-shell">
       <header>{{ ui::app_navbar(config=config) }}</header>
-      <main id="main-content">{% block content %}{% endblock content %}</main>
+      <main>{% block content %}{% endblock content %}</main>
       <footer class="app-footer">{{ ui::app_footer(config=config) }}</footer>
     </div>
 

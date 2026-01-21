@@ -2,7 +2,6 @@
   navigation: auto;
 }
 
-/* View Transitions */
 .app-navbar {
   view-transition-name: navbar;
 }

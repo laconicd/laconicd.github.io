@@ -16,7 +16,6 @@
   font-weight: 700;
   font-size: var(--text-md);
   font-family: var(--font-sans);
-  text-decoration: none;
 
   &:hover {
     background-color: var(--color-base-300);

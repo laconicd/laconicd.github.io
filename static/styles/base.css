@@ -1,5 +1,4 @@
 html {
-  scroll-behavior: smooth;
   scrollbar-color: oklch(from var(--color-base-content) l c h / 0.2) transparent;
   scrollbar-gutter: stable;
   scrollbar-width: none;
@@ -7,55 +6,11 @@ html {
 
 body {
   background-color: var(--color-base-100);
-  min-block-size: 100vh;
-  overflow-x: hidden;
   color: var(--color-base-content);
   font-family: var(--font-sans);
 }
 
-.skip-link {
-  position: absolute;
-  margin: -1px;
-  padding: 0;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  left: 50%;
-  transform: translateX(-50%);
-
-  /* Focus state styles */
-  z-index: 9999;
-  transition: top 0.3s;
-  border: 0;
-  border-radius: 0 0 1rem 1rem;
-  background: var(--color-primary);
-  color: var(--color-primary-content);
-  font-weight: bold;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.skip-link:focus {
-  margin: 0;
-  padding: 1rem 2rem;
-  width: auto;
-  height: auto;
-  overflow: visible;
-  clip: auto;
-  top: 0;
-  white-space: normal;
-}
-
-:is(h1, h2, h3, h4, h5, h6) {
-  text-wrap: balance;
-}
-
-p {
-  text-wrap: pretty;
-}
-
 /* Scroll lock when popover is open */
-body:has(:popover-open) {
-  overflow: hidden;
-}
+/* body:has(:popover-open) { */
+/* overflow: hidden; */
+/* } */
