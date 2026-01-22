@@ -15,7 +15,7 @@
       <hr />
     </div>
 
-    <section class="item-list" aria-label="Latest Posts">
+    <section class="list" aria-label="Latest Posts">
       {% set blog_section = get_section(path="posts/_index.md") %}
       {% for page in blog_section.pages | slice(end=10) %}
         <article class="app-post-card">

@@ -1,0 +1,112 @@
+.category-card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  transition: all 0.5s var(--ease-standard);
+  border: 1px solid oklch(from var(--color-base-content) l c h / 0.05);
+  border-radius: 2.5rem;
+  background-color: var(--color-base-100);
+  padding: 2.5rem;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-4);
+    border-color: oklch(from var(--color-primary) l c h / 0.2);
+
+    & .icon-box {
+      background-color: var(--color-primary);
+      color: var(--color-primary-content);
+    }
+
+    & .card-title {
+      color: var(--color-primary);
+    }
+
+    & .explore-label {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  & .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  & .type-label {
+    opacity: 0.4;
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  & .icon-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s var(--ease-standard);
+    border-radius: 1rem;
+    background-color: var(--color-base-200);
+    inline-size: 3rem;
+    block-size: 3rem;
+
+    & svg {
+      inline-size: 1.25rem;
+      block-size: 1.25rem;
+    }
+  }
+
+  & .card-title {
+    transition: color 0.3s;
+    font-weight: 900;
+    font-size: 2.5rem;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  & .card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  & .count-label {
+    opacity: 0.4;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  & .explore-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateX(-10px);
+    opacity: 0;
+    transition: all 0.4s var(--ease-standard);
+    font-weight: 900;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  & .decorative-blur {
+    position: absolute;
+    filter: blur(40px);
+    inset-block-end: -2rem;
+    inset-inline-end: -2rem;
+    border-radius: 50%;
+    background-color: oklch(from var(--color-primary) l c h / 0.05);
+    inline-size: 8rem;
+    block-size: 8rem;
+    pointer-events: none;
+  }
+}
