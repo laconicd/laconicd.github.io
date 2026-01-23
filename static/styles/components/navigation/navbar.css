@@ -39,7 +39,7 @@
       & .sidebar-header {
         padding-inline: var(--space-8);
         padding-block: var(--space-4) var(--space-8);
-        
+
         .sidebar-title {
           opacity: 0.3;
           font-weight: 900;
@@ -56,12 +56,12 @@
       & .sidebar-menu {
         padding-inline: var(--space-4);
         flex-direction: column !important;
-        
+
         a {
           padding: var(--space-4);
           font-weight: 800;
           font-size: var(--text-lg);
-          
+
           .sidebar-arrow {
             opacity: 0.2;
           }
@@ -115,7 +115,7 @@
       }
     }
   }
-}
+
 
 
   & .nav-brand {
@@ -149,7 +149,7 @@
       & .sidebar-header {
         padding-inline: var(--space-8);
         padding-block: var(--space-12) var(--space-8);
-        
+
         .sidebar-title {
           opacity: 0.3;
           margin-block-end: var(--space-2);
@@ -167,14 +167,14 @@
         flex: 1;
         flex-direction: column;
         padding-inline: var(--space-4);
-        
+
         a {
           display: flex;
           justify-content: space-between;
           padding: var(--space-4);
           font-weight: 800;
           font-size: var(--text-lg);
-          
+
           .sidebar-arrow {
             opacity: 0.2;
           }
@@ -238,7 +238,7 @@
       & .sidebar-menu {
         display: flex;
         gap: var(--space-4);
-        
+
         a {
           padding: var(--space-2);
           font-weight: 700;

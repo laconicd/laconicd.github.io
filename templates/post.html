@@ -22,7 +22,7 @@
 }
 </script>
 
-<article class="c-post l-stack" style="--space: var(--section-gap); max-inline-size: 55rem; margin-inline: auto; padding-inline: var(--space-6); padding-block: var(--space-16) 10rem;">
+<article class="c-post l-stack u-mx-auto u-max-w-post" style="--space: var(--section-gap); padding-inline: var(--space-6); padding-block: var(--space-16) 10rem;">
   <!-- Post Header -->
   <header class="post-header l-stack l-center" style="--space: var(--space-8);">
     <div class="post-meta l-cluster" style="--space: 0.75rem;">
@@ -54,7 +54,7 @@
   </div>
 
   <!-- Content -->
-  <div class="post-content u-fill">
+  <div class="post-content s-post-content u-fill">
     {{ page.content | safe }}
   </div>
 
@@ -68,10 +68,10 @@
     <div class="copy-card l-bar" style="--space: 1rem; padding-inline: 2rem 0.6rem; padding-block: 0.6rem;">
       <div class="url-display u-fill l-cluster" style="--space: 1rem; justify-content: flex-start;">
         <span class="u-fixed">{{ icons::link(size=5) }}</span>
-        <span class="url-text u-fill">{{ current_url | safe }}</span>
+        <span class="url-text u-fill js-share-url">{{ current_url | safe }}</span>
       </div>
-      <button id="post-share-btn" class="copy-btn u-fixed">
-        <span class="label">Copy Link</span>
+      <button id="post-share-btn" class="copy-btn u-fixed js-share-btn">
+        <span class="label js-share-label">Copy Link</span>
       </button>
     </div>
 

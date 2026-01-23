@@ -12,7 +12,7 @@ class SpeedDialManager {
   private readonly posts: string[];
 
   constructor() {
-    this.dial = document.querySelector(".app-speed-dial");
+    this.dial = document.querySelector(".js-speed-dial");
     this.searchModal = document.getElementById("search_modal") as any;
     this.posts = window.__POST_LIST__ || [];
 
@@ -39,15 +39,15 @@ class SpeedDialManager {
   }
 
   private initClickEvents(): void {
-    const trigger = document.getElementById("speed-dial-trigger");
-    const topBtn = document.getElementById("speed-dial-top");
-    const searchBtn = document.getElementById("speed-dial-search");
-    const randomBtn = document.getElementById("speed-dial-random");
+    const trigger = document.querySelector(".js-speed-dial-trigger");
+    const topBtn = document.querySelector(".js-speed-dial-top");
+    const searchBtn = document.querySelector(".js-speed-dial-search");
+    const randomBtn = document.querySelector(".js-speed-dial-random");
 
     // 메인 트리거 (토글)
     trigger?.addEventListener("click", (e) => {
       e.stopPropagation();
-      this.dial?.classList.toggle("open");
+      this.dial?.classList.toggle("is-open");
     });
 
     // 위로 가기
@@ -81,7 +81,7 @@ class SpeedDialManager {
     if (!this.dial) return;
     const isDark = document.documentElement.getAttribute("data-theme") === "dim";
 
-    const controllers = this.dial.querySelectorAll<HTMLInputElement>(".theme-controller");
+    const controllers = this.dial.querySelectorAll<HTMLInputElement>(".js-theme-input");
     controllers.forEach((el) => {
       el.checked = isDark;
     });
@@ -94,7 +94,7 @@ class SpeedDialManager {
   }
 
   private closeDial(): void {
-    this.dial?.classList.remove("open");
+    this.dial?.classList.remove("is-open");
   }
 }
 

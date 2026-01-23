@@ -1,0 +1,28 @@
+/* ==========================================================================
+   State - Interaction States (states.css)
+   Rule: [상태] 담당. 반드시 다른 클래스와 결합하여 사용.
+   ========================================================================== */
+
+.is-active {
+  /* Common active state */
+}
+
+.is-loading {
+  cursor: wait !important;
+  opacity: 0.7;
+}
+
+.is-error {
+  border-color: var(--color-error) !important;
+}
+
+/* Copy State for Post Share */
+.is-copied {
+  background: #10b981 !important;
+  color: white !important;
+}
+
+/* Modal states */
+[popover]:popover-open {
+  /* This is a native state, but we can combine with .is-open if needed */
+}

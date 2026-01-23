@@ -5,11 +5,11 @@ class PostShareHandler {
   private originalText: string = "";
 
   constructor() {
-    this.shareBtn = document.getElementById("post-share-btn");
+    this.shareBtn = document.querySelector(".js-share-btn");
     this.shareModal = document.getElementById("share_modal");
 
     if (this.shareBtn) {
-      this.label = this.shareBtn.querySelector(".label");
+      this.label = this.shareBtn.querySelector(".js-share-label");
       this.originalText = this.label?.innerText || "";
       this.initEvents();
     }
@@ -48,7 +48,7 @@ class PostShareHandler {
   private onSuccess(): void {
     if (!this.shareBtn || !this.label) return;
 
-    this.shareBtn.classList.add("copied");
+    this.shareBtn.classList.add("is-copied");
     this.label.innerText = "Copied!";
 
     // showPopover 타입 에러 방지를 위해 타입 가드 사용
@@ -57,7 +57,7 @@ class PostShareHandler {
     }
 
     setTimeout(() => {
-      this.shareBtn?.classList.remove("copied");
+      this.shareBtn?.classList.remove("is-copied");
       if (this.label) this.label.innerText = this.originalText;
     }, 2000);
   }

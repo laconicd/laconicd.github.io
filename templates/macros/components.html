@@ -40,7 +40,7 @@
         <div class="divider-horizontal c-divider-v u-fixed"></div>
 
         <div class="sidebar-footer l-cluster u-fixed" style="--space: var(--space-2);">
-          <button popovertarget="search_modal" class="c-btn is-ghost is-circle" aria-label="Open Search">
+          <button popovertarget="search_modal" class="c-btn is-ghost is-circle js-search-trigger" aria-label="Open Search">
             {{ icons::search(size=5) }}
           </button>
           <a href="{{ get_url(path='atom.xml') }}" target="_blank" class="c-btn is-ghost is-circle">
@@ -49,8 +49,8 @@
           <a href="{{ get_url(path='rss.xml') }}" target="_blank" class="c-btn is-ghost is-circle">
             {{ icons::rss() }}
           </a>
-          <label class="c-theme-toggle c-btn is-ghost is-circle">
-            <input type="checkbox" class="theme-controller" value="dim" />
+          <label class="c-theme-toggle c-btn is-ghost is-circle js-theme-toggle">
+            <input type="checkbox" class="theme-controller js-theme-input" value="dim" />
             <span class="sun-icon">{{ icons::sun(size=5) }}</span>
             <span class="moon-icon">{{ icons::moon(size=5) }}</span>
           </label>
@@ -121,9 +121,9 @@
   <div id="search_modal" class="c-search-modal l-stack" popover style="--space: 0;">
     <div class="search-header l-cluster" style="--space: var(--space-4); align-items: center;">
       <span class="search-icon u-fixed">{{ icons::search(size=6) }}</span>
-      <input type="search" id="modal-search-input" class="u-fill" placeholder="Type to search articles..." autocomplete="off" />
+      <input type="search" id="modal-search-input" class="u-fill js-search-input" placeholder="Type to search articles..." autocomplete="off" />
     </div>
-    <div class="search-results l-stack u-fill" id="modal-search-results" style="--space: var(--space-1);">
+    <div class="search-results l-stack u-fill js-search-results" id="modal-search-results" style="--space: var(--space-1);">
       <div class="empty-state l-center u-fill">Start typing to find what you're looking for...</div>
     </div>
   </div>
@@ -141,19 +141,19 @@
 {% endmacro %}
 
 {% macro speed_dial() %}
-  <div class="c-speed-dial l-center">
+  <div class="c-speed-dial l-center js-speed-dial">
     <div class="dial-items">
-      <button id="speed-dial-top" class="dial-item l-center" aria-label="Scroll to Top">{{ icons::top(size=5) }}</button>
-      <button id="speed-dial-search" class="dial-item l-center" aria-label="Search">{{ icons::search(size=5) }}</button>
-      <label class="dial-item c-theme-toggle l-center" aria-label="Toggle Theme">
-        <input type="checkbox" class="theme-controller" value="dim" />
+      <button id="speed-dial-top" class="dial-item l-center js-speed-dial-top" aria-label="Scroll to Top">{{ icons::top(size=5) }}</button>
+      <button id="speed-dial-search" class="dial-item l-center js-speed-dial-search" aria-label="Search">{{ icons::search(size=5) }}</button>
+      <label class="dial-item c-theme-toggle l-center js-theme-toggle" aria-label="Toggle Theme">
+        <input type="checkbox" class="theme-controller js-theme-input" value="dim" />
         <span class="sun-icon">{{ icons::sun(size=5) }}</span>
         <span class="moon-icon">{{ icons::moon(size=5) }}</span>
       </label>
-      <button id="speed-dial-random" class="dial-item l-center" aria-label="Random Post">{{ icons::shuffle(size=5) }}</button>
+      <button id="speed-dial-random" class="dial-item l-center js-speed-dial-random" aria-label="Random Post">{{ icons::shuffle(size=5) }}</button>
     </div>
 
-    <button id="speed-dial-trigger" class="fab-trigger l-center" aria-label="Toggle Menu">
+    <button id="speed-dial-trigger" class="fab-trigger l-center js-speed-dial-trigger" aria-label="Toggle Menu">
       <span class="icon-main">{{ icons::lightning(size=6) }}</span>
       <span class="icon-close">{{ icons::minus(size=6) }}</span>
     </button>

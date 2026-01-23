@@ -30,7 +30,7 @@
     }
   }
 
-  &.open .fab-trigger {
+  &.is-open .fab-trigger {
     .icon-main {
       display: none;
     }
@@ -60,7 +60,7 @@
       transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
-  &.open .dial-item {
+  &.is-open .dial-item {
     transform: translate(var(--tx), var(--ty)) scale(1);
     opacity: 1;
     pointer-events: auto;

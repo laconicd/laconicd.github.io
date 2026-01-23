@@ -25,8 +25,8 @@ class SearchManager {
 
   constructor() {
     this.searchModal = document.getElementById("search_modal") as any;
-    this.searchInput = document.getElementById("modal-search-input") as HTMLInputElement;
-    this.resultsContainer = document.getElementById("modal-search-results") as HTMLElement;
+    this.searchInput = document.querySelector(".js-search-input") as HTMLInputElement;
+    this.resultsContainer = document.querySelector(".js-search-results") as HTMLElement;
 
     if (this.isValid()) {
       this.initFuse();

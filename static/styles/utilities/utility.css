@@ -138,3 +138,20 @@
 .u-flex-wrap {
   flex-wrap: wrap;
 }
+
+/* --- Layout Specific Utilities --- */
+.u-mx-auto {
+  margin-inline: auto !important;
+}
+
+.u-max-w-post {
+  max-inline-size: 55rem !important;
+}
+
+.u-text-center {
+  text-align: center !important;
+}
+
+.u-text-start {
+  text-align: start !important;
+}

@@ -10,6 +10,9 @@
 @import "./utilities/utility.css" layer(utilities);
 @import "./utilities/layout.css" layer(utilities);
 
+@import "scopes.css" layer(components);
+@import "states.css";
+
 @import "components/categories.css" layer(components);
 @import "components/tags.css" layer(components);
 

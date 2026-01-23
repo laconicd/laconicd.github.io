@@ -43,7 +43,7 @@ class ThemeManager {
   private handleChange(e: Event): void {
     const target = e.target as HTMLInputElement;
 
-    if (target && target.classList.contains("theme-controller")) {
+    if (target && target.classList.contains("js-theme-input")) {
       const isDark = target.checked;
       const newTheme = isDark ? this.darkTheme : this.lightTheme;
 
@@ -67,7 +67,7 @@ class ThemeManager {
   }
 
   private getControllers(): NodeListOf<HTMLInputElement> {
-    return document.querySelectorAll<HTMLInputElement>(".theme-controller");
+    return document.querySelectorAll<HTMLInputElement>(".js-theme-input");
   }
 }
 
