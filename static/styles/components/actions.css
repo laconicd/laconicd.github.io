@@ -1,10 +1,16 @@
+/* ==========================================================================
+   Component - Actions (actions.css)
+   Rule: 버튼, 토글, 모달 등 사용자의 액션을 유도하는 부품들.
+   ========================================================================== */
+
+/* --- [ Button ] --- */
 @scope (.c-btn) {
   :scope {
     display: inline-flex;
     flex-shrink: 0;
     justify-content: center;
     align-items: center;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, background-color 0.2s ease;
     cursor: pointer;
     border: none;
     border-radius: 0.25rem;
@@ -23,8 +29,12 @@
     }
   }
 
+  /* States as Modifiers */
   &.is-ghost {
     background-color: transparent;
+    &:hover {
+      background-color: oklch(from var(--color-base-content) l c h / 0.05);
+    }
   }
 
   &.is-circle {
@@ -34,20 +44,24 @@
     inline-size: 2.5rem;
     block-size: 2.5rem;
   }
+  
+  &.is-confirm {
+    border-radius: 1.5rem;
+    background-color: var(--color-base-content);
+    padding: 1.25rem 3.5rem;
+    color: var(--color-base-100);
+    font-weight: 800;
+    font-size: 1.1rem;
+
+    &:hover {
+      background-color: oklch(from var(--color-base-content) calc(l - 0.1) c h);
+      transform: scale(1.05);
+    }
+  }
 }
 
-.c-icon-circle {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  aspect-ratio: 1/1;
-  background-color: var(--color-base-300);
-  color: var(--color-base-content);
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
-}
-@scope (.c-theme-toggle ) {
+/* --- [ Theme Toggle ] --- */
+@scope (.c-theme-toggle) {
   :scope {
     display: grid;
     place-items: center;
@@ -55,16 +69,14 @@
     cursor: pointer;
   }
 
-  /* input은 숨기되 기능은 유지 */
-  & .theme-controller {
+  .c-theme-toggle-input {
     display: none;
   }
 
-  /* 아이콘 공통 설정 */
-  & .sun-icon,
-  & .moon-icon {
+  .c-theme-toggle-sun,
+  .c-theme-toggle-moon {
     display: flex;
-    grid-area: 1 / 1; /* 같은 그리드 칸에 겹치기 */
+    grid-area: 1 / 1;
     justify-content: center;
     align-items: center;
     transition:
@@ -72,33 +84,28 @@
       opacity 0.3s;
   }
 
-  /* 초기 상태 제어 (Checkbox 미체크 시) */
-  & .sun-icon {
+  .c-theme-toggle-sun {
     transform: rotate(0deg);
     opacity: 1;
   }
-  & .moon-icon {
+  .c-theme-toggle-moon {
     transform: rotate(90deg);
     opacity: 0;
   }
 
-  /* [핵심] 체크되었을 때(Dim 모드 등) 상태 반전 */
-  &:has(.theme-controller:checked) {
-    & .sun-icon {
+  &:has(.c-theme-toggle-input:checked) {
+    .c-theme-toggle-sun {
       transform: rotate(-90deg);
       opacity: 0;
     }
-    & .moon-icon {
+    .c-theme-toggle-moon {
       transform: rotate(0deg);
       opacity: 1;
     }
   }
-
-  /* 호버 시 부드러운 배경색 피드백 */
-  &:hover {
-    background-color: var(--color-base-300);
-  }
 }
+
+/* --- [ Speed Dial ] --- */
 @scope (.c-speed-dial) {
   :scope {
     position: fixed;
@@ -107,7 +114,7 @@
     inset-inline-end: 2rem;
   }
 
-  .fab-trigger {
+  .c-speed-dial-trigger {
     z-index: 2;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
@@ -119,28 +126,18 @@
     block-size: 4rem;
     color: var(--color-base-100);
 
-    &:hover {
-      transform: scale(1.1);
-    }
-    &:active {
-      transform: scale(0.95);
-    }
+    &:hover { transform: scale(1.1); }
+    &:active { transform: scale(0.95); }
 
-    .icon-close {
-      display: none;
-    }
+    .c-speed-dial-icon-close { display: none; }
   }
 
-  &.is-open .fab-trigger {
-    .icon-main {
-      display: none;
-    }
-    .icon-close {
-      display: flex;
-    }
+  &.is-open .c-speed-dial-trigger {
+    .c-speed-dial-icon-main { display: none; }
+    .c-speed-dial-icon-close { display: flex; }
   }
 
-  .dial-item {
+  .c-speed-dial-item {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -159,13 +156,7 @@
     transition:
       opacity 0.3s ease,
       transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  &.is-open .dial-item {
-    transform: translate(var(--tx), var(--ty)) scale(1);
-    opacity: 1;
-    pointer-events: auto;
-
+      
     &:hover {
       transform: translate(var(--tx), var(--ty)) scale(1.1);
       transition: transform 0.2s ease;
@@ -173,66 +164,24 @@
     }
   }
 
-  .dial-item:nth-child(1) {
-    --tx: -5.5rem;
-    --ty: 0;
-    transition-delay: 0.05s;
-  }
-  .dial-item:nth-child(2) {
-    --tx: -4.8rem;
-    --ty: -4.8rem;
-    transition-delay: 0.1s;
-  }
-  .dial-item:nth-child(3) {
-    --tx: -2.2rem;
-    --ty: -8.5rem;
-    transition-delay: 0.15s;
-  }
-  .dial-item:nth-child(4) {
-    --tx: 1.8rem;
-    --ty: -10.5rem;
-    transition-delay: 0.2s;
+  &.is-open .c-speed-dial-item {
+    transform: translate(var(--tx), var(--ty)) scale(1);
+    opacity: 1;
+    pointer-events: auto;
   }
 
-  .theme-toggle {
-    padding-inline: 0;
-    padding-block: 0;
-    overflow: hidden;
-    & input {
-      display: none;
-    }
-    & .sun-icon,
-    & .moon-icon {
-      position: absolute;
-      transition:
-        transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-        opacity 0.3s;
-    }
-    & .moon-icon {
-      transform: rotate(-90deg) scale(0.5);
-      opacity: 0;
-    }
-    & input:checked ~ .sun-icon {
-      transform: rotate(90deg) scale(0.5);
-      opacity: 0;
-    }
-    & input:checked ~ .moon-icon {
-      transform: rotate(0) scale(1);
-      opacity: 1;
-    }
-  }
+  .c-speed-dial-item:nth-child(1) { --tx: -5.5rem; --ty: 0; transition-delay: 0.05s; }
+  .c-speed-dial-item:nth-child(2) { --tx: -4.8rem; --ty: -4.8rem; transition-delay: 0.1s; }
+  .c-speed-dial-item:nth-child(3) { --tx: -2.2rem; --ty: -8.5rem; transition-delay: 0.15s; }
+  .c-speed-dial-item:nth-child(4) { --tx: 1.8rem; --ty: -10.5rem; transition-delay: 0.2s; }
 }
+
+/* --- [ Search Modal ] --- */
 @scope (.c-search-modal) {
-  /**
-   * [1] 기본 상태 (Base State / Exit Animation)
-   */
   :scope {
-    /* 시작/끝 위치 설정 (살짝 아래에서 작게 시작) */
     transform: scale(0.95) translateY(10px);
     opacity: 0;
-
     transition-behavior: allow-discrete;
-    transition-delay: 0s;
     transition-duration: 0.3s;
     transition-property: opacity, transform, display, overlay;
     transition-timing-function: ease-in, ease-in, linear, linear;
@@ -243,7 +192,6 @@
     border: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
     border-radius: 2rem;
     background-color: var(--color-base-100);
-    
     inline-size: clamp(20rem, 92dvw, 37.5rem);
     block-size: clamp(18.75rem, 60dvh, 80dvh);
     max-block-size: 80dvh;
@@ -261,7 +209,6 @@
     transition-behavior: allow-discrete;
     transition-duration: 0.3s;
     transition-property: opacity, backdrop-filter, display, overlay;
-    transition-timing-function: ease-in, ease-in, linear, linear;
     background-color: oklch(0 0 0 / 0.1);
   }
 
@@ -275,7 +222,6 @@
       opacity: 1;
       backdrop-filter: blur(8px);
       transition-duration: 0.6s;
-      transition-timing-function: ease, ease, linear, linear;
     }
   }
 
@@ -283,96 +229,79 @@
     &:popover-open {
       transform: scale(0.95) translateY(10px);
       opacity: 0;
-
-      &::backdrop {
-        opacity: 0;
-        backdrop-filter: blur(0px);
-      }
+      &::backdrop { opacity: 0; }
     }
   }
 
-  & .search-header {
+  .c-search-header {
     padding: var(--space-5) var(--space-6);
     border-block-end: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
 
-    & .search-icon {
-      opacity: 0.5;
-    }
+    .c-search-icon { opacity: 0.5; }
 
-    & input {
+    .c-search-input {
       border: none;
       background: transparent;
       padding-block: var(--space-1);
       font-weight: 700;
       font-size: 1.15rem;
       color: var(--color-base-content);
-
-      &::placeholder {
-        color: oklch(from var(--color-base-content) l c h / 0.2);
-        font-weight: 700;
-      }
-
-      &:focus {
-        outline: none;
-      }
+      &:focus { outline: none; }
+      &::placeholder { color: oklch(from var(--color-base-content) l c h / 0.2); }
     }
   }
 
-  & .search-results {
+  .c-search-results {
     overflow-y: auto;
     padding: var(--space-4);
 
-    & .empty-state {
+    .c-search-empty {
       padding-block: var(--space-10);
       color: oklch(from var(--color-base-content) l c h / 0.3);
       font-style: italic;
       font-weight: 800;
       font-size: 1.1rem;
       text-align: center;
-      line-height: 1.5;
-      max-width: 15rem;
-      word-break: keep-all;
     }
 
-    & .result-item {
+    .c-search-result-item {
+      display: flex;
+      flex-direction: column;
       padding: var(--space-4) var(--space-5);
       border-radius: 1.25rem;
       transition: all 0.2s ease;
       text-decoration: none;
       color: var(--color-base-content);
 
-      &:hover,
-      &:focus {
+      &:hover, &:focus {
         background-color: var(--color-base-200);
         outline: none;
       }
 
-      & .title {
+      .c-search-result-title {
         font-weight: 800;
         font-size: 1.1rem;
-        
-        & mark {
+        mark {
           background: oklch(from var(--color-primary) l c h / 0.2);
           color: var(--color-primary);
           border-radius: 0.2rem;
-          padding-inline: 0.1rem;
         }
       }
 
-      & .path {
+      .c-search-result-path {
         font-size: 0.75rem;
         opacity: 0.4;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
       }
     }
   }
 }
+
+/* --- [ Share Modal ] --- */
 @scope (.c-share-modal) {
   :scope {
     margin: auto;
-    /* 사이드바와 동일하게 기본 레이아웃 설정 */
     inset: 0;
     border: none;
     background: transparent;
@@ -382,11 +311,8 @@
     overflow: visible;
   }
 
-  /* 실제 모달 창에 애니메이션 적용 */
-  & .modal-box {
+  .c-share-box {
     transform: scale(0.9) translateY(20px);
-
-    /* 진입 애니메이션 */
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25);
@@ -398,85 +324,53 @@
     text-align: center;
   }
 
-  :scope:popover-open .modal-box {
+  &:popover-open .c-share-box {
     transform: scale(1) translateY(0);
     opacity: 1;
   }
 
   @starting-style {
-    :scope:popover-open .modal-box {
+    &:popover-open .c-share-box {
       transform: scale(0.9) translateY(20px);
       opacity: 0;
     }
   }
 
-  & .icon-wrapper {
+  .c-share-icon-wrapper {
+    margin-inline: auto;
     border-radius: 50%;
     background-color: oklch(from var(--color-base-content) l c h / 0.05);
     width: 5rem;
     height: 5rem;
     color: var(--color-base-content);
-    & svg {
-      width: 2rem;
-      height: 2rem;
-    }
   }
 
-  & h3 {
-    margin: 0;
-    color: var(--color-base-content);
+  .c-share-title {
+    margin-block: var(--space-4) var(--space-2);
     font-weight: 900;
     font-size: 2.1rem;
     letter-spacing: -0.04em;
   }
 
-  & p {
-    margin: 0;
+  .c-share-desc {
+    margin-inline: auto;
     max-width: 22rem;
     color: oklch(from var(--color-base-content) l c h / 0.5);
     font-weight: 600;
     font-size: 1.15rem;
     line-height: 1.5;
-    word-break: keep-all;
-  }
-
-  & .is-confirm {
-    transition: transform 0.2s;
-    cursor: pointer;
-    margin-top: 1rem;
-    border: none;
-    border-radius: 1.5rem;
-    background-color: var(--color-base-content);
-    padding: 1.25rem 3.5rem;
-    color: var(--color-base-100);
-    font-weight: 800;
-    font-size: 1.1rem;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-    &:active {
-      transform: scale(0.95);
-    }
   }
 
   &::backdrop {
     opacity: 0;
     backdrop-filter: blur(12px);
-    transition:
-      opacity 0.4s ease,
-      display 0.4s allow-discrete,
-      overlay 0.4s allow-discrete;
+    transition: all 0.4s allow-discrete;
     background-color: oklch(0 0 0 / 0.3);
   }
 
-  :scope:popover-open::backdrop {
-    opacity: 1;
-  }
+  &:popover-open::backdrop { opacity: 1; }
 
   @starting-style {
-    :scope:popover-open::backdrop {
-      opacity: 0;
-    }
+    &:popover-open::backdrop { opacity: 0; }
   }
 }

@@ -99,3 +99,27 @@
     min-inline-size: 0;
   }
 }
+
+/* [Shell] 페이지 전체 레이아웃 (Header-Main-Footer) */
+.l-shell {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
+}
+
+.l-shell > header {
+  position: sticky;
+  z-index: 50;
+  container-name: nav-shell;
+  container-type: inline-size;
+  inset-block-start: 0;
+  inline-size: 100%;
+}
+
+.l-shell > main {
+  flex: 1;
+}
+
+.l-shell > footer {
+  margin-block-start: auto;
+}

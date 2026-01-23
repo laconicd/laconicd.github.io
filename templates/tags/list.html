@@ -15,9 +15,9 @@
     <section class="l-cluster" aria-label="All Tags" style="justify-content: center; gap: 1.25rem; padding-block-end: 5rem;">
       {% for term in terms %}
         <a href="{{ term.path }}" class="c-tag-pill l-cluster" style="--space: 0.75rem; align-items: center;">
-          <span class="hash u-fixed">#</span>
-          <span class="name">{{ term.name }}</span>
-          <span class="count u-fixed">{{ term.pages | length }}</span>
+          <span class="c-tag-pill-hash u-fixed">#</span>
+          <span class="c-tag-pill-name">{{ term.name }}</span>
+          <span class="c-tag-pill-count u-fixed">{{ term.pages | length }}</span>
         </a>
       {% endfor %}
     </section>

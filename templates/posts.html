@@ -16,21 +16,21 @@
       {% set featured = blog_section.pages[0] %}
 
       <section class="c-hero-card">
-        <a href="{{ featured.path }}" class="featured-card l-grid u-gap-0" style="--min-width: 100%; grid-template-columns: 1.3fr 0.7fr;">
-          <div class="featured-image">
+        <a href="{{ featured.path }}" class="c-hero-card-featured l-grid u-gap-0" style="--min-width: 100%; grid-template-columns: 1.3fr 0.7fr;">
+          <div class="c-hero-card-image">
             <img
               src="{{ image_macros::get_url(page=featured, width=1200, height=800) }}"
               alt="{{ featured.title }}"
               loading="lazy"
             />
           </div>
-          <div class="featured-content l-stack l-center u-gap-8" style="justify-content: center;">
-            <span class="featured-badge u-fixed">Featured</span>
+          <div class="c-hero-card-content l-stack l-center u-gap-8" style="justify-content: center;">
+            <span class="c-hero-card-badge u-fixed">Featured</span>
             <h2>{{ featured.title }}</h2>
             <p>{{ featured.summary | default(value=featured.description) | default(value="") | striptags | safe }}</p>
-            <div class="featured-footer l-cluster u-gap-6" style="justify-content: flex-start; align-items: center; margin-block-start: var(--space-4);">
+            <div class="c-hero-card-footer l-cluster u-gap-6" style="justify-content: flex-start; align-items: center; margin-block-start: var(--space-4);">
               <span>Keep Reading</span>
-              <span class="arrow c-icon-circle u-fixed">{{ icons::arrow_right(size=4) }}</span>
+              <span class="c-hero-card-footer-arrow c-icon-circle u-fixed">{{ icons::arrow_right(size=4) }}</span>
             </div>
           </div>
         </a>

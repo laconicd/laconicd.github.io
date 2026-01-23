@@ -1,4 +1,4 @@
-@layer reset, base, components, utilities;
+@layer reset, base, layout, components, utilities;
 
 /* --- [ Base Layers ] --- */
 @import "variables.css" layer(base);
@@ -7,9 +7,8 @@
 @import "font.css" layer(base);
 @import "motion.css" layer(base);
 
-/* --- [ Layout & Utilities ] --- */
-@import "layout.css" layer(utilities);
-@import "utilities.css" layer(utilities);
+/* --- [ Layout ] --- */
+@import "layout.css" layer(layout);
 
 /* --- [ Components ] --- */
 @import "components/elements.css" layer(components);
@@ -17,6 +16,7 @@
 @import "components/navigation.css" layer(components);
 @import "components/data-display.css" layer(components);
 
-/* --- [ Special Rules ] --- */
+/* --- [ Special Rules & Utilities ] --- */
 @import "scopes.css" layer(components);
-@import "states.css";
+@import "utilities.css" layer(utilities);
+@import "states.css"; /* States are kept outside or in a high-priority layer to ensure overrides */

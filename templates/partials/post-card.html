@@ -2,36 +2,36 @@
 {% import "macros/image.html" as image_macros %}
 
 <article class="c-post-card">
-  <div class="card l-stack" style="--space: 0;">
-    <a href="{{ page.path }}" class="page-link" aria-label="Read: {{ page.title }}"></a>
+  <div class="c-post-card-inner l-stack" style="--space: 0;">
+    <a href="{{ page.path }}" class="c-post-card-link" aria-label="Read: {{ page.title }}"></a>
 
-    <div class="media-area u-fixed" style="--fixed-width: 100%; margin-block-end: var(--space-8);">
+    <div class="c-post-card-media u-fixed" style="--fixed-width: 100%; margin-block-end: var(--space-8);">
       <img src="{{ image_macros::get_url(page=page, width=800, height=600) }}" alt="{{ page.title }}" loading="lazy" />
     </div>
 
-    <div class="content-area l-stack u-fill" style="--space: var(--space-4);">
-      <div class="meta l-cluster" style="--space: 0.75rem; margin-block-end: var(--space-2); justify-content: flex-start;">
+    <div class="c-post-card-content l-stack u-fill" style="--space: var(--space-4);">
+      <div class="c-post-card-meta l-cluster" style="--space: 0.75rem; margin-block-end: var(--space-2); justify-content: flex-start;">
         <time datetime="{{ page.date }}" class="u-fixed">{{ page.date | date(format=config.extra.date_format) }}</time>
-        <span class="dot u-fixed">•</span>
+        <span class="u-fixed">•</span>
         <span class="u-fixed">{{ page.reading_time }} min read</span>
       </div>
 
-      <h3 class="title">{{ page.title }}</h3>
+      <h3 class="c-post-card-title">{{ page.title }}</h3>
 
-      <p class="summary u-fill">{{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}</p>
+      <p class="c-post-card-summary u-fill">{{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}</p>
 
       {% if page.taxonomies.tags %}
-        <div class="tags l-cluster" style="--space: var(--space-4); margin-block-start: auto;">
+        <div class="c-post-card-tags l-cluster" style="--space: var(--space-4); margin-block-start: auto;">
           {% for tag in page.taxonomies.tags | slice(end=3) %}
-            <span class="tag">#{{ tag }}</span>
+            <span class="c-post-card-tag">#{{ tag }}</span>
           {% endfor %}
         </div>
       {% endif %}
     </div>
 
-    <div class="footer-area l-bar" style="margin-block-start: var(--space-6);">
+    <div class="c-post-card-footer l-bar" style="margin-block-start: var(--space-6);">
       <span>Read Story</span>
-      <span class="arrow c-icon-circle">{{ icons::arrow_right(size=2.5) }}</span>
+      <span class="c-post-card-footer-arrow c-icon-circle">{{ icons::arrow_right(size=2.5) }}</span>
     </div>
   </div>
 </article>

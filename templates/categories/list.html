@@ -15,20 +15,20 @@
         <a href="{{ term.path }}" class="c-category-card l-stack" style="--space: 2rem;">
           <div class="l-stack" style="--space: 1rem;">
             <div class="l-bar" style="align-items: flex-start;">
-              <span class="type-label">Category</span>
-              <div class="icon-box l-center">{{ icons::category() }}</div>
+              <span class="c-category-card-type">Category</span>
+              <div class="c-category-card-icon l-center">{{ icons::category() }}</div>
             </div>
-            <h2 class="card-title">{{ term.name }}</h2>
+            <h2 class="c-category-card-title">{{ term.name }}</h2>
           </div>
 
           <div class="l-bar">
-            <span class="count-label">{{ term.pages | length }} Articles</span>
-            <div class="explore-label l-cluster" style="--space: 0.5rem;">Explore {{ icons::arrow_right(size=3) }}</div>
+            <span class="c-category-card-count">{{ term.pages | length }} Articles</span>
+            <div class="c-category-card-explore l-cluster" style="--space: 0.5rem;">Explore {{ icons::arrow_right(size=3) }}</div>
           </div>
 
-          <div class="decorative-blur"></div>
+          <div class="c-category-card-blur"></div>
         </a>
       {% endfor %}
-section>
+    </section>
   </div>
 {% endblock content %}
