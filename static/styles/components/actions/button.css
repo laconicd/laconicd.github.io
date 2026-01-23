@@ -42,5 +42,8 @@
   :scope {
     border-radius: 50%;
     aspect-ratio: 1/1;
+    padding: 0;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
   }
 }
