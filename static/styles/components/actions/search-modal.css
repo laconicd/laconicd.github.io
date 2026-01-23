@@ -36,9 +36,9 @@
     background-color: var(--color-base-100);
     
     /* 모바일에서는 넓게, 데스크탑에서는 적절한 폭 유지 */
-    inline-size: clamp(320px, 92dvw, 600px);
+    inline-size: clamp(20rem, 92dvw, 37.5rem);
     /* 검색 결과가 충분히 보이도록 높이 조절 */
-    block-size: clamp(300px, 60dvh, 80dvh);
+    block-size: clamp(18.75rem, 60dvh, 80dvh);
     max-block-size: 80dvh;
     overflow: hidden;
 
