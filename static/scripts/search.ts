@@ -24,7 +24,7 @@ class SearchManager {
   private readonly resultsContainer: HTMLElement;
 
   constructor() {
-    this.searchModal = document.getElementById("search_modal") as any;
+    this.searchModal = document.querySelector(".js-search-modal") as any;
     this.searchInput = document.querySelector(".js-search-input") as HTMLInputElement;
     this.resultsContainer = document.querySelector(".js-search-results") as HTMLElement;
 

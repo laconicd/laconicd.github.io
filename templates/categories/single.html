@@ -3,14 +3,14 @@
 {% import "macros/image.html" as image_macros %}
 
 {% block content %}
-  <div class="l-stack" style="--space: var(--space-20); max-inline-size: 80rem; margin-inline: auto; padding-inline: 1.25rem;">
+  <div class="l-container l-stack u-py-20" style="--space: var(--space-20);">
     <div class="u-fixed" style="margin-block-end: 3rem;">
-      <a href="/categories" class="c-btn is-ghost l-cluster" style="--space: 0.75rem; opacity: 0.4; font-weight: 900; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;"> 
+      <a href="/categories" class="c-btn is-ghost l-cluster u-text-xs u-weight-black u-letter-wide u-text-uppercase" style="--space: 0.75rem; opacity: 0.4;"> 
         {{ icons::arrow_left(size=3) }} Back to Categories 
       </a>
     </div>
 
-    <div class="c-hero-title l-stack l-center">
+    <div class="c-hero-title l-stack l-center u-text-center">
       <h1>{{ term.name }}</h1>
       <p>{{ term.pages | length }} Articles Curated Selection. Exploring the depth of this topic.</p>
     </div>

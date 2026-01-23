@@ -3,8 +3,8 @@
 {% import "macros/image.html" as image_macros %}
 
 {% block content %}
-  <div class="l-stack" style="--space: var(--space-20); max-inline-size: 80rem; margin-inline: auto; padding-inline: 1.25rem; padding-block-end: 10rem;">
-    <header class="c-hero-title l-stack l-center" style="text-align: center;">
+  <div class="l-container l-stack u-py-20" style="--space: var(--space-20); padding-block-end: 10rem;">
+    <header class="c-hero-title l-stack l-center u-text-center">
       <h1>{{ section.title }}</h1>
       <p>{{ config.extra.posts_subtitle }}</p>
     </header>
@@ -30,7 +30,7 @@
             <p>{{ featured.summary | default(value=featured.description) | default(value="") | striptags | safe }}</p>
             <div class="featured-footer l-cluster" style="--space: var(--space-6); justify-content: flex-start; align-items: center; margin-block-start: var(--space-4);">
               <span>Keep Reading</span>
-              <span class="arrow btn-icon-circle u-fixed">{{ icons::arrow_right(size=4) }}</span>
+              <span class="arrow c-icon-circle u-fixed">{{ icons::arrow_right(size=4) }}</span>
             </div>
           </div>
         </a>

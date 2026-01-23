@@ -6,7 +6,7 @@ class PostShareHandler {
 
   constructor() {
     this.shareBtn = document.querySelector(".js-share-btn");
-    this.shareModal = document.getElementById("share_modal");
+    this.shareModal = document.querySelector(".js-share-modal");
 
     if (this.shareBtn) {
       this.label = this.shareBtn.querySelector(".js-share-label");

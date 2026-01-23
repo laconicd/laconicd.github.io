@@ -42,6 +42,7 @@ class ThemeInitializer {
 
     const link = document.createElement("link");
     link.id = "syntax-theme";
+    link.classList.add("js-syntax-theme");
     link.rel = "stylesheet";
     link.href = href;
 

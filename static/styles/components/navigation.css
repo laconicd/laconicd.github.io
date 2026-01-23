@@ -1,0 +1,240 @@
+/* ==========================================================================
+   Component - Navbar (navbar.css)
+   Rule: [부품] 담당. 배치는 l-bar, l-cluster 등으로 위임.
+   ========================================================================== */
+
+@scope (.c-navbar) {
+  :scope {
+    backdrop-filter: blur(12px);
+    border-block-end: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+    background-color: oklch(from var(--color-base-100) l c h / 0.5);
+    padding-inline: var(--page-padding);
+    padding-block: var(--space-2);
+    color: var(--color-base-content);
+  }
+
+  .nav-brand {
+    font-weight: 900;
+    font-size: var(--text-xl);
+    letter-spacing: -0.05em;
+    text-transform: none;
+  }
+
+  /* --- [ Mobile: Popover Mode ] --- */
+  @container nav-shell (width < 40rem) {
+    .nav-center {
+      /* [1] Popover Reset & Base */
+      inset-inline: auto 0;
+      margin: 0;
+      border: none;
+      background-color: var(--color-base-100);
+      inline-size: 75dvw;
+      block-size: 100dvh;
+      box-shadow: var(--shadow-5);
+      
+      /* [2] Animation */
+      transform: translateX(100%);
+      transition: 
+        transform 0.3s var(--ease-out),
+        display 0.3s allow-discrete,
+        overlay 0.3s allow-discrete;
+
+      &:popover-open {
+        transform: translateX(0);
+        
+        &::backdrop {
+          opacity: 1;
+          backdrop-filter: blur(8px);
+        }
+      }
+
+      &::backdrop {
+        opacity: 0;
+        background-color: oklch(0 0 0 / 0.2);
+        backdrop-filter: blur(0px);
+        transition: all 0.3s allow-discrete;
+      }
+
+      /* [3] Sidebar Content Layout */
+      .sidebar-header {
+        padding-inline: var(--space-8);
+        padding-block: var(--space-12) var(--space-8);
+
+        .sidebar-title {
+          opacity: 0.3;
+          margin-block-end: var(--space-2);
+          font-weight: 900;
+          font-size: var(--text-xs);
+          text-transform: uppercase;
+        }
+        .nav-brand {
+          font-size: 2rem;
+          padding: 0;
+          justify-content: flex-start;
+        }
+      }
+
+      .sidebar-menu {
+        padding-inline: var(--space-4);
+        
+        a {
+          padding: var(--space-4);
+          font-weight: 800;
+          font-size: var(--text-lg);
+
+          .sidebar-arrow {
+            opacity: 0.2;
+          }
+        }
+      }
+
+      .sidebar-footer {
+        padding: var(--space-8);
+        border-block-start: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+      }
+    }
+  }
+
+  /* --- [ Desktop: Inline Mode ] --- */
+  @container nav-shell (width >= 40rem) {
+    .nav-menu-btn,
+    .sidebar-header,
+    .divider-horizontal,
+    .sidebar-arrow {
+      display: none !important;
+    }
+
+    .nav-center {
+      /* Reset Popover native styles */
+      display: block;
+      position: static;
+      inset: auto;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      transform: none;
+      inline-size: auto;
+      block-size: auto;
+      overflow: visible;
+
+      .sidebar-menu a {
+        padding: var(--space-2);
+        font-weight: 700;
+        font-size: var(--text-sm);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    }
+  }
+}
+/* ==========================================================================
+   Component - Footer (footer.css)
+   Rule: [부품] 담당. 배치는 l- primitives와 u- utilities로 위임.
+   ========================================================================== */
+
+.c-footer {
+  border-block-start: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+  background-color: oklch(from var(--color-base-content) l c h / 0.02);
+  inline-size: 100%;
+}
+
+@scope (.c-footer) {
+  .footer-brand {
+    .brand-name {
+      color: var(--color-base-content);
+      font-weight: 900;
+      font-size: 1.75rem;
+      letter-spacing: -0.05em;
+      
+      @media (width < 48rem) {
+        font-size: var(--text-xl);
+      }
+    }
+
+    .brand-desc {
+      max-inline-size: 24rem;
+      color: oklch(from var(--color-base-content) l c h / 0.5);
+      font-weight: 500;
+      line-height: 1.6;
+
+      @media (width < 48rem) {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .footer-nav-group {
+    h4 {
+      opacity: 0.3;
+      font-weight: 950;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    ul a {
+      opacity: 0.6;
+      transition: all 0.2s;
+      color: var(--color-base-content);
+      font-weight: 700;
+
+      @media (width < 48rem) {
+        font-size: 0.95rem;
+      }
+
+      &:hover {
+        transform: translateX(4px);
+        opacity: 1;
+      }
+    }
+  }
+
+  .footer-bottom {
+    @media (width < 48rem) {
+      flex-direction: column-reverse;
+      gap: var(--space-6);
+      text-align: center;
+    }
+
+    .copyright {
+      opacity: 0.3;
+      font-weight: 600;
+      font-size: var(--text-sm);
+    }
+
+    .social-links a {
+      opacity: 0.4;
+      transition: all 0.3s;
+      color: var(--color-base-content);
+      
+      &:hover {
+        transform: translateY(-3px);
+        opacity: 1;
+      }
+    }
+  }
+}
+.l-shell {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
+}
+
+.l-shell > header {
+  position: sticky;
+  z-index: 50;
+  container-name: nav-shell;
+  container-type: inline-size;
+  inset-block-start: 0;
+  inline-size: 100%;
+}
+
+.l-shell > main {
+  flex: 1;
+}
+
+.l-shell > footer {
+  margin-block-start: auto;
+}

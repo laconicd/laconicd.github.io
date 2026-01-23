@@ -1,5 +1,0 @@
-@scope (.c-post-list ) {
-  :scope {
-    animation: fadeInUp 1s var(--ease-standard) 0.4s both;
-  }
-}

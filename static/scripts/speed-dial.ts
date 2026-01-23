@@ -13,7 +13,7 @@ class SpeedDialManager {
 
   constructor() {
     this.dial = document.querySelector(".js-speed-dial");
-    this.searchModal = document.getElementById("search_modal") as any;
+    this.searchModal = document.querySelector(".js-search-modal") as any;
     this.posts = window.__POST_LIST__ || [];
 
     if (this.dial) {

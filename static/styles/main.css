@@ -1,37 +1,22 @@
 @layer reset, base, components, utilities;
 
+/* --- [ Base Layers ] --- */
 @import "variables.css" layer(base);
 @import "reset.css" layer(reset);
 @import "base.css" layer(base);
 @import "font.css" layer(base);
-@import "animations.css" layer(base);
-@import "transitions.css" layer(base);
+@import "motion.css" layer(base);
 
-@import "./utilities/utility.css" layer(utilities);
-@import "./utilities/layout.css" layer(utilities);
+/* --- [ Layout & Utilities ] --- */
+@import "layout.css" layer(utilities);
+@import "utilities.css" layer(utilities);
 
+/* --- [ Components ] --- */
+@import "components/elements.css" layer(components);
+@import "components/actions.css" layer(components);
+@import "components/navigation.css" layer(components);
+@import "components/data-display.css" layer(components);
+
+/* --- [ Special Rules ] --- */
 @import "scopes.css" layer(components);
 @import "states.css";
-
-@import "components/categories.css" layer(components);
-@import "components/tags.css" layer(components);
-
-@import "components/actions/button.css" layer(components);
-@import "components/actions/theme-controller.css" layer(components);
-@import "components/actions/speed-dial.css" layer(components);
-@import "components/actions/search-modal.css" layer(components);
-@import "components/actions/share-modal.css" layer(components);
-
-@import "components/navigation/navbar.css" layer(components);
-
-@import "components/layout/divider.css" layer(components);
-@import "components/layout/hero.css" layer(components);
-/* @import "components/layout/list.css" layer(components); */
-
-@import "components/data-display/category-card.css" layer(components);
-@import "components/data-display/post-card.css" layer(components);
-
-@import "components/shell.css" layer(components);
-@import "components/footer.css" layer(components);
-@import "components/post-card.css" layer(components);
-@import "components/post.css" layer(components);

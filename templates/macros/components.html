@@ -68,7 +68,7 @@
 #}
 
 {% macro app_footer(config) %}
-  <div class="footer-inner l-stack" style="--space: var(--section-gap); max-inline-size: var(--container-width); margin-inline: auto; padding-inline: var(--page-padding); padding-block: var(--space-20) var(--space-12);">
+  <div class="footer-inner l-container l-stack u-py-20" style="--space: var(--section-gap);">
       <div class="footer-main l-grid" style="--min-width: 15rem; --space: var(--space-16);">
         <div class="footer-brand l-stack" style="--space: var(--space-5);">
           <div class="brand-name">{{ config.title }}</div>
@@ -118,7 +118,7 @@
 #}
 
 {% macro search_modal() %}
-  <div id="search_modal" class="c-search-modal l-stack" popover style="--space: 0;">
+  <div id="search_modal" class="c-search-modal l-stack js-search-modal" popover style="--space: 0;">
     <div class="search-header l-cluster" style="--space: var(--space-4); align-items: center;">
       <span class="search-icon u-fixed">{{ icons::search(size=6) }}</span>
       <input type="search" id="modal-search-input" class="u-fill js-search-input" placeholder="Type to search articles..." autocomplete="off" />
@@ -130,12 +130,12 @@
 {% endmacro %}
 
 {% macro share_modal() %}
-  <div id="share_modal" class="c-share-modal" popover>
+  <div id="share_modal" class="c-share-modal js-share-modal" popover>
     <div class="modal-box l-stack l-center" style="--space: 1.75rem;">
       <div class="icon-wrapper l-center">{{ icons::check() }}</div>
       <h3>Link Copied!</h3>
       <p>The article link has been copied to your clipboard. Feel free to share it!</p>
-      <button class="c-btn is-confirm" onclick="document.getElementById('share_modal').hidePopover()">Got it</button>
+      <button class="c-btn is-confirm js-modal-close" onclick="document.getElementById('share_modal').hidePopover()">Got it</button>
     </div>
   </div>
 {% endmacro %}

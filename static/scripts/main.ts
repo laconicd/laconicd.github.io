@@ -60,7 +60,7 @@ class ThemeManager {
     localStorage.setItem(this.storageKey, theme);
 
     // 구문 강조(Syntax) 테마 업데이트
-    const link = document.getElementById("syntax-theme") as HTMLLinkElement | null;
+    const link = document.querySelector(".js-syntax-theme") as HTMLLinkElement | null;
     if (link && window.__SYNTAX_THEME_URLS__) {
       link.href = window.__SYNTAX_THEME_URLS__[theme];
     }

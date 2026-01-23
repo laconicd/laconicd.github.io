@@ -59,6 +59,24 @@
   }
 }
 
+/* [Box] 패딩과 테두리가 있는 단순 상자 */
+@scope (.l-box) {
+  :scope {
+    padding: var(--space, 1rem);
+    border: var(--border-width, 1px) solid var(--border-color, transparent);
+  }
+}
+
+/* [Container] 중앙 정렬된 너비 제한 구역 */
+@scope (.l-container) {
+  :scope {
+    margin-inline: auto;
+    max-inline-size: var(--max-width, var(--container-width));
+    padding-inline: var(--gutter, var(--page-padding));
+    inline-size: 100%;
+  }
+}
+
 /* ==========================================================================
    2. BEHAVIOR UTILITIES (자식: 공간 안에서의 태도를 정함)
    ========================================================================== */
