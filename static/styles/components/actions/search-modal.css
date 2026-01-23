@@ -43,6 +43,26 @@
     }
   }
 
+  /* 
+   * [ @starting-style ]
+   * 요소가 '처음 나타나는 순간(First Render)'의 시작 상태를 정의합니다.
+   * 
+   * - 역할: display: none 상태에서 열리는 순간, 애니메이션의 '시작점'을 브라우저에게 강제로 인지시킵니다.
+   * - 필수 조건: transition-behavior: allow-discrete 설정이 되어 있어야 효과가 있습니다.
+   * - 효과: 요소가 DOM에 추가되거나 popover가 열릴 때 애니메이션이 끊기지 않고 부드럽게 시작되도록 보장합니다.
+   */
+  @starting-style {
+    &:popover-open {
+      opacity: 0;
+      transform: scale(0.95) translateY(10px);
+
+      &::backdrop {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+      }
+    }
+  }
+
   & .search-header {
     display: flex;
     justify-content: center;
