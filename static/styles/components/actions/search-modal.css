@@ -6,12 +6,12 @@
   :scope {
     display: flex;
     flex-direction: column;
-    
+
     /* 시작/끝 위치 설정 (살짝 아래에서 작게 시작) */
     transform: scale(0.95) translateY(10px);
     opacity: 0;
 
-    /* 
+    /*
      * transition-behavior: allow-discrete (중요!)
      * display: none <-> flex 처럼 이산적인 속성 변화에도 애니메이션을 허용합니다.
      * 이 설정이 없으면 display 속성이 바뀌는 순간 애니메이션 없이 바로 사라집니다.
@@ -21,7 +21,7 @@
 
     /* 퇴장 애니메이션 속도: 0.3초로 빠르게 닫힘 */
     transition-duration: 0.3s;
-    
+
     /* 애니메이션을 적용할 속성들: overlay는 최상단 레이어 전환을 위해 필요 */
     transition-property: opacity, transform, display, overlay;
 
@@ -30,12 +30,23 @@
 
     margin: auto;
     inset: 0;
-    box-shadow: var(--shadow-3);
-    border: none;
-    border-radius: 2.5rem;
+    box-shadow: var(--shadow-4);
+    border: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+    border-radius: 2rem;
     background-color: var(--color-base-100);
-    inline-size: clamp(40dvw, 60dvw, 80dvw);
-    block-size: clamp(20dvh, 30dvh, 80dvh);
+    
+    /* 모바일에서는 넓게, 데스크탑에서는 적절한 폭 유지 */
+    inline-size: clamp(320px, 92dvw, 600px);
+    /* 검색 결과가 충분히 보이도록 높이 조절 */
+    block-size: clamp(300px, 60dvh, 80dvh);
+    max-block-size: 80dvh;
+    overflow: hidden;
+
+    /* 모바일에서 약간 상단에 배치하여 키보드 간섭 줄임 */
+    @media (width < 640px) {
+      margin-block-start: 10dvh;
+      border-radius: 2.25rem;
+    }
   }
 
   /**
@@ -81,14 +92,14 @@
   /**
    * [4] 시작 스타일 (Starting Style)
    * 요소가 DOM에 나타나는 첫 프레임의 상태를 브라우저에게 명시적으로 알려줍니다.
-   * 
+   *
    * - 용도: display: none 상태에서 갑자기 나타날 때 브라우저가 '시작점'을 놓치지 않게 함
    * - 효과: 진입 애니메이션이 끊김 없이 0% 지점부터 정확히 시작되도록 보장
    */
   @starting-style {
     &:popover-open {
-      opacity: 0;
       transform: scale(0.95) translateY(10px);
+      opacity: 0;
 
       &::backdrop {
         opacity: 0;
@@ -99,20 +110,28 @@
 
   & .search-header {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: var(--space-3);
-    padding: var(--space-5);
-    font-size: 1.2rem;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    border-block-end: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+
+    & .search-icon {
+      flex-shrink: 0;
+      opacity: 0.5;
+    }
 
     & input {
+      flex: 1;
       border: none;
       background: transparent;
-      inline-size: 100%;
+      padding-block: var(--space-1);
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--color-base-content);
 
       &::placeholder {
         color: oklch(from var(--color-base-content) l c h / 0.2);
-        font-weight: 600;
+        font-weight: 700;
       }
 
       &:focus {
@@ -123,13 +142,59 @@
 
   & .search-results {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-block-start: 1px solid var(--color-base-300);
-    inline-size: 100%;
-    block-size: 100%;
-    color: oklch(from var(--color-base-content) l c h / 0.2);
-    font-style: italic;
-    font-weight: 900;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-4);
+
+    & .empty-state {
+      margin: auto;
+      padding-block: var(--space-10);
+      color: oklch(from var(--color-base-content) l c h / 0.3);
+      font-style: italic;
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-align: center;
+      line-height: 1.5;
+      max-width: 15rem;
+      word-break: keep-all;
+    }
+
+    & .result-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+      padding: var(--space-4) var(--space-5);
+      border-radius: 1.25rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: var(--color-base-content);
+
+      &:hover,
+      &:focus {
+        background-color: var(--color-base-200);
+        outline: none;
+      }
+
+      & .title {
+        font-weight: 800;
+        font-size: 1.1rem;
+        
+        & mark {
+          background: oklch(from var(--color-primary) l c h / 0.2);
+          color: var(--color-primary);
+          border-radius: 0.2rem;
+          padding-inline: 0.1rem;
+        }
+      }
+
+      & .path {
+        font-size: 0.75rem;
+        opacity: 0.4;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    }
   }
 }
