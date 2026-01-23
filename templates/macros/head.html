@@ -6,6 +6,13 @@
 
 {% macro link() %}
   <link rel="icon" type="image/svg+xml" href="{{ get_url(path='images/avatar.svg') | safe }}" />
+  <link
+    rel="preload"
+    href="{{ get_url(path='fonts/outfit/outfit-latin-wght-normal.woff2') | safe }}"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  />
   <link rel="stylesheet" href="{{ get_url(path='styles/main.css', cachebust=true) | safe }}" />
   <link
     rel="alternate"
@@ -34,7 +41,11 @@
   </script>
 
   <!-- theme.js must run early to prevent FOUC -->
-  <script src="{{ get_url(path='js/theme.js') | safe }}"></script>
+  <script>
+    (function() {
+      var s=class{themeAttr="data-theme";storageKey="theme";darkTheme="dim";lightTheme="lofi";constructor(){this.init()}init(){let e=this.getSavedTheme();document.documentElement.setAttribute(this.themeAttr,e),this.injectSyntaxTheme(e)}getSavedTheme(){let e=localStorage.getItem(this.storageKey);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?this.darkTheme:this.lightTheme)}injectSyntaxTheme(e){let i=window.__SYNTAX_THEME_URLS__||{},h=e===this.darkTheme?i.dim:i.lofi;if(!h||h===window.location.href)return;let t=document.createElement("link");t.id="syntax-theme",t.classList.add("js-syntax-theme"),t.rel="stylesheet",t.href=h,document.head.appendChild(t)}};new s;
+    })();
+  </script>
 {% endmacro %}
 
 {% macro seo(page=false, section=false, config=false, current_url=false) %}

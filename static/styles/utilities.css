@@ -65,10 +65,6 @@
   margin-inline: var(--space-4) !important;
 }
 
-.u-mx-auto {
-  margin-inline: auto !important;
-}
-
 /* --- Padding (Logical) --- */
 
 /* All sides */
@@ -201,6 +197,20 @@
 }
 
 /* --- Layout Specific Utilities --- */
+/* [Fixed] 지정된 크기 유지 */
+.u-fixed {
+  flex-grow: 0 !important;
+  flex-shrink: 0 !important;
+  flex-basis: var(--fixed-width, auto) !important;
+}
+
+/* [Fill] 남는 모든 공간 점유 */
+.u-fill {
+  flex-grow: 1 !important;
+  flex-basis: 0 !important;
+  min-inline-size: 0 !important;
+}
+
 .u-mx-auto {
   margin-inline: auto !important;
 }

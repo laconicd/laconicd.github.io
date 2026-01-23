@@ -78,28 +78,6 @@
   }
 }
 
-/* ==========================================================================
-   2. BEHAVIOR UTILITIES (자식: 공간 안에서의 태도를 정함)
-   ========================================================================== */
-
-/* [Fixed] 지정된 크기 유지 */
-@scope (.u-fixed) {
-  :scope {
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: var(--fixed-width, auto);
-  }
-}
-
-/* [Fill] 남는 모든 공간 점유 */
-@scope (.u-fill) {
-  :scope {
-    flex-grow: 1;
-    flex-basis: 0;
-    min-inline-size: 0;
-  }
-}
-
 /* [Shell] 페이지 전체 레이아웃 (Header-Main-Footer) */
 .l-shell {
   display: flex;
