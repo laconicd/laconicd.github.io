@@ -106,15 +106,12 @@
 
 {% macro search_modal() %}
   <div id="search_modal" popover>
-    <div class="modal-backdrop" onclick="document.getElementById('search_modal').hidePopover()"></div>
-    <div class="search-box">
-      <div class="search-header">
-        <span class="search-icon">{{ icons::search(size=6) }}</span>
-        <input type="search" id="modal-search-input" placeholder="Type to search articles..." autocomplete="off" />
-      </div>
-      <div class="search-results" id="modal-search-results">
-        <div class="empty-state">Start typing to find what you're looking for...</div>
-      </div>
+    <div class="search-header">
+      <span class="search-icon">{{ icons::search(size=6) }}</span>
+      <input type="search" id="modal-search-input" placeholder="Type to search articles..." autocomplete="off" />
+    </div>
+    <div class="search-results" id="modal-search-results">
+      <div class="empty-state">Start typing to find what you're looking for...</div>
     </div>
   </div>
 {% endmacro %}
