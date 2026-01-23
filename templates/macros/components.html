@@ -9,20 +9,20 @@
 
 {% macro app_navbar(config) %}
   <nav class="l-bar c-navbar" aria-label="Main" style="inline-size: 100%;">
-    <a href="/" class="c-btn is-ghost nav-brand u-fixed">{{ config.title }}</a>
+    <a href="/" class="c-btn is-ghost c-nav-brand u-fixed">{{ config.title }}</a>
 
-    <button popovertarget="nav-center" class="c-btn is-ghost is-circle nav-menu-btn u-fixed">
+    <button popovertarget="nav-center" class="c-btn is-ghost is-circle c-nav-menu-btn u-fixed">
       {{ icons::menu() }}
     </button>
 
     <div id="nav-center" popover class="nav-center">
-      <div class="nav-nav-content l-cluster" style="--space: var(--space-8); align-items: center;">
-        <div class="sidebar-header l-stack u-fixed" style="--space: var(--space-4);">
+      <div class="nav-nav-content l-cluster u-gap-8" style="align-items: center;">
+        <div class="sidebar-header l-stack u-fixed u-gap-4">
           <div class="sidebar-title">Navigation</div>
-          <a href="/" class="nav-brand c-btn is-ghost">{{ config.title }}</a>
+          <a href="/" class="c-nav-brand c-btn is-ghost">{{ config.title }}</a>
         </div>
         
-        <div class="sidebar-menu l-cluster u-fill" style="--space: var(--space-4);">
+        <div class="sidebar-menu l-cluster u-fill u-gap-4">
           <a href="{{ get_url(path='@/posts/_index.md') }}" class="c-btn is-ghost l-bar u-fill">
             <span>Posts</span>
             <span class="sidebar-arrow u-fixed">→</span>
@@ -39,7 +39,7 @@
 
         <div class="divider-horizontal c-divider-v u-fixed"></div>
 
-        <div class="sidebar-footer l-cluster u-fixed" style="--space: var(--space-2);">
+        <div class="sidebar-footer l-cluster u-fixed u-gap-2">
           <button popovertarget="search_modal" class="c-btn is-ghost is-circle js-search-trigger" aria-label="Open Search">
             {{ icons::search(size=5) }}
           </button>
@@ -68,14 +68,14 @@
 #}
 
 {% macro app_footer(config) %}
-  <div class="footer-inner l-container l-stack u-py-20" style="--space: var(--section-gap);">
-      <div class="footer-main l-grid" style="--min-width: 15rem; --space: var(--space-16);">
-        <div class="footer-brand l-stack" style="--space: var(--space-5);">
+  <div class="footer-inner l-container l-stack" style="--space: var(--section-gap); padding-block: var(--space-20);">
+      <div class="footer-main l-grid u-gap-16" style="--min-width: 15rem;">
+        <div class="footer-brand l-stack u-gap-5">
           <div class="brand-name">{{ config.title }}</div>
           <p class="brand-desc">{{ config.description }}</p>
         </div>
 
-        <nav class="footer-nav-group l-stack" style="--space: var(--space-5);" aria-label="Explore">
+        <nav class="footer-nav-group l-stack u-gap-5" aria-label="Explore">
           <h4>Explore</h4>
           <ul class="l-stack" style="--space: 0.6rem;">
             <li><a href="{{ get_url(path='@/posts/_index.md') }}">Articles</a></li>
@@ -84,7 +84,7 @@
           </ul>
         </nav>
 
-        <nav class="footer-nav-group l-stack" style="--space: var(--space-5);" aria-label="Information">
+        <nav class="footer-nav-group l-stack u-gap-5" aria-label="Information">
           <h4>Information</h4>
           <ul class="l-stack" style="--space: 0.6rem;">
             <li><a href="/about/">About me</a></li>
@@ -96,7 +96,7 @@
 
       <div class="footer-bottom l-bar" style="padding-block-start: var(--space-12);">
         <div class="copyright">© {{ now() | date(format="%Y") }} {{ config.title }}. Built with Zola.</div>
-        <div class="social-links l-cluster" style="--space: var(--space-6);">
+        <div class="social-links l-cluster u-gap-6">
           {% if extra.twitter %}
             <a href="{{ extra.twitter }}" aria-label="Twitter"> {{ icons::twitter() }} </a>
           {% endif %}
@@ -119,7 +119,7 @@
 
 {% macro search_modal() %}
   <div id="search_modal" class="c-search-modal l-stack js-search-modal" popover style="--space: 0;">
-    <div class="search-header l-cluster" style="--space: var(--space-4); align-items: center;">
+    <div class="search-header l-cluster u-gap-4" style="align-items: center;">
       <span class="search-icon u-fixed">{{ icons::search(size=6) }}</span>
       <input type="search" id="modal-search-input" class="u-fill js-search-input" placeholder="Type to search articles..." autocomplete="off" />
     </div>

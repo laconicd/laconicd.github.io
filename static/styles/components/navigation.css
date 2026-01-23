@@ -13,7 +13,7 @@
     color: var(--color-base-content);
   }
 
-  .nav-brand {
+  .c-nav-brand {
     font-weight: 900;
     font-size: var(--text-xl);
     letter-spacing: -0.05em;
@@ -67,7 +67,7 @@
           font-size: var(--text-xs);
           text-transform: uppercase;
         }
-        .nav-brand {
+        .c-nav-brand {
           font-size: 2rem;
           padding: 0;
           justify-content: flex-start;
@@ -97,7 +97,7 @@
 
   /* --- [ Desktop: Inline Mode ] --- */
   @container nav-shell (width >= 40rem) {
-    .nav-menu-btn,
+    .c-nav-menu-btn,
     .sidebar-header,
     .divider-horizontal,
     .sidebar-arrow {

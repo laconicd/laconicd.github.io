@@ -22,10 +22,10 @@
 }
 </script>
 
-<article class="c-post l-stack u-mx-auto u-max-w-post" style="--space: var(--section-gap); padding-inline: var(--space-6); padding-block: var(--space-16) 10rem;">
+<article class="c-post l-stack u-mx-auto u-max-w-post" style="padding-inline: var(--space-6); padding-block: var(--space-16) 10rem;">
   <!-- Post Header -->
-  <header class="post-header l-stack l-center" style="--space: var(--space-8);">
-    <div class="post-meta l-cluster" style="--space: 0.75rem;">
+  <header class="post-header l-stack l-center u-gap-8">
+    <div class="post-meta l-cluster u-gap-2">
       {% if page.taxonomies.categories %}
         {% for cat in page.taxonomies.categories %}
           <span>{{ cat }}</span>
@@ -37,11 +37,11 @@
 
     <h1>{{ page.title }}</h1>
 
-    <div class="post-author l-cluster" style="--space: 1.25rem; text-align: start;">
+    <div class="post-author l-cluster u-gap-4" style="text-align: start;">
       <div class="author-avatar u-fixed">
         <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="{{ config.extra.author_name }}" />
       </div>
-      <div class="author-info l-stack" style="--space: 0;">
+      <div class="author-info l-stack u-gap-0">
         <span class="name">{{ config.extra.author_name }}</span>
         <span class="role">{{ config.extra.author_role }}</span>
       </div>
@@ -59,14 +59,14 @@
   </div>
 
   <!-- Share Section -->
-  <section class="post-share-section l-stack l-center" style="--space: var(--space-14); margin-block: var(--space-24) var(--space-16); padding-inline: var(--space-8); padding-block: var(--space-16);">
-    <div class="share-header l-stack" style="--space: 0;">
+  <section class="post-share-section l-stack l-center u-gap-12" style="margin-block: var(--space-24) var(--space-16); padding-inline: var(--space-8); padding-block: var(--space-16);">
+    <div class="share-header l-stack u-gap-0">
       <span class="sub">Sharing is Caring</span>
       <h2 class="main">Enjoyed this post?</h2>
     </div>
 
-    <div class="copy-card l-bar" style="--space: 1rem; padding-inline: 2rem 0.6rem; padding-block: 0.6rem;">
-      <div class="url-display u-fill l-cluster" style="--space: 1rem; justify-content: flex-start;">
+    <div class="copy-card l-bar u-gap-4" style="padding-inline: 2rem 0.6rem; padding-block: 0.6rem;">
+      <div class="url-display u-fill l-cluster u-gap-4" style="justify-content: flex-start;">
         <span class="u-fixed">{{ icons::link(size=5) }}</span>
         <span class="url-text u-fill js-share-url">{{ current_url | safe }}</span>
       </div>
@@ -75,7 +75,7 @@
       </button>
     </div>
 
-    <div class="social-actions l-cluster" style="--space: 1.5rem; justify-content: center;">
+    <div class="social-actions l-cluster u-gap-6" style="justify-content: center;">
       <a href="https://twitter.com/intent/tweet?url={{ current_url | safe }}&text={{ page.title }}"
          target="_blank" rel="noopener noreferrer" class="action-item l-center u-fixed" title="Share on X">
         {{ icons::x(size=6) }}
@@ -92,9 +92,9 @@
   </section>
 
   <!-- Footer -->
-  <footer class="post-footer l-stack" style="--space: clamp(2.5rem, 6vw, 4rem); margin-block-start: var(--space-16); padding-block-start: var(--space-16);">
+  <footer class="post-footer l-stack u-gap-16" style="margin-block-start: var(--space-16); padding-block-start: var(--space-16);">
     {% if page.taxonomies.tags %}
-      <div class="post-tags l-cluster" style="--space: 0.75rem;">
+      <div class="post-tags l-cluster u-gap-2">
         {% for tag in page.taxonomies.tags %}
           <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}">
             #{{ tag }}
@@ -103,16 +103,16 @@
       </div>
     {% endif %}
 
-    <nav class="post-navigation l-grid" style="--min-width: 15rem; --space: 1.5rem;">
+    <nav class="post-navigation l-grid u-gap-6" style="--min-width: 15rem;">
       {% if page.lower %}
-        <a href="{{ page.lower.path }}" class="nav-card prev l-stack" style="--space: 0.75rem;">
+        <a href="{{ page.lower.path }}" class="nav-card prev l-stack u-gap-2">
           <span class="nav-label">Previous Post</span>
           <span class="nav-title">{{ page.lower.title }}</span>
         </a>
       {% endif %}
 
       {% if page.higher %}
-        <a href="{{ page.higher.path }}" class="nav-card next l-stack" style="--space: 0.75rem;">
+        <a href="{{ page.higher.path }}" class="nav-card next l-stack u-gap-2">
           <span class="nav-label">Next Post</span>
           <span class="nav-title">{{ page.higher.title }}</span>
         </a>

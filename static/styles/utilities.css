@@ -135,6 +135,19 @@
   padding-inline: var(--space-8) !important;
 }
 
+/* --- Gap Utilities --- */
+.u-gap-1 { --space: var(--space-1); gap: var(--space-1) !important; }
+.u-gap-2 { --space: var(--space-2); gap: var(--space-2) !important; }
+.u-gap-4 { --space: var(--space-4); gap: var(--space-4) !important; }
+.u-gap-6 { --space: var(--space-6); gap: var(--space-6) !important; }
+.u-gap-8 { --space: var(--space-8); gap: var(--space-8) !important; }
+.u-gap-10 { --space: var(--space-10); gap: var(--space-10) !important; }
+.u-gap-12 { --space: var(--space-12); gap: var(--space-12) !important; }
+.u-gap-14 { --space: var(--space-14); gap: var(--space-14) !important; }
+.u-gap-16 { --space: var(--space-16); gap: var(--space-16) !important; }
+.u-gap-20 { --space: var(--space-20); gap: var(--space-20) !important; }
+.u-gap-24 { --space: var(--space-24); gap: var(--space-24) !important; }
+
 .u-py-16 {
   padding-block: var(--space-16) !important;
 }
