@@ -1,7 +1,5 @@
-@scope (.list ) {
+@scope (.c-post-list ) {
   :scope {
-    display: grid;
-    gap: var(--space-2);
     animation: fadeInUp 1s var(--ease-standard) 0.4s both;
   }
 }

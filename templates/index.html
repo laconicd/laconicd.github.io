@@ -3,34 +3,34 @@
 {% import "macros/image.html" as image_macros %}
 
 {% block content %}
-  <div class="app-index">
-    <header class="hero-title">
+  <div class="l-stack" style="--space: var(--space-20); max-inline-size: 80rem; margin-inline: auto; padding-inline: 1.25rem; padding-block-end: 10rem;">
+    <header class="c-hero-title l-stack l-center" style="text-align: center;">
       <h1>{{ config.extra.hero_title }}</h1>
       <p>{{ config.extra.hero_subtitle }}</p>
     </header>
 
-    <div class="divider">Latest Records</div>
+    <div class="c-divider l-cluster l-center" style="--space: var(--space-10);">Latest Records</div>
 
-    <section class="list" aria-label="Latest Posts">
+    <section class="c-post-list l-stack" aria-label="Latest Posts" style="--space: var(--space-2);">
       {% set blog_section = get_section(path="posts/_index.md") %}
       {% for page in blog_section.pages | slice(end=10) %}
-        <article class="app-post-card">
-          <a href="{{ page.path }}" class="card-link">
-            <div class="thumb">
+        <article class="c-post-card-row">
+          <a href="{{ page.path }}" class="card-link l-bar" style="--space: var(--space-8); align-items: center;">
+            <div class="thumb u-fixed" style="--fixed-width: var(--space-24);">
               <img
                 src="{{ image_macros::get_url(page=page, width=200, height=200) }}"
                 alt="{{ page.title }}"
                 loading="lazy"
               />
             </div>
-            <div class="body">
+            <div class="body u-fill l-stack" style="--space: var(--space-1); min-inline-size: 0;">
               <div class="meta">{{ page.date | date(format=config.extra.date_format) }}</div>
               <h3 class="title">{{ page.title }}</h3>
               <p class="summary">
                 {{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}
               </p>
             </div>
-            <div class="action-arrow btn-icon-circle">{{ icons::arrow_right(size=3) }}</div>
+            <div class="action-arrow btn-icon-circle u-fixed" style="margin-inline-start: auto;">{{ icons::arrow_right(size=3) }}</div>
           </a>
         </article>
       {% endfor %}

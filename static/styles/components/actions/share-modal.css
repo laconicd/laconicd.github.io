@@ -1,6 +1,5 @@
-@scope (#share_modal) {
+@scope (.c-share-modal) {
   :scope {
-    display: none;
     margin: auto;
     /* 사이드바와 동일하게 기본 레이아웃 설정 */
     inset: 0;
@@ -12,17 +11,8 @@
     overflow: visible;
   }
 
-  :scope:popover-open {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   /* 실제 모달 창에 애니메이션 적용 */
   & .modal-box {
-    display: grid;
-    justify-items: center;
-    gap: 1.75rem;
     transform: scale(0.9) translateY(20px);
 
     /* 진입 애니메이션 */
@@ -50,9 +40,6 @@
   }
 
   & .icon-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 50%;
     background-color: oklch(from var(--color-base-content) l c h / 0.05);
     width: 5rem;
@@ -82,7 +69,7 @@
     word-break: keep-all;
   }
 
-  & .btn-confirm {
+  & .is-confirm {
     transition: transform 0.2s;
     cursor: pointer;
     margin-top: 1rem;

@@ -1,104 +1,164 @@
-@scope (.app-navbar) {
+@scope (.c-navbar) {
   :scope {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     backdrop-filter: blur(12px);
     border-block-end: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
     background-color: oklch(from var(--color-base-100) l c h / 0.5);
     padding-inline: var(--page-padding);
     padding-block: var(--space-2);
-    inline-size: 100%;
     color: var(--color-base-content);
   }
 
   & .nav-brand {
     font-weight: 900;
     font-size: var(--text-xl);
+    letter-spacing: -0.05em;
   }
 
   @container nav-shell (width < 40rem) {
     & .nav-center {
-      display: flex;
-      flex-direction: column;
-      
-      /* [1] 기본 상태 (Exit Animation)
-       * 사이드바가 닫혀있을 때의 상태이며, '닫힐 때'의 속도를 제어합니다.
-       */
       transform: translateX(100%);
-      
-      /* display: none <-> flex 간의 애니메이션을 가능하게 함 */
       transition-behavior: allow-discrete;
       transition-duration: 0.3s;
       transition-property: transform, display, overlay;
-      /* 나갈 때는 시원하게 가속도가 붙는 ease-out 사용 */
       transition-timing-function: var(--ease-out), linear, linear;
 
       inset-inline: auto 0;
       box-shadow: var(--shadow-5);
       border: none;
-      inline-size: 70dvw;
+      background-color: var(--color-base-100);
+      inline-size: 75dvw;
       block-size: 100dvh;
 
-      /* [2] 백드롭 기본 상태 */
+      & .nav-nav-content {
+        block-size: 100%;
+        padding-block: var(--space-8);
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+
+      & .sidebar-header {
+        padding-inline: var(--space-8);
+        padding-block: var(--space-4) var(--space-8);
+        
+        .sidebar-title {
+          opacity: 0.3;
+          font-weight: 900;
+          font-size: var(--text-xs);
+          text-transform: uppercase;
+        }
+        .c-btn {
+          font-size: 2rem;
+          padding: 0;
+          justify-content: flex-start;
+        }
+      }
+
+      & .sidebar-menu {
+        padding-inline: var(--space-4);
+        flex-direction: column !important;
+        
+        a {
+          padding: var(--space-4);
+          font-weight: 800;
+          font-size: var(--text-lg);
+          
+          .sidebar-arrow {
+            opacity: 0.2;
+          }
+        }
+      }
+
+      & .sidebar-footer {
+        padding: var(--space-8);
+        border-block-start: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+      }
+
       &::backdrop {
         opacity: 0;
         backdrop-filter: blur(0px);
-        transition-behavior: allow-discrete;
-        transition-duration: 0.3s;
-        transition-property: opacity, backdrop-filter, display, overlay;
-        transition-timing-function: ease-in, ease-in, linear, linear;
+        transition: all 0.3s allow-discrete;
         background-color: oklch(0 0 0 / 0.2);
       }
 
-      /* [3] 활성 상태 (Entry Animation)
-       * 사이드바가 열렸을 때의 상태이며, '나타날 때'의 속도를 제어합니다.
-       */
       &:popover-open {
         transform: translateX(0);
-        transition-duration: 0.4s;
-        /* 들어올 때는 표준적인 ease-standard 사용 */
-        transition-timing-function: var(--ease-standard), linear, linear;
-
         &::backdrop {
           opacity: 1;
           backdrop-filter: blur(8px);
-          transition-duration: 0.4s;
-          transition-timing-function: ease, ease, linear, linear;
         }
       }
+    }
+  }
 
-      /* [4] 시작 스타일 (Starting Style)
-       * 팝업이 처음 열리는 찰나의 순간을 명시하여 애니메이션이 0%부터 시작되도록 보장합니다.
-       */
-      @starting-style {
-        &:popover-open {
-          transform: translateX(100%);
-          &::backdrop {
-            opacity: 0;
-            backdrop-filter: blur(0px);
-          }
-        }
+  @container nav-shell (width >= 40rem) {
+    & .nav-menu-btn,
+    & .sidebar-header,
+    & .c-divider-v,
+    & .sidebar-arrow {
+      display: none !important;
+    }
+
+    & .nav-center {
+      display: block;
+      position: static;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      transform: none;
+      overflow: visible;
+
+      & .sidebar-menu a {
+        font-weight: 700;
+        font-size: var(--text-sm);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    }
+  }
+}
+
+
+  & .nav-brand {
+    font-weight: 900;
+    font-size: var(--text-xl);
+    letter-spacing: -0.05em;
+  }
+
+  /* --- [ Mobile: Sidebar Mode ] --- */
+  @container nav-shell (width < 40rem) {
+    & .nav-center {
+      transform: translateX(100%);
+      transition-behavior: allow-discrete;
+      transition-duration: 0.3s;
+      transition-property: transform, display, overlay;
+      transition-timing-function: var(--ease-out), linear, linear;
+
+      inset-inline: auto 0;
+      box-shadow: var(--shadow-5);
+      border: none;
+      background-color: var(--color-base-100);
+      inline-size: 75dvw;
+      block-size: 100dvh;
+
+      & .nav-nav-content {
+        display: flex;
+        flex-direction: column;
+        block-size: 100%;
       }
 
       & .sidebar-header {
         padding-inline: var(--space-8);
         padding-block: var(--space-12) var(--space-8);
-
-        & .sidebar-title {
+        
+        .sidebar-title {
           opacity: 0.3;
           margin-block-end: var(--space-2);
           font-weight: 900;
           font-size: var(--text-xs);
-          letter-spacing: var(--space-0_5);
           text-transform: uppercase;
         }
-
-        & .sidebar-brand {
-          color: var(--color-base-content);
-          font-weight: 900;
+        .nav-brand {
           font-size: 2rem;
-          letter-spacing: -0.05em;
         }
       }
 
@@ -107,19 +167,16 @@
         flex: 1;
         flex-direction: column;
         padding-inline: var(--space-4);
-
-        & a {
+        
+        a {
           display: flex;
           justify-content: space-between;
-          transition: all 0.4s var(--ease-standard);
-          color: var(--color-base-content);
+          padding: var(--space-4);
           font-weight: 800;
           font-size: var(--text-lg);
-
-          &::after {
+          
+          .sidebar-arrow {
             opacity: 0.2;
-            transition: transform 0.5s var(--ease-standard);
-            content: "→";
           }
         }
       }
@@ -127,31 +184,172 @@
       & .sidebar-footer {
         display: flex;
         justify-content: space-between;
+        padding: var(--space-8);
         border-block-start: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
-        padding-inline: var(--space-8);
-        padding-block: var(--space-8);
+      }
+
+      &::backdrop {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+        transition: all 0.3s allow-discrete;
+        background-color: oklch(0 0 0 / 0.2);
+      }
+
+      &:popover-open {
+        transform: translateX(0);
+        &::backdrop {
+          opacity: 1;
+          backdrop-filter: blur(8px);
+        }
       }
     }
   }
 
+  /* --- [ Desktop: Inline Mode ] --- */
   @container nav-shell (width >= 40rem) {
     & .nav-menu-btn,
-    & .sidebar-header {
+    & .sidebar-header,
+    & .divider-horizontal,
+    & .sidebar-arrow {
       display: none !important;
     }
 
     & .nav-center {
-      display: flex;
+      /* Popover 기본 스타일 무력화 */
+      display: block;
       position: static;
+      inset: auto;
+      margin: 0;
+      padding: 0;
       border: none;
-      background-color: transparent;
+      background: transparent;
+      box-shadow: none;
+      transform: none;
+      inline-size: auto;
+      block-size: auto;
+      overflow: visible;
+
+      & .nav-nav-content {
+        display: flex;
+        align-items: center;
+        gap: var(--space-8);
+      }
 
       & .sidebar-menu {
         display: flex;
+        gap: var(--space-4);
+        
+        a {
+          padding: var(--space-2);
+          font-weight: 700;
+          font-size: var(--text-sm);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
       }
 
       & .sidebar-footer {
         display: flex;
+        align-items: center;
+        gap: var(--space-2);
+      }
+    }
+  }
+}
+
+
+  & .nav-brand {
+    font-weight: 900;
+    font-size: var(--text-xl);
+    letter-spacing: -0.05em;
+    text-transform: none;
+  }
+
+  @container nav-shell (width < 40rem) {
+    & .nav-center {
+      /* [1] 기본 상태 (Exit Animation) */
+      transform: translateX(100%);
+      transition-behavior: allow-discrete;
+      transition-duration: 0.3s;
+      transition-property: transform, display, overlay;
+      transition-timing-function: var(--ease-out), linear, linear;
+
+      inset-inline: auto 0;
+      box-shadow: var(--shadow-5);
+      border: none;
+      inline-size: 70dvw;
+      block-size: 100dvh;
+
+      & .nav-nav-content {
+        display: flex !important;
+        flex-direction: column !important;
+        padding-block: var(--space-8);
+        block-size: 100%;
+      }
+
+      & .sidebar-menu {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding-inline: var(--space-4);
+        & a {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+
+      & .sidebar-footer {
+        padding-inline: var(--space-8);
+        padding-block: var(--space-8);
+        border-block-start: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+        justify-content: space-between !important;
+      }
+
+  @container nav-shell (width >= 40rem) {
+    & .nav-menu-btn,
+    & .sidebar-header,
+    & .divider-horizontal {
+      display: none !important;
+    }
+
+    & .nav-center {
+      display: flex !important; /* Popover의 none을 강제로 깨뜨림 */
+      position: static !important;
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      inline-size: auto !important;
+      block-size: auto !important;
+      box-shadow: none !important;
+      transform: none !important;
+      overflow: visible !important;
+
+      & .nav-nav-content {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: var(--space-8);
+      }
+
+      & .sidebar-menu {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: var(--space-4);
+        padding: 0;
+
+        & a {
+          font-size: var(--text-base);
+          & .sidebar-arrow {
+            display: none;
+          }
+        }
+      }
+
+      & .sidebar-footer {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: var(--space-2);
+        padding: 0;
+        border: none;
       }
     }
   }

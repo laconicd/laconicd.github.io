@@ -1,7 +1,7 @@
-@scope (.theme-toggle ) {
+@scope (.c-theme-toggle ) {
   :scope {
-    display: grid; /* 단일 테마 스위처 유틸리티 */
-    place-items: center; /* 자식 요소들을 중앙 정렬 */
+    display: grid;
+    place-items: center;
     transition: background-color 0.3s;
     cursor: pointer;
   }

@@ -1,18 +1,12 @@
-@scope (.app-speed-dial) {
+@scope (.c-speed-dial) {
   :scope {
-    display: flex;
     position: fixed;
-    justify-content: center;
-    align-items: center;
     z-index: 60;
     inset-block-end: 2rem;
     inset-inline-end: 2rem;
   }
 
   .fab-trigger {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 2;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
@@ -46,11 +40,7 @@
   }
 
   .dial-item {
-    display: flex;
     position: absolute;
-    justify-content: center;
-    align-items: center;
-
     opacity: 0;
     cursor: pointer;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);

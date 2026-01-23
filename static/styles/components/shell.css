@@ -1,21 +1,22 @@
-.app-shell {
+.l-shell {
   display: flex;
   flex-direction: column;
   min-block-size: 100vh;
 }
 
-.app-shell > header {
+.l-shell > header {
   position: sticky;
-  z-index: 10;
+  z-index: 50;
   container-name: nav-shell;
   container-type: inline-size;
   inset-block-start: 0;
+  inline-size: 100%;
 }
 
-.app-shell > main {
+.l-shell > main {
   flex: 1;
 }
 
-.app-shell > footer {
+.l-shell > footer {
   margin-block-start: auto;
 }

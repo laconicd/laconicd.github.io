@@ -1,11 +1,41 @@
-@scope (.hero-card ) {
+@scope (.c-hero-title) {
+  :scope {
+    animation: fadeInDown 0.8s var(--ease-standard);
+    margin-block-start: var(--space-12);
+  }
+
+  & h1 {
+    margin-block-end: var(--space-6);
+    /* 그라디언트 방향은 표준 물리적 속성 사용 (to block-end는 미지원 브라우저가 많음) */
+    background: linear-gradient(
+      to bottom,
+      var(--color-base-content) 50%,
+      oklch(from var(--color-base-content) l c h / 0.2)
+    );
+    background-clip: text;
+    padding-inline: 0.1em;
+    padding-block: 0.05em;
+    font-weight: 800;
+    font-size: var(--text-display);
+    line-height: 1.2; /* 논리적 속성으로 변경 */
+    letter-spacing: -0.05em;
+    -webkit-text-fill-color: transparent;
+  }
+  & p {
+    max-inline-size: 35rem; /* 이미 논리적 속성 */
+    color: oklch(from var(--color-base-content) l c h / 0.5);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    line-height: 1.4;
+  }
+}
+
+@scope (.c-hero-card ) {
   :scope {
     animation: fadeInUp 1s var(--ease-standard) 0.2s both;
   }
 
   & .featured-card {
-    display: grid;
-    grid-template-columns: 1.3fr 0.7fr;
     transition: all 0.5s var(--ease-standard);
     box-shadow: 0 0 0 1px oklch(from var(--color-base-content) l c h / 0.05);
     border-radius: var(--radius-3xl);
@@ -38,14 +68,9 @@
     }
 
     & .featured-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: var(--space-8);
       padding: var(--space-16);
 
       & .featured-badge {
-        align-self: flex-start;
         border-radius: 99px;
         background: var(--color-primary);
         padding: 0.6rem 1.2rem;
@@ -74,10 +99,7 @@
       }
 
       & .featured-footer {
-        display: flex;
-        align-items: center;
-        gap: var(--space-6);
-        margin-block-start: var(--space-4);
+        transition: color 0.3s;
         font-weight: 800;
         font-size: var(--text-body);
         letter-spacing: 0.05em;
@@ -86,25 +108,11 @@
         & .arrow {
           background: var(--color-base-content);
           color: var(--color-base-100);
-          /* Structural styles handled by .btn-icon-circle */
         }
       }
     }
 
-    @media (width < 64rem) {
-      grid-template-columns: 1fr;
-      min-block-size: auto;
-      & .featured-content {
-        padding: var(--space-12);
-      }
-      & .featured-image {
-        aspect-ratio: 16/10;
-      }
-    }
-
     @media (width < 48rem) {
-      display: flex;
-      flex-direction: column;
       border-radius: var(--radius-xl);
 
       & .featured-image {
@@ -114,7 +122,6 @@
       }
 
       & .featured-content {
-        gap: 1.25rem;
         padding: var(--space-8);
       }
 

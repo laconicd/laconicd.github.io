@@ -22,26 +22,26 @@
 }
 </script>
 
-<article class="app-post">
+<article class="c-post l-stack" style="--space: var(--section-gap); max-inline-size: 55rem; margin-inline: auto; padding-inline: var(--space-6); padding-block: var(--space-16) 10rem;">
   <!-- Post Header -->
-  <header class="post-header">
-    <div class="post-meta">
+  <header class="post-header l-stack l-center" style="--space: var(--space-8);">
+    <div class="post-meta l-cluster" style="--space: 0.75rem;">
       {% if page.taxonomies.categories %}
         {% for cat in page.taxonomies.categories %}
           <span>{{ cat }}</span>
         {% endfor %}
-        <span class="separator">•</span>
+        <span class="separator u-fixed">•</span>
       {% endif %}
-      <time datetime="{{ page.date }}">{{ page.date | date(format=config.extra.date_format) }}</time>
+      <time datetime="{{ page.date }}" class="u-fixed">{{ page.date | date(format=config.extra.date_format) }}</time>
     </div>
 
     <h1>{{ page.title }}</h1>
 
-    <div class="post-author">
-      <div class="author-avatar">
+    <div class="post-author l-cluster" style="--space: 1.25rem; text-align: start;">
+      <div class="author-avatar u-fixed">
         <img src="{{ get_url(path=config.extra.author_avatar) | safe }}" alt="{{ config.extra.author_name }}" />
       </div>
-      <div class="author-info">
+      <div class="author-info l-stack" style="--space: 0;">
         <span class="name">{{ config.extra.author_name }}</span>
         <span class="role">{{ config.extra.author_role }}</span>
       </div>
@@ -49,52 +49,52 @@
   </header>
 
   <!-- Featured Image -->
-  <div class="post-visual">
+  <div class="post-visual u-fixed" style="--fixed-width: 100%;">
     <img src="{{ image_macros::get_url(page=page, width=1600, height=900) }}" alt="{{ page.title }}" loading="eager" />
   </div>
 
   <!-- Content -->
-  <div class="post-content">
+  <div class="post-content u-fill">
     {{ page.content | safe }}
   </div>
 
   <!-- Share Section -->
-  <section class="post-share-section">
-    <div class="share-header">
+  <section class="post-share-section l-stack l-center" style="--space: var(--space-14); margin-block: var(--space-24) var(--space-16); padding-inline: var(--space-8); padding-block: var(--space-16);">
+    <div class="share-header l-stack" style="--space: 0;">
       <span class="sub">Sharing is Caring</span>
       <h2 class="main">Enjoyed this post?</h2>
     </div>
 
-    <div class="copy-card">
-      <div class="url-display">
-        {{ icons::link(size=5) }}
-        <span class="url-text">{{ current_url | safe }}</span>
+    <div class="copy-card l-bar" style="--space: 1rem; padding-inline: 2rem 0.6rem; padding-block: 0.6rem;">
+      <div class="url-display u-fill l-cluster" style="--space: 1rem; justify-content: flex-start;">
+        <span class="u-fixed">{{ icons::link(size=5) }}</span>
+        <span class="url-text u-fill">{{ current_url | safe }}</span>
       </div>
-      <button id="post-share-btn" class="copy-btn">
+      <button id="post-share-btn" class="copy-btn u-fixed">
         <span class="label">Copy Link</span>
       </button>
     </div>
 
-    <div class="social-actions">
+    <div class="social-actions l-cluster" style="--space: 1.5rem; justify-content: center;">
       <a href="https://twitter.com/intent/tweet?url={{ current_url | safe }}&text={{ page.title }}"
-         target="_blank" rel="noopener noreferrer" class="action-item" title="Share on X">
+         target="_blank" rel="noopener noreferrer" class="action-item l-center u-fixed" title="Share on X">
         {{ icons::x(size=6) }}
       </a>
 
-      <a href="{{ get_url(path='@/posts/_index.md') }}" class="action-item" title="Back to Archive">
+      <a href="{{ get_url(path='@/posts/_index.md') }}" class="action-item l-center u-fixed" title="Back to Archive">
         {{ icons::post(size=6) }}
       </a>
 
-      <a href="/" class="action-item" title="Go Home">
+      <a href="/" class="action-item l-center u-fixed" title="Go Home">
         {{ icons::home(size=6) }}
       </a>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="post-footer">
+  <footer class="post-footer l-stack" style="--space: clamp(2.5rem, 6vw, 4rem); margin-block-start: var(--space-16); padding-block-start: var(--space-16);">
     {% if page.taxonomies.tags %}
-      <div class="post-tags">
+      <div class="post-tags l-cluster" style="--space: 0.75rem;">
         {% for tag in page.taxonomies.tags %}
           <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}">
             #{{ tag }}
@@ -103,16 +103,16 @@
       </div>
     {% endif %}
 
-    <nav class="post-navigation">
+    <nav class="post-navigation l-grid" style="--min-width: 15rem; --space: 1.5rem;">
       {% if page.lower %}
-        <a href="{{ page.lower.path }}" class="nav-card prev">
+        <a href="{{ page.lower.path }}" class="nav-card prev l-stack" style="--space: 0.75rem;">
           <span class="nav-label">Previous Post</span>
           <span class="nav-title">{{ page.lower.title }}</span>
         </a>
       {% endif %}
 
       {% if page.higher %}
-        <a href="{{ page.higher.path }}" class="nav-card next">
+        <a href="{{ page.higher.path }}" class="nav-card next l-stack" style="--space: 0.75rem;">
           <span class="nav-label">Next Post</span>
           <span class="nav-title">{{ page.higher.title }}</span>
         </a>

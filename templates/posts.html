@@ -3,8 +3,8 @@
 {% import "macros/image.html" as image_macros %}
 
 {% block content %}
-  <div class="app-posts">
-    <header class="hero-title">
+  <div class="l-stack" style="--space: var(--space-20); max-inline-size: 80rem; margin-inline: auto; padding-inline: 1.25rem; padding-block-end: 10rem;">
+    <header class="c-hero-title l-stack l-center" style="text-align: center;">
       <h1>{{ section.title }}</h1>
       <p>{{ config.extra.posts_subtitle }}</p>
     </header>
@@ -15,8 +15,8 @@
       {# Latest Post as Featured #}
       {% set featured = blog_section.pages[0] %}
 
-      <section class="hero-card">
-        <a href="{{ featured.path }}" class="featured-card">
+      <section class="c-hero-card">
+        <a href="{{ featured.path }}" class="featured-card l-grid" style="--min-width: 100%; grid-template-columns: 1.3fr 0.7fr; gap: 0;">
           <div class="featured-image">
             <img
               src="{{ image_macros::get_url(page=featured, width=1200, height=800) }}"
@@ -24,21 +24,21 @@
               loading="lazy"
             />
           </div>
-          <div class="featured-content">
-            <span class="featured-badge">Featured</span>
+          <div class="featured-content l-stack l-center" style="--space: var(--space-8); justify-content: center;">
+            <span class="featured-badge u-fixed">Featured</span>
             <h2>{{ featured.title }}</h2>
             <p>{{ featured.summary | default(value=featured.description) | default(value="") | striptags | safe }}</p>
-            <div class="featured-footer">
+            <div class="featured-footer l-cluster" style="--space: var(--space-6); justify-content: flex-start; align-items: center; margin-block-start: var(--space-4);">
               <span>Keep Reading</span>
-              <span class="arrow btn-icon-circle">{{ icons::arrow_right(size=4) }}</span>
+              <span class="arrow btn-icon-circle u-fixed">{{ icons::arrow_right(size=4) }}</span>
             </div>
           </div>
         </a>
       </section>
 
-      <div class="divider">The Collection</div>
+      <div class="c-divider l-cluster l-center" style="--space: var(--space-10);">The Collection</div>
 
-      <section class="app-posts-grid" aria-label="All Posts">
+      <section class="l-grid" aria-label="All Posts" style="--min-width: 20rem; --space: 4rem 2.5rem;">
         {% for page in blog_section.pages | slice(start=1) %}
           {% include "partials/post-card.html" %}
         {% endfor %}

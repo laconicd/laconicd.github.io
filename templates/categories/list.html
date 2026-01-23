@@ -2,33 +2,33 @@
 {% import "macros/icons.html" as icons %}
 
 {% block content %}
-  <div class="category-list-page">
-    <div class="hero-title">
+  <div class="l-stack" style="--space: var(--space-20); max-inline-size: 80rem; margin-inline: auto; padding-inline: 1.25rem;">
+    <div class="c-hero-title l-stack l-center">
       <h1>{{ taxonomy.name | capitalize }}</h1>
       <p>{{ config.extra.categories_subtitle }}</p>
     </div>
 
-    <div class="divider">The Collection</div>
+    <div class="c-divider l-cluster l-center" style="--space: var(--space-10);">The Collection</div>
 
-    <section class="category-grid" aria-label="All Categories">
+    <section class="l-grid" aria-label="All Categories" style="--min-width: 20rem; --space: 2rem;">
       {% for term in terms %}
-        <a href="{{ term.path }}" class="category-card">
-          <div class="card-content">
-            <div class="card-top">
+        <a href="{{ term.path }}" class="c-category-card l-stack" style="--space: 2rem;">
+          <div class="l-stack" style="--space: 1rem;">
+            <div class="l-bar" style="align-items: flex-start;">
               <span class="type-label">Category</span>
-              <div class="icon-box">{{ icons::category() }}</div>
+              <div class="icon-box l-center">{{ icons::category() }}</div>
             </div>
             <h2 class="card-title">{{ term.name }}</h2>
           </div>
 
-          <div class="card-bottom">
+          <div class="l-bar">
             <span class="count-label">{{ term.pages | length }} Articles</span>
-            <div class="explore-label">Explore {{ icons::arrow_right(size=3) }}</div>
+            <div class="explore-label l-cluster" style="--space: 0.5rem;">Explore {{ icons::arrow_right(size=3) }}</div>
           </div>
 
           <div class="decorative-blur"></div>
         </a>
       {% endfor %}
-    </section>
+section>
   </div>
 {% endblock content %}

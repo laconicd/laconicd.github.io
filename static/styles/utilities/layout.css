@@ -1,0 +1,82 @@
+/* ==========================================================================
+   1. LAYOUT PRIMITIVES (부모: 공간의 규칙을 정함)
+   ========================================================================== */
+
+/* [Stack] 세로 쌓기 */
+@scope (.l-stack) {
+  :scope {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--space, 1rem);
+  }
+}
+
+/* [Cluster] 가로 무리 (줄바꿈 포함) */
+@scope (.l-cluster) {
+  :scope {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: var(--jc, flex-start);
+    align-items: center;
+    gap: var(--space, 1rem);
+  }
+}
+
+/* [Bar] 양 끝에 요소를 배치하고 수직 중앙 정렬 */
+@scope (.l-bar) {
+  :scope {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* [Grid] 반응형 격자 */
+@scope (.l-grid) {
+  :scope {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--min-width, 18rem), 100%), 1fr));
+    gap: var(--space, 2rem);
+  }
+}
+
+/* [Cover] 상-중-하 화면 꽉 채우기 */
+@scope (.l-cover) {
+  :scope {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: var(--space, 1rem);
+    min-block-size: 100dvh;
+  }
+}
+
+/* [Center] 완전 중앙 정렬 */
+@scope (.l-center) {
+  :scope {
+    display: grid;
+    place-items: center;
+  }
+}
+
+/* ==========================================================================
+   2. BEHAVIOR UTILITIES (자식: 공간 안에서의 태도를 정함)
+   ========================================================================== */
+
+/* [Fixed] 지정된 크기 유지 */
+@scope (.u-fixed) {
+  :scope {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: var(--fixed-width, auto);
+  }
+}
+
+/* [Fill] 남는 모든 공간 점유 */
+@scope (.u-fill) {
+  :scope {
+    flex-grow: 1;
+    flex-basis: 0;
+    min-inline-size: 0;
+  }
+}

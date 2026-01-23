@@ -4,20 +4,20 @@
 {% block content %}
   {% set taxonomy_name = taxonomy.name | capitalize %}
 
-  <div class="tag-list-page">
-    <div class="hero-title">
+  <div class="l-stack" style="--space: var(--space-20); max-inline-size: 80rem; margin-inline: auto; padding-inline: 1.25rem;">
+    <div class="c-hero-title l-stack l-center">
       <h1>{{ taxonomy_name }}</h1>
       <p>{{ config.extra.tags_subtitle }}</p>
     </div>
 
-    <div class="divider">The Collection</div>
+    <div class="c-divider l-cluster l-center" style="--space: var(--space-10);">The Collection</div>
 
-    <section class="tag-cloud" aria-label="All Tags">
+    <section class="l-cluster" aria-label="All Tags" style="justify-content: center; gap: 1.25rem; padding-block-end: 5rem;">
       {% for term in terms %}
-        <a href="{{ term.path }}" class="tag-pill">
-          <span class="hash">#</span>
+        <a href="{{ term.path }}" class="c-tag-pill l-cluster" style="--space: 0.75rem; align-items: center;">
+          <span class="hash u-fixed">#</span>
           <span class="name">{{ term.name }}</span>
-          <span class="count">{{ term.pages | length }}</span>
+          <span class="count u-fixed">{{ term.pages | length }}</span>
         </a>
       {% endfor %}
     </section>

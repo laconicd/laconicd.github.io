@@ -1,27 +1,27 @@
 {% import "macros/icons.html" as icons %}
 {% import "macros/image.html" as image_macros %}
 
-<article class="post-card">
-  <div class="card">
+<article class="c-post-card">
+  <div class="card l-stack" style="--space: 0;">
     <a href="{{ page.path }}" class="page-link" aria-label="Read: {{ page.title }}"></a>
 
-    <div class="media-area">
+    <div class="media-area u-fixed" style="--fixed-width: 100%; margin-block-end: var(--space-8);">
       <img src="{{ image_macros::get_url(page=page, width=800, height=600) }}" alt="{{ page.title }}" loading="lazy" />
     </div>
 
-    <div class="content-area">
-      <div class="meta">
-        <time datetime="{{ page.date }}">{{ page.date | date(format=config.extra.date_format) }}</time>
-        <span class="dot">•</span>
-        <span>{{ page.reading_time }} min read</span>
+    <div class="content-area l-stack u-fill" style="--space: var(--space-4);">
+      <div class="meta l-cluster" style="--space: 0.75rem; margin-block-end: var(--space-2); justify-content: flex-start;">
+        <time datetime="{{ page.date }}" class="u-fixed">{{ page.date | date(format=config.extra.date_format) }}</time>
+        <span class="dot u-fixed">•</span>
+        <span class="u-fixed">{{ page.reading_time }} min read</span>
       </div>
 
       <h3 class="title">{{ page.title }}</h3>
 
-      <p class="summary">{{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}</p>
+      <p class="summary u-fill">{{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}</p>
 
       {% if page.taxonomies.tags %}
-        <div class="tags">
+        <div class="tags l-cluster" style="--space: var(--space-4); margin-block-start: auto;">
           {% for tag in page.taxonomies.tags | slice(end=3) %}
             <span class="tag">#{{ tag }}</span>
           {% endfor %}
@@ -29,7 +29,7 @@
       {% endif %}
     </div>
 
-    <div class="footer-area">
+    <div class="footer-area l-bar" style="margin-block-start: var(--space-6);">
       <span>Read Story</span>
       <span class="arrow btn-icon-circle">{{ icons::arrow_right(size=2.5) }}</span>
     </div>
