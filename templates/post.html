@@ -96,9 +96,10 @@
     {% if page.taxonomies.tags %}
       <div class="c-post-tags l-cluster u-gap-2">
         {% for tag in page.taxonomies.tags %}
-          <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}">
-            #{{ tag }}
-          </a>
+          <span class="c-post-tag">
+            <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}" class="c-post-tag-link" aria-label="Tag: {{ tag }}"></a>
+            <span class="c-post-tag-container">#{{ tag }}</span>
+          </span>
         {% endfor %}
       </div>
     {% endif %}

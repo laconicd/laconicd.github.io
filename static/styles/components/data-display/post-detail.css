@@ -174,17 +174,35 @@
     border-block-start: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
 
     .c-post-tags {
-      a {
+      .c-post-tag {
+        position: relative;
+        display: inline-block;
+
+        &:hover {
+          .c-post-tag-container {
+            transform: translateY(-2px);
+            opacity: 1;
+            background: oklch(from var(--color-base-content) l c h / 0.1);
+          }
+        }
+      }
+
+      .c-post-tag-link {
+        position: absolute;
+        z-index: 10;
+        inset: 0;
+        cursor: pointer;
+      }
+
+      .c-post-tag-container {
+        display: block;
         opacity: 0.6;
         transition: all 0.2s;
         border-radius: 1rem;
         background: oklch(from var(--color-base-content) l c h / 0.05);
         padding: 0.5rem 1rem;
-        color: var(--color-base-content);
         font-weight: 800;
         font-size: 0.85rem;
-
-        &:hover { transform: translateY(-2px); opacity: 1; background: oklch(from var(--color-base-content) l c h / 0.1); }
       }
     }
 
