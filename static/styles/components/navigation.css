@@ -23,25 +23,24 @@
   /* --- [ Mobile: Popover Mode ] --- */
   @container nav-shell (width < 40rem) {
     .c-nav-center {
+      /* [2] Animation */
+      transform: translateX(100%);
+      transition:
+        transform 0.3s var(--ease-out),
+        display 0.3s allow-discrete,
+        overlay 0.3s allow-discrete;
+      margin: 0;
       /* [1] Popover Reset & Base */
       inset-inline: auto 0;
-      margin: 0;
+      box-shadow: var(--shadow-5);
       border: none;
       background-color: var(--color-base-100);
       inline-size: 75dvw;
       block-size: 100dvh;
-      box-shadow: var(--shadow-5);
-      
-      /* [2] Animation */
-      transform: translateX(100%);
-      transition: 
-        transform 0.3s var(--ease-out),
-        display 0.3s allow-discrete,
-        overlay 0.3s allow-discrete;
 
       &:popover-open {
         transform: translateX(0);
-        
+
         &::backdrop {
           opacity: 1;
           backdrop-filter: blur(8px);
@@ -50,9 +49,9 @@
 
       &::backdrop {
         opacity: 0;
-        background-color: oklch(0 0 0 / 0.2);
         backdrop-filter: blur(0px);
         transition: all 0.3s allow-discrete;
+        background-color: oklch(0 0 0 / 0.2);
       }
 
       /* [3] Sidebar Content Layout */
@@ -68,15 +67,15 @@
           text-transform: uppercase;
         }
         .c-nav-brand {
-          font-size: 2rem;
-          padding: 0;
           justify-content: flex-start;
+          padding: 0;
+          font-size: 2rem;
         }
       }
 
       .c-nav-sidebar-menu {
         padding-inline: var(--space-4);
-        
+
         a {
           padding: var(--space-4);
           font-weight: 800;
@@ -89,8 +88,8 @@
       }
 
       .c-nav-sidebar-footer {
-        padding: var(--space-8);
         border-block-start: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+        padding: var(--space-8);
       }
     }
   }
@@ -108,13 +107,13 @@
       /* Reset Popover native styles */
       display: block;
       position: static;
-      inset: auto;
+      transform: none;
       margin: 0;
-      padding: 0;
+      inset: auto;
+      box-shadow: none;
       border: none;
       background: transparent;
-      box-shadow: none;
-      transform: none;
+      padding: 0;
       inline-size: auto;
       block-size: auto;
       overflow: visible;
@@ -123,8 +122,8 @@
         padding: var(--space-2);
         font-weight: 700;
         font-size: var(--text-sm);
-        text-transform: uppercase;
         letter-spacing: 0.05em;
+        text-transform: uppercase;
       }
     }
   }
@@ -148,7 +147,7 @@
       font-weight: 900;
       font-size: 1.75rem;
       letter-spacing: -0.05em;
-      
+
       @media (width < 48rem) {
         font-size: var(--text-xl);
       }
@@ -209,7 +208,7 @@
       opacity: 0.4;
       transition: all 0.3s;
       color: var(--color-base-content);
-      
+
       &:hover {
         transform: translateY(-3px);
         opacity: 1;

@@ -226,3 +226,11 @@
 .u-text-start {
   text-align: start !important;
 }
+
+.u-items-center {
+  align-items: center !important;
+}
+
+.u-justify-center {
+  justify-content: center !important;
+}

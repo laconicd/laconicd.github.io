@@ -4,7 +4,7 @@
 
 {% block content %}
   <div class="l-container l-stack u-gap-20 u-py-20" style="padding-block-end: 10rem;">
-    <header class="c-hero-title l-stack l-center u-text-center">
+    <header class="c-hero-title l-stack u-items-center u-text-center">
       <h1>{{ section.title }}</h1>
       <p>{{ config.extra.posts_subtitle }}</p>
     </header>
@@ -14,29 +14,14 @@
     {% if blog_section.pages | length > 0 %}
       {# Latest Post as Featured #}
       {% set featured = blog_section.pages[0] %}
-
-      <section class="c-hero-card">
-        <a href="{{ featured.path }}" class="c-hero-card-featured l-grid u-gap-0" style="--min-width: 100%; grid-template-columns: 1.3fr 0.7fr;">
-          <div class="c-hero-card-image">
-            <img
-              src="{{ image_macros::get_url(page=featured, width=1200, height=800) }}"
-              alt="{{ featured.title }}"
-              loading="lazy"
-            />
-          </div>
-          <div class="c-hero-card-content l-stack l-center u-gap-8" style="justify-content: center;">
-            <span class="c-hero-card-badge u-fixed">Featured</span>
-            <h2>{{ featured.title }}</h2>
-            <p>{{ featured.summary | default(value=featured.description) | default(value="") | striptags | safe }}</p>
-            <div class="c-hero-card-footer l-cluster u-gap-6" style="justify-content: flex-start; align-items: center; margin-block-start: var(--space-4);">
-              <span>Keep Reading</span>
-              <span class="c-hero-card-footer-arrow c-icon-circle u-fixed">{{ icons::arrow_right(size=4) }}</span>
-            </div>
-          </div>
-        </a>
+      <section class="c-featured-section" style="container-type: inline-size; margin-block-end: var(--space-24);">
+        {% set page = featured %}
+        {% set is_featured = true %}
+        {% include "partials/post-card.html" %}
+        {% set is_featured = false %}
       </section>
 
-      <div class="c-divider l-cluster l-center u-gap-10">The Collection</div>
+      <div class="c-divider l-cluster u-justify-center u-gap-10">The Collection</div>
 
       <section class="l-grid" aria-label="All Posts" style="--min-width: 20rem; --space: 4rem 2.5rem;">
         {% for page in blog_section.pages | slice(start=1) %}

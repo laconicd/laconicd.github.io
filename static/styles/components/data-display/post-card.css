@@ -1,0 +1,261 @@
+/* --- [ Unified Post Card ] --- */
+@scope (.c-post-card) {
+  :scope {
+    --card-bg: var(--color-base-100);
+    --card-hover-bg: var(--color-base-200);
+    --card-radius: var(--radius-3xl);
+    --card-transition: 0.4s var(--ease-standard);
+    --card-padding: var(--space-6);
+
+    position: relative;
+    display: block;
+    inline-size: 100%;
+  }
+
+  .c-post-card-container {
+    display: grid;
+    grid-template-areas: "media" "body";
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    transition: all var(--card-transition);
+    border: 1px solid transparent;
+    border-radius: var(--card-radius);
+    padding: var(--card-padding);
+  }
+
+  .c-post-card-media { grid-area: media; }
+  .c-post-card-body { grid-area: body; }
+
+  /* Stable Overlay Link */
+  .c-post-card-overlay-link {
+    position: absolute;
+    z-index: 20;
+    inset: 0;
+    cursor: pointer;
+  }
+
+  /* Hover Effects: Target specifically this card's container */
+  &:hover .c-post-card-container {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-3);
+    border-color: oklch(from var(--color-base-content) l c h / 0.05);
+    background: var(--card-hover-bg);
+  }
+
+  &:hover {
+    .c-post-card-media img { transform: scale(1.05); }
+    .c-post-card-title { color: var(--color-primary); }
+    .c-post-card-arrow {
+      transform: translateX(6px) rotate(-45deg);
+      background: var(--color-base-content);
+      color: var(--color-base-100);
+    }
+  }
+
+  .c-post-card-media {
+    position: relative;
+    transition: transform var(--card-transition);
+    border-radius: var(--radius-2xl);
+    background: var(--color-base-300);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+
+    img {
+      transition: transform 0.8s var(--ease-standard);
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .c-post-card-badge {
+    position: absolute;
+    z-index: 2;
+    inset-block-start: var(--space-4);
+    inset-inline-start: var(--space-4);
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    padding: 0.4rem 1rem;
+    color: var(--color-primary-content);
+    font-weight: 900;
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .c-post-card-body {
+    --space: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .c-post-card-meta {
+    opacity: 0.4;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .c-post-card-title {
+    transition: color 0.3s;
+    font-weight: 900;
+    font-size: var(--text-xl);
+    line-height: 1.2;
+    word-break: keep-all;
+  }
+
+  .c-post-card-summary {
+    display: -webkit-box;
+    opacity: 0.6;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .c-post-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: oklch(from var(--color-base-content) l c h / 0.4);
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .c-post-card-arrow { 
+    transition: all var(--card-transition); 
+    background-color: oklch(from var(--color-base-content) l c h / 0.05);
+  }
+
+  /* --- [ Variants ] --- */
+
+  /* [Row Style] Mini Hero - Only for regular posts */
+  &:not(.is-featured) {
+    @container (min-width: 35rem) {
+      .c-post-card-container {
+        grid-template-areas: "media body";
+        grid-template-columns: 0.75fr 1.25fr;
+        gap: 0;
+        padding: 0;
+        background: var(--color-base-200);
+        min-block-size: 14rem;
+        overflow: hidden;
+      }
+
+      .c-post-card-media {
+        border-radius: 0;
+        aspect-ratio: auto;
+        inline-size: 100%;
+        block-size: 100%;
+      }
+
+      .c-post-card-body {
+        justify-content: center;
+        padding: var(--space-6);
+        text-align: start;
+        --space: var(--space-2);
+      }
+
+      .c-post-card-title { font-size: 1.35rem; }
+      .c-post-card-summary { 
+        display: -webkit-box; 
+        -webkit-line-clamp: 2; 
+        font-size: 0.9rem; 
+        opacity: 0.5;
+      }
+      
+      .c-post-card-footer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--space-3);
+        margin-block-start: var(--space-2);
+        color: var(--color-base-content);
+      }
+
+      .c-post-card-cta { 
+        font-weight: 900; 
+        font-size: 0.7rem; 
+        letter-spacing: 0.05em;
+      }
+
+      .c-post-card-arrow {
+        border-radius: var(--radius-full);
+        background-color: var(--color-base-content);
+        color: var(--color-base-100);
+        inline-size: 1.5rem;
+        block-size: 1.5rem;
+        opacity: 1;
+      }
+
+      .c-post-card-body { --space: var(--space-2); }
+    }
+  }
+
+  /* [Hero Style] Large Split - For Featured posts */
+  &.is-featured {
+    .c-post-card-container {
+      background: var(--color-base-200);
+      padding: 0;
+      overflow: hidden;
+      border-radius: var(--radius-3xl);
+    }
+
+    .c-post-card-media {
+      border-radius: 0;
+      aspect-ratio: 16 / 9;
+    }
+
+    .c-post-card-body {
+      padding: var(--space-8);
+      text-align: start;
+    }
+
+    @container (min-width: 50rem) {
+      .c-post-card-container {
+        grid-template-areas: "media body";
+        grid-template-columns: 1.25fr 0.75fr;
+        min-block-size: 35rem;
+        gap: 0;
+      }
+
+      .c-post-card-media {
+        aspect-ratio: auto;
+        inline-size: 100%;
+        block-size: 100%;
+      }
+
+      .c-post-card-body {
+        justify-content: center;
+        padding: var(--space-16);
+      }
+
+      .c-post-card-title { font-size: 2.75rem; line-height: 1.1; }
+      .c-post-card-summary { -webkit-line-clamp: 5; font-size: 1.15rem; opacity: 0.5; }
+      
+      .c-post-card-footer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: var(--space-4);
+        margin-block-start: var(--space-4);
+        color: var(--color-base-content);
+      }
+
+      .c-post-card-cta { font-weight: 900; letter-spacing: 0.05em; }
+
+      .c-post-card-arrow {
+        border-radius: var(--radius-full);
+        background-color: var(--color-base-content);
+        color: var(--color-base-100);
+        inline-size: 2.25rem;
+        block-size: 2.25rem;
+      }
+    }
+  }
+}

@@ -3,12 +3,12 @@
 
 {% block content %}
   <div class="l-stack" style="--space: var(--space-20); max-inline-size: 80rem; margin-inline: auto; padding-inline: 1.25rem;">
-    <div class="c-hero-title l-stack l-center">
+    <div class="c-hero-title l-stack u-items-center u-text-center">
       <h1>{{ taxonomy.name | capitalize }}</h1>
       <p>{{ config.extra.categories_subtitle }}</p>
     </div>
 
-    <div class="c-divider l-cluster l-center" style="--space: var(--space-10);">The Collection</div>
+    <div class="c-divider l-cluster u-justify-center" style="--space: var(--space-10);">The Collection</div>
 
     <section class="l-grid" aria-label="All Categories" style="--min-width: 20rem; --space: 2rem;">
       {% for term in terms %}

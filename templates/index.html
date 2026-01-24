@@ -4,35 +4,17 @@
 
 {% block content %}
   <div class="l-container l-stack u-gap-20 u-py-20" style="padding-block-end: 10rem;">
-    <header class="c-hero-title l-stack l-center u-text-center">
+    <header class="c-hero-title l-stack u-items-center u-text-center">
       <h1>{{ config.extra.hero_title }}</h1>
       <p>{{ config.extra.hero_subtitle }}</p>
     </header>
 
-    <div class="c-divider l-cluster l-center u-gap-10">Latest Records</div>
+    <div class="c-divider l-cluster u-justify-center u-gap-10">Latest Records</div>
 
-    <section class="c-post-list l-stack u-gap-2" aria-label="Latest Posts">
+    <section class="c-post-list l-stack u-gap-8" aria-label="Latest Posts" style="container-type: inline-size;">
       {% set blog_section = get_section(path="posts/_index.md") %}
       {% for page in blog_section.pages | slice(end=10) %}
-        <article class="c-post-card-row">
-          <a href="{{ page.path }}" class="c-post-card-row-link l-bar u-gap-8 u-p-6" style="align-items: center;">
-            <div class="c-post-card-row-thumb u-fixed" style="--fixed-width: var(--space-24); block-size: var(--space-24);">
-              <img
-                src="{{ image_macros::get_url(page=page, width=200, height=200) }}"
-                alt="{{ page.title }}"
-                loading="lazy"
-              />
-            </div>
-            <div class="c-post-card-row-body u-fill l-stack u-gap-1" style="min-inline-size: 0;">
-              <div class="c-post-card-row-meta">{{ page.date | date(format=config.extra.date_format) }}</div>
-              <h3 class="c-post-card-row-title">{{ page.title }}</h3>
-              <p class="c-post-card-row-summary">
-                {{ page.summary | default(value=page.description) | default(value="") | striptags | safe }}
-              </p>
-            </div>
-            <div class="c-post-card-row-arrow c-icon-circle u-fixed" style="margin-inline-start: auto;">{{ icons::arrow_right(size=3) }}</div>
-          </a>
-        </article>
+        {% include "partials/post-card.html" %}
       {% endfor %}
     </section>
   </div>
