@@ -164,9 +164,11 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: var(--space-0);
+        gap: var(--space-1);
         a {
-          padding: var(--space-2) var(--space-3);
+          flex: none !important; /* Stop u-fill from squashing text */
+          inline-size: auto !important;
+          padding: var(--space-3) var(--space-4); /* Generous hover area */
           font-weight: 800; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; border-radius: var(--radius-lg); transition: all 0.3s ease;
           &:hover { background-color: oklch(from var(--color-base-content) l c h / 0.05); }
         }
