@@ -16,13 +16,17 @@
     </button>
 
     <div id="nav-center" popover class="c-nav-center">
-      <div class="nav-nav-content l-cluster u-gap-8" style="align-items: center;">
-        <div class="c-nav-sidebar-header l-stack u-fixed u-gap-4">
+      <div class="c-nav-content">
+        <button popovertarget="nav-center" popovertargetaction="hide" class="c-nav-close-btn c-btn is-ghost is-circle u-fixed">
+          {{ icons::close(size=5) }}
+        </button>
+
+        <div class="c-nav-sidebar-header l-stack u-gap-4">
           <div class="c-nav-sidebar-title">Navigation</div>
           <a href="/" class="c-nav-brand c-btn is-ghost">{{ config.title }}</a>
         </div>
         
-        <div class="c-nav-sidebar-menu l-cluster u-fill u-gap-4">
+        <div class="c-nav-sidebar-menu l-stack u-fill">
           <a href="{{ get_url(path='@/posts/_index.md') }}" class="c-btn is-ghost l-bar u-fill">
             <span>Posts</span>
             <span class="c-nav-sidebar-arrow u-fixed">→</span>
@@ -39,7 +43,7 @@
 
         <div class="divider-horizontal c-divider-v u-fixed"></div>
 
-        <div class="c-nav-sidebar-footer l-cluster u-fixed u-gap-2">
+        <div class="c-nav-sidebar-footer u-fixed">
           <button popovertarget="search_modal" class="c-btn is-ghost is-circle js-search-trigger" aria-label="Open Search">
             {{ icons::search(size=5) }}
           </button>
@@ -55,6 +59,9 @@
             <span class="c-theme-toggle-moon">{{ icons::moon(size=5) }}</span>
           </label>
         </div>
+      </div>
+    </div>
+
       </div>
     </div>
   </nav>
