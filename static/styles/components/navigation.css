@@ -13,15 +13,17 @@
     color: var(--color-base-content);
   }
 
-  /* Main Navbar Brand Styling */
-  .c-nav-brand {
-    font-weight: 1000;
-    font-size: var(--text-xl);
-    letter-spacing: -0.07em;
-    text-transform: none;
+  /* Main Navbar Brand Styling - High specificity to override c-btn */
+  & .c-nav-brand {
+    font-weight: 1000 !important;
+    font-size: var(--text-xl) !important;
+    letter-spacing: -0.07em !important;
+    text-transform: none !important;
     background: linear-gradient(135deg, var(--color-base-content) 0%, oklch(from var(--color-base-content) l c h / 0.7) 100%);
+    -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
   }
 
   .c-nav-menu-btn {
@@ -42,12 +44,12 @@
       border: none;
       padding: 0;
       background-color: oklch(from var(--color-base-100) l c h / 0.85);
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(25px);
       inline-size: 85dvw;
       block-size: 100dvh;
       max-inline-size: 100dvw;
       max-block-size: 100dvh;
-      box-shadow: -20px 0 50px -10px oklch(0 0 0 / 0.1);
+      box-shadow: -20px 0 50px -10px oklch(0 0 0 / 0.15);
       overflow: hidden;
 
       /* [2] Animation Base */
@@ -101,7 +103,7 @@
         padding-block-end: calc(env(safe-area-inset-bottom) + var(--space-8));
       }
 
-      /* Refined Close Button */
+      /* Refined Minimalist Close Button */
       .c-nav-close-btn {
         position: absolute;
         inset-block-start: var(--space-6);
@@ -111,16 +113,17 @@
         transform: translateY(-10px);
         transition: all 0.5s var(--ease-standard) 0.1s;
         
-        background-color: var(--color-base-content);
-        color: var(--color-base-100);
-        box-shadow: var(--shadow-2);
-        inline-size: 2.75rem;
-        block-size: 2.75rem;
-        border: none;
+        background-color: oklch(from var(--color-base-content) l c h / 0.05);
+        color: var(--color-base-content);
+        inline-size: 3rem;
+        block-size: 3rem;
+        border: 1px solid oklch(from var(--color-base-content) l c h / 0.1);
+        border-radius: 50%;
 
         &:hover {
-          transform: scale(1.1);
-          background-color: var(--color-primary);
+          transform: scale(1.1) rotate(90deg);
+          background-color: var(--color-base-content);
+          color: var(--color-base-100);
         }
       }
 
@@ -143,10 +146,11 @@
         .c-nav-brand {
           justify-content: flex-start;
           padding: 0;
-          font-weight: 1000;
-          font-size: clamp(2.25rem, 8vw, 3rem);
-          letter-spacing: -0.07em;
+          font-weight: 1000 !important;
+          font-size: clamp(2.25rem, 8vw, 3rem) !important;
+          letter-spacing: -0.07em !important;
           background: linear-gradient(135deg, var(--color-base-content) 0%, oklch(from var(--color-base-content) l c h / 0.7) 100%);
+          -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
           filter: drop-shadow(0 2px 4px oklch(0 0 0 / 0.05));
@@ -233,9 +237,16 @@
     .c-nav-menu-btn,
     .c-nav-close-btn,
     .c-nav-sidebar-header,
-    .divider-horizontal,
     .c-nav-sidebar-arrow {
       display: none !important;
+    }
+
+    .divider-horizontal {
+      display: block !important;
+      block-size: 1.25rem;
+      align-self: center;
+      margin-inline: var(--space-2);
+      opacity: 0.1;
     }
 
     .c-nav-center {
@@ -257,7 +268,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: var(--space-8);
+        gap: var(--space-4); /* Reduced from space-8 */
       }
 
       .c-nav-sidebar-menu {
@@ -271,6 +282,52 @@
           font-size: var(--text-sm);
           letter-spacing: 0.05em;
           text-transform: uppercase;
+        }
+      }
+
+      .divider-horizontal {
+        display: block !important;
+        block-size: 1.25rem;
+        align-self: center;
+        margin-inline: var(--space-2);
+        background-color: oklch(from var(--color-base-content) l c h / 0.15); /* More visible */
+        inline-size: 1px;
+        animation: none; /* Disable default animation */
+      }
+
+
+      .c-nav-sidebar-menu {
+        display: flex;
+        flex-direction: row;
+        gap: var(--space-2);
+
+        a {
+          padding: var(--space-2);
+          font-weight: 700;
+          font-size: var(--text-sm);
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+        }
+      }
+
+      .c-nav-sidebar-footer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-2);
+
+        .c-btn {
+          background-color: transparent;
+          inline-size: 2.5rem;
+          block-size: 2.5rem;
+          padding: 0;
+          color: oklch(from var(--color-base-content) l c h / 0.6);
+
+          &:hover {
+            background-color: oklch(from var(--color-base-content) l c h / 0.05);
+            color: var(--color-base-content);
+            transform: translateY(-2px);
+          }
         }
       }
     }
