@@ -1,0 +1,13 @@
+@layer components {
+  .c-navbar {
+    background-color: var(--ui-color-canvas);
+    padding-block: var(--ui-space-sm);
+    padding-inline: var(--ui-gutter);
+    color: var(--ui-color-ink);
+    border-block-end: 1px solid var(--ui-color-faint);
+
+    &::backdrop {
+      backdrop-filter: blur(8px);
+    }
+  }
+}

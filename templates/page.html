@@ -1,29 +1,4 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="u-container s-content" style="padding-block: var(--ui-space-xl)">
-    <header style="max-inline-size: 45rem; margin-inline: auto; margin-block-end: var(--ui-space-lg); text-align: center;">
-        {% if page.taxonomies.categories %}
-        <span class="u-text-accent u-text-uppercase" style="display: block; margin-block-end: var(--ui-space-sm);">
-            {{ page.taxonomies.categories[0] }}
-        </span>
-        {% endif %}
-        <h1 class="u-text-serif" style="font-size: var(--fs-xl); line-height: 1.1;">{{ page.title }}</h1>
-        <div class="u-text-muted" style="margin-block-start: var(--ui-space-md);">
-            <time datetime="{{ page.date | date(format='%Y-%m-%d') }}">
-                {{ page.date | date(format="%B %d, %Y") }}
-            </time>
-        </div>
-    </header>
-
-    {% if page.extra.image %}
-    <figure style="margin-block: var(--ui-space-lg); border-radius: var(--ui-radius-md); overflow: hidden;">
-        <img src="{{ page.extra.image }}" alt="{{ page.title }}" style="inline-size: 100%; aspect-ratio: 21 / 9; object-fit: cover;">
-    </figure>
-    {% endif %}
-
-    <div class="u-prose">
-        {{ page.content | safe }}
-    </div>
-</article>
 {% endblock content %}

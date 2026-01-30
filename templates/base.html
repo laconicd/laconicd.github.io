@@ -1,26 +1,24 @@
+{% import "macros/icons.html" as icons %}
+
 <!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anyflow Style Optimized Popover</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
     {% include "partials/head_css.html" %}
+    <title>The Journal | Editorial</title>
   </head>
 
   <body>
-    <nav class="c-navbar">
-      <button class="anchor-button" popovertarget="my-popover">
-        <span style="background-color: var(--ui-color-accent)">Menu</span>
-      </button>
-
-      {% block content %}{% endblock content %}
+    <nav class="l-blueprint l-between c-navbar">
+      <span>Blog</span>
+      <button popovertarget="my-popover">{{ icons::menu() }}</button>
     </nav>
 
+    {% block content %}{% endblock content %}
+
     <div id="my-popover" popover>
-      <h3 class="test-title">설정 메뉴</h3>
+      <h3>설정 메뉴</h3>
       <p>이곳에서 알림 및 프로필 설정을 실시간으로 변경하고 관리할 수 있습니다.</p>
       <button class="close-btn" popovertarget="my-popover" popovertargetaction="hide">닫기</button>
     </div>
