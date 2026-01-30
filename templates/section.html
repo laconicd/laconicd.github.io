@@ -2,14 +2,12 @@
 
 {% block content %}
 <main class="u-container" style="padding-block: var(--ui-space-xl)">
-    <header style="margin-block-end: var(--ui-space-lg); text-align: center;">
-        <h1 class="u-text-serif" style="font-size: var(--fs-xl);">The Journal</h1>
-        <p class="u-text-muted">Reflections on Design, Code, and Architecture.</p>
+    <header style="margin-block-end: var(--ui-space-lg);">
+        <h1 class="u-text-serif" style="font-size: var(--fs-xl);">{{ section.title }}</h1>
     </header>
 
     <section class="l-blueprint l-grid" style="--gap: var(--ui-space-lg); --ui-grid-min: 320px;">
-        {% set section_posts = get_section(path="posts/_index.md") %}
-        {% for page in section_posts.pages | slice(end=6) %}
+        {% for page in section.pages %}
             <div style="--area: auto;">
                 {% include "partials/c-magazine-card.html" %}
             </div>

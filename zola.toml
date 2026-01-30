@@ -1,0 +1,48 @@
+base_url = "https://laconicd.github.io"
+title = "The Mono Archive"
+description = "A minimalist record of thoughts, code, and exploration."
+build_search_index = true
+generate_feeds = true
+feed_filenames = ["atom.xml", "rss.xml"]
+minify_html = true
+taxonomies = [
+  { name = "categories" },
+  { name = "tags" },
+]
+
+[markdown]
+render_emoji = true
+external_links_target_blank = true
+external_links_no_follow = true
+lazy_async_image = true
+github_alerts = true
+insert_anchor_links = "right"
+definition_list = true
+
+[markdown.highlighting]
+style = "class"
+light_theme = "catppuccin-latte"
+dark_theme = "catppuccin-macchiato"
+
+[search]
+include_title = true
+include_description = true
+include_date = true
+include_path = true
+include_content = true
+index_format = "fuse_javascript"
+
+[extra]
+hero_title = "Thoughts, code, and exploration"
+hero_subtitle = "A minimalist record of the insights found along the way."
+default_image = "images/default-post.jpg"
+date_format = "%B %d, %Y"
+author_name = "laconicd"
+author_role = "Writer & Learner"
+author_avatar = "images/avatar.svg"
+journal_subtitle = "A journey through varied interests. Documenting the process of learning and the insights found along the way."
+themes_subtitle = "Curated intellectual landscapes. Organizing our exploration into distinct thematic pillars."
+lexicon_subtitle = "The specialized vocabulary of our exploration. A structured index of core concepts and keywords."
+github = "https://github.com/laconicd"
+twitter = "https://twitter.com/laconicd"
+linkedin = "https://linkedin.com/in/laconicd"

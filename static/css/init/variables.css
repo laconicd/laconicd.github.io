@@ -1,0 +1,18 @@
+@layer init {
+  :root {
+    /* --- [ Exceptions: Values that cannot be handled by @property initial-value ] --- */
+    
+    /* 1. References to other variables (var() is not allowed in initial-value) */
+    --ui-color-faint: color-mix(in oklch, var(--ui-color-ink), transparent 92%);
+
+    /* 2. Complex Bezier Curves (Initial value for custom-ident doesn't support raw cubic-bezier strings well) */
+    --ui-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ui-color-ink: oklch(95% 0.01 30);
+      --ui-color-canvas: oklch(12% 0.01 30);
+    }
+  }
+}

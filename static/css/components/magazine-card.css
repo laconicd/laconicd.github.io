@@ -1,0 +1,99 @@
+@layer components {
+  .c-magazine-card {
+    --card-lift-y: 0px;
+    --card-shadow-blur: 20px;
+    --card-tint-opacity: 0%;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    padding: var(--ui-space-md);
+    background-color: var(--ui-color-canvas);
+    border: 1px solid var(--ui-color-faint);
+    transition: 
+      --card-lift-y var(--ui-duration-base) var(--ui-ease-standard),
+      --card-shadow-blur var(--ui-duration-base) var(--ui-ease-standard);
+    transform: translateY(var(--card-lift-y));
+    box-shadow: 0 10px var(--card-shadow-blur) -10px oklch(0% 0 0 / 0.2);
+    cursor: pointer;
+  }
+
+  @media (hover: hover) {
+    .c-magazine-card:hover {
+      --card-lift-y: -12px;
+      --card-shadow-blur: 40px;
+      --card-tint-opacity: 10%;
+    }
+  }
+
+  .c-magazine-card__image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    filter: grayscale(0.2) contrast(1.1);
+    transition: transform var(--ui-duration-base) var(--ui-ease-standard);
+  }
+
+  .c-magazine-card:hover .c-magazine-card__image {
+    transform: scale(1.05);
+  }
+
+  .c-magazine-card__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      transparent 40%,
+      oklch(from var(--ui-color-canvas) l c h / 0.8) 80%,
+      var(--ui-color-canvas) 100%
+    );
+  }
+
+  .c-magazine-card__content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: var(--ui-space-sm);
+  }
+
+  .c-magazine-card__category {
+    font-family: var(--font-sans);
+    font-size: var(--fs-small);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ui-color-accent);
+  }
+
+  .c-magazine-card__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 4vi, 2.2rem);
+    line-height: 1.1;
+    color: var(--ui-color-ink);
+    text-wrap: balance;
+  }
+
+  .c-magazine-card__meta {
+    font-family: var(--font-sans);
+    font-size: var(--fs-small);
+    color: color-mix(in oklch, var(--ui-color-ink), transparent 40%);
+    margin-block-start: var(--ui-space-sm);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .c-magazine-card__meta::before {
+    content: "";
+    inline-size: 2rem;
+    block-size: 1px;
+    background-color: var(--ui-color-accent);
+  }
+}

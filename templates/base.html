@@ -1,32 +1,28 @@
-{% import "macros/head.html" as head %}
-{% import "macros/components.html" as ui %}
-{% import "macros/icons.html" as icons %}
-
 <!doctype html>
-<html lang="en" data-theme="lofi">
+<html lang="ko">
   <head>
-    {{ head::link() }}
-    {{ head::script() }}
-    {% set current_url = current_url | default(value=config.base_url) %}
-    {{ head::seo(page=page | default(value=false), section=section | default(value=false), config=config, current_url=current_url) }}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anyflow Style Optimized Popover</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    {% include "partials/head_css.html" %}
   </head>
 
   <body>
-    <div class="l-shell">
-      <header>{{ ui::app_navbar(config=config) }}</header>
-      <main>{% block content %}{% endblock content %}</main>
-      <footer class="c-footer">{{ ui::app_footer(config=config) }}</footer>
-    </div>
+    <nav class="c-navbar">
+      <button class="anchor-button" popovertarget="my-popover">
+        <span style="background-color: var(--ui-color-accent)">Menu</span>
+      </button>
 
-    <div class="l-widgets">
-      {{ ui::search_modal() }}
-      {{ ui::share_modal() }}
-      {{ ui::speed_dial() }}
-    </div>
+      {% block content %}{% endblock content %}
+    </nav>
 
-    <script src="{{ get_url(path='/search_index.en.js') | safe }}" defer></script>
-    <script src="{{ get_url(path='js/main.js') | safe }}" defer></script>
-    <script src="{{ get_url(path='js/speed-dial.js') | safe }}" defer></script>
-    <script src="{{ get_url(path='js/search.js') | safe }}" defer></script>
+    <div id="my-popover" popover>
+      <h3 class="test-title">설정 메뉴</h3>
+      <p>이곳에서 알림 및 프로필 설정을 실시간으로 변경하고 관리할 수 있습니다.</p>
+      <button class="close-btn" popovertarget="my-popover" popovertargetaction="hide">닫기</button>
+    </div>
   </body>
 </html>

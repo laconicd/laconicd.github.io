@@ -1,8 +1,7 @@
 +++
-title = "Posts"
+title = "Journal"
+render = true
+template = "section.html"
+page_template = "page.html"
 sort_by = "date"
-template = "posts.html"
-page_template = "post.html"
-paginate_by = 20
-transparent = true
 +++
