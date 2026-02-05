@@ -1,4 +1,168 @@
 /* ==========================================================================
+    Base Design Tokens
+    ========================================================================== */
+:root {
+  /* Space */
+  --space-xs: 0.25rem; /* 4px */
+  --space-sm: 0.5rem; /* 8px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-xxl: 3rem; /* 48px */
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-md: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-xxl: 1.5rem; /* 24px */
+
+  /* Font Line Heights */
+  --font-line-height-xs: 1.2;
+  --font-line-height-sm: 1.4;
+  --font-line-height-md: 1.5;
+  --font-line-height-lg: 1.6;
+  --font-line-height-xl: 1.6;
+  --font-line-height-xxl: 1.7;
+
+  /* Font Weights */
+  --font-weight-100: 100;
+  --font-weight-200: 200;
+  --font-weight-300: 300;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+  --font-weight-800: 800;
+  --font-weight-900: 900;
+
+  --font-weight-thin: var(--font-weight-100);
+  --font-weight-extralight: var(--font-weight-200);
+  --font-weight-light: var(--font-weight-300);
+  --font-weight-normal: var(--font-weight-400);
+  --font-weight-medium: var(--font-weight-500);
+  --font-weight-semibold: var(--font-weight-600);
+  --font-weight-bold: var(--font-weight-700);
+  --font-weight-extrabold: var(--font-weight-800);
+  --font-weight-black: var(--font-weight-900);
+
+  /* Font Families */
+  --font-family-base: ui-sans-serif, system-ui, sans-serif;
+  --font-family-heading: ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Border Widths */
+  --border-width-xs: 1px;
+  --border-width-sm: 2px;
+  --border-width-md: 3px;
+  --border-width-lg: 4px;
+  --border-width-xl: 5px;
+  --border-width-xxl: 6px;
+
+  /* Border Radii */
+  --border-radius-sm: 0.125rem; /* 2px */
+  --border-radius-md: 0.25rem; /* 4px */
+  --border-radius-lg: 0.5rem; /* 8px */
+  --border-radius-full: 9999px;
+
+  /* Generic Radii */
+  --radius-xs: 0.1rem; /* 1.6px */
+  --radius-sm: 0.125rem; /* 2px */
+  --radius-md: 0.25rem; /* 4px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-xxl: 1rem; /* 16px */
+
+  /* Generic Sizing */
+  --size-xs: 0.75rem;
+  --size-sm: 1rem;
+  --size-md: 1.5rem;
+  --size-lg: 2rem;
+  --size-xl: 3rem;
+  --size-xxl: 4rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 oklch(0% 0 0 / 0.05);
+  --shadow-md:
+    0 4px 6px -1px oklch(0% 0 0 / 0.1), 0 2px 4px -1px oklch(0% 0 0 / 0.06);
+  --shadow-lg:
+    0 10px 15px -3px oklch(0% 0 0 / 0.1), 0 4px 6px -2px oklch(0% 0 0 / 0.05);
+
+  /* Transitions */
+  --transition-speed-fast: 150ms;
+  --transition-speed-normal: 300ms;
+  --transition-speed-slow: 500ms;
+  --transition-timing-ease: ease-in-out;
+
+  /* Animation Durations */
+  --animation-duration-fast: 150ms;
+  --animation-duration-normal: 300ms;
+  --animation-duration-slow: 500ms;
+  --animation-duration-xfast: 75ms; /* New: Extra fast */
+  --animation-duration-xslow: 750ms; /* New: Extra slow */
+
+  /* Animation Timing Functions */
+  --animation-timing-ease: ease-in-out;
+  --animation-timing-linear: linear;
+  --animation-timing-ease-in: ease-in;
+  --animation-timing-ease-out: ease-out;
+  --animation-timing-bounce: cubic-bezier(
+    0.68,
+    -0.55,
+    0.265,
+    1.55
+  ); /* Example bounce */
+
+  /* Animation Delays */
+  --animation-delay-none: 0s;
+  --animation-delay-xsmall: 50ms;
+  --animation-delay-small: 100ms;
+  --animation-delay-medium: 200ms;
+  --animation-delay-large: 400ms;
+
+  /* Animation Iteration Counts */
+  --animation-iteration-once: 1;
+  --animation-iteration-infinite: infinite;
+
+  /* Animation Directions */
+  --animation-direction-normal: normal;
+  --animation-direction-reverse: reverse;
+  --animation-direction-alternate: alternate;
+  --animation-direction-alternate-reverse: alternate-reverse;
+
+  /* Animation Fill Modes */
+  --animation-fill-mode-none: none;
+  --animation-fill-mode-forwards: forwards;
+  --animation-fill-mode-backwards: backwards;
+  --animation-fill-mode-both: both;
+
+  /* Z-index */
+  --z-index-base: 1;
+  --z-index-dropdown: 1000;
+  --z-index-modal: 2000;
+  --z-index-fixed: 3000;
+
+  /* Breakpoints */
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 375px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-xxl: 1536px;
+
+  /* Opacity */
+  --opacity-disabled: 0.5;
+  --opacity-hover: 0.8;
+  --opacity-pressed: 0.6;
+
+  /* Focus Rings */
+  --focus-ring-width: 2px;
+  --focus-ring-color: var(--color-primary);
+  --focus-ring-offset: 2px;
+}
+
+/* ==========================================================================
     Theme: Lo-Fi (Light)
     ========================================================================== */
 :root:has(input.theme-controller[value="lofi"]:checked),
@@ -36,8 +200,8 @@
 }
 
 /* ==========================================================================
-   Theme: Dim (Dark)
-   ========================================================================== */
+    Theme: Dim (Dark)
+    ========================================================================== */
 :root:has(input.theme-controller[value="dim"]:checked),
 [data-theme="dim"] {
   color-scheme: dark;

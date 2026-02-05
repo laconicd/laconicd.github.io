@@ -34,8 +34,11 @@
  * - 독립적으로 캡슐화된 시각적 컴포넌트 단위입니다 (예: .c-card, .c-button).
  * - 객체지향의 'Encapsulation(캡슐화)'을 실현하며, 특정 맥락에서만 의미를 갖는 스타일을 정의합니다.
  */
+
+@import "blocks/badge.css" layer(blocks);
 @import "blocks/navbar.css" layer(blocks);
 @import "blocks/post-card.css" layer(blocks);
+@import "blocks/hero.css" layer(blocks);
 
 /**
  * 5. EXCEPTIONS (예외 및 상태 관리)

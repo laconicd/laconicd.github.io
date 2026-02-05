@@ -4,7 +4,10 @@
     "zola:build": "zola build",
     "css:watch": "npx esbuild styles/main.css --bundle --minify --sourcemap --outfile=static/main.css --watch",
     "css:build": "npx esbuild styles/main.css --bundle --minify --sourcemap --outfile=static/main.css",
-    "dev": { "command": "echo DEV!", "dependencies": ["css:watch", "zola:serve"] },
+    "dev": {
+      "command": "echo DEV!",
+      "dependencies": ["css:watch", "zola:serve"]
+    },
     "prd": "deno task css:build && deno task zola:build"
   },
   "compilerOptions": {

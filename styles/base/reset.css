@@ -17,13 +17,15 @@
 :where(html) {
   background-color: var(--color-base-100);
   scroll-behavior: smooth;
+  font-family: var(--font-family-base);
+  color: var(--color-base-content);
 }
 
 /* 4. Core body defaults: line-height, text smoothing, and full height */
 :where(body) {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  min-block-size: 100vh;
+  min-block-size: 100dvh; /* Using dvh for dynamic viewport height */
   overflow-x: hidden;
 }
 
@@ -79,4 +81,10 @@
 :where(input::placeholder, textarea::placeholder) {
   opacity: 1;
   color: inherit;
+}
+
+/* Custom ::selection styling */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-primary-content);
 }
