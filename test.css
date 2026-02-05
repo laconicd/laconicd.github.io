@@ -1,0 +1,8 @@
+.class {
+  inset-block-end: var(--bottom, auto);
+  inset-block-start: var(--top, auto);
+  inset-inline-end: var(--right, auto);
+  inset-inline-start: var(--left, auto);
+
+  inline-size: fit-content;
+}

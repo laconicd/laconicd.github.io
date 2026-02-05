@@ -140,18 +140,11 @@ execute them.
 - **Source**: `static/css/main.css` is the entry point.
 - **Build**: The build process bundles imports (e.g.,
   `@import "./partials/..."`) into a single `static/main.css` file.
-- **Approach**: Use standard CSS. Utility classes or variables may be defined in
-  root files.
-- **Units and Properties**:
-  - **Preferred Units**: Favor `rem` for typography and spacing, `dvi`/`dvh` for
-    responsive viewport-based sizing, and `em` for contextual sizing. Avoid `px`
-    for font sizes unless explicitly necessary.
-  - **Colors**: Use `oklch` for defining and manipulating colors for better
-    perceptual uniformity and wide gamut.
-  - **Logical Properties**: Prioritize logical CSS properties (e.g.,
-    `margin-inline-start`, `padding-block-end`) over physical properties (e.g.,
-    `margin-left`, `padding-bottom`) for improved internationalization and
-    adaptability.
+- **Approach**: All CSS should adhere to the
+  [CUBE CSS methodology](docs/css-convention.md#1-cube-css-방법론-준수) for
+  maintainability and scalability. For detailed styling guidelines, including
+  preferred units, color formats, logical properties, and modern CSS features,
+  refer to the [CSS Convention Guide](docs/css-convention.md).
 
 ## 3. Operational Rules for Agents
 
@@ -169,7 +162,10 @@ execute them.
    - **Step 5**: Only mark task as complete if the build succeeds.
 
 3. **Documentation**:
-   - Update `AGENTS.md` if you introduce new tools or conventions.
+   - **CRITICAL**: Agents **must** update this `AGENTS.md` file and any other
+     relevant documentation (e.g., `docs/css-convention.md`) with new tools,
+     conventions, or significant changes introduced during their work. This rule
+     is paramount for maintaining consistency and knowledge within the codebase.
    - Add comments to complex TypeScript logic in `tools/`.
 
 4. **Debugging**:

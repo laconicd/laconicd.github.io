@@ -81,3 +81,24 @@
 - 명시도 경쟁을 피하기 위해 가급적 낮은 명시도를 유지합니다.
 - 하드코딩된 수치 대신 사전에 정의된 디자인 토큰(Spacing, Color, Typography)을
   사용합니다.
+
+## 6. 디자인 토큰 사용 (Design Token Usage)
+
+프로젝트 전반의 일관된 디자인과 손쉬운 유지보수를 위해
+`styles/base/tokens.css`에 정의된 CSS Custom Properties(디자인 토큰)를
+적극적으로 활용합니다.
+
+- **원칙**: 모든 스타일 값(색상, 간격, 폰트, 그림자, 애니메이션 등)은 가능한 한
+  디자인 토큰을 통해 참조합니다. 하드코딩된 리터럴 값을 직접 사용하는 것을
+  지양합니다.
+- **예시**:
+  - `padding: 1rem;` 대신 `padding: var(--space-md);`
+  - `color: #00CC99;` 대신 `color: var(--color-primary);`
+  - `border-radius: 0.25rem;` 대신 `border-radius: var(--radius-md);`
+- **테마 적용**: `oklch` 기반의 색상 토큰은
+  `:root:has(input.theme-controller[value="lofi"]:checked)`와 같이 테마 선택자에
+  의해 동적으로 변경됩니다. 테마 전환이 필요한 요소에는 `var(--color-...)`
+  형태의 색상 토큰을 사용합니다.
+- **세분화된 토큰**: Spacing, Typography, Color, Border, Radius, Shadow,
+  Animation 등 모든 디자인 요소에 대해 세분화된 토큰을 활용하여 스타일의 예측
+  가능성과 재사용성을 높입니다.
