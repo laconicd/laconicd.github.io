@@ -1,0 +1,6 @@
+.c-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--gap, 1.5rem);
+}

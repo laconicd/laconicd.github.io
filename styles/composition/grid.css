@@ -1,0 +1,7 @@
+.c-grid {
+  display: grid;
+  /* 최소 250px를 보장하며 남은 공간을 채우는 마법의 한 줄 */
+  grid-template-columns:
+    repeat(auto-fill, minmax(min(var(--min, 250px), 100%), 1fr));
+  gap: var(--gap, 1.5rem);
+}

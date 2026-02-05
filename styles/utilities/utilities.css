@@ -1,14 +1,14 @@
 @layer utilities {
   .u-container {
-    max-inline-size: 85rem;
     margin-inline: auto;
     padding-inline: var(--ui-gutter);
     inline-size: 100%;
+    max-inline-size: 85rem;
   }
 
   .u-prose {
-    max-inline-size: 45rem;
     margin-inline: auto;
+    max-inline-size: 45rem;
   }
 
   .u-h-screen {
@@ -19,6 +19,27 @@
   }
 
   /* --- [ Visual Utilities ] --- */
+  .u-border {
+    border: var(--border) solid var(--color-neutral);
+  }
+  .u-rounded-xl {
+    border-radius: var(--radius-selector);
+  }
+  .u-overflow-hidden {
+    overflow: hidden;
+  }
+  .u-bg-base-100 {
+    background-color: var(--color-base-100);
+  }
+
+  /* --- [ Spacing ] --- */
+  .u-p-md {
+    padding: 1.5rem;
+  }
+  .u-gap-md {
+    gap: 1.5rem;
+  }
+
   .u-border-b {
     border-block-end: 1px solid var(--ui-color-faint);
   }
@@ -52,9 +73,22 @@
   }
 
   .u-text-uppercase {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
     font-size: var(--fs-small);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .u-list-blank {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .u-stretched-link::after {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    content: "";
   }
 
   /* --- [ Responsive Visibility ] --- */
@@ -63,38 +97,5 @@
   }
   .u-desktop-only {
     display: none;
-  }
-
-  @media (min-width: 64rem) {
-    .u-mobile-only {
-      display: none !important;
-    }
-    .u-desktop-only {
-      display: block !important;
-    }
-  }
-
-  /* --- [ Magazine Grid Presets ] --- */
-  .magazine-hero {
-    --areas: "hero" "side";
-    --cols: 1fr;
-    --gap: var(--ui-space-xl);
-  }
-
-  @media (min-width: 64rem) {
-    .magazine-hero {
-      --areas: "hero hero hero hero hero hero hero hero side side side side";
-      --cols: repeat(12, 1fr);
-    }
-  }
-
-  .magazine-sidebar {
-    margin-block-start: var(--ui-space-xl);
-  }
-
-  @media (min-width: 64rem) {
-    .magazine-sidebar {
-      margin-block-start: 0;
-    }
   }
 }

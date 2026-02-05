@@ -1,0 +1,55 @@
+/* ==========================================================================
+   MAIN.CSS - CUBE CSS Methodology Architecture (2026 Standards)
+   ========================================================================== */
+
+/**
+ * 1. CASCADE LAYERS 선언
+ * 우선순위(Precedence): 리스트의 뒤로 갈수록 명시성이 높습니다.
+ * Utilities가 가장 높은 우선순위를 가지며, Reset이 가장 낮습니다.
+ */
+@layer reset, base, composition, blocks, exceptions, utilities;
+
+/**
+ * 2. RESET & BASE (기초 체력)
+ * - reset: 브라우저 기본 스타일(User Agent Styles)을 예측 가능한 상태로 초기화합니다.
+ * - tokens: 디자인 시스템의 근간이 되는 CSS Variables(Design Tokens)를 정의합니다.
+ * - global: Typography, <body> 배경 등 프로젝트 전역에 적용될 기본 스타일을 다룹니다.
+ */
+@import "base/reset.css" layer(reset);
+@import "base/tokens.css" layer(base);
+@import "base/global.css" layer(base);
+
+/**
+ * 3. COMPOSITION (레이아웃 골격)
+ * - 특정 도메인(내용물)에 의존하지 않는 순수 레이아웃 알고리즘입니다.
+ * - Stack(수직 간격), Cluster(수평 흐름), Grid(격자) 등 구조적 역할만 수행합니다.
+ * - 'Single Responsibility Principle(단일 책임 원칙)'에 따라 외형(Border, Color)은 다루지 않습니다.
+ */
+@import "composition/stack.css" layer(composition);
+@import "composition/cluster.css" layer(composition);
+@import "composition/grid.css" layer(composition);
+
+/**
+ * 4. BLOCKS (도메인 컴포넌트)
+ * - 독립적으로 캡슐화된 시각적 컴포넌트 단위입니다 (예: .c-card, .c-button).
+ * - 객체지향의 'Encapsulation(캡슐화)'을 실현하며, 특정 맥락에서만 의미를 갖는 스타일을 정의합니다.
+ */
+@import "blocks/navbar.css" layer(blocks);
+@import "blocks/post-card.css" layer(blocks);
+
+/**
+ * 5. EXCEPTIONS (예외 및 상태 관리)
+ * - 'Open-Closed Principle(개방-폐쇄 원칙)'을 준수하여 기존 Block 코드를 수정하지 않고 상태를 확장합니다.
+ * - [data-state], [data-type] 등 속성 선택자를 사용하여 조건부 스타일을 적용합니다.
+ * - Block 레이어보다 높은 우선순위를 가져 상속된 스타일을 안전하게 덮어씁니다.
+ */
+@import "exceptions/states.css" layer(exceptions);
+
+/**
+ * 6. UTILITIES (불변의 도구)
+ * - 가장 높은 명시성을 가진 단일 목적 클래스 (Atomic CSS) 모음입니다.
+ * - 시스템의 예외적인 미세 조정(Text-align, Margin-top 등)을 담당합니다.
+ * - 어떠한 레이어의 스타일도 덮어쓸 수 있도록 보장되어야 합니다.
+ */
+@import "utilities/spacing.css" layer(utilities);
+@import "utilities/text.css" layer(utilities);

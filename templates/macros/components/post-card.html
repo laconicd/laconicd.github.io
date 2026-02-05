@@ -1,0 +1,11 @@
+{% macro post_card(img, badge, title, summary) %}
+<div class="post-card">
+  <img src="{{ img }}" class="image" />
+  <div class="content">
+    <div class="badge">{{ badge }}</div>
+    <h2 class="title">{{ title }}</h2>
+    <p class="summary">{{ summary }}</p>
+    <p class="footer">-></p>
+  </div>
+</div>
+{% endmacro %}

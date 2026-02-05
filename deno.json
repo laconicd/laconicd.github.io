@@ -1,13 +1,11 @@
 {
   "tasks": {
-    "init": "nu tools/setup.nu",
-    "build:scripts": "nu tools/bundle.nu",
-    "sync:assets": "nu tools/sync-assets.nu",
     "zola:serve": "zola serve --interface 0.0.0.0 --base-url $(ipconfig getifaddr en0)",
     "zola:build": "zola build",
-    "test": "deno test -A tests/",
-    "dev": "deno task init && deno task build:scripts && deno task zola:serve",
-    "prd": "deno task init && deno task build:scripts && deno task zola:build"
+    "css:watch": "npx esbuild styles/main.css --bundle --minify --sourcemap --outfile=static/main.css --watch",
+    "css:build": "npx esbuild styles/main.css --bundle --minify --sourcemap --outfile=static/main.css",
+    "dev": { "command": "echo DEV!", "dependencies": ["css:watch", "zola:serve"] },
+    "prd": "deno task css:build && deno task zola:build"
   },
   "compilerOptions": {
     "lib": [
@@ -22,14 +20,15 @@
     ]
   },
   "nodeModulesDir": "auto",
-  "allowScripts": {
-    "allow": [],
-    "deny": ["npm:@parcel/watcher@2.5.1"]
-  },
   "imports": {
     "@fontsource-variable/outfit": "npm:@fontsource-variable/outfit@^5.2.8",
+    "esbuild": "npm:esbuild@^0.27.2",
     "fuse.js": "npm:fuse.js@^7.1.0",
     "prettier-plugin-css-order": "npm:prettier-plugin-css-order@^2.2.0",
     "prettier-plugin-jinja-template": "npm:prettier-plugin-jinja-template@^2.1.0"
+  },
+  "allowScripts": {
+    "allow": [],
+    "deny": ["npm:esbuild@0.27.2", "npm:lightningcss-cli@1.31.1"]
   }
 }

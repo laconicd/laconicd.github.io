@@ -1,0 +1,14 @@
+.navbar {
+  background-color: green;
+  color: white;
+
+  .brand {
+    background-color: black;
+    inline-size: 5rem;
+    color: white;
+  }
+
+  .menu-trigger {
+    background-color: transparent;
+  }
+}

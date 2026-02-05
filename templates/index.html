@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% import "macros/components/post-card.html" as post_card %}
 
 {% block content %}
+  <main>
+    {{ post_card::post_card(img="https://placehold.co/600x400", badge="Badge", title="1111title", summary="summarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummary") }}
+  </main>
 {% endblock content %}

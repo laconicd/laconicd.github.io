@@ -1,0 +1,31 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@scope",
+      "description": "CSS Cascading and Inheritance Level 6에서 도입된 스코프 지정 규칙입니다. 특정 요소 범주 내로 스타일 선언을 제한합니다.",
+      "references": [
+        {
+          "name": "MDN Reference",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@scope"
+        }
+      ]
+    },
+    {
+      "name": "@layer",
+      "description": "CSS 계층을 선언하여 우선순위를 명시적으로 관리합니다.",
+      "references": [
+        {
+          "name": "MDN Reference",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@layer"
+        }
+      ]
+    }
+  ],
+  "pseudoElements": [
+    {
+      "name": ":scope",
+      "description": "현재 스타일 규칙이 적용되는 스코프의 루트 요소를 나타냅니다."
+    }
+  ]
+}

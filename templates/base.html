@@ -1,26 +1,10 @@
-{% import "macros/icons.html" as icons %}
+{% import "macros/icons.html" as icons %} {% import
+"macros/components/navbar.html" as nav %}
 
-<!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% include "partials/head_css.html" %}
-    <title>The Journal | Editorial</title>
-  </head>
-
+<!DOCTYPE html>
+<html lang="ko" data-theme="dim">
+  {% include "partials/head.html" %} {{ nav::navbar(brand="BRAND!") }}
   <body>
-    <nav class="l-blueprint l-between c-navbar">
-      <span>Blog</span>
-      <button popovertarget="my-popover">{{ icons::menu() }}</button>
-    </nav>
-
     {% block content %}{% endblock content %}
-
-    <div id="my-popover" popover>
-      <h3>설정 메뉴</h3>
-      <p>이곳에서 알림 및 프로필 설정을 실시간으로 변경하고 관리할 수 있습니다.</p>
-      <button class="close-btn" popovertarget="my-popover" popovertargetaction="hide">닫기</button>
-    </div>
   </body>
 </html>
