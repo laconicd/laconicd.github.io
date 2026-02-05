@@ -11,12 +11,19 @@
   --space-xxl: 3rem; /* 48px */
 
   /* Font Sizes */
-  --font-size-xs: 0.75rem; /* 12px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-md: 1rem; /* 16px */
-  --font-size-lg: 1.125rem; /* 18px */
-  --font-size-xl: 1.25rem; /* 20px */
-  --font-size-xxl: 1.5rem; /* 24px */
+  --text-base-size: 1rem; /* 16px */
+  --text-scale-ratio: 1.25; /* 4:5 비율 */
+
+  /* 2. 작은 사이즈 (나누기) */
+  /* 16 / 1.25 = 12.8px */
+  --font-size-sm: calc(var(--text-base-size) / var(--text-scale-ratio));
+  /* 12.8 / 1.25 = 10.24px (너무 작을 수 있으니 주의!) */
+  --font-size-xs: calc(var(--font-size-sm) / var(--text-scale-ratio));
+  /* 3. 기본 및 큰 사이즈 (곱하기) */
+  --font-size-md: var(--text-base-size); /* 16px */
+  --font-size-lg: calc(var(--font-size-md) * var(--text-scale-ratio)); /* 20px */
+  --font-size-xl: calc(var(--font-size-lg) * var(--text-scale-ratio)); /* 25px */
+  --font-size-xxl: calc(var(--font-size-xl) * var(--text-scale-ratio)); /* 31.25px */
 
   /* Font Line Heights */
   --font-line-height-xs: 1.2;
@@ -42,6 +49,32 @@
   --font-family-base: ui-sans-serif, system-ui, sans-serif;
   --font-family-heading: ui-sans-serif, system-ui, sans-serif;
   --font-family-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Font Gradient */
+  /* https://www.learnui.design/tools/gradient-generator.html/ */
+  /* 1. 히어로 섹션 전용 그라데이션 */
+  --gradient-hero: linear-gradient(
+    in oklch to bottom,
+    /* 시작 지점: 원본 색상의 불투명도를 100%(1)로 유지하며 50% 지점까지 꽉 채움
+       oklch(from [대상] l c h / [알파값]) 형태
+    */
+    oklch(from var(--color-base-content) l c h / 1) 50%,
+    /* 끝 지점: 원본 색상의 불투명도를 20%(0.2)로 낮춰 자연스럽게 소멸 */
+    oklch(from var(--color-base-content) l c h / 0.2)
+  );
+
+  /* 2. 프라이머리 포인트 그라데이션 */
+  --gradient-primary: linear-gradient(
+    in oklch to right,
+    /* 시작 지점: 기본 프라이머리 색상 */ var(--color-primary),
+    /* 끝 지점: 프라이머리 색상에서 밝기(l)를 0.15만큼 높여 입체감 부여
+       calc(l + 0.15)를 통해 수학적으로 밝은 톤 생성
+    */
+    oklch(from var(--color-primary) calc(l + 0.15) c h)
+  );
+  /* 고급스러운 유리 질감 그라디언트 */
+  /* 180deg는 'to bottom'과 동일하지만, 필요시 135deg 등으로 미세 조정 가능합니다 */
+  --gradient-glass: linear-gradient(in oklch 135deg, oklch(100% 0 0 / 0.2), oklch(100% 0 0 / 0.05));
 
   /* Border Widths */
   --border-width-xs: 1px;

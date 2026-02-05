@@ -45,8 +45,10 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .summary {}
+    .summary {
+    }
 
-    .footer {}
+    .footer {
+    }
   }
 }
