@@ -31,11 +31,7 @@
 
     .title {
       margin-block-end: var(--space-6);
-      background: linear-gradient(
-        to bottom,
-        var(--color-base-content) 50%,
-        oklch(from var(--color-base-content) l c h / 0.2)
-      );
+      background: var(--gradient-hero);
       -webkit-background-clip: text;
       padding: 0.05em 0.1em;
       font-weight: 800;
