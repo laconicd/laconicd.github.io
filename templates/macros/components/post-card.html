@@ -1,11 +1,11 @@
 {% macro post_card(img, badge, title, summary, url) %}
-<a href="{{ url }}" class="post-card">
-  <img src="{{ img }}" class="image" />
-  <div class="content">
-    <div class="badge">{{ badge }}</div>
-    <h2 class="title">{{ title }}</h2>
-    <p class="summary">{{ summary }}</p>
-  </div>
-  <div class="footer">→</div>
-</a>
+  <a href="{{ url }}" class="post-card">
+    <img src="{{ img }}" class="image" />
+    <div class="content">
+      <div class="badge">{{ badge }}</div>
+      <h2 class="title">{{ title }}</h2>
+      <p class="summary">{{ summary }}</p>
+    </div>
+    <div class="action">→</div>
+  </a>
 {% endmacro %}
