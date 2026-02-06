@@ -1,0 +1,25 @@
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-block: var(--space-xl);
+  color: var(--color-base-content);
+  opacity: 0.3;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-widest);
+  text-transform: uppercase;
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  block-size: 1px;
+  background-color: var(--color-base-content);
+}
+
+.separator span {
+  flex-shrink: 0;
+}

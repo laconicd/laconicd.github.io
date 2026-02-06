@@ -1,10 +1,14 @@
-{% import "macros/icons.html" as icons %} {% import
-"macros/components/navbar.html" as nav %}
+{% import "macros/icons.html" as icons %}
+{%
+  import
+  "macros/components/navbar.html" as nav
+%}
 
 <!DOCTYPE html>
 <html lang="ko" data-theme="dim">
-  {% include "partials/head.html" %} {{ nav::navbar(brand="BRAND!") }}
+  <header>{% include "partials/head.html" %} {{ nav::navbar(brand="BRAND!") }}</header>
   <body>
     {% block content %}{% endblock content %}
   </body>
+  <footer></footer>
 </html>

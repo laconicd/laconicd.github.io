@@ -1,0 +1,5 @@
+.wrapper {
+  margin-inline: auto;
+  max-inline-size: 800px;
+  padding-inline: var(--space-md);
+}

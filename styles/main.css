@@ -28,6 +28,7 @@
 @import "composition/stack.css" layer(composition);
 @import "composition/cluster.css" layer(composition);
 @import "composition/grid.css" layer(composition);
+@import "composition/wrapper.css" layer(composition);
 
 /**
  * 4. BLOCKS (도메인 컴포넌트)
@@ -36,9 +37,11 @@
  */
 
 @import "blocks/badge.css" layer(blocks);
+@import "blocks/button.css" layer(blocks);
 @import "blocks/navbar.css" layer(blocks);
 @import "blocks/post-card.css" layer(blocks);
 @import "blocks/hero.css" layer(blocks);
+@import "blocks/separator.css" layer(blocks);
 
 /**
  * 5. EXCEPTIONS (예외 및 상태 관리)

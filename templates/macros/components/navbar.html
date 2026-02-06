@@ -1,12 +1,7 @@
 {% macro navbar(brand) %}
-<header class="c-navbar-container">
-  <nav class="l-blueprint l-between c-navbar">
-    <a href="/" class="brand">{{ brand }}</a>
-    <button
-      class="menu-trigger"
-      popovertarget="my-popover"
-      style="anchor-name: --menu-anchor"
-    >
+  <nav class="navbar">
+    <a href="/" class="brand">The Blog</a>
+    <button class="menu-trigger btn btn-ghost " popovertarget="my-popover" style="anchor-name: --menu-anchor">
       {{ icons::menu() }}
     </button>
   </nav>
@@ -14,13 +9,7 @@
     <div class="c-menu">
       <header class="c-menu__header">
         <h3 class="c-menu__title">EDITIONS</h3>
-        <button
-          class="c-menu__close"
-          popovertarget="my-popover"
-          popovertargetaction="hide"
-        >
-          &times;
-        </button>
+        <button class="c-menu__close" popovertarget="my-popover" popovertargetaction="hide">&times;</button>
       </header>
       <ul class="c-menu__list u-list-blank">
         <li><a href="/" class="c-menu__link">The Front Page</a></li>
@@ -29,5 +18,4 @@
       </ul>
     </div>
   </div>
-</header>
 {% endmacro %}

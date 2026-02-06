@@ -1,11 +1,21 @@
-{% extends "base.html" %} {% import "macros/components/post-card.html" as
-post_card %} {% import "macros/components/hero.html" as hero %} {% block content
+{% extends "base.html" %}
+{%
+  import "macros/components/post-card.html" as
+  post_card
 %}
-<main>
-  {{ hero::hero(title="Hero", subtitle="Subtltle") }} {{
-  post_card::post_card(img="https://placehold.co/600x400", badge="Badge",
-  title="1111title",
-  summary="summarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummary")
-  }}
-</main>
+{% import "macros/components/hero.html" as hero %}
+{% block content %}
+  <main class="wrapper c-stack">
+    {{ hero::hero(title="Exploration.", subtitle="A collection of diverse thoughts, from technical deep dives to the nuances of daily learning.") }}
+    
+    <div class="separator">
+      <span>LATEST RECORDS</span>
+    </div>
+
+    {{
+      post_card::post_card(img="/images/sample.png", badge="JANUARY 16, 2026",
+      title="현대 CSS 마스터 클래스",
+      summary="summarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummary")
+    }}
+  </main>
 {% endblock content %}

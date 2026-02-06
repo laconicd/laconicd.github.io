@@ -1,14 +1,20 @@
-.navbar {
-  background-color: green;
-  color: white;
+@scope (.navbar) {
+  :scope {
+    display: flex;
+    justify-content: space-between;
+    border-block-end: var(--border-width-xs) solid var(--border-color-base);
+    background-color: var(--color-base-100);
+    padding: var(--space-md);
+    color: var(--color-base-content);
+  }
 
   .brand {
-    background-color: black;
-    inline-size: 5rem;
-    color: white;
+    font-weight: var(--font-weight-black);
+    font-size: var(--font-size-xl);
+    letter-spacing: var(--letter-spacing-tighter);
   }
 
   .menu-trigger {
-    background-color: transparent;
+    padding-inline: var(--space-xs) !important;
   }
 }

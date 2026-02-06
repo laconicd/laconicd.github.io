@@ -1,8 +1,5 @@
-/* ==========================================================================
-    Base Design Tokens
-    ========================================================================== */
 :root {
-  /* Space */
+  /* --- 1. Space (Linear Scale) --- */
   --space-xs: 0.25rem; /* 4px */
   --space-sm: 0.5rem; /* 8px */
   --space-md: 1rem; /* 16px */
@@ -10,22 +7,28 @@
   --space-xl: 2rem; /* 32px */
   --space-xxl: 3rem; /* 48px */
 
-  /* Font Sizes */
-  --text-base-size: 1rem; /* 16px */
-  --text-scale-ratio: 1.25; /* 4:5 비율 */
+  /* --- 2. Typography: Sizes (Major Third Scale: 1.25) --- */
+  --text-base-size: 1rem;
+  --text-scale-ratio: 1.25;
 
-  /* 2. 작은 사이즈 (나누기) */
-  /* 16 / 1.25 = 12.8px */
-  --font-size-sm: calc(var(--text-base-size) / var(--text-scale-ratio));
-  /* 12.8 / 1.25 = 10.24px (너무 작을 수 있으니 주의!) */
-  --font-size-xs: calc(var(--font-size-sm) / var(--text-scale-ratio));
-  /* 3. 기본 및 큰 사이즈 (곱하기) */
+  /* Down-Scale */
+  --font-size-sm: calc(var(--text-base-size) / var(--text-scale-ratio)); /* 12.8px */
+  --font-size-xs: calc(var(--font-size-sm) / var(--text-scale-ratio)); /* 10.24px */
+  /* Up-Scale */
   --font-size-md: var(--text-base-size); /* 16px */
   --font-size-lg: calc(var(--font-size-md) * var(--text-scale-ratio)); /* 20px */
   --font-size-xl: calc(var(--font-size-lg) * var(--text-scale-ratio)); /* 25px */
   --font-size-xxl: calc(var(--font-size-xl) * var(--text-scale-ratio)); /* 31.25px */
 
-  /* Font Line Heights */
+  /* --- 3. Typography: Letter Spacing (Tracking) --- */
+  --letter-spacing-tighter: -0.05em; /* 제목용 (매우 좁게) */
+  --letter-spacing-tight: -0.025em; /* 부제목용 (좁게) */
+  --letter-spacing-normal: 0em; /* 기본 본문 */
+  --letter-spacing-wide: 0.025em; /* 작은 글씨 가독성 향상용 */
+  --letter-spacing-wider: 0.05em; /* 캡션이나 강조용 */
+  --letter-spacing-widest: 0.1em; /* 대문자 전용 스타일 */
+
+  /* --- 4. Typography: Line Heights --- */
   --font-line-height-xs: 1.2;
   --font-line-height-sm: 1.4;
   --font-line-height-md: 1.5;
@@ -33,8 +36,8 @@
   --font-line-height-xl: 1.6;
   --font-line-height-xxl: 1.7;
 
-  /* Font Weights */
-  --fw-step: 0; /* 특수한 간격 원할 때 10, 35 등으로 수정 */
+  /* --- 5. Typography: Weights --- */
+  --fw-step: 0;
   --font-weight-thin: calc(100 + var(--fw-step));
   --font-weight-extralight: calc(200 + var(--fw-step));
   --font-weight-light: calc(300 + var(--fw-step));
@@ -45,138 +48,60 @@
   --font-weight-extrabold: calc(800 + var(--fw-step));
   --font-weight-black: calc(900 + var(--fw-step));
 
-  /* Font Families */
+  /* --- 6. Font Families --- */
   --font-family-base: ui-sans-serif, system-ui, sans-serif;
   --font-family-heading: ui-sans-serif, system-ui, sans-serif;
   --font-family-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Font Gradient */
-  /* https://www.learnui.design/tools/gradient-generator.html/ */
-  /* 1. 히어로 섹션 전용 그라데이션 */
+  /* --- 7. Gradients & Glassmorphism (Modern OKLCH) --- */
   --gradient-hero: linear-gradient(
     in oklch to bottom,
-    /* 시작 지점: 원본 색상의 불투명도를 100%(1)로 유지하며 50% 지점까지 꽉 채움
-       oklch(from [대상] l c h / [알파값]) 형태
-    */
     oklch(from var(--color-base-content) l c h / 1) 50%,
-    /* 끝 지점: 원본 색상의 불투명도를 20%(0.2)로 낮춰 자연스럽게 소멸 */
     oklch(from var(--color-base-content) l c h / 0.2)
   );
-
-  /* 2. 프라이머리 포인트 그라데이션 */
   --gradient-primary: linear-gradient(
     in oklch to right,
-    /* 시작 지점: 기본 프라이머리 색상 */ var(--color-primary),
-    /* 끝 지점: 프라이머리 색상에서 밝기(l)를 0.15만큼 높여 입체감 부여
-       calc(l + 0.15)를 통해 수학적으로 밝은 톤 생성
-    */
+    var(--color-primary),
     oklch(from var(--color-primary) calc(l + 0.15) c h)
   );
-  /* 고급스러운 유리 질감 그라디언트 */
-  /* 180deg는 'to bottom'과 동일하지만, 필요시 135deg 등으로 미세 조정 가능합니다 */
   --gradient-glass: linear-gradient(in oklch 135deg, oklch(100% 0 0 / 0.2), oklch(100% 0 0 / 0.05));
 
-  /* Border Widths */
+  /* --- 8. Borders (세분화 단계 적용) --- */
   --border-width-xs: 1px;
   --border-width-sm: 2px;
   --border-width-md: 3px;
   --border-width-lg: 4px;
-  --border-width-xl: 5px;
-  --border-width-xxl: 6px;
 
-  /* Border Radii */
-  --border-radius-sm: 0.125rem; /* 2px */
-  --border-radius-md: 0.25rem; /* 4px */
-  --border-radius-lg: 0.5rem; /* 8px */
+  --border-radius-sm: 0.125rem;
+  --border-radius-md: 0.25rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 1rem;
   --border-radius-full: 9999px;
 
-  /* Generic Radii */
-  --radius-xs: 0.1rem; /* 1.6px */
-  --radius-sm: 0.125rem; /* 2px */
-  --radius-md: 0.25rem; /* 4px */
-  --radius-lg: 0.5rem; /* 8px */
-  --radius-xl: 0.75rem; /* 12px */
-  --radius-xxl: 1rem; /* 16px */
+  /* Semantic Border Colors: content 색상에서 투명도를 추출하여 계층 생성 */
+  --border-color-subtle: oklch(from var(--color-base-content) l c h / 0.05); /* 아주 연한 구분선 */
+  --border-color-base: oklch(from var(--color-base-content) l c h / 0.12); /* 기본 카드/섹션 테두리 */
+  --border-color-muted: oklch(from var(--color-base-content) l c h / 0.25); /* 비활성 또는 중간 강조 */
+  --border-color-strong: oklch(from var(--color-base-content) l c h / 0.45); /* Hover 또는 입력창 경계 */
+  --border-color-contrast: oklch(from var(--color-base-content) l c h / 0.8); /* 명확한 대비가 필요한 선 */
 
-  /* Generic Sizing */
-  --size-xs: 0.75rem;
-  --size-sm: 1rem;
-  --size-md: 1.5rem;
-  --size-lg: 2rem;
-  --size-xl: 3rem;
-  --size-xxl: 4rem;
-
-  /* Shadows */
+  /* --- 9. Shadows & Effects --- */
   --shadow-sm: 0 1px 2px 0 oklch(0% 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px oklch(0% 0 0 / 0.1), 0 2px 4px -1px oklch(0% 0 0 / 0.06);
   --shadow-lg: 0 10px 15px -3px oklch(0% 0 0 / 0.1), 0 4px 6px -2px oklch(0% 0 0 / 0.05);
 
-  /* Transitions */
-  --transition-speed-fast: 150ms;
+  /* --- 10. Motion (Transitions & Animations) --- */
   --transition-speed-normal: 300ms;
-  --transition-speed-slow: 500ms;
   --transition-timing-ease: ease-in-out;
+  --animation-timing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-  /* Animation Durations */
-  --animation-duration-fast: 150ms;
-  --animation-duration-normal: 300ms;
-  --animation-duration-slow: 500ms;
-  --animation-duration-xfast: 75ms; /* New: Extra fast */
-  --animation-duration-xslow: 750ms; /* New: Extra slow */
-
-  /* Animation Timing Functions */
-  --animation-timing-ease: ease-in-out;
-  --animation-timing-linear: linear;
-  --animation-timing-ease-in: ease-in;
-  --animation-timing-ease-out: ease-out;
-  --animation-timing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Example bounce */
-
-  /* Animation Delays */
-  --animation-delay-none: 0s;
-  --animation-delay-xsmall: 50ms;
-  --animation-delay-small: 100ms;
-  --animation-delay-medium: 200ms;
-  --animation-delay-large: 400ms;
-
-  /* Animation Iteration Counts */
-  --animation-iteration-once: 1;
-  --animation-iteration-infinite: infinite;
-
-  /* Animation Directions */
-  --animation-direction-normal: normal;
-  --animation-direction-reverse: reverse;
-  --animation-direction-alternate: alternate;
-  --animation-direction-alternate-reverse: alternate-reverse;
-
-  /* Animation Fill Modes */
-  --animation-fill-mode-none: none;
-  --animation-fill-mode-forwards: forwards;
-  --animation-fill-mode-backwards: backwards;
-  --animation-fill-mode-both: both;
-
-  /* Z-index */
-  --z-index-base: 1;
+  /* --- 11. Z-index & Overlays --- */
   --z-index-dropdown: 1000;
   --z-index-modal: 2000;
-  --z-index-fixed: 3000;
 
-  /* Breakpoints */
-  --breakpoint-xs: 320px;
-  --breakpoint-sm: 375px;
+  /* --- 12. Breakpoints --- */
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1280px;
-  --breakpoint-xxl: 1536px;
-
-  /* Opacity */
-  --opacity-disabled: 0.5;
-  --opacity-hover: 0.8;
-  --opacity-pressed: 0.6;
-
-  /* Focus Rings */
-  --focus-ring-width: 2px;
-  --focus-ring-color: var(--color-primary);
-  --focus-ring-offset: 2px;
 }
 
 /* ==========================================================================
