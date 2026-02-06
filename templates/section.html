@@ -10,7 +10,7 @@
     <span>ARCHIVE</span>
   </div>
 
-  <div class="stack">
+  <div class="grid" style="--min: 450px">
     {% for post in section.pages %}
       {{
         post_card::post_card(
@@ -18,7 +18,9 @@
           badge=post.date | date(format="%B %d, %Y") | upper,
           title=post.title,
           summary=post.description | default(value=post.summary) | default(value=""),
-          url=post.permalink
+          url=post.permalink,
+          variant="vertical",
+          is_featured=loop.first
         )
       }}
     {% endfor %}
