@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import "macros/components/hero.html" as hero %}
+
+{% block content %}
+<article class="wrapper stack">
+  <header class="stack" style="--gap: var(--space-md)">
+    <div class="badge" style="opacity: var(--opacity-60)">{{ page.date | date(format="%B %d, %Y") | upper }}</div>
+    <h1 class="title" style="font-size: var(--font-size-xxl); font-weight: var(--font-weight-extrabold)">{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="subtitle" style="font-size: var(--font-size-lg); opacity: var(--opacity-80)">{{ page.description }}</p>
+    {% endif %}
+  </header>
+
+  <div class="separator"></div>
+
+  <div class="content post-content">
+    {{ page.content | safe }}
+  </div>
+
+  <footer class="separator">
+    <a href="/insights" class="btn btn-ghost">← Back to Archive</a>
+  </footer>
+</article>
+{% endblock content %}
