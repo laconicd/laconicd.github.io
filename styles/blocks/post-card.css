@@ -11,18 +11,18 @@
     padding: var(--space-sm);
   }
 
-  .image {
+  & .image {
     inline-size: 5rem;
     block-size: 5rem;
     object-fit: cover;
   }
 
-  .content {
+  & .content {
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
 
-    .badge {
+    & .badge {
       opacity: var(--opacity-40);
       background-color: transparent;
       padding: 0;
@@ -33,19 +33,19 @@
       text-transform: uppercase;
     }
 
-    .title {
+    & .title {
       overflow: hidden;
       color: var(--color-base-content);
       font-weight: var(--font-weight-extrabold);
       font-size: var(--font-size-lg);
     }
 
-    .summary {
+    & .summary {
       display: none;
     }
   }
 
-  .action {
+  & .action {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -8,7 +8,7 @@
     text-align: center; /* 중앙 정렬 보장 */
   }
 
-  .title {
+  & .title {
     margin-block-end: var(--space-md);
     color: var(--color-base-content);
     font-weight: var(--font-weight-bold);
@@ -17,7 +17,7 @@
     letter-spacing: var(--letter-spacing-tighter);
   }
 
-  .subtitle {
+  & .subtitle {
     /* 1. 읽기 쉬운 너비 제한 (C-레이어 원칙) */
     max-inline-size: 45ch; /* 35rem보다 글자 수 기준(ch)이 가독성에 더 유리함 */
 

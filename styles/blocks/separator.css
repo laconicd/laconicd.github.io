@@ -1,4 +1,4 @@
-.separator {
+@scope (.separator) {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,16 +10,16 @@
   font-size: var(--font-size-xs);
   letter-spacing: var(--letter-spacing-widest);
   text-transform: uppercase;
-}
 
-.separator::before,
-.separator::after {
-  flex: 1;
-  background-color: var(--color-base-content);
-  block-size: var(--border-width-xs);
-  content: "";
-}
+  &::before,
+  &::after {
+    flex: 1;
+    background-color: var(--color-base-content);
+    block-size: var(--border-width-xs);
+    content: "";
+  }
 
-.separator span {
-  flex-shrink: 0;
+  & span {
+    flex-shrink: 0;
+  }
 }

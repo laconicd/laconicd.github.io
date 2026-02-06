@@ -8,13 +8,13 @@
     color: var(--color-base-content);
   }
 
-  .brand {
+  & .brand {
     font-weight: var(--font-weight-black);
     font-size: var(--font-size-xl);
     letter-spacing: var(--letter-spacing-tighter);
   }
 
-  .menu-trigger {
+  & .menu-trigger {
     padding-inline: var(--space-xs) !important;
   }
 }
