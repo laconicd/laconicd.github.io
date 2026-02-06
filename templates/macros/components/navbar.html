@@ -1,6 +1,6 @@
 {% macro navbar(brand) %}
   <nav class="navbar">
-    <a href="/" class="brand">The Blog</a>
+    <a href="/" class="brand">{{ brand }}</a>
     <button class="menu-trigger btn btn-ghost " popovertarget="my-popover" style="anchor-name: --menu-anchor">
       {{ icons::menu() }}
     </button>
