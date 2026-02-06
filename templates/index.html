@@ -12,10 +12,17 @@
       <span>LATEST RECORDS</span>
     </div>
 
-    {{
-      post_card::post_card(img="/images/sample.png", badge="JANUARY 16, 2026",
-      title="현대 CSS 마스터 클래스",
-      summary="summarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummarysummary")
-    }}
+    {% set posts_section = get_section(path="posts/_index.md") %}
+    {% for post in posts_section.pages %}
+      {{
+        post_card::post_card(
+          img="/images/sample.png",
+          badge=post.date | date(format="%B %d, %Y") | upper,
+          title=post.title,
+          summary=post.description | default(value=post.summary) | default(value="No description provided."),
+          url=post.permalink
+        )
+      }}
+    {% endfor %}
   </main>
 {% endblock content %}

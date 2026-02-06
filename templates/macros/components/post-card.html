@@ -1,5 +1,5 @@
-{% macro post_card(img, badge, title, summary) %}
-<div class="post-card">
+{% macro post_card(img, badge, title, summary, url) %}
+<a href="{{ url }}" class="post-card">
   <img src="{{ img }}" class="image" />
   <div class="content">
     <div class="badge">{{ badge }}</div>
@@ -7,5 +7,5 @@
     <p class="summary">{{ summary }}</p>
   </div>
   <div class="footer">→</div>
-</div>
+</a>
 {% endmacro %}
