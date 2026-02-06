@@ -4,36 +4,27 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-block: var(--space-xxl); /* 히어로 영역 위아래 여백 */
-    text-align: center; /* 중앙 정렬 보장 */
+    padding-block: var(--space-xxl);
+    text-align: center;
   }
 
   & .title {
     margin-block-end: var(--space-md);
     color: var(--color-base-content);
     font-weight: var(--font-weight-bold);
-    font-size: clamp(2.5rem, 8vw, 4.5rem); /* 반응형 크기 조절 */
+    font-size: clamp(2.5rem, 8dvi, 4.5rem);
     line-height: 1.1;
     letter-spacing: var(--letter-spacing-tighter);
   }
 
   & .subtitle {
-    /* 1. 읽기 쉬운 너비 제한 (C-레이어 원칙) */
-    max-inline-size: 45ch; /* 35rem보다 글자 수 기준(ch)이 가독성에 더 유리함 */
-
-    /* 2. 컬러: 너무 흐리지 않게 조정 (접근성 고려) */
+    opacity: var(--opacity-60);
     color: oklch(from var(--color-base-content) l c h / 0.65);
+    font-style: italic;
     font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-lg); /* clamp 대신 토큰 기반으로 가독성 확보 */
-    line-height: var(--font-line-height-lg); /* 1.6: 본문보다 조금 더 넉넉하게 */
-
-    /* 3. 타이포그래피: 이탤릭을 제거하거나 아주 가볍게 */
+    font-size: var(--font-size-lg);
+    line-height: var(--font-line-height-lg);
     font-family: var(--font-family-base);
-
-    /* 4. 자간: 본문용이므로 너무 좁지 않게 */
     letter-spacing: var(--letter-spacing-tight);
-
-    /* 스크린샷 느낌을 내기 위한 미세 조정 */
-    text-wrap: balance; /* 2026 표준: 줄바꿈을 균형 있게 자동 조절 */
   }
 }
