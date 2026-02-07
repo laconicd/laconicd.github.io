@@ -10,11 +10,27 @@ post_card %} {% import "macros/components/hero.html" as hero %} {% block content
     <span>LATEST RECORDS</span>
   </div>
 
-  {% set posts_section = get_section(path="insights/_index.md") %} {% for post
-  in posts_section.pages | slice(end=5) %} {{ post_card::post_card(
-  img=post.extra.image | default(value="/images/sample.png"), badge=post.date |
-  date(format="%B %d, %Y") | upper, title=post.title, summary=post.description |
-  default(value=post.summary) | default(value=""), url=post.permalink,
-  id=post.slug, reading_time=post.reading_time ) }} {% endfor %}
+  {% set posts_section = get_section(path="insights/_index.md") %} 
+  {% for post in posts_section.pages | slice(end=5) %} 
+    {% if post.extra.image %}
+      {% if post.extra.image is starting_with("http") or post.extra.image is starting_with("/") %}
+        {% set post_img = post.extra.image %}
+      {% else %}
+        {% set post_img = post.permalink ~ post.extra.image %}
+      {% endif %}
+    {% else %}
+      {% set post_img = "/images/sample.png" %}
+    {% endif %}
+
+    {{ post_card::post_card(
+      img=post_img, 
+      badge=post.date | date(format="%B %d, %Y") | upper, 
+      title=post.title, 
+      summary=post.description | default(value=post.summary) | default(value=""), 
+      url=post.permalink,
+      id=post.slug, 
+      reading_time=post.reading_time 
+    ) }} 
+  {% endfor %}
 </main>
 {% endblock content %}

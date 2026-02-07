@@ -10,12 +10,28 @@ post_card %} {% import "macros/components/hero.html" as hero %} {% block content
   </div>
 
   <div class="grid" style="--min: 350px">
-    {% for post in section.pages %} {{ post_card::post_card(
-    img=post.extra.image | default(value="/images/sample.png"), badge=post.date
-    | date(format="%B %d, %Y") | upper, title=post.title,
-    summary=post.description | default(value=post.summary) | default(value=""),
-    url=post.permalink, id=post.slug, reading_time=post.reading_time,
-    is_featured=loop.first ) }} {% endfor %}
+    {% for post in section.pages %} 
+      {% if post.extra.image %}
+        {% if post.extra.image is starting_with("http") or post.extra.image is starting_with("/") %}
+          {% set post_img = post.extra.image %}
+        {% else %}
+          {% set post_img = post.permalink ~ post.extra.image %}
+        {% endif %}
+      {% else %}
+        {% set post_img = "/images/sample.png" %}
+      {% endif %}
+
+      {{ post_card::post_card(
+        img=post_img, 
+        badge=post.date | date(format="%B %d, %Y") | upper, 
+        title=post.title,
+        summary=post.description | default(value=post.summary) | default(value=""),
+        url=post.permalink, 
+        id=post.slug, 
+        reading_time=post.reading_time,
+        is_featured=loop.first 
+      ) }} 
+    {% endfor %}
   </div>
 </main>
 {% endblock content %}

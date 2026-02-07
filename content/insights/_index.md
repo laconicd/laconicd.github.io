@@ -1,7 +1,7 @@
 +++
 title = "Insights"
-render = true
+sort_by = "date"
 template = "section.html"
 page_template = "page.html"
-sort_by = "date"
+insert_anchor_links = "right"
 +++
