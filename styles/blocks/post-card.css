@@ -2,22 +2,14 @@
   :scope {
     display: grid;
     transition: all var(--transition-speed-normal) var(--transition-timing-ease);
-    box-shadow: var(--shadow-sm);
-    border: var(--border-width-xs) solid var(--border-color-base);
-    background-color: oklch(from var(--color-base-200) l c h / var(--opacity-50));
+    text-decoration: none;
     overflow: hidden;
     color: var(--color-base-content);
-    text-decoration: none;
-
-    &:hover {
-      transform: translateY(-2px);
-      background-color: var(--color-base-200);
-    }
   }
 
   & .image-wrapper {
-    display: flex;
     position: relative;
+    display: flex;
     overflow: hidden;
   }
 
@@ -26,10 +18,6 @@
     inline-size: 100%;
     block-size: 100%;
     object-fit: cover;
-  }
-
-  &:hover .image {
-    transform: scale(1.05);
   }
 
   & .content {
@@ -43,81 +31,143 @@
     display: none;
   }
 
-  /* --- Context: List Layout (within .stack) --- */
+  /* --- 1. Context: List Layout (within .stack) --- */
   .stack > & {
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: var(--space-md);
-    border-radius: var(--border-radius-xxl);
-    padding: var(--space-sm);
-
-    @media (min-width: 768px) {
-      gap: var(--space-xl);
-      padding: var(--space-md);
-
-      & .image-wrapper {
-        inline-size: 8rem;
-        block-size: 8rem;
-      }
-
-      & .content .title {
-        font-size: var(--font-size-xl);
-      }
-    }
+    padding-block: var(--space-lg);
+    border-block-end: var(--border-width-xs) solid var(--border-color-subtle);
+    background-color: transparent;
 
     & .image-wrapper {
-      border-radius: var(--border-radius-lg);
-      inline-size: 5rem;
-      block-size: 5rem;
+      inline-size: 6rem;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--border-radius-md);
     }
 
     & .content {
       gap: var(--space-xs);
+      padding-inline-start: var(--space-xs);
 
       & .badge-date {
-        opacity: var(--opacity-40);
-        font-weight: var(--font-weight-bold);
-        font-size: var(--font-size-xs);
-        letter-spacing: var(--letter-spacing-wider);
+        opacity: var(--opacity-50);
+        font-weight: var(--font-weight-black);
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
         text-transform: uppercase;
       }
 
       & .title {
         font-weight: var(--font-weight-extrabold);
         font-size: var(--font-size-lg);
+        line-height: 1.2;
       }
 
       & .summary {
-        display: none;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        opacity: var(--opacity-40);
+        font-size: var(--font-size-sm);
+        line-height: var(--font-line-height-md);
       }
     }
 
     & .footer {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+
+      & .action-text {
+        display: none; /* 가로형에서는 텍스트 숨김 (깔끔하게) */
+      }
+
       & .arrow-circle {
         display: flex;
         justify-content: center;
         align-items: center;
-        opacity: var(--opacity-80);
+        opacity: var(--opacity-20);
+        border: 1px solid var(--color-base-content);
         border-radius: var(--border-radius-full);
-        background-color: var(--color-base-300);
-        inline-size: 3rem;
-        block-size: 3rem;
-        font-size: var(--font-size-lg);
+        inline-size: 2.5rem;
+        block-size: 2.5rem;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+      }
+    }
+
+    &:hover {
+      background-color: oklch(from var(--color-base-content) l c h / 0.02);
+      padding-inline: var(--space-sm);
+      margin-inline: calc(var(--space-sm) * -1);
+      border-radius: var(--border-radius-lg);
+
+      & .arrow-circle {
+        opacity: 1;
+        background-color: var(--color-neutral);
+        color: var(--color-neutral-content);
+        border-color: var(--color-neutral);
+        transform: translateX(5px);
+      }
+    }
+
+    /* Desktop Adjustments for List */
+    @media (min-width: 768px) {
+      grid-template-columns: auto 1fr auto;
+      gap: var(--space-xl);
+      padding-block: var(--space-xl);
+
+      & .image-wrapper {
+        inline-size: 14rem;
+        aspect-ratio: 3 / 2;
+      }
+
+      & .content {
+        align-self: center; /* 텍스트 묶음을 세로 중앙 정렬 */
+        & .title {
+          font-size: 2rem;
+        }
+        & .summary {
+          -webkit-line-clamp: 3;
+          font-size: var(--font-size-md);
+          opacity: var(--opacity-50);
+        }
+      }
+
+      & .footer {
+        & .action-text {
+          display: inline-block;
+          font-weight: var(--font-weight-black);
+          font-size: 0.8rem;
+          letter-spacing: 0.1em;
+          opacity: 0;
+          transform: translateX(10px);
+          transition: all 0.3s ease;
+        }
+      }
+
+      &:hover .footer .action-text {
+        opacity: 0.4;
+        transform: translateX(0);
       }
     }
   }
 
-  /* --- Context: Grid Layout (within .grid) --- */
+  /* --- 2. Context: Grid Layout (within .grid) --- */
   .grid > & {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     border-radius: 2.5rem;
     background-color: var(--color-base-200);
+    box-shadow: var(--shadow-sm);
+    border: var(--border-width-xs) solid var(--border-color-base);
 
     & .image-wrapper {
-      aspect-ratio: 16 / 11;
       inline-size: 100%;
+      aspect-ratio: 16 / 11;
     }
 
     & .fab {
@@ -128,22 +178,18 @@
       justify-content: center;
       align-items: center;
       z-index: 1;
-      transition: transform 0.3s var(--animation-timing-bounce);
       box-shadow: var(--shadow-lg);
       border-radius: var(--border-radius-full);
       background-color: var(--color-neutral);
       inline-size: 4.5rem;
       block-size: 4.5rem;
       color: var(--color-neutral-content);
-
-      &:hover {
-        transform: scale(1.1) rotate(10deg);
-      }
+      transition: transform 0.3s var(--animation-timing-bounce);
     }
 
     & .content {
-      gap: 1.5rem;
       padding: 2.5rem;
+      gap: 1.5rem;
 
       & .badge-date {
         opacity: var(--opacity-40);
@@ -154,8 +200,8 @@
       }
 
       & .title {
-        font-weight: var(--font-weight-extrabold);
         font-size: 2.5rem;
+        font-weight: var(--font-weight-extrabold);
         line-height: 1.1;
         letter-spacing: var(--letter-spacing-tight);
       }
@@ -163,9 +209,9 @@
       & .summary {
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        opacity: var(--opacity-50);
         -webkit-line-clamp: 4;
         overflow: hidden;
+        opacity: var(--opacity-50);
         font-size: 1.25rem;
         line-height: 1.6;
       }
@@ -174,8 +220,9 @@
     & .footer {
       display: flex;
       align-items: center;
+      margin-top: auto;
+      padding: 0 2.5rem 2.5rem 2.5rem;
       gap: 1rem;
-      margin-top: 1rem;
 
       & .action-text {
         display: inline;
@@ -189,20 +236,24 @@
         justify-content: center;
         align-items: center;
         opacity: var(--opacity-20);
-        transition: all 0.3s ease;
         border: 1px solid var(--color-base-content);
         border-radius: var(--border-radius-full);
         inline-size: 3rem;
         block-size: 3rem;
         font-size: 1.5rem;
+        transition: all 0.3s ease;
       }
     }
 
-    &:hover .arrow-circle {
-      opacity: 1;
-      border-color: var(--color-neutral);
-      background-color: var(--color-neutral);
-      color: var(--color-neutral-content);
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      & .arrow-circle {
+        opacity: 1;
+        background-color: var(--color-neutral);
+        color: var(--color-neutral-content);
+        border-color: var(--color-neutral);
+      }
     }
   }
 
@@ -210,36 +261,19 @@
   &.-featured {
     & .badge-featured {
       display: block;
-      border-radius: 1rem;
       background-color: var(--color-neutral);
       padding-inline: 1.25rem;
       padding-block: 0.5rem;
-      inline-size: fit-content;
       color: var(--color-neutral-content);
       font-weight: var(--font-weight-black);
       font-size: 0.75rem;
       letter-spacing: 0.15em;
+      border-radius: 1rem;
+      inline-size: fit-content;
+      margin-block-end: 1rem;
     }
     & .badge-date {
       display: none;
-    }
-  }
-
-  /* --- Responsive: Mobile-First adjust for Grid --- */
-  @media (max-width: 767px) {
-    .grid > & {
-      border-radius: 2rem;
-      & .content {
-        padding: 1.5rem;
-        & .title {
-          font-size: 1.75rem;
-        }
-      }
-      & .fab {
-        right: 1.5rem;
-        inline-size: 3.5rem;
-        block-size: 3.5rem;
-      }
     }
   }
 }
