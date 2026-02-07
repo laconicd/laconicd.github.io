@@ -41,6 +41,10 @@
       <div class="inner">{{ icons::share(size=5) }}</div>
     </button>
   </div>
+
+  <div id="toast" class="toast">
+    <span>Link copied to clipboard!</span>
+  </div>
 </div>
 
 <script>
@@ -52,15 +56,52 @@
     localStorage.setItem("theme", newTheme);
   }
 
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    if (message) toast.querySelector("span").textContent = message;
+    toast.classList.add("is-visible");
+    setTimeout(() => {
+      toast.classList.remove("is-visible");
+    }, 3000);
+  }
+
+  async function copyToClipboard(text) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback for non-secure contexts (HTTP)
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      }
+      showToast();
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
+  }
+
   function sharePage() {
-    if (navigator.share) {
-      navigator.share({
-        title: document.title,
-        url: window.location.href,
-      }).catch(console.error);
+    const shareData = {
+      title: document.title,
+      url: window.location.href,
+    };
+
+    if (
+      navigator.share && navigator.canShare && navigator.canShare(shareData)
+    ) {
+      navigator.share(shareData).catch((err) => {
+        if (err.name !== "AbortError") console.error(err);
+      });
     } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert("Link copied to clipboard!");
+      copyToClipboard(shareData.url);
     }
   }
 

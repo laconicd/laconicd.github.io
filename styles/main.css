@@ -45,6 +45,7 @@
 @import "blocks/article.css" layer(blocks);
 @import "blocks/separator.css" layer(blocks);
 @import "blocks/speed-dial.css" layer(blocks);
+@import "blocks/toast.css" layer(blocks);
 @import "blocks/taxonomy.css" layer(blocks);
 
 /**
