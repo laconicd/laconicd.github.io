@@ -12,7 +12,9 @@
     <main>
       {% block content %}{% endblock content %}
     </main>
-    <footer id="site-footer"></footer>
+    <footer id="site-footer">
+      {% include "partials/footer.html" %}
+    </footer>
     {{ sd::speed_dial() }}
   </body>
 </html>
