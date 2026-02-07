@@ -19,6 +19,8 @@
             title=post.title,
             summary=post.description | default(value=post.summary) | default(value=""),
             url=post.permalink,
+            id=post.slug,
+            reading_time=post.reading_time,
             is_featured=loop.first
           )
         }}

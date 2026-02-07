@@ -10,8 +10,20 @@
       <span>A-Z INDEX</span>
     </div>
 
-    <div class="stack" style="--gap: var(--space-xl)">
+    <!-- Quick Jump Bar -->
+    <nav class="cluster jump-bar" style="--gap: var(--space-sm); position: sticky; top: 70px; z-index: 10; background: var(--color-base-100); padding-block: var(--space-sm); border-bottom: 1px solid var(--border-color-subtle); backdrop-filter: blur(10px);">
       {% set sorted_terms = terms | sort(attribute="name") %}
+      {% set_global seen_letters = "" %}
+      {% for term in sorted_terms %}
+        {% set current_letter = term.name | truncate(length=1, end="") | upper %}
+        {% if current_letter not in seen_letters %}
+          <a href="#letter-{{ current_letter }}" class="btn btn-ghost" style="font-size: var(--font-size-xs); padding: var(--space-xs) var(--space-sm);">{{ current_letter }}</a>
+          {% set_global seen_letters = seen_letters ~ current_letter %}
+        {% endif %}
+      {% endfor %}
+    </nav>
+
+    <div class="stack" style="--gap: var(--space-xl)">
       {% set_global last_letter = "" %}
       
       <div class="stack" style="--gap: var(--space-xl)">
@@ -21,7 +33,7 @@
             {% if last_letter != "" %}
               </div></div> {# Close previous group #}
             {% endif %}
-            <div class="index-group">
+            <div class="index-group" id="letter-{{ current_letter }}" style="scroll-margin-top: 130px;">
               <span class="group-letter">{{ current_letter }}</span>
               <div class="terms-cluster">
             {% set_global last_letter = current_letter %}
