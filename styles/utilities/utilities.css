@@ -78,12 +78,6 @@
     text-transform: uppercase;
   }
 
-  .u-list-blank {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
   .u-stretched-link::after {
     position: absolute;
     z-index: 1;

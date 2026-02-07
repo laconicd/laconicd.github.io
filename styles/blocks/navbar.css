@@ -2,10 +2,10 @@
   :scope {
     position: sticky;
     top: 0;
-    z-index: var(--z-index-dropdown);
+    /* z-index: var(--z-index-dropdown); */
     backdrop-filter: blur(10px);
     border-block-end: var(--border-width-xs) solid var(--border-color-base);
-    background-color: oklch(from var(--color-base-100) l c h / 0.8);
+    background-color: oklch(from var(--color-base-100) l c h / var(--opacity-80));
     color: var(--color-base-content);
   }
 
@@ -63,19 +63,19 @@
 /* --- Popover Menu Styling --- */
 
 [popover] {
-  inset: 0 0 0 auto;
-  margin: 0;
-  border: none;
-  padding: 0;
-  inline-size: min(85vw, 400px);
-  block-size: 100dvh;
-  background: transparent;
-  overflow: visible;
+  translate: 100% 0;
   transition:
     display var(--transition-speed-normal) allow-discrete,
     overlay var(--transition-speed-normal) allow-discrete,
     translate var(--transition-speed-normal) var(--transition-timing-ease);
-  translate: 100% 0;
+  margin: 0;
+  inset: 0 0 0 auto;
+  border: none;
+  background: transparent;
+  padding: 0;
+  inline-size: min(85vw, 400px);
+  block-size: 100dvh;
+  overflow: visible;
 
   &:popover-open {
     translate: 0 0;
@@ -86,22 +86,22 @@
   }
 
   &::backdrop {
-    background-color: oklch(0% 0 0 / 0);
     backdrop-filter: blur(0px);
     transition:
       display var(--transition-speed-normal) allow-discrete,
       overlay var(--transition-speed-normal) allow-discrete,
       background-color var(--transition-speed-normal),
       backdrop-filter var(--transition-speed-normal);
+    background-color: oklch(0% 0 0 / 0);
   }
 
   &:popover-open::backdrop {
-    background-color: oklch(0% 0 0 / 0.4);
     backdrop-filter: blur(4px);
+    background-color: oklch(0% 0 0 / 0.4);
 
     @starting-style {
-      background-color: oklch(0% 0 0 / 0);
       backdrop-filter: blur(0px);
+      background-color: oklch(0% 0 0 / 0);
     }
   }
 }
@@ -110,12 +110,12 @@
   :scope {
     display: flex;
     flex-direction: column;
+    backdrop-filter: blur(20px);
     box-shadow: var(--shadow-lg);
     background-color: oklch(from var(--color-base-100) l c h / 0.98);
-    backdrop-filter: blur(20px);
+    padding: var(--space-xl);
     inline-size: 100%;
     block-size: 100%;
-    padding: var(--space-xl);
   }
 
   & .header {
@@ -136,14 +136,14 @@
   }
 
   & .close-btn {
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: var(--color-base-content);
     opacity: 0.6;
     transition:
       transform 0.3s ease,
       opacity 0.3s ease;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: var(--color-base-content);
 
     &:hover {
       transform: rotate(90deg);
@@ -165,10 +165,10 @@
     display: flex;
     align-items: baseline;
     gap: var(--space-md);
-    padding-block: var(--space-sm);
-    border-block-end: 1px solid var(--border-color-subtle);
-    text-decoration: none;
     transition: all 0.3s ease;
+    border-block-end: 1px solid var(--border-color-subtle);
+    padding-block: var(--space-sm);
+    text-decoration: none;
 
     & .num {
       opacity: 0.2;
@@ -178,16 +178,16 @@
     }
 
     & .text {
+      transition: transform 0.3s ease;
       font-weight: var(--font-weight-black);
       font-size: var(--font-size-xl);
       letter-spacing: var(--letter-spacing-tighter);
-      transition: transform 0.3s ease;
     }
 
     &:hover {
+      border-block-end-color: var(--color-primary);
       padding-inline-start: var(--space-sm);
       color: var(--color-primary);
-      border-block-end-color: var(--color-primary);
 
       & .text {
         transform: translateX(5px);
@@ -202,8 +202,8 @@
 
   & .footer {
     margin-top: auto;
-    padding-top: var(--space-xl);
     border-top: var(--border-width-xs) solid var(--border-color-base);
+    padding-top: var(--space-xl);
 
     & .social-links {
       display: flex;
