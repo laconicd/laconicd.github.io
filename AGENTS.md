@@ -143,6 +143,10 @@ execute them.
 - **View Transitions**:
   - Global activation is handled via `@view-transition { navigation: auto; }` in `styles/main.css`.
   - Use unique IDs (e.g., `#site-header`, `#site-footer`) for global elements to avoid `view-transition-name` collisions with page-specific headers.
+- **Speed Dial**:
+  - Implemented as a macro in `templates/macros/components/speed-dial.html`.
+  - Uses the Popover API for toggling and CSS `@scope` for fan-like animation.
+  - Features: Theme toggle, Search, Scroll to Top, RSS, and Share.
 - **Approach**: All CSS should adhere to the
   [CUBE CSS methodology](docs/css-convention.md#1-cube-css-방법론-준수) for
   maintainability and scalability. For detailed styling guidelines, including

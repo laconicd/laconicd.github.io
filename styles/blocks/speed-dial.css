@@ -1,0 +1,115 @@
+@layer blocks;
+
+@scope (.speed-dial) {
+  :scope {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: var(--z-index-modal);
+  }
+
+  & .trigger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    border: none;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-neutral);
+    inline-size: 3.5rem;
+    block-size: 3.5rem;
+    color: var(--color-neutral-content);
+    transition: transform 0.3s var(--animation-timing-bounce);
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* Rotate icon when popover is open */
+.speed-dial:has(:popover-open) .icon-plus {
+  transform: rotate(45deg);
+}
+
+/* Popover Menu Container */
+#sd-menu {
+  position: fixed;
+  inset: auto 2.25rem 2.25rem auto; /* Adjusted to align center with trigger */
+  margin: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  inline-size: 3rem;
+  block-size: 3rem;
+  overflow: visible;
+}
+
+#sd-menu::backdrop {
+  background: transparent;
+}
+
+@scope (.dial) {
+  :scope {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & .item {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    transition:
+      transform 0.5s var(--animation-timing-bounce),
+      opacity 0.3s ease,
+      visibility 0.3s allow-discrete;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    border: none;
+    border-radius: var(--border-radius-full);
+    background-color: oklch(from var(--color-base-100) l c h / 0.8);
+    backdrop-filter: blur(10px);
+    inline-size: 3rem;
+    block-size: 3rem;
+    color: var(--color-base-content);
+
+    &:hover {
+      background-color: var(--color-neutral);
+      color: var(--color-neutral-content);
+    }
+  }
+
+  /* Fan Positions when open */
+  :scope:popover-open .item {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* 
+     Fan calculation (Radius R = 6rem)
+     Expanding from bottom-right towards top-left.
+     Angles (approx): 0 (Top), 22.5, 45, 67.5, 90 (Left)
+  */
+  :scope:popover-open .item:nth-child(1) { transform: translate(0, -6rem); transition-delay: 0.05s; }
+  :scope:popover-open .item:nth-child(2) { transform: translate(-2.3rem, -5.5rem); transition-delay: 0.1s; }
+  :scope:popover-open .item:nth-child(3) { transform: translate(-4.2rem, -4.2rem); transition-delay: 0.15s; }
+  :scope:popover-open .item:nth-child(4) { transform: translate(-5.5rem, -2.3rem); transition-delay: 0.2s; }
+  :scope:popover-open .item:nth-child(5) { transform: translate(-6rem, 0); transition-delay: 0.25s; }
+}
+
+/* Theme Toggle icons visibility */
+.theme-btn {
+  & .sun-icon { display: block; }
+  & .moon-icon { display: none; }
+}
+
+[data-theme="dim"] .theme-btn {
+  & .sun-icon { display: none; }
+  & .moon-icon { display: block; }
+}
