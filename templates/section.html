@@ -3,26 +3,26 @@
 {% import "macros/components/hero.html" as hero %}
 
 {% block content %}
-<main class="wrapper stack">
-  {{ hero::hero(title=section.title, subtitle=section.description | default(value="Archive of all records and thoughts.")) }}
-  
-  <div class="separator">
-    <span>ARCHIVE</span>
-  </div>
+  <main class="wrapper stack">
+    {{ hero::hero(title=section.title, subtitle=section.description | default(value="Archive of all records and thoughts.")) }}
 
-  <div class="grid" style="--min: 350px">
-    {% for post in section.pages %}
-      {{
-        post_card::post_card(
-          img=post.extra.image | default(value="/images/sample.png"),
-          badge=post.date | date(format="%B %d, %Y") | upper,
-          title=post.title,
-          summary=post.description | default(value=post.summary) | default(value=""),
-          url=post.permalink,
-          is_featured=loop.first
-        )
-      }}
-    {% endfor %}
-  </div>
-</main>
+    <div class="separator">
+      <span>ARCHIVE</span>
+    </div>
+
+    <div class="grid" style="--min: 350px">
+      {% for post in section.pages %}
+        {{
+          post_card::post_card(
+            img=post.extra.image | default(value="/images/sample.png"),
+            badge=post.date | date(format="%B %d, %Y") | upper,
+            title=post.title,
+            summary=post.description | default(value=post.summary) | default(value=""),
+            url=post.permalink,
+            is_featured=loop.first
+          )
+        }}
+      {% endfor %}
+    </div>
+  </main>
 {% endblock content %}

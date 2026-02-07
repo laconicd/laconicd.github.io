@@ -9,7 +9,7 @@
     color: var(--color-base-content);
   }
 
-  & .navbar__inner {
+  & .inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,12 +24,12 @@
     color: inherit;
   }
 
-  & .navbar__menu {
+  & .menu {
     display: none; /* Mobile first */
     gap: var(--space-lg);
   }
 
-  & .navbar__link {
+  & .link {
     text-decoration: none;
     color: inherit;
     font-weight: var(--font-weight-bold);
@@ -50,7 +50,7 @@
 
   /* Desktop View */
   @media (min-width: 768px) {
-    & .navbar__menu {
+    & .menu {
       display: flex;
     }
 
