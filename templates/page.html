@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% import "macros/components/hero.html" as hero %}
+
+{% block content %}
+<article class="wrapper stack" style="--gap: var(--space-xl)">
+  <header class="article-header">
+    <div class="meta">
+      <div class="badge" style="opacity: var(--opacity-60)">{{ page.date | date(format="%B %d, %Y") | upper }}</div>
+      <div class="reading-time">{{ page.reading_time }} MIN READ</div>
+    </div>
+    
+    <h1 class="title" style="view-transition-name: title-{{ page.slug }}">{{ page.title }}</h1>
+    
+    {% if page.description %}
+      <p class="subtitle">{{ page.description }}</p>
+    {% endif %}
+
+    {% if page.extra.image %}
+      <div class="featured-image-container">
+        <img src="{{ page.extra.image }}" style="view-transition-name: img-{{ page.slug }}" />
+      </div>
+    {% endif %}
+
+    <div class="cluster" style="--gap: var(--space-xs); margin-block-start: var(--space-sm);">
+      {% if page.taxonomies.themes %}
+        {% for theme in page.taxonomies.themes %}
+          <a href="{{ get_taxonomy_url(kind="themes", name=theme) }}" class="badge" style="text-decoration: none; font-size: var(--font-size-xs);">{{ theme }}</a>
+        {% endfor %}
+      {% endif %}
+      {% if page.taxonomies.lexicon %}
+        {% for term in page.taxonomies.lexicon %}
+          <a href="{{ get_taxonomy_url(kind="lexicon", name=term) }}" class="badge btn-ghost" style="text-decoration: none; font-size: var(--font-size-xs); border: 1px solid var(--border-color-subtle);">#{{ term }}</a>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="separator"></div>
+
+  <div class="content post-content" style="max-inline-size: 75ch; margin-inline: auto;">
+    {{ page.content | safe }}
+  </div>
+
+  <footer class="separator">
+    <a href="/insights" class="btn btn-ghost">← Back to Archive</a>
+  </footer>
+</article>
+{% endblock content %}

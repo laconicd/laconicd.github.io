@@ -1,0 +1,79 @@
+{% macro navbar(brand) %}
+<nav class="navbar">
+  <div class="inner wrapper">
+    <a href="/" class="brand">{{ brand }}</a>
+
+    <!-- Shared Menu Trigger -->
+    <button class="menu-trigger btn btn-ghost" popovertarget="index-popover">
+      <span class="trigger-text">INDEX</span>
+      <span class="trigger-icon">{{ icons::menu() }}</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Unified Index Popover -->
+<div id="index-popover" popover>
+  <div class="popover-menu">
+    <header class="header">
+      <h3 class="title">THE ARCHIVE INDEX</h3>
+      <button
+        class="close-btn"
+        popovertarget="index-popover"
+        popovertargetaction="hide"
+      >
+        {{ icons::close(size=6) }}
+      </button>
+    </header>
+
+    <nav class="body">
+      <ul class="list u-list-blank">
+        <li>
+          <a href="/" class="link">
+            <span class="num">01</span>
+            <span class="text">The Front Page</span>
+          </a>
+        </li>
+        <li>
+          <a href="/insights" class="link">
+            <span class="num">02</span>
+            <span class="text">Insights</span>
+          </a>
+        </li>
+        <li>
+          <a href="/themes" class="link">
+            <span class="num">03</span>
+            <span class="text">Themes</span>
+          </a>
+        </li>
+        <li>
+          <a href="/lexicon" class="link">
+            <span class="num">04</span>
+            <span class="text">Lexicon</span>
+          </a>
+        </li>
+        <li>
+          <a href="/about" class="link">
+            <span class="num">05</span>
+            <span class="text">About</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <footer class="footer">
+      <div class="social-links">
+        <a href="https://github.com/laconicd" target="_blank" rel="noopener"
+        >{{ icons::github(size=5) }}</a>
+        <a href="https://twitter.com/laconicd" target="_blank" rel="noopener"
+        >{{ icons::twitter(size=5) }}</a>
+        <a
+          href="https://linkedin.com/in/laconicd"
+          target="_blank"
+          rel="noopener"
+        >{{ icons::linkedin(size=5) }}</a>
+      </div>
+      <p class="copyright">&copy; 2026 The Mono Archive</p>
+    </footer>
+  </div>
+</div>
+{% endmacro %}

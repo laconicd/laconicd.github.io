@@ -1,0 +1,95 @@
+@layer blocks;
+
+@scope (#site-footer) {
+  :scope {
+    margin-top: var(--space-xxl);
+    border-top: var(--border-width-xs) solid var(--border-color-base);
+    background-color: var(--color-base-100);
+    padding-block: var(--space-xxl) var(--space-xl);
+    color: var(--color-base-content);
+  }
+
+  & .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xxl);
+  }
+
+  @media (min-width: 768px) {
+    & .footer-inner {
+      grid-template-columns: 1.5fr 1fr;
+    }
+  }
+
+  & .footer-brand {
+    & .logo {
+      display: block;
+      margin-bottom: var(--space-sm);
+      font-weight: var(--font-weight-black);
+      font-size: var(--font-size-xl);
+      letter-spacing: var(--letter-spacing-tighter);
+      text-decoration: none;
+    }
+
+    & .description {
+      max-width: 40ch;
+      opacity: var(--opacity-60);
+      font-size: var(--font-size-sm);
+      line-height: var(--font-line-height-md);
+    }
+  }
+
+  & .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+
+  & .nav-title {
+    margin-bottom: var(--space-md);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+  }
+
+  & .nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  & .nav-link {
+    opacity: var(--opacity-60);
+    transition:
+      opacity var(--transition-speed-normal),
+      color var(--transition-speed-normal);
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+
+    &:hover {
+      opacity: 1;
+      color: var(--color-primary);
+    }
+  }
+
+  & .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    border-top: var(--border-width-xs) solid var(--border-color-subtle);
+    padding-top: var(--space-xl);
+    opacity: var(--opacity-40);
+    font-size: var(--font-size-xs);
+  }
+
+  @media (min-width: 768px) {
+    & .footer-bottom {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+}

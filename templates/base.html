@@ -1,86 +1,20 @@
-{% import "macros/icons.html" as icons %}
+{% import "macros/icons.html" as icons %} {% import
+"macros/components/navbar.html" as nav %} {% import
+"macros/components/speed-dial.html" as sd %}
 
-<!doctype html>
-<html lang="en" data-theme="lofi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="view-transition" content="same-origin" />
-    <script type="speculationrules">
-      {
-        "prerender": [
-          {
-            "where": { "href_matches": "/*" },
-            "eagerness": "moderate"
-          }
-        ]
-      }
-    </script>
-    <script>
-      window.__SYNTAX_THEME_URLS__ = {
-        dim: "{{ get_url(path='giallo-dark.css') | safe }}",
-        lofi: "{{ get_url(path='giallo-light.css') | safe }}",
-      };
-    </script>
-    <!-- theme.js must run early to prevent FOUC -->
-    <script src="{{ get_url(path='js/theme.js') | safe }}"></script>
-
-    {% if current_url is defined %}{% else %}{% set current_url = config.base_url %}{% endif %} {% set title =
-    config.title %} {% set description = config.description %} {% set og_image =
-    get_url(path=config.extra.default_image) %} {% if page %}{% set title = page.title %} {% set description =
-    page.summary | default(value=page.description) | default(value=description) %} {% if page.extra.image %} {% set
-    path_parts = page.relative_path | split(pat="/") %} {% set dir_path = path_parts | slice(end=-1) | join(sep="/") %}
-    {% set image_path = "static/media/" ~ dir_path ~ "/" ~ page.extra.image %} {% set og_image_processed =
-    resize_image(path=image_path, width=1200, height=630, op="fill") %} {% set og_image = og_image_processed.url %} {%
-    endif %}{% elif section %}{% set title = section.title | default(value=title) %} {% set description =
-    section.description | default(value=description) %} {% if section.extra.image %}{% set og_image =
-    get_url(path=section.extra.image) %}{% endif %}{% endif %} {% set description = description | striptags |
-    truncate(length=160) %}
-
-    <meta name="description" content="{{ description }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ current_url | safe }}" />
-    <meta property="og:title" content="{{ title }}" />
-    <meta property="og:description" content="{{ description }}" />
-    <meta property="og:image" content="{{ og_image | safe }}" />
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="{{ current_url | safe }}" />
-    <meta property="twitter:title" content="{{ title }}" />
-    <meta property="twitter:description" content="{{ description }}" />
-    <meta property="twitter:image" content="{{ og_image | safe }}" />
-
-    <link rel="icon" type="image/svg+xml" href="{{ get_url(path='images/avatar.svg') | safe }}" />
-    <link rel="canonical" href="{{ current_url | safe }}" />
-    <link rel="stylesheet" href="{{ get_url(path='styles/main.css', cachebust=true) | safe }}" />
-    <link
-      rel="alternate"
-      type="application/atom+xml"
-      title="Atom Feed"
-      href="{{ get_url(path='atom.xml', trailing_slash=false) }}"
-    />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="RSS Feed"
-      href="{{ get_url(path='rss.xml', trailing_slash=false) }}"
-    />
-
-    <title>{{ title }}</title>
-  </head>
-
+<!DOCTYPE html>
+<html lang="ko" data-theme="lofi">
+  {% include "partials/head.html" %}
   <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div class="app-shell">
-      <header>{% include "partials/navbar.html" %}</header>
-      <main id="main-content">{% block content %}{% endblock content %}</main>
-      <footer class="app-footer">{% include "partials/footer.html" %}</footer>
-    </div>
-
-    <div class="widgets">
-      {% include "partials/search-modal.html" %} {% include "partials/share-modal.html" %} {% include
-      "partials/speed-dial.html" %}
-    </div>
-
-    <script src="{{ get_url(path='js/main.js') | safe }}" defer></script>
+    <header id="site-header">
+      {{ nav::navbar(brand="The Blog") }}
+    </header>
+    <main>
+      {% block content %}{% endblock content %}
+    </main>
+    <footer id="site-footer">
+      {% include "partials/footer.html" %}
+    </footer>
+    {{ sd::speed_dial() }}
   </body>
 </html>

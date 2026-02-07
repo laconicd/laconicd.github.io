@@ -1,0 +1,95 @@
+@layer utilities {
+  .u-container {
+    margin-inline: auto;
+    padding-inline: var(--ui-gutter);
+    inline-size: 100%;
+    max-inline-size: 85rem;
+  }
+
+  .u-prose {
+    margin-inline: auto;
+    max-inline-size: 45rem;
+  }
+
+  .u-h-screen {
+    min-block-size: 100dvb;
+  }
+  .u-w-full {
+    inline-size: 100%;
+  }
+
+  /* --- [ Visual Utilities ] --- */
+  .u-border {
+    border: var(--border) solid var(--color-neutral);
+  }
+  .u-rounded-xl {
+    border-radius: var(--radius-selector);
+  }
+  .u-overflow-hidden {
+    overflow: hidden;
+  }
+  .u-bg-base-100 {
+    background-color: var(--color-base-100);
+  }
+
+  /* --- [ Spacing ] --- */
+  .u-p-md {
+    padding: 1.5rem;
+  }
+  .u-gap-md {
+    gap: 1.5rem;
+  }
+
+  .u-border-b {
+    border-block-end: 1px solid var(--ui-color-faint);
+  }
+  .u-border-t {
+    border-block-start: 1px solid var(--ui-color-faint);
+  }
+
+  .u-bg-canvas {
+    background-color: var(--ui-color-canvas);
+  }
+  .u-bg-accent {
+    background-color: var(--ui-color-accent);
+    color: white;
+  }
+
+  /* --- [ Typography ] --- */
+  .u-text-center {
+    text-align: center;
+  }
+  .u-text-serif {
+    font-family: var(--font-serif);
+  }
+  .u-text-sans {
+    font-family: var(--font-sans);
+  }
+  .u-text-accent {
+    color: var(--ui-color-accent);
+  }
+  .u-text-muted {
+    color: color-mix(in oklch, var(--ui-color-ink), transparent 40%);
+  }
+
+  .u-text-uppercase {
+    font-size: var(--fs-small);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .u-stretched-link::after {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    content: "";
+  }
+
+  /* --- [ Responsive Visibility ] --- */
+  .u-mobile-only {
+    display: block;
+  }
+  .u-desktop-only {
+    display: none;
+  }
+}

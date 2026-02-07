@@ -1,0 +1,116 @@
+{% macro speed_dial() %}
+<div class="speed-dial">
+  <button
+    class="trigger"
+    id="sd-trigger"
+    aria-label="Open speed dial"
+    popovertarget="sd-menu"
+  >
+    {{ icons::plus(size=6, class="icon-plus") }}
+  </button>
+
+  <div id="sd-menu" popover class="dial">
+    <button
+      class="item theme-btn"
+      aria-label="Toggle theme"
+      onclick="toggleTheme()"
+    >
+      <div class="inner">
+        <div class="sun-icon">{{ icons::sun(size=5) }}</div>
+        <div class="moon-icon">{{ icons::moon(size=5) }}</div>
+      </div>
+    </button>
+
+    <button class="item search-btn" aria-label="Search">
+      <div class="inner">{{ icons::search(size=5) }}</div>
+    </button>
+
+    <button
+      class="item top-btn"
+      aria-label="Scroll to top"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+    >
+      <div class="inner">{{ icons::top(size=5) }}</div>
+    </button>
+
+    <a href="/atom.xml" class="item rss-btn" aria-label="RSS Feed">
+      <div class="inner">{{ icons::rss(size=5) }}</div>
+    </a>
+
+    <button class="item share-btn" aria-label="Share" onclick="sharePage()">
+      <div class="inner">{{ icons::share(size=5) }}</div>
+    </button>
+  </div>
+
+  <div id="toast" class="toast">
+    <span>Link copied to clipboard!</span>
+  </div>
+</div>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute("data-theme");
+    const newTheme = currentTheme === "lofi" ? "dim" : "lofi";
+    html.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+  }
+
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    if (message) toast.querySelector("span").textContent = message;
+    toast.classList.add("is-visible");
+    setTimeout(() => {
+      toast.classList.remove("is-visible");
+    }, 3000);
+  }
+
+  async function copyToClipboard(text) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback for non-secure contexts (HTTP)
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      }
+      showToast();
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
+  }
+
+  function sharePage() {
+    const shareData = {
+      title: document.title,
+      url: window.location.href,
+    };
+
+    if (
+      navigator.share && navigator.canShare && navigator.canShare(shareData)
+    ) {
+      navigator.share(shareData).catch((err) => {
+        if (err.name !== "AbortError") console.error(err);
+      });
+    } else {
+      copyToClipboard(shareData.url);
+    }
+  }
+
+  // Set theme on load
+  (function () {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    }
+  })();
+</script>
+{% endmacro %}

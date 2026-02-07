@@ -1,0 +1,163 @@
+/* ==========================================================================
+   UTILITIES: Spacing (Margin & Padding)
+   Methodology: CUBE CSS
+   Standard: CSS Logical Properties (2026 Compatible)
+   ========================================================================== */
+
+/* --- 1. Padding Utilities (Global & Logical) --- */
+
+/* All sides */
+.p-xs {
+  padding: var(--space-xs);
+}
+.p-sm {
+  padding: var(--space-sm);
+}
+.p-md {
+  padding: var(--space-md);
+}
+.p-lg {
+  padding: var(--space-lg);
+}
+.p-xl {
+  padding: var(--space-xl);
+}
+.p-xxl {
+  padding: var(--space-xxl);
+}
+
+/* Block (Top & Bottom) */
+.pi-xs {
+  padding-inline: var(--space-xs);
+}
+.pi-sm {
+  padding-inline: var(--space-sm);
+}
+.pi-md {
+  padding-inline: var(--space-md);
+}
+.pi-lg {
+  padding-inline: var(--space-lg);
+}
+.pi-xl {
+  padding-inline: var(--space-xl);
+}
+.pi-xxl {
+  padding-inline: var(--space-xxl);
+}
+
+/* Inline (Left & Right) */
+.pb-xs {
+  padding-block: var(--space-xs);
+}
+.pb-sm {
+  padding-block: var(--space-sm);
+}
+.pb-md {
+  padding-block: var(--space-md);
+}
+.pb-lg {
+  padding-block: var(--space-lg);
+}
+.pb-xl {
+  padding-block: var(--space-xl);
+}
+.pb-xxl {
+  padding-block: var(--space-xxl);
+}
+
+/* --- 2. Margin Utilities (Global & Logical) --- */
+
+/* All sides */
+.m-xs {
+  margin: var(--space-xs);
+}
+.m-sm {
+  margin: var(--space-sm);
+}
+.m-md {
+  margin: var(--space-md);
+}
+.m-lg {
+  margin: var(--space-lg);
+}
+.m-xl {
+  margin: var(--space-xl);
+}
+.m-xxl {
+  margin: var(--space-xxl);
+}
+
+/* Block (Top & Bottom) - 가독성을 위해 주로 사용 */
+.mi-xs {
+  margin-inline: var(--space-xs);
+}
+.mi-sm {
+  margin-inline: var(--space-sm);
+}
+.mi-md {
+  margin-inline: var(--space-md);
+}
+.mi-lg {
+  margin-inline: var(--space-lg);
+}
+.mi-xl {
+  margin-inline: var(--space-xl);
+}
+.mi-xxl {
+  margin-inline: var(--space-xxl);
+}
+
+/* Inline (Left & Right) - 중앙 정렬 등을 포함 */
+.mb-xs {
+  margin-block: var(--space-xs);
+}
+.mb-sm {
+  margin-block: var(--space-sm);
+}
+.mb-md {
+  margin-block: var(--space-md);
+}
+.mb-lg {
+  margin-block: var(--space-lg);
+}
+.mb-xl {
+  margin-block: var(--space-xl);
+}
+.mb-xxl {
+  margin-block: var(--space-xxl);
+}
+
+/* Auto Margins (CUBE CSS Utility 특화) */
+.m-auto {
+  margin: auto;
+}
+.mi-auto {
+  margin-inline: auto;
+}
+.mb-auto {
+  margin-block: auto;
+}
+.m-inline-end {
+  margin-inline-start: auto;
+} /* 오른쪽 정렬 효과 */
+
+/* --- 3. Composite Utilities (The "Flow" Concept) --- */
+
+/**
+ * CUBE CSS에서 자주 사용하는 Flow 유틸리티입니다.
+ * 자식 요소들 사이의 간격만 자동으로 부여합니다.
+ */
+.flow > * + * {
+  margin-block-start: var(--flow-space, 1em);
+}
+
+.flow-sm {
+  --flow-space: var(--space-sm);
+}
+.flow-md {
+  --flow-space: var(--space-md);
+}
+.flow-lg {
+  --flow-space: var(--space-lg);
+}
