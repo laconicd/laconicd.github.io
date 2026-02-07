@@ -51,8 +51,21 @@
     padding: var(--space-sm);
     border-radius: var(--border-radius-xxl);
 
-    & .image-wrapper {
-      inline-size: 5rem;
+    @media (min-width: 768px) {
+      padding: var(--space-md);
+      gap: var(--space-xl);
+      
+      & .image-wrapper {
+        inline-size: 8rem;
+        block-size: 8rem;
+      }
+
+      & .content .title {
+        font-size: var(--font-size-xl);
+      }
+    }
+
+    & .image-wrapper {      inline-size: 5rem;
       block-size: 5rem;
       border-radius: var(--border-radius-lg);
     }
