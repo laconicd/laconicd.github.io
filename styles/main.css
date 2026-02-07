@@ -44,6 +44,7 @@
 @import "blocks/hero.css" layer(blocks);
 @import "blocks/separator.css" layer(blocks);
 @import "blocks/speed-dial.css" layer(blocks);
+@import "blocks/taxonomy.css" layer(blocks);
 
 /**
  * 5. EXCEPTIONS (예외 및 상태 관리)

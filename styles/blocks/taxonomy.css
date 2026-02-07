@@ -1,0 +1,162 @@
+@layer blocks {
+  /* Taxonomy List Styles (Themes) */
+  @scope (.theme-grid) {
+    :scope {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+      gap: var(--space-xl);
+    }
+  }
+
+  @scope (.theme-card) {
+    :scope {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      aspect-ratio: 16 / 9;
+      padding: var(--space-xl);
+      border: var(--border-width-xs) solid var(--border-color-base);
+      background-color: var(--color-base-100);
+      text-decoration: none;
+      transition: all var(--transition-speed-normal) var(--transition-timing-ease);
+      overflow: hidden;
+    }
+
+    :scope:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-black);
+      line-height: var(--font-line-height-xs);
+      letter-spacing: var(--letter-spacing-tighter);
+      color: var(--color-base-content);
+      margin: 0;
+      z-index: 1;
+      align-self: flex-start;
+      padding-bottom: var(--space-xs);
+      border-bottom: 2px solid transparent;
+      transition: border-color var(--transition-speed-normal);
+    }
+
+    :scope:hover .title {
+      border-bottom-color: var(--color-primary);
+    }
+
+    .count {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      font-family: var(--font-family-mono);
+      color: var(--color-base-content);
+      opacity: var(--opacity-40);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-widest);
+      z-index: 1;
+      align-self: flex-end;
+    }
+
+    .bg-number {
+      position: absolute;
+      bottom: -0.05em;
+      left: -0.05em;
+      font-size: 12rem;
+      font-weight: var(--font-weight-black);
+      opacity: 0.03;
+      line-height: 0.7;
+      pointer-events: none;
+      user-select: none;
+      color: var(--color-base-content);
+      transition: all var(--transition-speed-normal);
+    }
+
+    :scope:hover .bg-number {
+      opacity: 0.08;
+      transform: scale(1.05) rotate(-2deg);
+    }
+  }
+
+  /* Lexicon List Styles (Index) */
+  @scope (.lexicon-index) {
+    .index-group {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      align-items: flex-start;
+      gap: var(--space-xl);
+      padding-block: var(--space-xl);
+      border-top: 1px solid var(--border-color-base);
+    }
+
+    .index-group:first-child {
+      border-top: none;
+      padding-block-start: 0;
+    }
+
+    .group-letter {
+      font-size: var(--font-size-xxl);
+      font-weight: var(--font-weight-black);
+      color: var(--color-base-content);
+      line-height: 1;
+      opacity: 0.15;
+      position: sticky;
+      top: var(--space-xl);
+      user-select: none;
+    }
+
+    .terms-cluster {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--space-md) var(--space-xl);
+    }
+
+    /* Hover effect to dim other terms in the cluster */
+    .terms-cluster:hover .term-link:not(:hover) {
+      opacity: 0.3;
+      filter: blur(0.5px);
+    }
+
+    .term-link {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--color-base-content);
+      padding-block: var(--space-xs);
+      border-bottom: 1px solid var(--border-color-subtle);
+      transition: all var(--transition-speed-normal);
+    }
+
+    .term-name {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .term-count {
+      font-size: var(--font-size-xs);
+      font-family: var(--font-family-mono);
+      opacity: 0.3;
+      background-color: var(--color-base-200);
+      padding-inline: 0.4em;
+      border-radius: 4px;
+      transition: all var(--transition-speed-normal);
+    }
+
+    .term-link:hover {
+      border-bottom-color: var(--color-primary);
+      transform: translateX(4px);
+    }
+
+    .term-link:hover .term-name {
+      color: var(--color-primary);
+    }
+
+    .term-link:hover .term-count {
+      opacity: 1;
+      background-color: var(--color-primary);
+      color: var(--color-primary-content);
+    }
+  }
+}

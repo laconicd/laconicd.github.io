@@ -2,19 +2,42 @@
 {% import "macros/components/hero.html" as hero %}
 
 {% block content %}
-<main class="wrapper stack">
+<main class="wrapper stack" style="--gap: var(--space-xxl)">
   {{ hero::hero(title="Lexicon", subtitle=config.extra.lexicon_subtitle | default(value="A structured index of core concepts and keywords.")) }}
 
-  <div class="separator">
-    <span>CORE CONCEPTS</span>
-  </div>
+  <section class="lexicon-index stack" style="--gap: var(--space-xl)">
+    <div class="separator">
+      <span>A-Z INDEX</span>
+    </div>
 
-  <div class="cluster" style="--gap: var(--space-sm)">
-    {% for term in terms %}
-      <a href="{{ term.permalink }}" class="badge btn btn-ghost" style="text-decoration: none; border: 1px solid var(--color-base-300); padding: var(--space-xs) var(--space-md); border-radius: 2rem;">
-        {{ term.name }} <span style="opacity: 0.6; margin-inline-start: 0.5ch;">{{ term.pages | length }}</span>
-      </a>
-    {% endfor %}
-  </div>
+    <div class="stack" style="--gap: var(--space-xl)">
+      {% set sorted_terms = terms | sort(attribute="name") %}
+      {% set_global last_letter = "" %}
+      
+      <div class="stack" style="--gap: var(--space-xl)">
+        {% for term in sorted_terms %}
+          {% set current_letter = term.name | truncate(length=1, end="") | upper %}
+          {% if current_letter != last_letter %}
+            {% if last_letter != "" %}
+              </div></div> {# Close previous group #}
+            {% endif %}
+            <div class="index-group">
+              <span class="group-letter">{{ current_letter }}</span>
+              <div class="terms-cluster">
+            {% set_global last_letter = current_letter %}
+          {% endif %}
+          
+          <a href="{{ term.permalink }}" class="term-link">
+            <span class="term-name" style="text-transform: capitalize;">{{ term.name }}</span>
+            <span class="term-count">{{ term.pages | length }}</span>
+          </a>
+          
+          {% if loop.last %}
+            </div></div> {# Close final group #}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
 </main>
 {% endblock content %}
