@@ -140,6 +140,9 @@ execute them.
 - **Source**: `static/css/main.css` is the entry point.
 - **Build**: The build process bundles imports (e.g.,
   `@import "./partials/..."`) into a single `static/main.css` file.
+- **View Transitions**:
+  - Global activation is handled via `@view-transition { navigation: auto; }` in `styles/main.css`.
+  - Use unique IDs (e.g., `#site-header`, `#site-footer`) for global elements to avoid `view-transition-name` collisions with page-specific headers.
 - **Approach**: All CSS should adhere to the
   [CUBE CSS methodology](docs/css-convention.md#1-cube-css-방법론-준수) for
   maintainability and scalability. For detailed styling guidelines, including
@@ -184,4 +187,4 @@ execute them.
 
 ---
 
-_Updated by opencode on 2026-02-07 to reflect the rename of 'posts' to 'insights'._
+_Updated by opencode on 2026-02-07 to reflect the fix for View Transition animations and HTML structure stabilization._

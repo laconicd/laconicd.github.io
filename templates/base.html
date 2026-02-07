@@ -6,9 +6,14 @@
 
 <!DOCTYPE html>
 <html lang="ko" data-theme="lofi">
-  <header>{% include "partials/head.html" %} {{ nav::navbar(brand="The Blog") }}</header>
+  {% include "partials/head.html" %}
   <body>
-    {% block content %}{% endblock content %}
+    <header id="site-header">
+      {{ nav::navbar(brand="The Blog") }}
+    </header>
+    <main>
+      {% block content %}{% endblock content %}
+    </main>
+    <footer id="site-footer"></footer>
   </body>
-  <footer></footer>
 </html>

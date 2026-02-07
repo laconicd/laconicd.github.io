@@ -59,3 +59,7 @@
  */
 @import "utilities/spacing.css" layer(utilities);
 @import "utilities/text.css" layer(utilities);
+
+@view-transition {
+  navigation: auto;
+}

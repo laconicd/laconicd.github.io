@@ -1,14 +1,10 @@
-@view-transition {
-  navigation: auto;
-}
-
 /* View Transitions */
-header {
-  view-transition-name: header;
+#site-header {
+  view-transition-name: site-header;
 }
 
-footer {
-  view-transition-name: footer;
+#site-footer {
+  view-transition-name: site-footer;
 }
 
 /* root 트랜지션만으로 부드럽게 전체 전환 (네비바/푸터 제외) */
