@@ -6,8 +6,8 @@ generate_feeds = true
 feed_filenames = ["atom.xml", "rss.xml"]
 minify_html = true
 taxonomies = [
-  { name = "categories" },
-  { name = "tags" },
+  { name = "themes" },
+  { name = "lexicon" },
 ]
 
 [markdown]

@@ -3,7 +3,8 @@ title = "Architectural Minimalists"
 date = 2026-01-22
 description = "A deep dive into the lives and philosophies of architects who defined the 'less is more' movement."
 [taxonomies]
-categories = ["Architecture"]
+themes = ["Architecture"]
+lexicon = ["Minimalism", "Modernism"]
 [extra]
 image = "https://images.unsplash.com/photo-1487958444681-8b97595e1c0c?auto=format&fit=crop&q=80&w=1000"
 +++

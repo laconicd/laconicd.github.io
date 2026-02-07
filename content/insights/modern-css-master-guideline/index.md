@@ -5,8 +5,8 @@ description = "현대 CSS의 핵심 원칙인 유지보수성, 독립성, 접근
 authors = ["laconicd"]
 
 [taxonomies]
-tags = ["css", "frontend", "web", "design"]
-categories = ["development"]
+lexicon = ["css", "frontend", "web", "design"]
+themes = ["development"]
 +++
 
 유지보수성, 독립성, 접근성. 이 세 가지를 놓치면 결국 나중에 내가 고생한다. 현대

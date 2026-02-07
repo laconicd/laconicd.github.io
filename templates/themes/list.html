@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "macros/components/hero.html" as hero %}
+
+{% block content %}
+<main class="wrapper stack">
+  {{ hero::hero(title="Themes", subtitle=config.extra.themes_subtitle | default(value="Curated intellectual landscapes.")) }}
+
+  <div class="separator">
+    <span>ALL THEMES</span>
+  </div>
+
+  <div class="grid" style="--min: 250px; --gap: var(--space-md)">
+    {% for term in terms %}
+      <a href="{{ term.permalink }}" class="btn stack" style="--gap: var(--space-xs); text-decoration: none; padding: var(--space-lg); border: 1px solid var(--color-base-300);">
+        <span style="font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); color: var(--color-base-content);">{{ term.name }}</span>
+        <span style="opacity: 0.6; font-size: var(--font-size-sm); color: var(--color-base-content);">{{ term.pages | length }} records</span>
+      </a>
+    {% endfor %}
+  </div>
+</main>
+{% endblock content %}

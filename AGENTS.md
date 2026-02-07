@@ -129,7 +129,8 @@ execute them.
   date = 2023-01-01
   description = "A brief summary for SEO and previews."
   [taxonomies]
-  tags = ["rust", "zola"]
+  themes = ["rust"]
+  lexicon = ["zola"]
   +++
   ```
 - **Organization**: Follow the directory structure (e.g., `content/blog/`,
@@ -191,4 +192,4 @@ execute them.
 
 ---
 
-_Updated by opencode on 2026-02-07 to reflect the fix for View Transition animations and HTML structure stabilization._
+_Updated by opencode on 2026-02-07 to reflect the consolidation of taxonomies into 'themes' and 'lexicon' for a more minimalist and conceptually focused site structure._

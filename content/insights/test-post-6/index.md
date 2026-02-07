@@ -5,8 +5,8 @@ description = "이것은 테스트를 위한  포스트입니다. 시스템의 �
 authors = ["laconicd"]
 
 [taxonomies]
-tags = ["test", "sample", "post-6"]
-categories = ["testing"]
+lexicon = ["test", "sample", "post-6"]
+themes = ["testing"]
 +++
 
 ## 테스트 포스트 6$

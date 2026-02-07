@@ -3,7 +3,7 @@ title = "The Art of Modern Typography"
 date = 2026-01-20
 description = "Exploring how digital interfaces are rediscovering the elegance of classic print magazine layouts."
 [taxonomies]
-categories = ["Design"]
+themes = ["Design"]
 [extra]
 image = "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&q=80&w=1000"
 +++

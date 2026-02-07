@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import "macros/components/hero.html" as hero %}
+
+{% block content %}
+<main class="wrapper stack">
+  {{ hero::hero(title="Lexicon", subtitle=config.extra.lexicon_subtitle | default(value="A structured index of core concepts and keywords.")) }}
+
+  <div class="separator">
+    <span>CORE CONCEPTS</span>
+  </div>
+
+  <div class="cluster" style="--gap: var(--space-sm)">
+    {% for term in terms %}
+      <a href="{{ term.permalink }}" class="badge btn btn-ghost" style="text-decoration: none; border: 1px solid var(--color-base-300); padding: var(--space-xs) var(--space-md); border-radius: 2rem;">
+        {{ term.name }} <span style="opacity: 0.6; margin-inline-start: 0.5ch;">{{ term.pages | length }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</main>
+{% endblock content %}

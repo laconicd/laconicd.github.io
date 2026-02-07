@@ -3,7 +3,7 @@ title = "The Future of Static Sites"
 date = 2026-01-25
 description = "Why SSGs like Zola are becoming the preferred choice for performance-oriented editorial teams."
 [taxonomies]
-categories = ["Technology"]
+themes = ["Technology"]
 [extra]
 image = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000"
 +++
