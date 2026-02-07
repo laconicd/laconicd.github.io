@@ -5,7 +5,7 @@
 <article class="wrapper stack" style="--gap: var(--space-xl)">
   <header class="article-header">
     <div class="meta">
-      <div class="badge" style="opacity: var(--opacity-60)">{{ page.date | date(format="%B %d, %Y") | upper }}</div>
+      <div class="badge" style="opacity: var(--opacity-80)">{{ page.date | date(format="%B %d, %Y") | upper }}</div>
       <div class="reading-time">{{ page.reading_time }} MIN READ</div>
     </div>
     
@@ -24,12 +24,12 @@
     <div class="cluster" style="--gap: var(--space-xs); margin-block-start: var(--space-sm);">
       {% if page.taxonomies.themes %}
         {% for theme in page.taxonomies.themes %}
-          <a href="{{ get_taxonomy_url(kind="themes", name=theme) }}" class="badge" style="text-decoration: none; font-size: var(--font-size-xs);">{{ theme }}</a>
+          <a href="{{ get_taxonomy_url(kind="themes", name=theme) }}" class="badge theme-tag">{{ theme }}</a>
         {% endfor %}
       {% endif %}
       {% if page.taxonomies.lexicon %}
         {% for term in page.taxonomies.lexicon %}
-          <a href="{{ get_taxonomy_url(kind="lexicon", name=term) }}" class="badge btn-ghost" style="text-decoration: none; font-size: var(--font-size-xs); border: 1px solid var(--border-color-subtle);">#{{ term }}</a>
+          <a href="{{ get_taxonomy_url(kind="lexicon", name=term) }}" class="badge lexicon-tag">#{{ term }}</a>
         {% endfor %}
       {% endif %}
     </div>
@@ -37,7 +37,7 @@
 
   <div class="separator"></div>
 
-  <div class="content post-content" style="max-inline-size: 75ch; margin-inline: auto;">
+  <div class="content post-content">
     {{ page.content | safe }}
   </div>
 
