@@ -1,15 +1,20 @@
 @scope (.separator) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--space-md);
-  opacity: 0.3;
-  margin-block: var(--space-xl);
-  color: var(--color-base-content);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-xs);
-  letter-spacing: var(--letter-spacing-widest);
-  text-transform: uppercase;
+  :scope {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+    opacity: 0;
+    margin-block: var(--space-xl);
+    color: var(--color-base-content);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+
+    /* Animation */
+    animation: separatorReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+  }
 
   &::before,
   &::after {
@@ -17,9 +22,30 @@
     background-color: var(--color-base-content);
     block-size: var(--border-width-xs);
     content: "";
+    transform-origin: center;
+    transform: scaleX(0);
+    animation: lineExtend 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
   }
 
   & span {
     flex-shrink: 0;
+  }
+}
+
+@keyframes separatorReveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.3;
+  }
+}
+
+@keyframes lineExtend {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }
