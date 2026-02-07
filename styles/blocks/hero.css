@@ -36,8 +36,6 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    /* Mask effect for reveal */
-    clip-path: inset(0 0 0 0);
   }
 
   & .title {
@@ -50,20 +48,20 @@
     letter-spacing: -0.02em;
     text-wrap: balance;
     font-style: italic;
-    
+
     /* Subtle text gradient for depth */
     background: linear-gradient(
       to bottom,
       var(--color-base-content) 40%,
       oklch(from var(--color-base-content) calc(l + 0.15) c h / 0.8)
     );
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
     /* Animation */
     animation: heroTitleReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    transform: translateY(115%) skewY(10deg);
-    transform-origin: left;
+    transform: translateY(110%) skewY(10deg);
   }
 
   & .subtitle {
@@ -78,8 +76,9 @@
     text-wrap: balance;
 
     /* Animation */
-    animation: heroSubtitleReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
-    transform: translateY(40px);
+    animation: heroSubtitleReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s
+      forwards;
+    transform: translateY(30px);
   }
 }
 

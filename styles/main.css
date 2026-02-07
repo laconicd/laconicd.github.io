@@ -62,7 +62,6 @@
  * - 어떠한 레이어의 스타일도 덮어쓸 수 있도록 보장되어야 합니다.
  */
 @import "utilities/spacing.css" layer(utilities);
-@import "utilities/text.css" layer(utilities);
 
 @view-transition {
   navigation: auto;
