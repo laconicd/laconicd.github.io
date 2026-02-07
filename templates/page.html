@@ -3,21 +3,21 @@
 
 {% block content %}
 <article class="wrapper stack" style="--gap: var(--space-xl)">
-  <header class="stack" style="--gap: var(--space-md)">
-    <div class="cluster" style="--gap: var(--space-md); justify-content: space-between; align-items: baseline;">
+  <header class="article-header">
+    <div class="meta">
       <div class="badge" style="opacity: var(--opacity-60)">{{ page.date | date(format="%B %d, %Y") | upper }}</div>
-      <div class="badge" style="opacity: 0.4; font-size: var(--font-size-xs); font-family: var(--font-family-mono);">{{ page.reading_time }} MIN READ</div>
+      <div class="reading-time">{{ page.reading_time }} MIN READ</div>
     </div>
     
-    <h1 class="title" style="font-size: var(--font-size-xxl); font-weight: var(--font-weight-extrabold); view-transition-name: title-{{ page.slug }}">{{ page.title }}</h1>
+    <h1 class="title" style="view-transition-name: title-{{ page.slug }}">{{ page.title }}</h1>
     
     {% if page.description %}
-      <p class="subtitle" style="font-size: var(--font-size-lg); opacity: var(--opacity-80)">{{ page.description }}</p>
+      <p class="subtitle">{{ page.description }}</p>
     {% endif %}
 
     {% if page.extra.image %}
-      <div class="featured-image-container" style="margin-block: var(--space-lg); border-radius: var(--border-radius-lg); overflow: hidden; aspect-ratio: 21 / 9;">
-        <img src="{{ page.extra.image }}" style="width: 100%; height: 100%; object-fit: cover; view-transition-name: img-{{ page.slug }}" />
+      <div class="featured-image-container">
+        <img src="{{ page.extra.image }}" style="view-transition-name: img-{{ page.slug }}" />
       </div>
     {% endif %}
 
@@ -29,7 +29,7 @@
       {% endif %}
       {% if page.taxonomies.lexicon %}
         {% for term in page.taxonomies.lexicon %}
-          <a href="{{ get_taxonomy_url(kind="lexicon", name=term) }}" class="badge btn-ghost" style="text-decoration: none; font-size: var(--font-size-xs); border: 1px solid var(--color-base-300);">#{{ term }}</a>
+          <a href="{{ get_taxonomy_url(kind="lexicon", name=term) }}" class="badge btn-ghost" style="text-decoration: none; font-size: var(--font-size-xs); border: 1px solid var(--border-color-subtle);">#{{ term }}</a>
         {% endfor %}
       {% endif %}
     </div>

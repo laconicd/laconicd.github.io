@@ -5,13 +5,13 @@
 <main class="wrapper stack" style="--gap: var(--space-xxl)">
   {{ hero::hero(title="Lexicon", subtitle=config.extra.lexicon_subtitle | default(value="A structured index of core concepts and keywords.")) }}
 
-  <section class="lexicon-index stack" style="--gap: var(--space-xl)">
+  <section class="lexicon-index stack" style="--gap: 0">
     <div class="separator">
       <span>A-Z INDEX</span>
     </div>
 
     <!-- Quick Jump Bar -->
-    <nav class="cluster jump-bar" style="--gap: var(--space-sm); position: sticky; top: 70px; z-index: 10; background: var(--color-base-100); padding-block: var(--space-sm); border-bottom: 1px solid var(--border-color-subtle); backdrop-filter: blur(10px);">
+    <nav class="cluster jump-bar" style="--gap: var(--space-sm)">
       {% set sorted_terms = terms | sort(attribute="name") %}
       {% set_global seen_letters = "" %}
       {% for term in sorted_terms %}
@@ -26,29 +26,27 @@
     <div class="stack" style="--gap: var(--space-xl)">
       {% set_global last_letter = "" %}
       
-      <div class="stack" style="--gap: var(--space-xl)">
-        {% for term in sorted_terms %}
-          {% set current_letter = term.name | truncate(length=1, end="") | upper %}
-          {% if current_letter != last_letter %}
-            {% if last_letter != "" %}
-              </div></div> {# Close previous group #}
-            {% endif %}
-            <div class="index-group" id="letter-{{ current_letter }}" style="scroll-margin-top: 130px;">
-              <span class="group-letter">{{ current_letter }}</span>
-              <div class="terms-cluster">
-            {% set_global last_letter = current_letter %}
+      {% for term in sorted_terms %}
+        {% set current_letter = term.name | truncate(length=1, end="") | upper %}
+        {% if current_letter != last_letter %}
+          {% if last_letter != "" %}
+            </div></div> {# Close previous group #}
           {% endif %}
-          
-          <a href="{{ term.permalink }}" class="term-link">
-            <span class="term-name" style="text-transform: capitalize;">{{ term.name }}</span>
-            <span class="term-count">{{ term.pages | length }}</span>
-          </a>
-          
-          {% if loop.last %}
-            </div></div> {# Close final group #}
-          {% endif %}
-        {% endfor %}
-      </div>
+          <div class="index-group" id="letter-{{ current_letter }}">
+            <span class="group-letter">{{ current_letter }}</span>
+            <div class="terms-cluster">
+          {% set_global last_letter = current_letter %}
+        {% endif %}
+        
+        <a href="{{ term.permalink }}" class="term-link">
+          <span class="term-name">{{ term.name }}</span>
+          <span class="term-count">{{ term.pages | length }}</span>
+        </a>
+        
+        {% if loop.last %}
+          </div></div> {# Close final group #}
+        {% endif %}
+      {% endfor %}
     </div>
   </section>
 </main>
