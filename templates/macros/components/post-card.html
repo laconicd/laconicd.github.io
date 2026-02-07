@@ -1,5 +1,5 @@
-{% macro post_card(img, badge, title, summary, url, variant="horizontal", is_featured=false) %}
-  <a href="{{ url }}" class="post-card -{{ variant }} {% if is_featured %}-featured{% endif %}">
+{% macro post_card(img, badge, title, summary, url, is_featured=false) %}
+  <a href="{{ url }}" class="post-card {% if is_featured %}-featured{% endif %}">
     <div class="image-wrapper">
       <img src="{{ img }}" class="image" />
       <div class="fab">{{ icons::lightning(size=6) }}</div>
