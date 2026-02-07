@@ -6,24 +6,26 @@
   
   <div id="sd-menu" popover class="dial">
     <button class="item theme-btn" aria-label="Toggle theme" onclick="toggleTheme()">
-      <div class="sun-icon">{{ icons::sun(size=5) }}</div>
-      <div class="moon-icon">{{ icons::moon(size=5) }}</div>
+      <div class="inner">
+        <div class="sun-icon">{{ icons::sun(size=5) }}</div>
+        <div class="moon-icon">{{ icons::moon(size=5) }}</div>
+      </div>
     </button>
     
     <button class="item search-btn" aria-label="Search">
-      {{ icons::search(size=5) }}
+      <div class="inner">{{ icons::search(size=5) }}</div>
     </button>
     
     <button class="item top-btn" aria-label="Scroll to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-      {{ icons::top(size=5) }}
+      <div class="inner">{{ icons::top(size=5) }}</div>
     </button>
     
     <a href="/atom.xml" class="item rss-btn" aria-label="RSS Feed">
-      {{ icons::rss(size=5) }}
+      <div class="inner">{{ icons::rss(size=5) }}</div>
     </a>
     
     <button class="item share-btn" aria-label="Share" onclick="sharePage()">
-      {{ icons::share(size=5) }}
+      <div class="inner">{{ icons::share(size=5) }}</div>
     </button>
   </div>
 </div>
