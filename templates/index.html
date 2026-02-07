@@ -1,30 +1,20 @@
-{% extends "base.html" %}
-{%
-  import "macros/components/post-card.html" as
-  post_card
+{% extends "base.html" %} {% import "macros/components/post-card.html" as
+post_card %} {% import "macros/components/hero.html" as hero %} {% block content
 %}
-{% import "macros/components/hero.html" as hero %}
-{% block content %}
-  <main class="wrapper stack">
-    {{ hero::hero(title="Exploration.", subtitle="A collection of diverse thoughts, from technical deep dives to the nuances of daily learning.") }}
+<main class="wrapper stack">
+  {{ hero::hero(eyebrow="Digital Journal", title="Exploration.", subtitle="A
+  collection of diverse thoughts, from technical deep dives to the nuances of
+  daily learning.") }}
 
-    <div class="separator">
-      <span>LATEST RECORDS</span>
-    </div>
+  <div class="separator">
+    <span>LATEST RECORDS</span>
+  </div>
 
-    {% set posts_section = get_section(path="insights/_index.md") %}
-    {% for post in posts_section.pages | slice(end=5) %}
-      {{
-        post_card::post_card(
-          img=post.extra.image | default(value="/images/sample.png"),
-          badge=post.date | date(format="%B %d, %Y") | upper,
-          title=post.title,
-          summary=post.description | default(value=post.summary) | default(value=""),
-          url=post.permalink,
-          id=post.slug,
-          reading_time=post.reading_time
-        )
-      }}
-    {% endfor %}
-  </main>
+  {% set posts_section = get_section(path="insights/_index.md") %} {% for post
+  in posts_section.pages | slice(end=5) %} {{ post_card::post_card(
+  img=post.extra.image | default(value="/images/sample.png"), badge=post.date |
+  date(format="%B %d, %Y") | upper, title=post.title, summary=post.description |
+  default(value=post.summary) | default(value=""), url=post.permalink,
+  id=post.slug, reading_time=post.reading_time ) }} {% endfor %}
+</main>
 {% endblock content %}

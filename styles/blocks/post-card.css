@@ -1,7 +1,8 @@
 @scope (.post-card) {
   :scope {
     display: grid;
-    transition: all var(--transition-speed-normal) var(--transition-timing-ease);
+    transition: all var(--transition-speed-normal)
+      var(--transition-timing-ease);
     overflow: hidden;
     color: var(--color-base-content);
     text-decoration: none;

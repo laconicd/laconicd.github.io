@@ -19,7 +19,8 @@
       border: var(--border-width-xs) solid var(--border-color-base);
       background-color: var(--color-base-100);
       text-decoration: none;
-      transition: all var(--transition-speed-normal) var(--transition-timing-ease);
+      transition: all var(--transition-speed-normal)
+        var(--transition-timing-ease);
       overflow: hidden;
     }
 

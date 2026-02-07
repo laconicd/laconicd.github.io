@@ -142,8 +142,10 @@ execute them.
 - **Build**: The build process bundles imports (e.g.,
   `@import "./partials/..."`) into a single `static/main.css` file.
 - **View Transitions**:
-  - Global activation is handled via `@view-transition { navigation: auto; }` in `styles/main.css`.
-  - Use unique IDs (e.g., `#site-header`, `#site-footer`) for global elements to avoid `view-transition-name` collisions with page-specific headers.
+  - Global activation is handled via `@view-transition { navigation: auto; }` in
+    `styles/main.css`.
+  - Use unique IDs (e.g., `#site-header`, `#site-footer`) for global elements to
+    avoid `view-transition-name` collisions with page-specific headers.
 - **Speed Dial**:
   - Implemented as a macro in `templates/macros/components/speed-dial.html`.
   - Uses the Popover API for toggling and CSS `@scope` for fan-like animation.
@@ -182,7 +184,8 @@ execute them.
 
 ## 4. Repository Structure Overview
 
-- `content/`: Markdown content source (e.g., `content/insights/`, `content/about.md`).
+- `content/`: Markdown content source (e.g., `content/insights/`,
+  `content/about.md`).
 - `static/`: Static assets (images, raw CSS). `static/main.css` is a generated
   artifact—do not edit it directly; edit `static/css/main.css` instead.
 - `templates/`: HTML/Tera templates.
@@ -192,4 +195,6 @@ execute them.
 
 ---
 
-_Updated by opencode on 2026-02-07 to reflect the consolidation of taxonomies into 'themes' and 'lexicon' for a more minimalist and conceptually focused site structure._
+_Updated by opencode on 2026-02-07 to reflect the consolidation of taxonomies
+into 'themes' and 'lexicon' for a more minimalist and conceptually focused site
+structure._

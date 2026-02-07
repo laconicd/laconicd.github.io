@@ -5,7 +5,15 @@
     z-index: var(--z-index-dropdown);
     backdrop-filter: blur(10px);
     border-block-end: var(--border-width-xs) solid var(--border-color-base);
-    background-color: oklch(from var(--color-base-100) l c h / var(--opacity-80));
+    background-color: oklch(
+      from
+      var(--color-base-100)
+      l
+      c
+      h
+      /
+      var(--opacity-80)
+    );
     color: var(--color-base-content);
   }
 
@@ -40,8 +48,14 @@
 
     & .trigger-text {
       display: none;
-      &::before { content: "[ "; opacity: 0.3; }
-      &::after { content: " ]"; opacity: 0.3; }
+      &::before {
+        content: "[ ";
+        opacity: 0.3;
+      }
+      &::after {
+        content: " ]";
+        opacity: 0.3;
+      }
     }
 
     & .trigger-icon {
@@ -51,8 +65,13 @@
 
     &:hover {
       color: var(--color-primary);
-      & .trigger-text::before, & .trigger-text::after { opacity: 1; color: var(--color-primary); }
-      & .trigger-icon { color: var(--color-primary); }
+      & .trigger-text::before, & .trigger-text::after {
+        opacity: 1;
+        color: var(--color-primary);
+      }
+      & .trigger-icon {
+        color: var(--color-primary);
+      }
     }
   }
 
@@ -148,9 +167,7 @@
 
   & .close-btn {
     opacity: 0.6;
-    transition:
-      transform 0.3s ease,
-      opacity 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
     cursor: pointer;
     border: none;
     background: none;
@@ -224,9 +241,7 @@
 
       & a {
         opacity: 0.5;
-        transition:
-          opacity 0.3s ease,
-          color 0.3s ease;
+        transition: opacity 0.3s ease, color 0.3s ease;
         color: inherit;
 
         &:hover {

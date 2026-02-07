@@ -1,5 +1,10 @@
-{% macro hero(title, subtitle) %}
+{% macro hero(title, subtitle, eyebrow="") %}
 <div class="hero">
+  {% if eyebrow %}
+  <div class="eyebrow-wrapper">
+    <span class="eyebrow">{{ eyebrow }}</span>
+  </div>
+  {% endif %}
   <div class="title-wrapper">
     <h1 class="title">{{ title }}</h1>
   </div>
