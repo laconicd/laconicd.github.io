@@ -1,50 +1,22 @@
-{% macro post_card(img, badge, title, summary, url, id="", reading_time=0,
-is_featured=false) %}
-<a href="{{ url }}" class="post-card {% if is_featured %}-featured{% endif %}">
-  <div class="image-wrapper">
-    <img
-      src="{{ img }}"
-      class="image"
-      {%
-      if
-      id
-      %}style="view-transition-name: img-{{ id }}"
-      {%
-      endif
-      %}
-    />
-    <div class="fab">{{ icons::lightning(size=6) }}</div>
-  </div>
-  <div class="content">
-    <div class="badge-featured">FEATURED</div>
-    <div
-      class="cluster"
-      style="--gap: var(--space-md); justify-content: space-between; width: 100%"
-    >
-      <div class="badge-date">{{ badge }}</div>
-      {% if reading_time > 0 %}
-      <div class="badge-date" style="opacity: 0.5">
-        {{ reading_time }} MIN READ
+{% import "macros/icons.html" as icons %}
+
+{% macro post_card(img, date, title, summary, url) %}
+  <a href="{{ url }}" class="post-card">
+    <img src="{{ img }}" class="image" />
+    <div class="content">
+      <div class="badge-area">
+        <div class="featured">FEATURED</div>
+        <div class="date">{{ date }}</div>
+        <div class="readtime">5 MIN READ</div>
       </div>
-      {% endif %}
+      <h2 class="title">{{ title }}</h2>
+      <p class="summary">{{ summary }}</p>
     </div>
-    <h2
-      class="title"
-      {%
-      if
-      id
-      %}style="view-transition-name: title-{{ id }}"
-      {%
-      endif
-      %}
-    >
-      {{ title }}
-    </h2>
-    <p class="summary">{{ summary }}</p>
-  </div>
-  <div class="footer">
-    <span class="action-text">KEEP READING</span>
-    <div class="arrow-circle">→</div>
-  </div>
-</a>
+    <div class="action">
+      <span class="action-text">KEEP READING</span>
+      <span class="action-arrow">
+        {{ icons::chevron_right(class="icon") }}
+      </span>
+    </div>
+  </a>
 {% endmacro %}

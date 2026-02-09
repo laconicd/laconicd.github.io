@@ -3,4 +3,6 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--gap, 1rem);
+
+  --layout: clusterk;
 }

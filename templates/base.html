@@ -1,20 +1,18 @@
-{% import "macros/icons.html" as icons %} {% import
-"macros/components/navbar.html" as nav %} {% import
-"macros/components/speed-dial.html" as sd %}
+{% import "macros/icons.html" as icons %}
+{% import "macros/components/navbar.html" as nav %}
+{% import "macros/components/speed-dial.html" as sd %}
 
 <!DOCTYPE html>
 <html lang="ko" data-theme="lofi">
-  {% include "partials/head.html" %}
+  <head>
+    {% include "partials/head.html" %}
+  </head>
+
   <body>
-    <header id="site-header">
-      {{ nav::navbar(brand="The Blog") }}
-    </header>
-    <main>
-      {% block content %}{% endblock content %}
-    </main>
-    <footer id="site-footer">
-      {% include "partials/footer.html" %}
-    </footer>
-    {{ sd::speed_dial() }}
+    <header id="site-header">{{ nav::navbar(brand="The Blog") }}</header>
+    <main id="site-main">{% block content %}{% endblock content %}</main>
+    <footer id="site-footer">{% include "partials/footer.html" %}</footer>
+
+    <div id="site-widget">{{ sd::speed_dial() }}</div>
   </body>
 </html>

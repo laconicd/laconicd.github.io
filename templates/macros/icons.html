@@ -480,3 +480,16 @@
   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 </svg>
 {% endmacro %}
+
+{% macro chevron_right(size=4, class="") %}
+<svg
+  viewBox="0 0 1024 1024"
+  width="{{ size | float * 0.25 }}rem"
+  height="{{ size | float * 0.25 }}rem"
+  class="{{ class }}"
+  xmlns="http://www.w3.org/2000/svg"
+  fill="currentColor"
+>
+  <path d="M256 120.768L306.432 64 768 512l-461.568 448L256 903.232 659.072 512z"></path>
+</svg>
+{% endmacro %}
