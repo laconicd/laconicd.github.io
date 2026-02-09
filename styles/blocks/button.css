@@ -1,21 +1,25 @@
-.btn {
-  border: var(--border-width-xs) solid var(--color-base-300);
-  border-radius: var(--border-radius-md);
-  background-color: var(--bg-color, --color-base-300);
-  padding-inline: var(--space-md);
-  padding-block: var(--space-xs);
-  color: var(--fg-color, --color-base-content);
-}
+@layer blocks {
+  @scope (.btn) {
+    :scope {
+      border: var(--border-width-xs) solid var(--color-base-300);
+      border-radius: var(--border-radius-md);
+      background-color: var(--bg-color, --color-base-300);
+      padding-inline: var(--space-md);
+      padding-block: var(--space-xs);
+      color: var(--fg-color, --color-base-content);
+    }
 
-.btn-ghost {
-  border: none;
-  background-color: transparent;
-}
+    &.btn-ghost {
+      border: none;
+      background-color: transparent;
+    }
 
-.btn-circle {
-  border-radius: var(--border-radius-full);
-  background-color: var(--color-base-content);
-  padding-inline: var(--space-sm);
-  padding-block: var(--space-sm);
-  color: var(--color-base-100);
+    &.btn-circle {
+      border-radius: var(--border-radius-full);
+      background-color: var(--color-base-content);
+      padding-inline: var(--space-sm);
+      padding-block: var(--space-sm);
+      color: var(--color-base-100);
+    }
+  }
 }

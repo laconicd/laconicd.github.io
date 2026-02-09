@@ -1,163 +1,191 @@
-/* ==========================================================================
-   UTILITIES: Spacing (Margin & Padding)
-   Methodology: CUBE CSS
-   Standard: CSS Logical Properties (2026 Compatible)
-   ========================================================================== */
+@layer utilities {
+  /* --- 1. Padding (Logical Properties) --- */
 
-/* --- 1. Padding Utilities (Global & Logical) --- */
+  /* All sides */
+  .padding-xs {
+    padding: var(--space-xs);
+  }
+  .padding-sm {
+    padding: var(--space-sm);
+  }
+  .padding-md {
+    padding: var(--space-md);
+  }
+  .padding-lg {
+    padding: var(--space-lg);
+  }
+  .padding-xl {
+    padding: var(--space-xl);
+  }
+  .padding-xxl {
+    padding: var(--space-xxl);
+  }
 
-/* All sides */
-.p-xs {
-  padding: var(--space-xs);
-}
-.p-sm {
-  padding: var(--space-sm);
-}
-.p-md {
-  padding: var(--space-md);
-}
-.p-lg {
-  padding: var(--space-lg);
-}
-.p-xl {
-  padding: var(--space-xl);
-}
-.p-xxl {
-  padding: var(--space-xxl);
-}
+  /* Block (Top & Bottom) */
+  .padding-block-xs {
+    padding-block: var(--space-xs);
+  }
+  .padding-block-sm {
+    padding-block: var(--space-sm);
+  }
+  .padding-block-md {
+    padding-block: var(--space-md);
+  }
+  .padding-block-lg {
+    padding-block: var(--space-lg);
+  }
+  .padding-block-xl {
+    padding-block: var(--space-xl);
+  }
+  .padding-block-xxl {
+    padding-block: var(--space-xxl);
+  }
 
-/* Block (Top & Bottom) */
-.pi-xs {
-  padding-inline: var(--space-xs);
-}
-.pi-sm {
-  padding-inline: var(--space-sm);
-}
-.pi-md {
-  padding-inline: var(--space-md);
-}
-.pi-lg {
-  padding-inline: var(--space-lg);
-}
-.pi-xl {
-  padding-inline: var(--space-xl);
-}
-.pi-xxl {
-  padding-inline: var(--space-xxl);
-}
+  /* Inline (Left & Right) */
+  .padding-inline-xs {
+    padding-inline: var(--space-xs);
+  }
+  .padding-inline-sm {
+    padding-inline: var(--space-sm);
+  }
+  .padding-inline-md {
+    padding-inline: var(--space-md);
+  }
+  .padding-inline-lg {
+    padding-inline: var(--space-lg);
+  }
+  .padding-inline-xl {
+    padding-inline: var(--space-xl);
+  }
+  .padding-inline-xxl {
+    padding-inline: var(--space-xxl);
+  }
 
-/* Inline (Left & Right) */
-.pb-xs {
-  padding-block: var(--space-xs);
-}
-.pb-sm {
-  padding-block: var(--space-sm);
-}
-.pb-md {
-  padding-block: var(--space-md);
-}
-.pb-lg {
-  padding-block: var(--space-lg);
-}
-.pb-xl {
-  padding-block: var(--space-xl);
-}
-.pb-xxl {
-  padding-block: var(--space-xxl);
-}
+  /* Single Sides */
+  .padding-block-start-md {
+    padding-block-start: var(--space-md);
+  }
+  .padding-block-end-md {
+    padding-block-end: var(--space-md);
+  }
+  .padding-inline-start-md {
+    padding-inline-start: var(--space-md);
+  }
+  .padding-inline-end-md {
+    padding-inline-end: var(--space-md);
+  }
 
-/* --- 2. Margin Utilities (Global & Logical) --- */
+  /* --- 2. Margin (Logical Properties) --- */
 
-/* All sides */
-.m-xs {
-  margin: var(--space-xs);
-}
-.m-sm {
-  margin: var(--space-sm);
-}
-.m-md {
-  margin: var(--space-md);
-}
-.m-lg {
-  margin: var(--space-lg);
-}
-.m-xl {
-  margin: var(--space-xl);
-}
-.m-xxl {
-  margin: var(--space-xxl);
-}
+  /* All sides */
+  .margin-xs {
+    margin: var(--space-xs);
+  }
+  .margin-sm {
+    margin: var(--space-sm);
+  }
+  .margin-md {
+    margin: var(--space-md);
+  }
+  .margin-lg {
+    margin: var(--space-lg);
+  }
+  .margin-xl {
+    margin: var(--space-xl);
+  }
+  .margin-xxl {
+    margin: var(--space-xxl);
+  }
 
-/* Block (Top & Bottom) - 가독성을 위해 주로 사용 */
-.mi-xs {
-  margin-inline: var(--space-xs);
-}
-.mi-sm {
-  margin-inline: var(--space-sm);
-}
-.mi-md {
-  margin-inline: var(--space-md);
-}
-.mi-lg {
-  margin-inline: var(--space-lg);
-}
-.mi-xl {
-  margin-inline: var(--space-xl);
-}
-.mi-xxl {
-  margin-inline: var(--space-xxl);
-}
+  /* Block (Top & Bottom) */
+  .margin-block-xs {
+    margin-block: var(--space-xs);
+  }
+  .margin-block-sm {
+    margin-block: var(--space-sm);
+  }
+  .margin-block-md {
+    margin-block: var(--space-md);
+  }
+  .margin-block-lg {
+    margin-block: var(--space-lg);
+  }
+  .margin-block-xl {
+    margin-block: var(--space-xl);
+  }
+  .margin-block-xxl {
+    margin-block: var(--space-xxl);
+  }
 
-/* Inline (Left & Right) - 중앙 정렬 등을 포함 */
-.mb-xs {
-  margin-block: var(--space-xs);
-}
-.mb-sm {
-  margin-block: var(--space-sm);
-}
-.mb-md {
-  margin-block: var(--space-md);
-}
-.mb-lg {
-  margin-block: var(--space-lg);
-}
-.mb-xl {
-  margin-block: var(--space-xl);
-}
-.mb-xxl {
-  margin-block: var(--space-xxl);
-}
+  /* Inline (Left & Right) */
+  .margin-inline-xs {
+    margin-inline: var(--space-xs);
+  }
+  .margin-inline-sm {
+    margin-inline: var(--space-sm);
+  }
+  .margin-inline-md {
+    margin-inline: var(--space-md);
+  }
+  .margin-inline-lg {
+    margin-inline: var(--space-lg);
+  }
+  .margin-inline-xl {
+    margin-inline: var(--space-xl);
+  }
+  .margin-inline-xxl {
+    margin-inline: var(--space-xxl);
+  }
 
-/* Auto Margins (CUBE CSS Utility 특화) */
-.m-auto {
-  margin: auto;
-}
-.mi-auto {
-  margin-inline: auto;
-}
-.mb-auto {
-  margin-block: auto;
-}
-.m-inline-end {
-  margin-inline-start: auto;
-} /* 오른쪽 정렬 효과 */
+  /* Single Sides */
+  .margin-block-start-md {
+    margin-block-start: var(--space-md);
+  }
+  .margin-block-end-md {
+    margin-block-end: var(--space-md);
+  }
+  .margin-inline-start-md {
+    margin-inline-start: var(--space-md);
+  }
+  .margin-inline-end-md {
+    margin-inline-end: var(--space-md);
+  }
 
-/* --- 3. Composite Utilities (The "Flow" Concept) --- */
+  /* Auto Margins */
+  .margin-auto {
+    margin: auto;
+  }
+  .margin-block-auto {
+    margin-block: auto;
+  }
+  .margin-inline-auto {
+    margin-inline: auto;
+  }
+  .margin-inline-start-auto {
+    margin-inline-start: auto;
+  }
+  .margin-inline-end-auto {
+    margin-inline-end: auto;
+  }
 
-/**
- * CUBE CSS에서 자주 사용하는 Flow 유틸리티입니다.
- * 자식 요소들 사이의 간격만 자동으로 부여합니다.
- */
-.flow > * + * {
-  margin-block-start: var(--flow-space, 1em);
-}
+  /* --- 3. Flow (Composite Utility) --- */
+  .flow > * + * {
+    margin-block-start: var(--flow-space, 1em);
+  }
 
-.flow-sm {
-  --flow-space: var(--space-sm);
-}
-.flow-md {
-  --flow-space: var(--space-md);
-}
-.flow-lg {
-  --flow-space: var(--space-lg);
+  .flow-xs {
+    --flow-space: var(--space-xs);
+  }
+  .flow-sm {
+    --flow-space: var(--space-sm);
+  }
+  .flow-md {
+    --flow-space: var(--space-md);
+  }
+  .flow-lg {
+    --flow-space: var(--space-lg);
+  }
+  .flow-xl {
+    --flow-space: var(--space-xl);
+  }
 }

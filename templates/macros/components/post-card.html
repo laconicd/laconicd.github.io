@@ -1,20 +1,19 @@
-{% import "macros/icons.html" as icons %}
-
-{% macro post_card(img, date, title, summary, url) %}
-  <a href="{{ url }}" class="post-card">
-    <img src="{{ img }}" class="image" />
-    <div class="content stack">
-      <div class="badge-area cluster">
-        <div class="featured">FEATURED</div>
-        <div class="date">{{ date }}</div>
-        <div class="readtime">5 MIN READ</div>
-      </div>
-      <h2 class="title">{{ title }}</h2>
-      <p class="summary">{{ summary }}</p>
+{% import "macros/icons.html" as icons %} {% macro post_card(img, date, title,
+summary, url) %}
+<a href="{{ url }}" class="post-card">
+  <img src="{{ img }}" class="image" />
+  <div class="content">
+    <div class="badge-area">
+      <div class="featured">FEATURED</div>
+      <div class="date">{{ date }}</div>
+      <div class="readtime">5 MIN READ</div>
     </div>
-    <div class="action cluster">
-      <span class="action-text">KEEP READING</span>
-      <span class="action-arrow"> {{ icons::chevron_right(class="icon") }} </span>
-    </div>
-  </a>
+    <h2 class="title">{{ title }}</h2>
+    <p class="summary">{{ summary }}</p>
+  </div>
+  <div class="action">
+    <span class="action-text">KEEP READING</span>
+    <span class="action-arrow"> {{ icons::chevron_right(class="icon") }} </span>
+  </div>
+</a>
 {% endmacro %}

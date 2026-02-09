@@ -60,7 +60,9 @@
     .lexicon-tag {
       text-decoration: none;
       font-size: var(--font-size-xs);
-      transition: transform var(--transition-speed-normal), box-shadow var(--transition-speed-normal);
+      transition:
+        transform var(--transition-speed-normal),
+        box-shadow var(--transition-speed-normal);
     }
 
     .theme-tag:hover,
@@ -171,7 +173,10 @@
       visibility: hidden;
       text-decoration: none !important;
       font-size: 0.8em;
-      transition: opacity var(--transition-speed-normal), transform var(--transition-speed-normal), visibility var(--transition-speed-normal);
+      transition:
+        opacity var(--transition-speed-normal),
+        transform var(--transition-speed-normal),
+        visibility var(--transition-speed-normal);
       color: var(--color-primary);
       transform: translateX(10px);
     }

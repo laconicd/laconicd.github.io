@@ -1,0 +1,22 @@
+.reel {
+  display: flex;
+  block-size: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  gap: var(--gap, var(--space-md));
+}
+
+.reel::-webkit-scrollbar {
+  display: none;
+}
+
+.reel > * {
+  flex: 0 0 auto;
+}
+
+.reel img {
+  block-size: 100%;
+  flex-basis: auto;
+  inline-size: auto;
+}

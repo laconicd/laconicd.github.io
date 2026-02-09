@@ -1,40 +1,35 @@
-{% extends "base.html" %}
-{%
-  import "macros/components/post-card.html" as
-  post_card
+{% extends "base.html" %} {% import "macros/components/post-card.html" as
+post_card %} {% import "macros/components/hero.html" as hero %} {% block content
 %}
-{% import "macros/components/hero.html" as hero %}
-{% block content %}
-  <main class="wrapper stack" style="--gap: var(--space-xxl)">
-    {{
-      hero::hero(title=term.name | upper, subtitle="Thematic Pillar: A collection
-      of insights exploring " ~ term.name ~ ".")
-    }}
+<main class="wrapper stack" style="--gap: var(--space-xxl)">
+  {{ hero::hero(title=term.name | upper, subtitle="Thematic Pillar: A collection
+  of insights exploring " ~ term.name ~ ".") }}
 
-    <section class="stack" style="--gap: var(--space-lg)">
-      <div class="separator">
-        <span>RECORDS IN THIS THEME</span>
-      </div>
+  <section class="stack" style="--gap: var(--space-lg)">
+    <div class="separator">
+      <span>RECORDS IN THIS THEME</span>
+    </div>
 
-      <div class="grid" style="--min: 350px">
-        {% for post in term.pages %}{{
-          post_card::post_card( img=post.extra.image
-                    | default(value="/images/sample.png"), date=post.date | date(format="%B
-                    %d, %Y") | upper, title=post.title, summary=post.description |
-                    default(value=post.summary) | default(value=""), url=post.permalink,
-          )
-        }}{% endfor %}
-      </div>
-    </section>
+    <div class="grid" style="--min: 350px">
+      {% for post in term.pages %}{{ post_card::post_card( img=post.extra.image
+      | default(value="/images/sample.png"), date=post.date | date(format="%B
+      %d, %Y") | upper, title=post.title, summary=post.description |
+      default(value=post.summary) | default(value=""), url=post.permalink, )
+      }}{% endfor %}
+    </div>
+  </section>
 
-    <footer class="stack" style="align-items: center; margin-block-start: var(--space-xl)">
-      <a
-        href="/themes"
-        class="btn btn-ghost"
-        style="font-weight: var(--font-weight-bold); letter-spacing: var(--letter-spacing-wider)"
-      >
-        ← ALL THEMES
-      </a>
-    </footer>
-  </main>
+  <footer
+    class="stack"
+    style="align-items: center; margin-block-start: var(--space-xl)"
+  >
+    <a
+      href="/themes"
+      class="btn btn-ghost"
+      style="font-weight: var(--font-weight-bold); letter-spacing: var(--letter-spacing-wider)"
+    >
+      ← ALL THEMES
+    </a>
+  </footer>
+</main>
 {% endblock content %}

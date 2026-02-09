@@ -1,0 +1,15 @@
+@layer utilities {
+  /* --- Helpers --- */
+  .stretched-link::after {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    content: "";
+  }
+
+  .list-blank {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+}
