@@ -20,12 +20,8 @@
     }
 
     & .content {
-      display: flex;
-      flex-direction: column;
-
       & .badge-area {
-        display: flex;
-        gap: var(--space-md);
+        --gap: var(--space-md);
         font-weight: var(--font-weight-black);
         font-size: var(--font-size-xs);
         letter-spacing: var(--letter-spacing-widest);
@@ -39,9 +35,6 @@
     }
 
     & .action {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-size: var(--font-size-xs);
       letter-spacing: var(--letter-spacing-widest);
 
@@ -75,15 +68,11 @@
     }
 
     & .content {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-md);
+      --gap: var(--space-md);
       padding: var(--space-xl);
 
       & .badge-area {
-        display: flex;
-        align-items: center;
-        gap: var(--space-xl);
+        --gap: var(--space-xl);
         color: oklch(from var(--color-base-content) l c h / var(--opacity-40));
         font-weight: var(--font-weight-bold);
         font-size: var(--font-size-xs);
@@ -119,17 +108,11 @@
     }
 
     & .action {
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
       margin-top: auto;
       padding: 0 2.5rem 2.5rem 2.5rem;
 
       & .action-text {
-        display: flex;
-        justify-content: start;
-        align-items: center;
         font-weight: var(--font-weight-black);
         font-size: 1.1rem;
         letter-spacing: 0.05em;
