@@ -46,9 +46,11 @@
       letter-spacing: var(--letter-spacing-widest);
 
       & .action-arrow {
+        display: flex;
+        justify-content: end;
+        align-items: center;
         inline-size: var(--space-xl);
         block-size: var(--space-xl);
-        font-size: var(--font-size-lg);
       }
     }
   }
@@ -131,6 +133,9 @@
       }
 
       & .action-arrow {
+        display: flex;
+        justify-content: end;
+        align-items: center;
         inline-size: var(--space-xl);
         block-size: var(--space-xl);
         font-size: var(--font-size-lg);
