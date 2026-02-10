@@ -1,24 +1,67 @@
-<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg
+  width="800"
+  height="450"
+  viewBox="0 0 800 450"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
   <!-- Background with a subtle editorial tint -->
-  <rect width="800" height="450" fill="#1a1c1e"/>
-  
+  <rect width="800" height="450" fill="#1a1c1e" />
+
   <!-- "Old" Page Snapshot -->
-  <rect x="180" y="100" width="300" height="200" rx="12" fill="#2d2f31" stroke="#3f4144" stroke-width="2"/>
-  <rect x="210" y="130" width="120" height="12" rx="6" fill="#4a4c4f"/>
-  <rect x="210" y="160" width="220" height="8" rx="4" fill="#3a3c3f"/>
-  <rect x="210" y="180" width="180" height="8" rx="4" fill="#3a3c3f"/>
-  
+  <rect
+    x="180"
+    y="100"
+    width="300"
+    height="200"
+    rx="12"
+    fill="#2d2f31"
+    stroke="#3f4144"
+    stroke-width="2"
+  />
+  <rect x="210" y="130" width="120" height="12" rx="6" fill="#4a4c4f" />
+  <rect x="210" y="160" width="220" height="8" rx="4" fill="#3a3c3f" />
+  <rect x="210" y="180" width="180" height="8" rx="4" fill="#3a3c3f" />
+
   <!-- Connection / Motion Blur effect -->
-  <path d="M480 200C520 200 540 220 580 220" stroke="#86efac" stroke-width="2" stroke-dasharray="6 6" opacity="0.4"/>
-  
+  <path
+    d="M480 200C520 200 540 220 580 220"
+    stroke="#86efac"
+    stroke-width="2"
+    stroke-dasharray="6 6"
+    opacity="0.4"
+  />
+
   <!-- "New" Page Snapshot with Primary color accent -->
-  <rect x="320" y="150" width="300" height="200" rx="12" fill="#222426" stroke="#86efac" stroke-width="3"/>
-  <rect x="350" y="180" width="140" height="16" rx="8" fill="#86efac" fill-opacity="0.9"/>
-  <rect x="350" y="215" width="240" height="10" rx="5" fill="#4a4c4f"/>
-  <rect x="350" y="240" width="200" height="10" rx="5" fill="#4a4c4f"/>
-  <rect x="350" y="265" width="220" height="10" rx="5" fill="#4a4c4f"/>
+  <rect
+    x="320"
+    y="150"
+    width="300"
+    height="200"
+    rx="12"
+    fill="#222426"
+    stroke="#86efac"
+    stroke-width="3"
+  />
+  <rect
+    x="350"
+    y="180"
+    width="140"
+    height="16"
+    rx="8"
+    fill="#86efac"
+    fill-opacity="0.9"
+  />
+  <rect x="350" y="215" width="240" height="10" rx="5" fill="#4a4c4f" />
+  <rect x="350" y="240" width="200" height="10" rx="5" fill="#4a4c4f" />
+  <rect x="350" y="265" width="220" height="10" rx="5" fill="#4a4c4f" />
 
   <!-- Decorative elements -->
-  <circle cx="620" cy="150" r="30" fill="#86efac" fill-opacity="0.1"/>
-  <path d="M620 130V170M600 150H640" stroke="#86efac" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="620" cy="150" r="30" fill="#86efac" fill-opacity="0.1" />
+  <path
+    d="M620 130V170M600 150H640"
+    stroke="#86efac"
+    stroke-width="1.5"
+    opacity="0.5"
+  />
 </svg>

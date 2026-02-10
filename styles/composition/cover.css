@@ -1,22 +1,26 @@
-.cover {
-  display: flex;
-  flex-direction: column;
-  min-block-size: var(--min-height, 100dvb);
-  padding: var(--gap, var(--space-md));
-}
+@scope (.cover) {
+  :scope {
+    display: flex;
+    flex-direction: column;
+    min-block-size: var(--min-height, 100dvb);
+    padding: var(--gap, var(--space-md));
 
-.cover > * {
-  margin-block: var(--gap, var(--space-md));
-}
+    --is-cover: 1;
+  }
 
-.cover > :first-child:not(.centered) {
-  margin-block-start: 0;
-}
+  :scope > * {
+    margin-block: var(--gap, var(--space-md));
+  }
 
-.cover > :last-child:not(.centered) {
-  margin-block-end: 0;
-}
+  :scope > :first-child:not(.centered) {
+    margin-block-start: 0;
+  }
 
-.cover > .centered {
-  margin-block: auto;
+  :scope > :last-child:not(.centered) {
+    margin-block-end: 0;
+  }
+
+  :scope > .centered {
+    margin-block: auto;
+  }
 }

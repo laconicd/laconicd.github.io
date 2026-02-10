@@ -1,191 +1,189 @@
-@layer utilities {
-  /* --- 1. Padding (Logical Properties) --- */
+/* --- 1. Padding (Logical Properties) --- */
 
-  /* All sides */
-  .padding-xs {
-    padding: var(--space-xs);
-  }
-  .padding-sm {
-    padding: var(--space-sm);
-  }
-  .padding-md {
-    padding: var(--space-md);
-  }
-  .padding-lg {
-    padding: var(--space-lg);
-  }
-  .padding-xl {
-    padding: var(--space-xl);
-  }
-  .padding-xxl {
-    padding: var(--space-xxl);
-  }
+/* All sides */
+.padding-xs {
+  padding: var(--space-xs);
+}
+.padding-sm {
+  padding: var(--space-sm);
+}
+.padding-md {
+  padding: var(--space-md);
+}
+.padding-lg {
+  padding: var(--space-lg);
+}
+.padding-xl {
+  padding: var(--space-xl);
+}
+.padding-xxl {
+  padding: var(--space-xxl);
+}
 
-  /* Block (Top & Bottom) */
-  .padding-block-xs {
-    padding-block: var(--space-xs);
-  }
-  .padding-block-sm {
-    padding-block: var(--space-sm);
-  }
-  .padding-block-md {
-    padding-block: var(--space-md);
-  }
-  .padding-block-lg {
-    padding-block: var(--space-lg);
-  }
-  .padding-block-xl {
-    padding-block: var(--space-xl);
-  }
-  .padding-block-xxl {
-    padding-block: var(--space-xxl);
-  }
+/* Block (Top & Bottom) */
+.padding-block-xs {
+  padding-block: var(--space-xs);
+}
+.padding-block-sm {
+  padding-block: var(--space-sm);
+}
+.padding-block-md {
+  padding-block: var(--space-md);
+}
+.padding-block-lg {
+  padding-block: var(--space-lg);
+}
+.padding-block-xl {
+  padding-block: var(--space-xl);
+}
+.padding-block-xxl {
+  padding-block: var(--space-xxl);
+}
 
-  /* Inline (Left & Right) */
-  .padding-inline-xs {
-    padding-inline: var(--space-xs);
-  }
-  .padding-inline-sm {
-    padding-inline: var(--space-sm);
-  }
-  .padding-inline-md {
-    padding-inline: var(--space-md);
-  }
-  .padding-inline-lg {
-    padding-inline: var(--space-lg);
-  }
-  .padding-inline-xl {
-    padding-inline: var(--space-xl);
-  }
-  .padding-inline-xxl {
-    padding-inline: var(--space-xxl);
-  }
+/* Inline (Left & Right) */
+.padding-inline-xs {
+  padding-inline: var(--space-xs);
+}
+.padding-inline-sm {
+  padding-inline: var(--space-sm);
+}
+.padding-inline-md {
+  padding-inline: var(--space-md);
+}
+.padding-inline-lg {
+  padding-inline: var(--space-lg);
+}
+.padding-inline-xl {
+  padding-inline: var(--space-xl);
+}
+.padding-inline-xxl {
+  padding-inline: var(--space-xxl);
+}
 
-  /* Single Sides */
-  .padding-block-start-md {
-    padding-block-start: var(--space-md);
-  }
-  .padding-block-end-md {
-    padding-block-end: var(--space-md);
-  }
-  .padding-inline-start-md {
-    padding-inline-start: var(--space-md);
-  }
-  .padding-inline-end-md {
-    padding-inline-end: var(--space-md);
-  }
+/* Single Sides */
+.padding-block-start-md {
+  padding-block-start: var(--space-md);
+}
+.padding-block-end-md {
+  padding-block-end: var(--space-md);
+}
+.padding-inline-start-md {
+  padding-inline-start: var(--space-md);
+}
+.padding-inline-end-md {
+  padding-inline-end: var(--space-md);
+}
 
-  /* --- 2. Margin (Logical Properties) --- */
+/* --- 2. Margin (Logical Properties) --- */
 
-  /* All sides */
-  .margin-xs {
-    margin: var(--space-xs);
-  }
-  .margin-sm {
-    margin: var(--space-sm);
-  }
-  .margin-md {
-    margin: var(--space-md);
-  }
-  .margin-lg {
-    margin: var(--space-lg);
-  }
-  .margin-xl {
-    margin: var(--space-xl);
-  }
-  .margin-xxl {
-    margin: var(--space-xxl);
-  }
+/* All sides */
+.margin-xs {
+  margin: var(--space-xs);
+}
+.margin-sm {
+  margin: var(--space-sm);
+}
+.margin-md {
+  margin: var(--space-md);
+}
+.margin-lg {
+  margin: var(--space-lg);
+}
+.margin-xl {
+  margin: var(--space-xl);
+}
+.margin-xxl {
+  margin: var(--space-xxl);
+}
 
-  /* Block (Top & Bottom) */
-  .margin-block-xs {
-    margin-block: var(--space-xs);
-  }
-  .margin-block-sm {
-    margin-block: var(--space-sm);
-  }
-  .margin-block-md {
-    margin-block: var(--space-md);
-  }
-  .margin-block-lg {
-    margin-block: var(--space-lg);
-  }
-  .margin-block-xl {
-    margin-block: var(--space-xl);
-  }
-  .margin-block-xxl {
-    margin-block: var(--space-xxl);
-  }
+/* Block (Top & Bottom) */
+.margin-block-xs {
+  margin-block: var(--space-xs);
+}
+.margin-block-sm {
+  margin-block: var(--space-sm);
+}
+.margin-block-md {
+  margin-block: var(--space-md);
+}
+.margin-block-lg {
+  margin-block: var(--space-lg);
+}
+.margin-block-xl {
+  margin-block: var(--space-xl);
+}
+.margin-block-xxl {
+  margin-block: var(--space-xxl);
+}
 
-  /* Inline (Left & Right) */
-  .margin-inline-xs {
-    margin-inline: var(--space-xs);
-  }
-  .margin-inline-sm {
-    margin-inline: var(--space-sm);
-  }
-  .margin-inline-md {
-    margin-inline: var(--space-md);
-  }
-  .margin-inline-lg {
-    margin-inline: var(--space-lg);
-  }
-  .margin-inline-xl {
-    margin-inline: var(--space-xl);
-  }
-  .margin-inline-xxl {
-    margin-inline: var(--space-xxl);
-  }
+/* Inline (Left & Right) */
+.margin-inline-xs {
+  margin-inline: var(--space-xs);
+}
+.margin-inline-sm {
+  margin-inline: var(--space-sm);
+}
+.margin-inline-md {
+  margin-inline: var(--space-md);
+}
+.margin-inline-lg {
+  margin-inline: var(--space-lg);
+}
+.margin-inline-xl {
+  margin-inline: var(--space-xl);
+}
+.margin-inline-xxl {
+  margin-inline: var(--space-xxl);
+}
 
-  /* Single Sides */
-  .margin-block-start-md {
-    margin-block-start: var(--space-md);
-  }
-  .margin-block-end-md {
-    margin-block-end: var(--space-md);
-  }
-  .margin-inline-start-md {
-    margin-inline-start: var(--space-md);
-  }
-  .margin-inline-end-md {
-    margin-inline-end: var(--space-md);
-  }
+/* Single Sides */
+.margin-block-start-md {
+  margin-block-start: var(--space-md);
+}
+.margin-block-end-md {
+  margin-block-end: var(--space-md);
+}
+.margin-inline-start-md {
+  margin-inline-start: var(--space-md);
+}
+.margin-inline-end-md {
+  margin-inline-end: var(--space-md);
+}
 
-  /* Auto Margins */
-  .margin-auto {
-    margin: auto;
-  }
-  .margin-block-auto {
-    margin-block: auto;
-  }
-  .margin-inline-auto {
-    margin-inline: auto;
-  }
-  .margin-inline-start-auto {
-    margin-inline-start: auto;
-  }
-  .margin-inline-end-auto {
-    margin-inline-end: auto;
-  }
+/* Auto Margins */
+.margin-auto {
+  margin: auto;
+}
+.margin-block-auto {
+  margin-block: auto;
+}
+.margin-inline-auto {
+  margin-inline: auto;
+}
+.margin-inline-start-auto {
+  margin-inline-start: auto;
+}
+.margin-inline-end-auto {
+  margin-inline-end: auto;
+}
 
-  /* --- 3. Flow (Composite Utility) --- */
-  .flow > * + * {
-    margin-block-start: var(--flow-space, 1em);
-  }
+/* --- 3. Flow (Composite Utility) --- */
+.flow > * + * {
+  margin-block-start: var(--flow-space, 1em);
+}
 
-  .flow-xs {
-    --flow-space: var(--space-xs);
-  }
-  .flow-sm {
-    --flow-space: var(--space-sm);
-  }
-  .flow-md {
-    --flow-space: var(--space-md);
-  }
-  .flow-lg {
-    --flow-space: var(--space-lg);
-  }
-  .flow-xl {
-    --flow-space: var(--space-xl);
-  }
+.flow-xs {
+  --flow-space: var(--space-xs);
+}
+.flow-sm {
+  --flow-space: var(--space-sm);
+}
+.flow-md {
+  --flow-space: var(--space-md);
+}
+.flow-lg {
+  --flow-space: var(--space-lg);
+}
+.flow-xl {
+  --flow-space: var(--space-xl);
 }

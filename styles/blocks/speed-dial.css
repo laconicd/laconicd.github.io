@@ -1,5 +1,3 @@
-@layer blocks;
-
 @scope (.speed-dial) {
   :scope {
     position: fixed;

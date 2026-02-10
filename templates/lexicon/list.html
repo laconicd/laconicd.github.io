@@ -3,7 +3,11 @@
 
 {% block content %}
 <main class="wrapper stack" style="--gap: var(--space-xxl)">
-  {{ hero::hero(title="Lexicon", subtitle=config.extra.lexicon_subtitle | default(value="A structured index of core concepts and keywords.")) }}
+  {{
+    hero::view(
+    title="Lexicon",
+    subtitle=config.extra.lexicon_subtitle | default(value="A structured index of core concepts and keywords."))
+   }}
 
   <section class="lexicon-index stack" style="--gap: 0">
     <div class="separator">
@@ -25,7 +29,7 @@
 
     <div class="stack" style="--gap: var(--space-xl)">
       {% set_global last_letter = "" %}
-      
+
       {% for term in sorted_terms %}
         {% set current_letter = term.name | truncate(length=1, end="") | upper %}
         {% if current_letter != last_letter %}
@@ -37,12 +41,12 @@
             <div class="terms-cluster">
           {% set_global last_letter = current_letter %}
         {% endif %}
-        
+
         <a href="{{ term.permalink }}" class="term-link">
           <span class="term-name">{{ term.name }}</span>
           <span class="term-count">{{ term.pages | length }}</span>
         </a>
-        
+
         {% if loop.last %}
           </div></div> {# Close final group #}
         {% endif %}

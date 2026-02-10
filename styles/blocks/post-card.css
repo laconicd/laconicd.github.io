@@ -1,148 +1,114 @@
-/* --- 1. Context: List Layout (within .stack) --- */
-@container style(--layout: stack) {
-  @scope (.post-card) {
-    :scope {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border: var(--border-width-xs) solid
-        oklch(from var(--color-base-content) l c h / var(--opacity-10));
-      border-radius: var(--border-radius-lg);
-      background-color: oklch(from var(--color-base-content) l c h / 0.015);
-      padding-inline: var(--space-lg);
-      padding-block: var(--space-xl);
-    }
+@scope (.post-card) {
+  :scope {
+    display: flex;
+    position: relative;
+    transition: all var(--transition-speed-normal);
+    border: var(--border-width-xs) solid var(--border-color-base);
+    background-color: var(--color-base-100);
+    color: inherit;
+    text-decoration: none;
+  }
 
-    & .image,
-    & .featured,
-    & .summary,
-    & .action-text {
+  :scope:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+  }
+
+  & .title {
+    color: var(--color-base-content);
+    line-height: var(--font-line-height-xs);
+    letter-spacing: var(--letter-spacing-tighter);
+  }
+
+  & .summary {
+    color: oklch(from var(--color-base-content) l c h / 0.6);
+    line-height: var(--font-line-height-md);
+  }
+
+  & .action-arrow {
+    font-size: var(--font-size-lg);
+  }
+
+  /* Exceptions for badges within post-card */
+  & .badge[data-type="date"],
+  & .badge[data-type="readtime"] {
+    border: 1px solid var(--border-color-subtle);
+    background-color: transparent;
+    color: var(--color-base-content);
+    font-size: var(--font-size-xs);
+  }
+
+  /* --- [ Mode: List ] --- */
+  &[data-layout="main"] {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-xl);
+    border-radius: var(--border-radius-lg);
+    background-color: oklch(from var(--color-base-content) l c h / 0.015);
+    padding-inline: var(--space-lg);
+    padding-block: var(--space-xl);
+
+    & :where(.image, .summary, .action-text) {
       display: none;
     }
 
     & .content {
-      display: flex;
-      flex-direction: column;
-
-      & .badge-area {
-        display: flex;
-        gap: var(--space-md);
-        font-weight: var(--font-weight-black);
-        font-size: var(--font-size-xs);
-        letter-spacing: var(--letter-spacing-widest);
-      }
-
-      & .title {
-        font-weight: var(--font-weight-normal);
-        font-size: var(--font-size-lg);
-        letter-spacing: var(--letter-spacing-tighter);
-      }
+      flex: 1;
     }
 
-    & .action {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: var(--font-size-xs);
-      letter-spacing: var(--letter-spacing-widest);
-
-      & .action-arrow {
-        display: flex;
-        justify-content: end;
-        align-items: center;
-        inline-size: var(--space-xl);
-        block-size: var(--space-xl);
-      }
+    & .title {
+      font-weight: var(--font-weight-normal);
+      font-size: var(--font-size-lg);
     }
   }
-}
 
-/* --- 2. Context: Grid Layout (within .grid) --- */
-@container style(--layout: grid) {
-  @scope (.post-card) {
-    :scope {
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-lg);
-      border: var(--border-width-xs) solid var(--border-color-base);
-      border-radius: 2.5rem;
-      background-color: var(--color-base-200);
-      overflow: hidden;
-    }
+  /* --- [ Mode: Grid ] --- */
+  &[data-layout="insights"] {
+    flex-direction: column;
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--border-radius-xl);
+    background-color: var(--color-base-200);
+    padding: 0;
+    overflow: hidden;
 
     & .image {
-      inline-size: 100%;
-      block-size: 100%;
+      display: block;
+      aspect-ratio: 16 / 10;
+      width: 100%;
+      object-fit: cover;
     }
 
     & .content {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-md);
       padding: var(--space-xl);
+    }
 
-      & .badge-area {
-        display: flex;
-        align-items: center;
-        gap: var(--space-xl);
-        color: oklch(from var(--color-base-content) l c h / var(--opacity-40));
-        font-weight: var(--font-weight-bold);
-        font-size: var(--font-size-xs);
-        letter-spacing: var(--letter-spacing-wider);
-        text-transform: uppercase;
+    & .title {
+      font-weight: var(--font-weight-black);
+      font-size: 2.5rem;
+      line-height: 1.1;
+    }
 
-        & .featured {
-          border-radius: 2.5rem;
-          background-color: var(--color-base-content);
-          padding-inline: 0.75rem;
-          padding-block: 0.25rem;
-          inline-size: fit-content;
-          color: var(--color-base-100);
-        }
-      }
-
-      & .title {
-        font-weight: var(--font-weight-extrabold);
-        font-size: 2.5rem;
-        line-height: 1.1;
-        letter-spacing: var(--letter-spacing-tight);
-      }
-
-      & .summary {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        opacity: var(--opacity-50);
-        -webkit-line-clamp: 4;
-        overflow: hidden;
-        font-size: 1.25rem;
-        line-height: 1.6;
-      }
+    & .summary {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+      overflow: hidden;
+      font-size: 1.15rem;
     }
 
     & .action {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      margin-top: auto;
-      padding: 0 2.5rem 2.5rem 2.5rem;
+      padding-inline: var(--space-xl);
+      padding-block-end: var(--space-xl);
+      inline-size: 100%;
+      font-weight: var(--font-weight-black);
+    }
 
-      & .action-text {
-        display: flex;
-        align-items: center;
-        font-weight: var(--font-weight-black);
-        font-size: 1.1rem;
-        letter-spacing: 0.05em;
-      }
-
-      & .action-arrow {
-        display: flex;
-        justify-content: end;
-        align-items: center;
-        inline-size: var(--space-xl);
-        block-size: var(--space-xl);
-        font-size: var(--font-size-lg);
-      }
+    & .action-text,
+    & .action-arrow {
+      display: flex;
     }
   }
 }

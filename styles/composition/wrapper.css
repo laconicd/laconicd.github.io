@@ -1,11 +1,15 @@
-.wrapper {
-  margin-inline: auto;
-  max-inline-size: 1100px;
-  padding-inline: var(--space-md);
-}
+@scope (.wrapper) {
+  :scope {
+    margin-inline: auto;
+    max-inline-size: 1100px;
+    padding-inline: var(--space-md);
 
-@media (min-width: 1440px) {
-  .wrapper {
-    max-inline-size: 1300px;
+    --is-wrapper: 1;
+  }
+
+  @media (min-width: 1440px) {
+    :scope {
+      max-inline-size: 1300px;
+    }
   }
 }

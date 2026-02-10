@@ -1,5 +1,3 @@
-@layer blocks;
-
 @scope (.toast) {
   :scope {
     position: fixed;

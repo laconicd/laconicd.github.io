@@ -1,17 +1,29 @@
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@scope (.center) {
+  :scope {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    --is-center: 1;
+  }
 }
 
-.center-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+@scope (.center-column) {
+  :scope {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    --is-center-column: 1;
+  }
 }
 
-.center-intrinsic {
-  display: grid;
-  place-items: center;
+@scope (.center-intrinsic) {
+  :scope {
+    display: grid;
+    place-items: center;
+
+    --is-center-intrinsic: 1;
+  }
 }

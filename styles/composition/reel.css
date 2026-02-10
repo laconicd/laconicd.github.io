@@ -1,22 +1,26 @@
-.reel {
-  display: flex;
-  block-size: auto;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-  gap: var(--gap, var(--space-md));
-}
+@scope (.reel) {
+  :scope {
+    display: flex;
+    block-size: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    gap: var(--gap, var(--space-md));
 
-.reel::-webkit-scrollbar {
-  display: none;
-}
+    --is-reel: 1;
+  }
 
-.reel > * {
-  flex: 0 0 auto;
-}
+  :scope::-webkit-scrollbar {
+    display: none;
+  }
 
-.reel img {
-  block-size: 100%;
-  flex-basis: auto;
-  inline-size: auto;
+  :scope > * {
+    flex: 0 0 auto;
+  }
+
+  :scope img {
+    block-size: 100%;
+    flex-basis: auto;
+    inline-size: auto;
+  }
 }

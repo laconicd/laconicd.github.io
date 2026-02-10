@@ -1,5 +1,3 @@
-@layer blocks;
-
 @scope (#site-footer) {
   :scope {
     margin-top: var(--space-xxl);
