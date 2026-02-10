@@ -23,7 +23,7 @@
           title=post.title,
           summary=post.description | default(value=post.summary) | default(value=""),
           url=post.permalink,
-          layout="grid" )
+          layout="expanded" )
         }}{% endfor %}
       </div>
     </section>

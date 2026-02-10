@@ -34,7 +34,7 @@
         date=post.date | date(format="%B %d, %Y") | upper,
         title=post.title,
         summary=post.description | default(value=post.summary) | default(value=""),
-        url=post.permalink, layout="main" )
+        url=post.permalink, layout="minimal" )
       }}
     {% endfor %}
   </div>

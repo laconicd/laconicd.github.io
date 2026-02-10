@@ -39,7 +39,7 @@
   }
 
   /* --- [ Mode: List ] --- */
-  &[data-layout="main"] {
+  &[data-layout="minimal"] {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -64,7 +64,7 @@
   }
 
   /* --- [ Mode: Grid ] --- */
-  &[data-layout="insights"] {
+  &[data-layout="expanded"] {
     flex-direction: column;
     box-shadow: var(--shadow-lg);
     border-radius: var(--border-radius-xl);
