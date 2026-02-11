@@ -1,25 +1,25 @@
-{% import "macros/icons.html" as icons %}
+{% import "macros/icons.html" as icons %} {% macro view(img, date, title,
+summary, url, is_featured=false, layout="list") %}
+<a href="{{ url }}" class="post-card" data-layout="{{ layout }}">
+  <img src="{{ img }}" class="image" alt="{{ title }}" loading="lazy" />
 
-{% macro view(img, date, title, summary, url, is_featured=false, layout="list") %}
-  <a href="{{ url }}" class="post-card" data-layout="{{ layout }}">
-    <img src="{{ img }}" class="image" alt="{{ title }}" loading="lazy" />
-
-    <div class="content [ stack ]" style="--gap: var(--space-md)">
-      <div class="badge-area [ cluster ]" style="--gap: var(--space-sm)">
-        {% if is_featured %}
-          <span class="badge">FEATURED</span>
-        {% endif %}
-        <time class="badge" data-type="date" datetime="{{ date }}">{{ date }}</time>
-        <span class="badge" data-type="readtime">5 MIN READ</span>
-      </div>
-
-      <h2 class="title">{{ title }}</h2>
-      <p class="summary">{{ summary }}</p>
+  <div class="content [ stack ]" style="--gap: var(--space-md)">
+    <div class="badge-area [ cluster ]" style="--gap: var(--space-sm)">
+      {% if is_featured %}
+      <span class="badge">FEATURED</span>
+      {% endif %}
+      <time class="badge" data-type="date" datetime="{{ date }}"
+      >{{ date }}</time>
+      <span class="badge" data-type="readtime">5 MIN READ</span>
     </div>
 
-    <div class="action [ cluster ]" style="--gap: var(--space-xs)">
-      <span class="action-text">KEEP READING</span>
-      <span class="action-arrow"> {{ icons::chevron_right(class="icon") }} </span>
-    </div>
-  </a>
+    <h2 class="title">{{ title }}</h2>
+    <p class="summary">{{ summary }}</p>
+  </div>
+
+  <div class="action [ cluster ]" style="--gap: var(--space-xs)">
+    <span class="action-text">KEEP READING</span>
+    <span class="action-arrow"> {{ icons::chevron_right(class="icon") }} </span>
+  </div>
+</a>
 {% endmacro %}

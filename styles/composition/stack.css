@@ -4,7 +4,5 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: var(--gap, 1.5rem);
-
-    --is-stack: 1;
   }
 }

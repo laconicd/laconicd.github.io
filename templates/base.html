@@ -1,6 +1,12 @@
 {% import "macros/icons.html" as icons %}
-{% import "macros/components/navbar.html" as navbar %}
-{% import "macros/components/speed-dial.html" as speed_dial %}
+{%
+  import
+  "macros/components/navbar.html" as navbar
+%}
+{%
+  import
+  "macros/components/speed-dial.html" as speed_dial
+%}
 
 <!DOCTYPE html>
 <html lang="ko" data-theme="lofi">
@@ -10,7 +16,9 @@
 
   <body>
     <header id="site-header">{{ navbar::view(brand="The Blog") }}</header>
-    <main id="site-main">{% block content %}{% endblock content %}</main>
+    <main id="site-main" class="container stack" style="--gap: var(--space-xxl)">
+      {% block content %}{% endblock content %}
+    </main>
     <footer id="site-footer">{% include "partials/footer.html" %}</footer>
 
     <div id="site-widget">{{ speed_dial::view() }}</div>

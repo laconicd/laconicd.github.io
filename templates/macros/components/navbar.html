@@ -1,10 +1,14 @@
-{% macro view(brand) %}
+{% import "macros/icons.html" as icons %}
+{% import "macros/helpers.html" as helpers %}
+
+{% macro view(brand="BRAND") %}
+  {% set nav_brand = brand %}
   <nav class="navbar">
-    <div class="inner wrapper">
-      <a href="/" class="brand">{{ brand }}</a>
+    <div class="container between">
+      <a href="/" class="brand">{{ nav_brand }}</a>
 
       <!-- Shared Menu Trigger -->
-      <button class="menu-trigger btn btn-ghost" popovertarget="index-popover">
+      <button class="menu-trigger btn btn-ghost" popovertarget="index-popover" aria-label="Open Archive Index">
         <span class="trigger-text">INDEX</span>
         <span class="trigger-icon">{{ icons::menu() }}</span>
       </button>
@@ -16,53 +20,28 @@
     <div class="popover-menu">
       <header class="header">
         <h3 class="title">THE ARCHIVE INDEX</h3>
-        <button class="close-btn" popovertarget="index-popover" popovertargetaction="hide">
+        <button class="close-btn" popovertarget="index-popover" popovertargetaction="hide" aria-label="Close menu">
           {{ icons::close(size=6) }}
         </button>
       </header>
 
       <nav class="body">
         <ul class="list list-blank">
-          <li>
-            <a href="/" class="link">
-              <span class="num">01</span>
-              <span class="text">The Front Page</span>
-            </a>
-          </li>
-          <li>
-            <a href="/insights" class="link">
-              <span class="num">02</span>
-              <span class="text">Insights</span>
-            </a>
-          </li>
-          <li>
-            <a href="/themes" class="link">
-              <span class="num">03</span>
-              <span class="text">Themes</span>
-            </a>
-          </li>
-          <li>
-            <a href="/lexicon" class="link">
-              <span class="num">04</span>
-              <span class="text">Lexicon</span>
-            </a>
-          </li>
-          <li>
-            <a href="/about" class="link">
-              <span class="num">05</span>
-              <span class="text">About</span>
-            </a>
-          </li>
+          {{ helpers::navbar_link(url="/", text="The Front Page", current_path=current_path, index=1) }}
+          {{ helpers::navbar_link(url="/insights", text="Insights", current_path=current_path, index=2) }}
+          {{ helpers::navbar_link(url="/themes", text="Themes", current_path=current_path, index=3) }}
+          {{ helpers::navbar_link(url="/lexicon", text="Lexicon", current_path=current_path, index=4) }}
+          {{ helpers::navbar_link(url="/about", text="About", current_path=current_path, index=5) }}
         </ul>
       </nav>
 
       <footer class="footer">
         <div class="social-links">
-          <a href="https://github.com/laconicd" target="_blank" rel="noopener">{{ icons::github(size=5) }}</a>
-          <a href="https://twitter.com/laconicd" target="_blank" rel="noopener">{{ icons::twitter(size=5) }}</a>
-          <a href="https://linkedin.com/in/laconicd" target="_blank" rel="noopener">{{ icons::linkedin(size=5) }}</a>
+          {{ helpers::social_icon(url=config.extra.github, platform="GitHub", icon_name="github") }}
+          {{ helpers::social_icon(url=config.extra.twitter, platform="Twitter", icon_name="twitter") }}
+          {{ helpers::social_icon(url=config.extra.linkedin, platform="LinkedIn", icon_name="linkedin") }}
         </div>
-        <p class="copyright">&copy; 2026 The Mono Archive</p>
+        <p class="copyright">{{ helpers::copyright(name=config.title) }}</p>
       </footer>
     </div>
   </div>

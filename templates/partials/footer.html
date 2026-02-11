@@ -1,4 +1,5 @@
-<div class="footer-inner wrapper">
+{% import "macros/helpers.html" as helpers %}
+<div class="footer-inner container">
   <div class="footer-brand">
     <a href="/" class="logo">{{ config.title }}</a>
     <p class="description">{{ config.description }}</p>
@@ -8,51 +9,25 @@
     <div class="nav-group">
       <h4 class="nav-title">Navigation</h4>
       <ul class="nav-list">
-        <li><a href="/" class="nav-link">The Front Page</a></li>
-        <li><a href="/insights" class="nav-link">Insights</a></li>
-        <li><a href="/about" class="nav-link">About the Studio</a></li>
+        {{ helpers::footer_item(url="/", text="The Front Page") }}
+        {{ helpers::footer_item(url="/insights", text="Insights") }}
+        {{ helpers::footer_item(url="/about", text="About the Studio") }}
       </ul>
     </div>
 
     <div class="nav-group">
       <h4 class="nav-title">Social</h4>
       <ul class="nav-list">
-        {% if config.extra.github %}
-        <li>
-          <a
-            href="{{ config.extra.github }}"
-            class="nav-link"
-            target="_blank"
-            rel="noopener"
-          >GitHub</a>
-        </li>
-        {% endif %} {% if config.extra.twitter %}
-        <li>
-          <a
-            href="{{ config.extra.twitter }}"
-            class="nav-link"
-            target="_blank"
-            rel="noopener"
-          >Twitter</a>
-        </li>
-        {% endif %} {% if config.extra.linkedin %}
-        <li>
-          <a
-            href="{{ config.extra.linkedin }}"
-            class="nav-link"
-            target="_blank"
-            rel="noopener"
-          >LinkedIn</a>
-        </li>
-        {% endif %}
+        {{ helpers::footer_item(url=config.extra.github, text="GitHub") }}
+        {{ helpers::footer_item(url=config.extra.twitter, text="Twitter") }}
+        {{ helpers::footer_item(url=config.extra.linkedin, text="LinkedIn") }}
       </ul>
     </div>
   </nav>
 
   <div class="footer-bottom">
     <p class="copyright">
-      &copy; {{ now() | date(format="%Y") }} {{ config.extra.author_name }}. All
-      rights reserved.
+      {{ helpers::copyright(name=config.extra.author_name ~ ". All rights reserved.") }}
     </p>
     <div class="footer-meta">
       <span>Built with Zola & Deno</span>

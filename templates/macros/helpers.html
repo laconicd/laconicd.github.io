@@ -1,0 +1,73 @@
+{% import "macros/icons.html" as icons %}
+
+{# ==========================================================================
+   NAVIGATION HELPERS
+   ========================================================================== #}
+
+{#
+  Renders a numbered navigation link for the main menu.
+  - url: Target path
+  - text: Display label
+  - current_path: Used to determine active state
+  - index: Item number (e.g., 1 -> 01)
+#}
+{% macro navbar_link(url, text, current_path, index) %}
+  {% set is_active = current_path == url or current_path == url ~ "/" %}
+  <li>
+    <a
+      href="{{ url | safe }}"
+      class="link {% if is_active %}is-active{% endif %}"
+      {% if is_active %}aria-current="page"{% endif %}
+    >
+      <span class="num">{% if index < 10 %}0{% endif %}{{ index }}</span>
+      <span class="text">{{ text }}</span>
+    </a>
+  </li>
+{% endmacro %}
+
+{# ==========================================================================
+   FOOTER & LIST HELPERS
+   ========================================================================== #}
+
+{#
+  Renders a simple list-item link for footer sections.
+#}
+{% macro footer_item(url, text) %}
+  {% if url %}
+    <li><a href="{{ url }}" class="nav-link">{{ text }}</a></li>
+  {% endif %}
+{% endmacro %}
+
+{# ==========================================================================
+   SOCIAL & ICON HELPERS
+   ========================================================================== #}
+
+{#
+  Renders an icon link for social media platforms.
+  - platform: Label for aria-label
+  - icon_name: Key for the icons macro
+#}
+{% macro social_icon(url, platform, icon_name, size=5) %}
+  {% if url %}
+    <a href="{{ url }}" target="_blank" rel="noopener" aria-label="{{ platform }}">
+      {% if icon_name == "github" %}
+        {{ icons::github(size=size) }}
+      {% elif icon_name == "twitter" %}
+        {{ icons::twitter(size=size) }}
+      {% elif icon_name == "linkedin" %}
+        {{ icons::linkedin(size=size) }}
+      {% endif %}
+    </a>
+  {% endif %}
+{% endmacro %}
+
+{# ==========================================================================
+   GLOBAL UTILITIES
+   ========================================================================== #}
+
+{#
+  Renders a dynamic copyright notice with the current year.
+#}
+{% macro copyright(name) %}
+  &copy; {{ now() | date(format="%Y") }} {{ name }}
+{% endmacro %}

@@ -1,50 +1,51 @@
-{% extends "base.html" %}
-{% import "macros/components/post-card.html" as post_card %}
-{% import "macros/components/hero.html" as hero %}
+{% extends "base.html" %} {% import "macros/components/post-card.html" as
+post_card %} {% import "macros/components/hero.html" as hero %} {% block content
+%}
+<header class="stack" style="--gap: var(--space-md)">
+  <div
+    class="badge"
+    style="opacity: var(--opacity-60); font-family: var(--font-family-mono)"
+  >
+    LEXICON ENTRY
+  </div>
+  <h1
+    class="title"
+    style="font-size: var(--font-size-xxl); font-weight: var(--font-weight-black); letter-spacing: var(--letter-spacing-tighter)"
+  >
+    {{ term.name }}
+  </h1>
+  <p
+    class="subtitle"
+    style="font-size: var(--font-size-lg); opacity: var(--opacity-80); font-style: italic"
+  >
+    Structured index term for records related to {{ term.name }}.
+  </p>
+</header>
 
-{% block content %}
-  <main class="wrapper stack" style="--gap: var(--space-xxl)">
-    <header class="stack" style="--gap: var(--space-md)">
-      <div class="badge" style="opacity: var(--opacity-60); font-family: var(--font-family-mono)">LEXICON ENTRY</div>
-      <h1
-        class="title"
-        style="font-size: var(--font-size-xxl); font-weight: var(--font-weight-black); letter-spacing: var(--letter-spacing-tighter)"
-      >
-        {{ term.name }}
-      </h1>
-      <p class="subtitle" style="font-size: var(--font-size-lg); opacity: var(--opacity-80); font-style: italic">
-        Structured index term for records related to {{ term.name }}.
-      </p>
-    </header>
+<section class="stack" style="--gap: var(--space-lg)">
+  <div class="separator">
+    <span>ASSOCIATED RECORDS</span>
+  </div>
 
-    <section class="stack" style="--gap: var(--space-lg)">
-      <div class="separator">
-        <span>ASSOCIATED RECORDS</span>
-      </div>
+  <div class="grid" style="--min: 350px">
+    {% for post in term.pages %}{{ post_card::view( img=post.extra.image |
+    default(value="/images/sample.png"), date=post.date | date(format="%B %d,
+    %Y") | upper, title=post.title, summary=post.description |
+    default(value=post.summary) | default(value=""), url=post.permalink,
+    layout="expanded") }}{% endfor %}
+  </div>
+</section>
 
-      <div class="grid" style="--min: 350px">
-        {% for post in term.pages %}
-          {{
-            post_card::view(
-            img=post.extra.image | default(value="/images/sample.png"),
-            date=post.date | date(format="%B %d, %Y") | upper,
-            title=post.title,
-            summary=post.description | default(value=post.summary) | default(value=""),
-            url=post.permalink,
-            layout="expanded")
-          }}
-        {% endfor %}
-      </div>
-    </section>
-
-    <footer class="stack" style="align-items: center; margin-block-start: var(--space-xl)">
-      <a
-        href="/lexicon"
-        class="btn btn-ghost"
-        style="font-weight: var(--font-weight-bold); letter-spacing: var(--letter-spacing-wider)"
-      >
-        ← FULL LEXICON INDEX
-      </a>
-    </footer>
-  </main>
+<footer
+  class="stack"
+  style="align-items: center; margin-block-start: var(--space-xl)"
+>
+  <a
+    href="/lexicon"
+    class="btn btn-ghost"
+    style="font-weight: var(--font-weight-bold); letter-spacing: var(--letter-spacing-wider)"
+  >
+    ← FULL LEXICON INDEX
+  </a>
+</footer>
 {% endblock content %}

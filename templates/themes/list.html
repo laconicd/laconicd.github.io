@@ -2,34 +2,32 @@
 {% import "macros/components/hero.html" as hero %}
 
 {% block content %}
-  <main class="wrapper stack" style="--gap: var(--space-xxl)">
-    {{
-      hero::view(
-      title="Themes",
-      subtitle=config.extra.themes_subtitle | default(value="Curated intellectual landscapes."))
-    }}
+  {{
+    hero::view(
+    title="Themes",
+    subtitle=config.extra.themes_subtitle | default(value="Curated intellectual landscapes."))
+  }}
 
-    <section class="stack" style="--gap: var(--space-lg)">
-      <div class="separator">
-        <span>THEMATIC PILLARS</span>
-      </div>
+  <section class="stack" style="--gap: var(--space-lg)">
+    <div class="separator">
+      <span>THEMATIC PILLARS</span>
+    </div>
 
-      <div class="theme-grid">
-        {% for term in terms %}
-          <a href="{{ term.permalink }}" class="theme-card" style="animation-delay: {{ loop.index0 * 0.1 }}s">
-            <span class="bg-number">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
-            <div class="stack" style="--gap: var(--space-xs); z-index: 1;">
-              <h2 class="title">{{ term.name | upper }}</h2>
-              <div class="arrow-icon" style="opacity: 0; transform: translateX(-10px); transition: all 0.3s ease;">
-                {{ icons::arrow_right(size=4) }}
-              </div>
+    <div class="theme-grid">
+      {% for term in terms %}
+        <a href="{{ term.permalink }}" class="theme-card" style="animation-delay: {{ loop.index0 * 0.1 }}s">
+          <span class="bg-number">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+          <div class="stack" style="--gap: var(--space-xs); z-index: 1;">
+            <h2 class="title">{{ term.name | upper }}</h2>
+            <div class="arrow-icon" style="opacity: 0; transform: translateX(-10px); transition: all 0.3s ease;">
+              {{ icons::arrow_right(size=4) }}
             </div>
-            <span class="count">{{ term.pages | length }} records</span>
-          </a>
-        {% endfor %}
-      </div>
-    </section>
-  </main>
+          </div>
+          <span class="count">{{ term.pages | length }} records</span>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
 
   <style>
     @keyframes fadeInUp {

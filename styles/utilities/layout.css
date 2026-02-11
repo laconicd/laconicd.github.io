@@ -75,13 +75,6 @@
   min-block-size: 100dvb;
 }
 
-.container {
-  margin-inline: auto;
-  padding-inline: var(--space-md);
-  inline-size: 100%;
-  max-inline-size: 85rem;
-}
-
 .prose {
   margin-inline: auto;
   max-inline-size: 45rem;

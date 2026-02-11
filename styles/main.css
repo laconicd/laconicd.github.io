@@ -28,12 +28,13 @@
 @import "composition/stack.css" layer(composition);
 @import "composition/cluster.css" layer(composition);
 @import "composition/grid.css" layer(composition);
-@import "composition/wrapper.css" layer(composition);
+@import "composition/container.css" layer(composition);
 @import "composition/sidebar.css" layer(composition);
 @import "composition/switcher.css" layer(composition);
 @import "composition/reel.css" layer(composition);
 @import "composition/cover.css" layer(composition);
 @import "composition/center.css" layer(composition);
+@import "composition/between.css" layer(composition);
 
 /**
  * 4. BLOCKS (도메인 컴포넌트)

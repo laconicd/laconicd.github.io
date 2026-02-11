@@ -1,0 +1,13 @@
+@scope (.container) {
+  :scope {
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+    inline-size: 100%;
+    max-inline-size: var(--container-max-inline-size, 1100px);
+  }
+  @media (min-width: 1440px) {
+    :scope {
+      max-inline-size: var(--container-max-inline-size-lg, 1300px);
+    }
+  }
+}

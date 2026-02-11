@@ -2,10 +2,8 @@
   :scope {
     display: flex;
     flex-direction: column;
-    min-block-size: var(--min-height, 100dvb);
     padding: var(--gap, var(--space-md));
-
-    --is-cover: 1;
+    min-block-size: var(--min-height, 100dvb);
   }
 
   :scope > * {

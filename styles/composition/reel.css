@@ -1,13 +1,11 @@
 @scope (.reel) {
   :scope {
     display: flex;
+    gap: var(--gap, var(--space-md));
     block-size: auto;
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
-    gap: var(--gap, var(--space-md));
-
-    --is-reel: 1;
   }
 
   :scope::-webkit-scrollbar {
@@ -19,8 +17,8 @@
   }
 
   :scope img {
-    block-size: 100%;
     flex-basis: auto;
     inline-size: auto;
+    block-size: 100%;
   }
 }

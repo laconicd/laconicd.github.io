@@ -1,10 +1,9 @@
 @scope (.grid) {
   :scope {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(var(--min, 300px), 100%), 1fr));
+    grid-template-columns:
+      repeat(auto-fill, minmax(min(var(--min, 300px), 100%), 1fr));
     gap: var(--gap, 2rem);
-
-    --is-grid: 1;
   }
 
   @media (min-width: 1024px) {
