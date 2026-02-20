@@ -1,0 +1,108 @@
+@scope (.hero) {
+  :scope {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-block: var(--space-xxl);
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    :scope {
+      padding-block: calc(var(--space-xxl) * 2);
+    }
+  }
+
+  & .eyebrow-wrapper {
+    margin-block-end: var(--space-sm);
+    overflow: hidden;
+  }
+
+  & .eyebrow {
+    display: block;
+    opacity: 0;
+    animation: heroSubtitleReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform, opacity;
+    color: oklch(from var(--color-base-content) l c h / 0.4);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xs);
+    font-family: var(--font-family-base);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  & .title-wrapper,
+  & .subtitle-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  & .title {
+    margin-block-end: var(--space-md);
+
+    /* Subtle text gradient for depth */
+    background: linear-gradient(
+      to bottom,
+      var(--color-base-content) 40%,
+      oklch(from var(--color-base-content) calc(l + 0.15) c h / 0.8)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: var(--color-base-content);
+    font-style: italic;
+    font-weight: var(--font-weight-normal);
+    font-size: clamp(4rem, 18dvi, 10rem);
+    line-height: 0.8;
+    font-family: var(--font-family-heading);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    -webkit-text-fill-color: transparent;
+    transform: translateY(110%) skewY(10deg);
+    animation: heroTitleReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+    /* Animation */
+    will-change: transform;
+  }
+
+  & .subtitle {
+    transform: translateY(30px);
+    opacity: 0;
+    animation: heroSubtitleReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s
+      forwards;
+
+    /* Animation */
+    will-change: transform, opacity;
+    margin-inline: auto;
+    max-width: 55ch;
+    color: oklch(from var(--color-base-content) l c h / 0.4);
+    font-weight: var(--font-weight-light);
+    font-size: var(--font-size-lg);
+    line-height: 1.5;
+    font-family: var(--font-family-base);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+}
+
+@keyframes heroTitleReveal {
+  from {
+    transform: translateY(110%) skewY(10deg);
+  }
+
+  to {
+    transform: translateY(0) skewY(0deg);
+  }
+}
+
+@keyframes heroSubtitleReveal {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

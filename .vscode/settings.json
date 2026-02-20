@@ -5,10 +5,7 @@
   "editor.formatOnSave": true,
 
   // CSS 및 PostCSS 파일에 대해 Stylelint 자동 수정 활성화
-  "stylelint.validate": [
-    "css",
-    "postcss"
-  ],
+  "stylelint.validate": ["css", "postcss"],
   "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": "always"
   },

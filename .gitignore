@@ -1,13 +1,4 @@
-node_modules/
-public/
-static/js/
-static/fonts/outfit/
-static/giallo-dark.css
-static/giallo-light.css
-static/main.css*
-
-# OS generated files
+_site
+_cache
+.env
 .DS_Store
-
-# Zola image processing cache
-static/processed_images/

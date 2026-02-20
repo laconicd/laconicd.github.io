@@ -1,0 +1,159 @@
+@scope (.speed-dial) {
+  :scope {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: var(--z-index-modal);
+  }
+
+  & .trigger {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 3.5rem;
+    block-size: 3.5rem;
+    color: var(--color-neutral-content);
+    cursor: pointer;
+    background-color: var(--color-neutral);
+    border: none;
+    border-radius: var(--border-radius-full);
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s var(--animation-timing-bounce);
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* Rotate icon when popover is open */
+.speed-dial:has(:popover-open) .icon-plus {
+  transform: rotate(45deg);
+}
+
+/* Popover Menu Container */
+#sd-menu {
+  position: fixed;
+  inset: auto 2rem 2rem auto;
+  inline-size: 3.5rem;
+  block-size: 3.5rem;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  background: transparent;
+  border: none;
+}
+
+#sd-menu::backdrop {
+  background: transparent;
+}
+
+@scope (.dial) {
+  :scope {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  & .item {
+    position: absolute;
+    display: flex;
+    visibility: hidden;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    opacity: 0;
+    transition:
+      transform 0.4s var(--animation-timing-bounce),
+      opacity 0.2s ease,
+      visibility 0.2s allow-discrete;
+
+    & .inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      inline-size: 3rem;
+      block-size: 3rem;
+      color: var(--color-base-content);
+      background-color: oklch(from var(--color-base-100) l c h / 85%);
+      border: 1px solid var(--border-color-base);
+      border-radius: var(--border-radius-full);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(12px);
+      transition: all 0.3s var(--animation-timing-bounce);
+    }
+
+    &:hover .inner {
+      color: var(--color-neutral-content);
+      background-color: var(--color-neutral);
+      transform: scale(1.15);
+    }
+  }
+
+  /* Compact Grid Positions when open */
+  :scope:popover-open .item {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* 
+     Grid Layout (2-column, bottom-up)
+  */
+
+  /* Row 1: Theme (Left) */
+  :scope:popover-open .item:nth-child(1) {
+    transform: translate(-4rem, 0);
+    transition-delay: 0.05s;
+  }
+
+  /* Row 2: Search (Right), Top (Left) */
+  :scope:popover-open .item:nth-child(2) {
+    transform: translate(0, -4rem);
+    transition-delay: 0.1s;
+  }
+
+  :scope:popover-open .item:nth-child(3) {
+    transform: translate(-4rem, -4rem);
+    transition-delay: 0.15s;
+  }
+
+  /* Row 3: RSS (Right), Share (Left) */
+  :scope:popover-open .item:nth-child(4) {
+    transform: translate(0, -8rem);
+    transition-delay: 0.2s;
+  }
+
+  :scope:popover-open .item:nth-child(5) {
+    transform: translate(-4rem, -8rem);
+    transition-delay: 0.25s;
+  }
+}
+
+/* Theme Toggle icons visibility */
+.theme-btn {
+  & .sun-icon {
+    display: block;
+  }
+
+  & .moon-icon {
+    display: none;
+  }
+}
+
+[data-theme="dim"] .theme-btn {
+  & .sun-icon {
+    display: none;
+  }
+
+  & .moon-icon {
+    display: block;
+  }
+}

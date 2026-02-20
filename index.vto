@@ -1,0 +1,40 @@
+---
+title: Exploration
+layout: base.vto
+---
+
+<div id="index-page" class="container stack">
+  {{
+    await comp.hero({
+      eyebrow: "Digital Journal",
+      title: "Exploration.",
+      subtitle:
+        "A collection of diverse thoughts, from technical deep dives to the nuances of daily learning.",
+    })
+  }}
+
+  {{ await comp.separator({ text: "LATEST RECORDS" }) }}
+
+  <div class="stack" style="--gap: var(--space-xl)">
+    {{ for index, post of search.pages("type=post", "date=desc", 3) }}
+      {{
+        await comp.post_card({
+          url: post.url,
+          title: post.title,
+          date: post.date.toLocaleDateString("ko-KR"),
+          summary: post.description,
+          img: post.img || "/assets/images/hero.svg",
+          layout: "minimal",
+          featured: index === 0,
+        })
+      }}
+    {{ /for }}
+  </div>
+
+  <div
+    class="cluster"
+    style="justify-content: center; margin-top: var(--space-xl)"
+  >
+    <a href="/posts" class="btn btn-ghost">VIEW ALL POSTS</a>
+  </div>
+</div>

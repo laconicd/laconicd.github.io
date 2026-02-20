@@ -1,0 +1,9 @@
+layout: category_layout.vto
+
+category_info:
+  Development:
+    description: "Technical articles, coding tutorials, and software engineering insights."
+  Journal:
+    description: "Daily reflections, personal growth, and life logs."
+  Review:
+    description: "Analysis and critiques of books, tools, and technologies."

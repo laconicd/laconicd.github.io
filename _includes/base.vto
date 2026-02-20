@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lofi">
+  <head>
+    {{ include "head.vto" }}
+  </head>
+
+  <body>
+    <header id="site-header">
+      {{
+        await comp.navbar({
+          img: "/assets/images/hero.svg",
+          layout: "minimal",
+        })
+      }}
+    </header>
+
+    <main
+      id="site-main"
+      class="container stack"
+      style="--gap: var(--space-xxl)"
+    >
+      {{ content }}
+    </main>
+
+    <footer id="site-footer">
+      {{ await comp.site_footer({}) }}
+    </footer>
+
+    <div id="site-widget">
+      <!-- speed_dial -->
+    </div>
+  </body>
+</html>

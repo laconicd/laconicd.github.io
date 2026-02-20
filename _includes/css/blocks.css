@@ -1,0 +1,35 @@
+@scope (.badge) {
+  :scope {
+    background-color: transparent;
+    color: var(--color-base-content);
+    border: 1px solid var(--border-color-subtle);
+    padding-block: 0.25rem;
+    padding-inline: 0.75rem;
+    border-radius: 2.5rem;
+    font-size: var(--font-size-xs);
+  }
+}
+
+@scope (.btn) {
+  :scope {
+    padding-block: var(--space-xs);
+    padding-inline: var(--space-md);
+    color: var(--fg-color, --color-base-content);
+    background-color: var(--bg-color, --color-base-300);
+    border: var(--border-width-xs) solid var(--color-base-300);
+    border-radius: var(--border-radius-md);
+  }
+
+  &.btn-ghost {
+    background-color: transparent;
+    border: none;
+  }
+
+  &.btn-circle {
+    padding-block: var(--space-sm);
+    padding-inline: var(--space-sm);
+    color: var(--color-base-100);
+    background-color: var(--color-base-content);
+    border-radius: var(--border-radius-full);
+  }
+}

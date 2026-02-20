@@ -1,0 +1,15 @@
+layout: tag_layout.vto
+
+tag_info:
+  tech:
+    description: "Software development, coding tips, and architectural deep dives."
+    color: "oklch(60% 0.15 250)"
+  thoughts:
+    description: "Personal reflections and philosophical musings on life and work."
+    color: "oklch(60% 0.15 300)"
+  daily:
+    description: "Snapshots of daily learning and small wins."
+    color: "oklch(70% 0.15 80)"
+  lume:
+    description: "Deep dives into the Lume static site generator and Deno ecosystem."
+    color: "oklch(65% 0.2 150)"

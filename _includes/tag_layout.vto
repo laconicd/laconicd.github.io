@@ -1,0 +1,52 @@
+---
+layout: base.vto
+---
+{{ set info = tag_info?.[tag] }}
+{{ set color = info?.color || (tag | tagColor) }}
+<div class="container stack">
+  {{
+    await comp.hero({
+      eyebrow: "Tag Archives",
+      title: "# " + tag,
+      subtitle: info?.description ||
+        `Explore all records marked with "${tag}"`,
+    })
+  }}
+
+  <div
+    class="tag-meta cluster"
+    style="--gap: var(--space-sm); margin-top: calc(var(--space-xl) * -1)"
+  >
+    <span
+      class="badge"
+      style="--bg: {{ color }}; background-color: var(--bg); color: white; border: none"
+    >THEME ACTIVE</span>
+    <span class="badge">{{ search.pages("tags*=" + tag).length }} RECORDS
+      FOUND</span>
+  </div>
+
+  {{ await comp.separator({ text: "TAGGED RECORDS" }) }}
+
+  <div class="grid" style="--gap: var(--space-xl)">
+    {{ for index, post of search.pages("tags*=" + tag, "date=desc") }}
+      {{
+        await comp.post_card({
+          url: post.url,
+          title: post.title,
+          date: post.date.toLocaleDateString("ko-KR"),
+          summary: post.description,
+          img: post.img || "/assets/images/hero.svg",
+          layout: "expanded",
+          featured: index === 0,
+        })
+      }}
+    {{ /for }}
+  </div>
+
+  <div
+    class="cluster"
+    style="justify-content: center; margin-top: var(--space-xl)"
+  >
+    <a href="/tags" class="btn btn-ghost">BACK TO ALL TAGS</a>
+  </div>
+</div>

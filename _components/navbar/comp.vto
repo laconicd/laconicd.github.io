@@ -1,0 +1,60 @@
+---
+links:
+- url: /
+  text: The Front Page
+  index: "01"
+- url: /posts
+  text: Posts
+  index: "02"
+- url: /categories
+  text: Categories
+  index: "03"
+- url: /tags
+  text: Tags
+  index: "04"
+---
+<nav class="navbar">
+  <div class="container between">
+    <a href="/" class="brand">The Blog</a>
+
+    <!-- Shared Menu Trigger -->
+    <button
+      class="menu-trigger btn btn-ghost"
+      popovertarget="index-popover"
+      aria-label="Open Archive Index"
+    >
+      <span class="trigger-text">INDEX</span>
+      <span class="trigger-icon">{{ comp.icons.menu() }}</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Unified Index Popover -->
+<div id="index-popover" class="popover-menu" popover>
+  <header class="header">
+    <h3 class="title">
+      THE ARCHIVE INDEX
+    </h3>
+    <button
+      class="close-btn"
+      popovertarget="index-popover"
+      popovertargetaction="hide"
+      aria-label="Close menu"
+    >
+      {{ comp.icons.close(size = 6) }}
+    </button>
+  </header>
+
+  <nav class="body">
+    <ul class="list list-blank">
+      {{ for link of links }}
+        <li>
+          <a href="{{ link.url }}" class="link" aria-current="page">
+            <span class="num">{{ link.index }}</span>
+            <span class="text">{{ link.text }}</span>
+          </a>
+        </li>
+      {{ /for }}
+    </ul>
+  </nav>
+</div>

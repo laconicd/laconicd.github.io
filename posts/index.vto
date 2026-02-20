@@ -1,0 +1,33 @@
+---
+title: Archive
+layout: base.vto
+---
+
+<div class="container stack">
+  {{
+    await comp.hero({
+      eyebrow: "The Archive",
+      title: "All Records.",
+      subtitle:
+        "A complete list of all thoughts, journals, and technical notes recorded so far.",
+    })
+  }}
+
+  {{ await comp.separator({ text: "ARCHIVE INDEX" }) }}
+
+  <div class="grid" style="--gap: var(--space-xl)">
+    {{ for index, post of search.pages("type=post", "date=desc") }}
+      {{
+        await comp.post_card({
+          url: post.url,
+          title: post.title,
+          date: post.date.toLocaleDateString("ko-KR"),
+          summary: post.description,
+          img: post.img || "/assets/images/hero.svg",
+          layout: "expanded",
+          featured: index === 0,
+        })
+      }}
+    {{ /for }}
+  </div>
+</div>

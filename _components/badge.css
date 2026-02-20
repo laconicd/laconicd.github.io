@@ -1,0 +1,12 @@
+@scope (.badge) {
+  :scope {
+    background-color: transparent;
+    color: var(--color-base-content);
+    border: 1px solid var(--border-color-subtle);
+    padding-block: 0.25rem;
+    padding-inline: 0.75rem;
+    color: var(--color-primary-content);
+    background-color: var(--color-primary);
+    border-radius: 2.5rem;
+  }
+}

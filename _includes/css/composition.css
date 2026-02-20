@@ -1,0 +1,161 @@
+@scope (.between) {
+  :scope {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-md);
+  }
+}
+
+@scope (.center) {
+  :scope {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@scope (.center-column) {
+  :scope {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@scope (.center-intrinsic) {
+  :scope {
+    display: grid;
+    place-items: center;
+  }
+}
+
+@scope (.cluster) {
+  :scope {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap, 1rem);
+    align-items: center;
+  }
+}
+
+@scope (.container) {
+  :scope {
+    inline-size: 100%;
+    max-inline-size: var(--container-max-inline-size, 1100px);
+    padding-inline: var(--space-md);
+    margin-inline: auto;
+  }
+
+  @media (width >= 1440px) {
+    :scope {
+      max-inline-size: var(--container-max-inline-size-lg, 1300px);
+    }
+  }
+}
+
+@scope (.cover) {
+  :scope {
+    display: flex;
+    flex-direction: column;
+    min-block-size: var(--min-height, 100dvb);
+    padding: var(--gap, var(--space-md));
+  }
+
+  :scope > * {
+    margin-block: var(--gap, var(--space-md));
+  }
+
+  :scope > :first-child:not(.centered) {
+    margin-block-start: 0;
+  }
+
+  :scope > :last-child:not(.centered) {
+    margin-block-end: 0;
+  }
+
+  :scope > .centered {
+    margin-block: auto;
+  }
+}
+
+@scope (.grid) {
+  :scope {
+    display: grid;
+    grid-template-columns:
+      repeat(auto-fill, minmax(min(var(--min, 300px), 100%), 1fr));
+    gap: var(--gap, 2rem);
+  }
+
+  @media (width >= 1024px) {
+    :scope {
+      --gap: 3rem;
+    }
+  }
+}
+
+@scope (.reel) {
+  :scope {
+    display: flex;
+    gap: var(--gap, var(--space-md));
+    block-size: auto;
+    overflow: auto hidden;
+    scrollbar-width: none;
+  }
+
+  :scope::-webkit-scrollbar {
+    display: none;
+  }
+
+  :scope > * {
+    flex: 0 0 auto;
+  }
+
+  :scope img {
+    flex-basis: auto;
+    inline-size: auto;
+    block-size: 100%;
+  }
+}
+
+@scope (.sidebar) {
+  :scope {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap, var(--space-md));
+  }
+
+  :scope > :first-child {
+    flex-grow: 1;
+    flex-basis: var(--side-width, 20rem);
+  }
+
+  :scope > :last-child {
+    flex-grow: 999;
+    flex-basis: 0;
+    min-inline-size: var(--content-min-width, 50%);
+  }
+}
+
+@scope (.stack) {
+  :scope {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap, 1.5rem);
+    justify-content: flex-start;
+  }
+}
+
+@scope (.switcher) {
+  :scope {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap, var(--space-md));
+  }
+
+  :scope > * {
+    flex-grow: 1;
+    flex-basis: calc((var(--threshold, 40rem) - 100%) * 999);
+  }
+}

@@ -1,8 +1,0 @@
-@scope (.between) {
-  :scope {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-block: var(--space-md);
-  }
-}

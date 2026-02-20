@@ -1,0 +1,49 @@
+---
+layout: base.vto
+---
+<article class="container stack" style="--gap: var(--space-xl)">
+  <header class="article-header stack" style="--gap: var(--space-md)">
+    <div class="meta">
+      <div class="cluster" style="--gap: var(--space-xs)">
+        {{ if category }}
+          <a
+            href="/categories/{{ category.toLowerCase() }}/"
+            class="badge"
+            style="--bg: {{ category | tagColor }}; background-color: var(--bg); color: white; border: none"
+          >
+            {{ category }}
+          </a>
+        {{ /if }}
+        {{ for tag of tags }}
+          <a href="/tags/{{ tag }}/" class="badge">#{{ tag }}</a>
+        {{ /for }}
+      </div>
+      <time class="badge" data-type="date">{{
+        date.toISOString().split("T")[0]
+      }}</time>
+    </div>
+
+    <h1
+      class="title"
+      style="font-size: var(--font-size-hero); line-height: 1.1"
+    >
+      {{ title }}
+    </h1>
+
+    {{ if description }}
+      <p class="subtitle">
+        {{ description }}
+      </p>
+    {{ /if }}
+  </header>
+
+  <hr class="separator" />
+
+  <div class="post-content prose">
+    {{ content }}
+  </div>
+
+  <footer class="post-footer">
+    <a href="/posts" class="btn btn-ghost">← BACK TO ALL POSTS</a>
+  </footer>
+</article>

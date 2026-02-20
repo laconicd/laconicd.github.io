@@ -1,0 +1,155 @@
+@scope (.site-footer) {
+  :scope {
+    --footer-gap: var(--space-xl);
+    border-top: var(--border-width-xs) solid var(--border-color-base);
+    color: var(--color-base-content);
+  }
+
+  & .footer-inner {
+    display: grid;
+    gap: var(--footer-gap);
+  }
+
+  /* Grid Area Assignments */
+  & .footer-brand {
+    grid-area: brand;
+  }
+
+  & .footer-nav {
+    grid-area: nav;
+  }
+
+  & .footer-social {
+    grid-area: social;
+  }
+
+  & .footer-bottom {
+    grid-area: bottom;
+  }
+
+  /* --- [ Common Element Styles ] --- */
+  & .logo {
+    display: block;
+    margin-bottom: var(--space-sm);
+    color: inherit;
+    font-weight: var(--font-weight-black);
+    font-size: var(--font-size-xl);
+    letter-spacing: var(--letter-spacing-tighter);
+    text-decoration: none;
+  }
+
+  & .description {
+    opacity: var(--opacity-60);
+    max-width: 40ch;
+    font-size: var(--font-size-sm);
+    line-height: var(--font-line-height-md);
+  }
+
+  & .nav-title {
+    margin-bottom: var(--space-md);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+  }
+
+  & .nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  & .footer-social {
+    display: flex;
+    gap: var(--space-md);
+
+    & a {
+      opacity: 0.5;
+      transition:
+        opacity var(--transition-speed-normal),
+        color var(--transition-speed-normal);
+      color: inherit;
+
+      &:hover {
+        opacity: 1;
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  & .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    opacity: var(--opacity-40);
+    border-top: var(--border-width-xs) solid var(--border-color-subtle);
+    padding-top: var(--space-xl);
+    font-size: var(--font-size-xs);
+  }
+
+  /* --- [ Mode: Sidebar ] --- */
+  &[data-layout="sidebar"] {
+    border-top: none;
+    /* Sidebar already has its own border/header */
+    padding-top: var(--space-xl);
+
+    /* Hide elements not needed in sidebar via CSS */
+    & :where(.footer-brand, .footer-nav, .footer-meta) {
+      display: none;
+    }
+
+    & .footer-inner {
+      grid-template-areas:
+        "social"
+        "bottom";
+      gap: var(--space-lg);
+    }
+
+    & .footer-bottom {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    & .copyright {
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--letter-spacing-wider);
+      text-transform: uppercase;
+    }
+  }
+
+  /* --- [ Mode: Main ] --- */
+  &[data-layout="main"] {
+    margin-top: var(--space-xxl);
+    background-color: var(--color-base-100);
+    padding-block: var(--space-xxl) var(--space-xl);
+
+    & .footer-inner {
+      grid-template-areas:
+        "brand"
+        "nav"
+        "social"
+        "bottom";
+    }
+
+    @media (width >= 768px) {
+      & .footer-inner {
+        grid-template-columns: 1.5fr 1fr;
+        grid-template-areas:
+          "brand  nav"
+          "social bottom";
+      }
+
+      & .footer-nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      & .footer-bottom {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}
