@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost/</loc>
-    <lastmod>2026-02-21T19:30:25.727Z</lastmod>
+    <lastmod>2026-02-21T21:28:08.729Z</lastmod>
   </url>
   <url>
     <loc>http://localhost/categories/</loc>
-    <lastmod>2026-02-21T19:30:25.727Z</lastmod>
+    <lastmod>2026-02-21T21:28:08.729Z</lastmod>
   </url>
   <url>
     <loc>http://localhost/categories/development/</loc>
-    <lastmod>2026-02-21T19:30:25.727Z</lastmod>
+    <lastmod>2026-02-21T21:28:08.729Z</lastmod>
   </url>
   <url>
     <loc>http://localhost/posts/</loc>
-    <lastmod>2026-02-21T19:30:26.073Z</lastmod>
+    <lastmod>2026-02-21T21:28:09.160Z</lastmod>
   </url>
   <url>
     <loc>http://localhost/posts/test-post-1/</loc>
@@ -22,14 +22,14 @@
   </url>
   <url>
     <loc>http://localhost/tags/</loc>
-    <lastmod>2026-02-21T19:30:26.073Z</lastmod>
+    <lastmod>2026-02-21T21:28:09.160Z</lastmod>
   </url>
   <url>
     <loc>http://localhost/tags/tech/</loc>
-    <lastmod>2026-02-21T19:30:26.073Z</lastmod>
+    <lastmod>2026-02-21T21:28:09.160Z</lastmod>
   </url>
   <url>
     <loc>http://localhost/tags/thoughts/</loc>
-    <lastmod>2026-02-21T19:30:26.073Z</lastmod>
+    <lastmod>2026-02-21T21:28:09.160Z</lastmod>
   </url>
 </urlset>

@@ -1,3 +1,3 @@
-var o=33,r=33,t=33;console.log("this is POST CARD",o,r,t);var v=33,n=33,s=33;console.log("this is POST CARD",v,n,s);var i=33,l=33,c=33;console.log("this is POST CARD",i,l,c);document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("index-popover");e&&e.querySelectorAll("a[href]")?.forEach(a=>{a.addEventListener("click",()=>e.hidePopover())})});var d=33,b=33,h=33;console.log("this is POST CARD",d,b,h);
+var a=33,r=33,t=33;console.log("this is POST CARD",a,r,t);var n=33,v=33,s=33;console.log("this is POST CARD",n,v,s);var i=33,l=33,d=33;console.log("this is POST CARD",i,l,d);document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("index-popover");e&&e.querySelectorAll("a[href]")?.forEach(o=>{o.addEventListener("htmx:configRequest",()=>e.hidePopover())})});var c=33,b=33,h=33;console.log("this is POST CARD",c,b,h);
 
 //# sourceMappingURL=./script.js.map
