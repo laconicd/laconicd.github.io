@@ -1,0 +1,3 @@
+var o=33,r=33,t=33;console.log("this is POST CARD",o,r,t);var v=33,n=33,s=33;console.log("this is POST CARD",v,n,s);var i=33,l=33,c=33;console.log("this is POST CARD",i,l,c);document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("index-popover");e&&e.querySelectorAll("a[href]")?.forEach(a=>{a.addEventListener("click",()=>e.hidePopover())})});var d=33,b=33,h=33;console.log("this is POST CARD",d,b,h);
+
+//# sourceMappingURL=./script.js.map
