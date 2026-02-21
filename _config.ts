@@ -46,6 +46,7 @@ site.use(sitemap());
 site.add("style.css");
 site.add("assets/scripts/main.ts");
 
-site.copy("assets/images/");
+site.copy("assets/images");
+site.copy("assets/js");
 
 export default site;

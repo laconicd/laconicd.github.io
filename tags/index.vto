@@ -21,10 +21,17 @@ layout: base.vto
     {{ for tag of search.values("tags") }}
       {{ set info = tag_info?.[tag] }}
       {{ set color = info?.color || (tag | tagColor) }}
+      {{ set url = `/tags/${tag.toLowerCase()}/` }}
+
       <a
         href="/tags/{{ tag }}/"
         class="post-card stack"
         style="--gap: var(--space-sm); padding: var(--space-lg); text-decoration: none; border: 1px solid var(--border-color-subtle); border-radius: var(--radius-md); transition: all 0.3s ease"
+        hx-get="{{ url }}"
+        hx-target="#site-main"
+        hx-select="#site-main"
+        hx-swap="innerMorph transition:true"
+        hx-push-url="true"
       >
         <div
           class="cluster"

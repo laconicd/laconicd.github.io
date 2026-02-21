@@ -22,6 +22,7 @@ layout: base.vto
       {{ set info = category_info?.[cat] }}
       {{ set color = info?.color || (cat | tagColor) }}
       {{ set url = `/categories/${cat.toLowerCase()}/` }}
+
       <a
         href="{{url}}"
         class="post-card stack"
