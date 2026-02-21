@@ -2,7 +2,9 @@
 layout: layouts/page.vto
 type: post
 category: Development
-tags: ["tech", "thoughts"]
+tags:
+  - "tech"
+  - "thoughts"
 title: "테스트 포스트 1"
 date: 2026-02-20
 description: "이것은  테스트 포스트입니다."

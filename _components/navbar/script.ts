@@ -3,6 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!popover) return;
 
   popover.querySelectorAll("a[href]")?.forEach((link) => {
-    link.addEventListener("click", () => popover.hidePopover());
+    link.addEventListener("htmx:configRequest", () => popover.hidePopover());
   });
 });

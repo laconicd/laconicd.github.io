@@ -3,6 +3,8 @@ layout: layouts/base.vto
 ---
 {{ set info = tag_info?.[tag] }}
 {{ set color = info?.color || (tag | tagColor) }}
+{{ set tags = search.pages(`tags*=${tag} type=post`, "date=desc") }}
+
 <div class="container stack">
   {{
     await comp.hero({
@@ -21,14 +23,13 @@ layout: layouts/base.vto
       class="badge"
       style="--bg: {{ color }}; background-color: var(--bg); color: white; border: none"
     >THEME ACTIVE</span>
-    <span class="badge">{{ search.pages("tags*=" + tag).length }} RECORDS
-      FOUND</span>
+    <span class="badge">{{ tags.length }} RECORDS FOUND</span>
   </div>
 
   {{ await comp.separator({ text: "TAGGED RECORDS" }) }}
-
+  {{ tag }}
   <div class="grid" style="--gap: var(--space-xl)">
-    {{ for index, post of search.pages("tags*=" + tag, "date=desc") }}
+    {{ for index, post of tags }}
       {{
         await comp.post_card({
           url: post.url,

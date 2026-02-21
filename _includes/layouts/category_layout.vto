@@ -3,6 +3,10 @@ layout: layouts/base.vto
 ---
 {{ set info = category_info?.[category] }}
 {{ set color = info?.color || (category | tagColor) }}
+{{
+  set categories = search.pages(`category=${category} type=post`, "date=desc")
+}}
+
 <div class="container stack">
   {{
     await comp.hero({
@@ -20,14 +24,13 @@ layout: layouts/base.vto
       class="badge"
       style="--bg: {{ color }}; background-color: var(--bg); color: white; border: none"
     >CATEGORY ACTIVE</span>
-    <span class="badge">{{ search.pages("category=" + category).length }}
-      RECORDS FOUND</span>
+    <span class="badge">{{ categories.length }} RECORDS FOUND</span>
   </div>
 
   {{ await comp.separator({ text: "CATEGORY RECORDS" }) }}
 
   <div class="grid" style="--gap: var(--space-xl)">
-    {{ for index, post of search.pages("category=" + category, "date=desc") }}
+    {{ for index, post of categories }}
       {{
         await comp.post_card({
           url: post.url,
