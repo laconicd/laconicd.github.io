@@ -1,4 +1,4 @@
-layout: category_layout.vto
+layout: layouts/category_layout.vto
 
 category_info:
   Development:

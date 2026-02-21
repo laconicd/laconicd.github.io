@@ -1,15 +1,14 @@
 ---
-layout: base.vto
+layout: layouts/base.vto
 ---
-{{ set info = tag_info?.[tag] }}
-{{ set color = info?.color || (tag | tagColor) }}
+{{ set info = category_info?.[category] }}
+{{ set color = info?.color || (category | tagColor) }}
 <div class="container stack">
   {{
     await comp.hero({
-      eyebrow: "Tag Archives",
-      title: "# " + tag,
-      subtitle: info?.description ||
-        `Explore all records marked with "${tag}"`,
+      eyebrow: "Category Archives",
+      title: "Folder: " + category,
+      subtitle: info?.description || `Viewing all records in "${category}"`,
     })
   }}
 
@@ -20,15 +19,15 @@ layout: base.vto
     <span
       class="badge"
       style="--bg: {{ color }}; background-color: var(--bg); color: white; border: none"
-    >THEME ACTIVE</span>
-    <span class="badge">{{ search.pages("tags*=" + tag).length }} RECORDS
-      FOUND</span>
+    >CATEGORY ACTIVE</span>
+    <span class="badge">{{ search.pages("category=" + category).length }}
+      RECORDS FOUND</span>
   </div>
 
-  {{ await comp.separator({ text: "TAGGED RECORDS" }) }}
+  {{ await comp.separator({ text: "CATEGORY RECORDS" }) }}
 
   <div class="grid" style="--gap: var(--space-xl)">
-    {{ for index, post of search.pages("tags*=" + tag, "date=desc") }}
+    {{ for index, post of search.pages("category=" + category, "date=desc") }}
       {{
         await comp.post_card({
           url: post.url,
@@ -47,6 +46,6 @@ layout: base.vto
     class="cluster"
     style="justify-content: center; margin-top: var(--space-xl)"
   >
-    <a href="/tags" class="btn btn-ghost">BACK TO ALL TAGS</a>
+    <a href="/categories" class="btn btn-ghost">BACK TO ALL CATEGORIES</a>
   </div>
 </div>
