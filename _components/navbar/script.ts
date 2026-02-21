@@ -1,6 +1,8 @@
-let a = 33;
-let b = 33;
-let ba = 33;
+document.addEventListener("DOMContentLoaded", () => {
+  const popover = document.getElementById("index-popover");
+  if (!popover) return;
 
-console.log("this is POST CARD", a, b, ba);
-// console.log("this is POST CARD", a, b, ba);
+  popover.querySelectorAll("a[href]")?.forEach((link) => {
+    link.addEventListener("click", () => popover.hidePopover());
+  });
+});
