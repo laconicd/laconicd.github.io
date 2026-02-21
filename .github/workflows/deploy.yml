@@ -1,45 +1,35 @@
 name: Deploy to GitHub Pages
 
 on:
-# main 브랜치에 push 할 때 실행
-push:
-branches:
-- main
-# Actions 탭에서 수동으로 실행
-workflow_dispatch:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-build_and_deploy:
-# 🚨 **이 부분**을 추가해야 합니다! 🚨
-permissions:
-contents: write # ${{ secrets.GITHUB_TOKEN }}이 브랜치에 푸시할 수 있도록 쓰기 권한 부여
+  build_and_deploy:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
 
-runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-steps:
-# 1. GitHub Action에서 사용할 소스 코드를 체크아웃합니다.
-- name: Checkout
-uses: actions/checkout@v4
-with:
-submodules: recursive
-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
 
-# 2. Deno 설치 (deno bundle 사용을 위해 v1 stable 유지)
-- name: Install Deno
-uses: denoland/setup-deno@v2
-with:
-deno-version: v2.6.x
-cache: true
-- run: echo "Deno version is ${{ steps.deno.outputs.deno-version }}"
+      - name: Build site
+        run: deno task prd
 
-# 5. 웹사이트 빌드
-- name: Build site
-run: deno task prd
-
-# 6. 'public' 폴더의 내용을 GitHub Pages에 배포합니다.
-- name: Deploy
-uses: peaceiris/actions-gh-pages@v4
-with:
-github_token: ${{ secrets.GITHUB_TOKEN }}
-publish_dir: ./_site
-commit_message: ${{ github.event.head_commit.message }}
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          commit_message: ${{ github.event.head_commit.message }}
