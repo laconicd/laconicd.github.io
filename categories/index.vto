@@ -3,7 +3,7 @@ title: Categories
 layout: base.vto
 ---
 
-<div class="container stack">
+<div id="site-main" class="container stack">
   {{
     await comp.hero({
       eyebrow: "Classification",
@@ -21,10 +21,16 @@ layout: base.vto
     {{ for cat of search.values("category") }}
       {{ set info = category_info?.[cat] }}
       {{ set color = info?.color || (cat | tagColor) }}
+      {{ set url = `/categories/${cat.toLowerCase()}/` }}
       <a
-        href="/categories/{{ cat.toLowerCase() }}/"
+        href="{{url}}"
         class="post-card stack"
         style="--gap: var(--space-sm); padding: var(--space-lg); text-decoration: none; border: 1px solid var(--border-color-subtle); border-radius: var(--radius-md); transition: all 0.3s ease"
+        hx-get="{{ url }}"
+        hx-target="#site-main"
+        hx-select="#site-main"
+        hx-swap="innerMorph transition:true"
+        hx-push-url="true"
       >
         <div
           class="cluster"

@@ -82,15 +82,21 @@
   --font-family-mono: ui-monospace, sfmono-regular, menlo, monospace;
 
   /* --- 7. Gradients & Glassmorphism (Modern OKLCH) --- */
-  --gradient-hero: linear-gradient(in oklch to bottom,
-      oklch(from var(--color-base-content) l c h / 100%) 50%,
-      oklch(from var(--color-base-content) l c h / 20%));
-  --gradient-primary: linear-gradient(in oklch to right,
-      var(--color-primary),
-      oklch(from var(--color-primary) calc(l + 0.15) c h));
-  --gradient-glass: linear-gradient(in oklch 135deg,
-      oklch(100% 0 0deg / 20%),
-      oklch(100% 0 0deg / 5%));
+  --gradient-hero: linear-gradient(
+    in oklch to bottom,
+    oklch(from var(--color-base-content) l c h / 100%) 50%,
+    oklch(from var(--color-base-content) l c h / 20%)
+  );
+  --gradient-primary: linear-gradient(
+    in oklch to right,
+    var(--color-primary),
+    oklch(from var(--color-primary) calc(l + 0.15) c h)
+  );
+  --gradient-glass: linear-gradient(
+    in oklch 135deg,
+    oklch(100% 0 0deg / 20%),
+    oklch(100% 0 0deg / 5%)
+  );
 
   /* --- 8. Borders (세분화 단계 적용) --- */
   --border-width-xs: 1px;
@@ -125,7 +131,13 @@
   --shadow-md:
     0 4px 6px -1px oklch(0% 0 0deg / 10%), 0 2px 4px -1px oklch(0% 0 0deg / 6%);
   --shadow-lg:
-    0 10px 15px -3px oklch(0% 0 0deg / 10%), 0 4px 6px -2px oklch(0% 0 0deg / 5%);
+    0 10px 15px -3px oklch(0% 0 0deg / 10%), 0 4px 6px -2px oklch(
+    0%
+    0
+    0deg
+    /
+    5%
+  );
 
   /* --- 10. Motion (Transitions & Animations) --- */
   --transition-speed-normal: 300ms;

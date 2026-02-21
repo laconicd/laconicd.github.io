@@ -13,11 +13,18 @@ links:
   text: Tags
   index: "04"
 ---
+
 <nav class="navbar">
   <div class="container between">
-    <a href="/" class="brand">The Blog</a>
+    <a
+      href="/"
+      class="brand"
+      hx-get="/"
+      hx-target="#site-main"
+      hx-select="#site-main"
+    >The Blog</a>
 
-    <!-- Shared Menu Trigger -->
+    <!-- Shared Menu Trigger (그대로 유지) -->
     <button
       class="menu-trigger btn btn-ghost"
       popovertarget="index-popover"
@@ -29,12 +36,10 @@ links:
   </div>
 </nav>
 
-<!-- Unified Index Popover -->
+<!-- Unified Index Popover – htmx 적용 -->
 <div id="index-popover" class="popover-menu" popover>
   <header class="header">
-    <h3 class="title">
-      THE ARCHIVE INDEX
-    </h3>
+    <h3 class="title">THE ARCHIVE INDEX</h3>
     <button
       class="close-btn"
       popovertarget="index-popover"
@@ -49,7 +54,16 @@ links:
     <ul class="list list-blank">
       {{ for link of links }}
         <li>
-          <a href="{{ link.url }}" class="link" aria-current="page">
+          <a
+            href="{{ link.url }}"
+            class="link"
+            aria-current="page"
+            hx-get="{{ link.url }}"
+            hx-target="#site-main"
+            hx-select="#site-main"
+            hx-swap="innerMorph transition:true"
+            hx-push-url="true"
+          >
             <span class="num">{{ link.index }}</span>
             <span class="text">{{ link.text }}</span>
           </a>

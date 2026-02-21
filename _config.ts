@@ -43,7 +43,7 @@ site.use(seo());
 site.use(robots());
 site.use(sitemap());
 
-site.add("_includes/css/style.css");
+site.add("style.css");
 site.add("assets/scripts/main.ts");
 
 site.copy("assets/images/");

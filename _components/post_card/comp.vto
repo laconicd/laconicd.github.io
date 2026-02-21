@@ -1,4 +1,13 @@
-<a href="{{ url }}" class="post-card" data-layout="{{ layout }}">
+<a
+  href="{{ url }}"
+  class="post-card"
+  data-layout="{{ layout }}"
+  hx-get="{{ url }}"
+  hx-target="#site-main"
+  hx-select="#site-main"
+  hx-swap="innerMorph transition:true"
+  hx-push-url="true"
+>
   <img src="{{ img }}" class="image" alt="{{ title }}" loading="lazy" />
 
   <div class="content [ stack ]" style="--gap: var(--space-md)">
