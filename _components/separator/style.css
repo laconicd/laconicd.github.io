@@ -13,7 +13,7 @@
     opacity: 0;
 
     /* Animation */
-    animation: separatorReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    animation: separator-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
   }
 
   &::before,
@@ -24,7 +24,7 @@
     background-color: var(--color-base-content);
     transform: scaleX(0);
     transform-origin: center;
-    animation: lineExtend 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+    animation: line-extend 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
   }
 
   & span {
@@ -32,7 +32,7 @@
   }
 }
 
-@keyframes separatorReveal {
+@keyframes separator-reveal {
   from {
     opacity: 0;
   }
@@ -42,7 +42,7 @@
   }
 }
 
-@keyframes lineExtend {
+@keyframes line-extend {
   from {
     transform: scaleX(0);
   }

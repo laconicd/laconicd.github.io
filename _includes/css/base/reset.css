@@ -52,7 +52,7 @@
 }
 
 /* 8. Create a new stacking context for root elements */
-:where(#root, #__next) {
+:where(#root) {
   isolation: isolate;
 }
 

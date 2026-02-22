@@ -61,6 +61,7 @@
   "tasks": {
     "fmt:css": "deno run -A npm:stylelint \"**/*.css\" --fix",
     "fmt:watch": "deno fmt --watch .",
+    "lume:serve": "deno task lume -s",
     "lume": {
       "description": "Run Lume command",
       "command": "deno run -P=lume lume/cli.ts"
@@ -69,16 +70,15 @@
       "description": "Build the site for production",
       "command": "deno task lume",
       "dependencies": [
-        "fmt:css",
-        "fmt:watch"
+        "fmt:css"
       ]
     },
-    "serve": {
+    "dev": {
       "description": "Run and serve the site for development",
-      "command": "deno task lume -s",
       "dependencies": [
-        "fmt:css",
-        "fmt:watch"
+        "lume:serve",
+        "fmt:watch",
+        "fmt:css"
       ]
     }
   }

@@ -5,5 +5,7 @@
 @import url("css/base/global.css") layer(base);
 @import url("css/composition.css") layer(composition);
 @import url("css/blocks.css") layer(blocks);
-@import url("css/exceptions.css") layer(exceptions);
-@import url("css/utilities.css") layer(utilities);
+
+/* @import url("css/exceptions.css") layer(exceptions); */
+
+/* @import url("css/utilities.css") layer(utilities); */

@@ -19,14 +19,6 @@
     grid-area: nav;
   }
 
-  & .footer-social {
-    grid-area: social;
-  }
-
-  & .footer-bottom {
-    grid-area: bottom;
-  }
-
   /* --- [ Common Element Styles ] --- */
   & .logo {
     display: block;
@@ -61,6 +53,7 @@
 
   & .footer-social {
     display: flex;
+    grid-area: social;
     gap: var(--space-md);
 
     & a {
@@ -78,6 +71,7 @@
   & .footer-bottom {
     display: flex;
     flex-direction: column;
+    grid-area: bottom;
     gap: var(--space-md);
     padding-top: var(--space-xl);
     font-size: var(--font-size-xs);
