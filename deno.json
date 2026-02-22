@@ -2,6 +2,11 @@
   "lock": false,
   "nodeModulesDir": "auto",
   "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "deno.ns"
+    ],
     "types": [
       "lume/types.ts"
     ],
@@ -55,13 +60,16 @@
     "lineWidth": 120
   },
   "imports": {
+    "htmx.org": "npm:htmx.org@^2.0.8",
     "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3.2.1/",
-    "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.14/jsx-runtime.ts"
+    "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.14/jsx-runtime.ts",
+    "stylelint-config-recess-order": "npm:stylelint-config-recess-order@^7.6.1",
+    "stylelint-config-standard": "npm:stylelint-config-standard@^40.0.0",
+    "stylelint-order": "npm:stylelint-order@^7.0.1"
   },
   "tasks": {
     "fmt:css": "deno run -A npm:stylelint \"**/*.css\" --fix",
     "fmt:watch": "deno fmt --watch .",
-    "lume:serve": "deno task lume -s",
     "lume": {
       "description": "Run Lume command",
       "command": "deno run -P=lume lume/cli.ts"
@@ -73,13 +81,10 @@
         "fmt:css"
       ]
     },
-    "dev": {
+    "serve": {
       "description": "Run and serve the site for development",
-      "dependencies": [
-        "lume:serve",
-        "fmt:watch",
-        "fmt:css"
-      ]
+      "command": "deno task lume -s",
+      "dependencies": []
     }
   }
 }

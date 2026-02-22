@@ -42,7 +42,7 @@ site.use(robots());
 site.use(sitemap());
 
 site.add("style.css");
-site.add("assets/scripts/main.ts");
+site.add("script.ts");
 
 site.copy("assets/images");
 site.copy("assets/js");
