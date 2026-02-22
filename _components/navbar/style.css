@@ -66,9 +66,9 @@
 /* --- Popover Menu Styling --- */
 
 .popover-menu {
+  inset: 0 0 0 auto;
   display: flex;
   flex-direction: column;
-  inset: 0 0 0 auto;
   inline-size: min(100vw, 450px);
   block-size: 100dvh;
   padding: var(--space-xl);

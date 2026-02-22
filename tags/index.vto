@@ -42,9 +42,7 @@ layout: layouts/base.vto
           >
             <span style="opacity: 0.3">#</span>{{ tag }}
           </span>
-          <span class="badge">{{
-            search.pages(`tags*=${tag} type=post`).length
-          }}</span>
+          <span class="badge">{{ search.pages(`tags*=${tag} type=post`).length }}</span>
         </div>
 
         {{ if info?.description }}

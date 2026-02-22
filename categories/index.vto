@@ -42,9 +42,7 @@ layout: layouts/base.vto
           >
             {{ cat }}
           </span>
-          <span class="badge">{{
-            search.pages(`category=${cat} type=post`).length
-          }}</span>
+          <span class="badge">{{ search.pages(`category=${cat} type=post`).length }}</span>
         </div>
 
         {{ if info?.description }}

@@ -1,14 +1,9 @@
 @layer reset, base, composition, blocks, exceptions, utilities;
 
 @import url("css/base/reset.css") layer(reset);
-
 @import url("css/base/tokens.css") layer(base);
 @import url("css/base/global.css") layer(base);
-
 @import url("css/composition.css") layer(composition);
-
 @import url("css/blocks.css") layer(blocks);
-
 @import url("css/exceptions.css") layer(exceptions);
-
 @import url("css/utilities.css") layer(utilities);

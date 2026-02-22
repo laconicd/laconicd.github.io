@@ -22,16 +22,15 @@ This repository is a Deno-based static site using [Lume](https://lume.land/).
 ### Testing
 
 - **Run Tests**: `deno test`
-  - _Note_: Currently, explicit test files are minimal. Create `*_test.ts` files
-    for new logic.
+  - _Note_: Currently, explicit test files are minimal. Create `*_test.ts` files for new logic.
   - Use `Deno.test` for writing tests.
 
 ## 2. Code Style & Structure
 
 ### Project Structure
 
-- `_components/`: Reusable UI components. Each component typically resides in
-  its own subdirectory (e.g., `_components/navbar/`) containing:
+- `_components/`: Reusable UI components. Each component typically resides in its own subdirectory (e.g.,
+  `_components/navbar/`) containing:
   - `comp.vto`: The Vento template.
   - `script.ts`: Component-specific logic.
   - `style.css`: Component-specific styles.
@@ -50,31 +49,26 @@ This repository is a Deno-based static site using [Lume](https://lume.land/).
 ### CSS Architecture (CUBE CSS)
 
 - Follow the **CUBE CSS** methodology (Composition, Utility, Block, Exception).
-- **Layers**: CSS is organized into `@layer`s: `reset`, `base`, `composition`,
-  `blocks`, `exceptions`, `utilities`.
-- **Global Styles**: Defined in `assets/css/main.css`, importing from
-  subdirectories.
-- **Component Styles**: Define specific styles in
-  `_components/<name>/style.css`.
+- **Layers**: CSS is organized into `@layer`s: `reset`, `base`, `composition`, `blocks`, `exceptions`, `utilities`.
+- **Global Styles**: Defined in `assets/css/main.css`, importing from subdirectories.
+- **Component Styles**: Define specific styles in `_components/<name>/style.css`.
 - **Naming**: Use kebab-case for CSS classes.
 
 ### TypeScript / Deno
 
 - **Imports**: Use explicit file extensions (`.ts`, `.js`, `.json`).
-- **Dependencies**: Managed in `deno.json` (imports map) or standard Deno URL
-  imports.
+- **Dependencies**: Managed in `deno.json` (imports map) or standard Deno URL imports.
 - **Formatting**: Strictly follow `deno fmt` rules.
 - **Types**: Use strict typing. Avoid `any` unless absolutely necessary.
 
 ### Helper Scripts
 
-- `create_posts.py`: Utility script to generate test posts. Use for populating
-  content during dev.
+- `create_posts.py`: Utility script to generate test posts. Use for populating content during dev.
 
 ## 3. General Workflow
 
 1. **Understand**: Read `deno.json` and `_config.ts` to grasp the environment.
 2. **Develop**: Use `deno task serve` to see changes in real-time.
-3. **Style**: When adding styles, decide if it belongs in a component (Block) or
-   global utility/composition. Respect the CSS layers.
+3. **Style**: When adding styles, decide if it belongs in a component (Block) or global utility/composition. Respect the
+   CSS layers.
 4. **Verify**: Run `deno fmt` and `deno lint` before finalizing changes.

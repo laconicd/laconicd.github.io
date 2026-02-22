@@ -1,9 +1,17 @@
 {
+  "lock": false,
   "nodeModulesDir": "auto",
-  "imports": {
-    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3.2.1/",
-    "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.14/jsx-runtime.ts"
+  "compilerOptions": {
+    "types": [
+      "lume/types.ts"
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "lume"
   },
+  "unstable": [
+    "temporal",
+    "fmt-component"
+  ],
   "permissions": {
     "lume": {
       "read": true,
@@ -33,33 +41,6 @@
       "sys": true
     }
   },
-  "tasks": {
-    "lint:css": "deno run -A npm:stylelint \"**/*.css\"",
-    "fmt:css": "deno run -A npm:stylelint \"**/*.css\" --fix",
-    "lume": {
-      "description": "Run Lume command",
-      "command": "deno run -P=lume lume/cli.ts"
-    },
-    "build": {
-      "description": "Build the site for production",
-      "command": "deno task lume"
-    },
-    "serve": {
-      "description": "Run and serve the site for development",
-      "command": "deno task lume -s"
-    }
-  },
-  "compilerOptions": {
-    "types": [
-      "lume/types.ts"
-    ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "lume"
-  },
-  "unstable": [
-    "temporal",
-    "fmt-component"
-  ],
   "lint": {
     "plugins": [
       "https://cdn.jsdelivr.net/gh/lumeland/lume@3.2.1/lint.ts"
@@ -70,5 +51,35 @@
       ]
     }
   },
-  "lock": false
+  "fmt": {
+    "lineWidth": 120
+  },
+  "imports": {
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3.2.1/",
+    "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.14/jsx-runtime.ts"
+  },
+  "tasks": {
+    "fmt:css": "deno run -A npm:stylelint \"**/*.css\" --fix",
+    "fmt:watch": "deno fmt --watch .",
+    "lume": {
+      "description": "Run Lume command",
+      "command": "deno run -P=lume lume/cli.ts"
+    },
+    "build": {
+      "description": "Build the site for production",
+      "command": "deno task lume",
+      "dependencies": [
+        "fmt:css",
+        "fmt:watch"
+      ]
+    },
+    "serve": {
+      "description": "Run and serve the site for development",
+      "command": "deno task lume -s",
+      "dependencies": [
+        "fmt:css",
+        "fmt:watch"
+      ]
+    }
+  }
 }

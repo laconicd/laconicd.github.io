@@ -1,8 +1,8 @@
 @scope (.site-footer) {
   :scope {
     --footer-gap: var(--space-xl);
-    border-top: var(--border-width-xs) solid var(--border-color-base);
     color: var(--color-base-content);
+    border-top: var(--border-width-xs) solid var(--border-color-base);
   }
 
   & .footer-inner {
@@ -31,26 +31,26 @@
   & .logo {
     display: block;
     margin-bottom: var(--space-sm);
-    color: inherit;
-    font-weight: var(--font-weight-black);
     font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-black);
+    color: inherit;
     letter-spacing: var(--letter-spacing-tighter);
     text-decoration: none;
   }
 
   & .description {
-    opacity: var(--opacity-60);
     max-width: 40ch;
     font-size: var(--font-size-sm);
     line-height: var(--font-line-height-md);
+    opacity: var(--opacity-60);
   }
 
   & .nav-title {
     margin-bottom: var(--space-md);
-    font-weight: var(--font-weight-bold);
     font-size: var(--font-size-xs);
-    letter-spacing: var(--letter-spacing-widest);
+    font-weight: var(--font-weight-bold);
     text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-widest);
   }
 
   & .nav-list {
@@ -64,15 +64,13 @@
     gap: var(--space-md);
 
     & a {
-      opacity: 0.5;
-      transition:
-        opacity var(--transition-speed-normal),
-        color var(--transition-speed-normal);
       color: inherit;
+      opacity: 0.5;
+      transition: opacity var(--transition-speed-normal), color var(--transition-speed-normal);
 
       &:hover {
-        opacity: 1;
         color: var(--color-primary);
+        opacity: 1;
       }
     }
   }
@@ -81,17 +79,17 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-    opacity: var(--opacity-40);
-    border-top: var(--border-width-xs) solid var(--border-color-subtle);
     padding-top: var(--space-xl);
     font-size: var(--font-size-xs);
+    border-top: var(--border-width-xs) solid var(--border-color-subtle);
+    opacity: var(--opacity-40);
   }
 
   /* --- [ Mode: Sidebar ] --- */
   &[data-layout="sidebar"] {
-    border-top: none;
     /* Sidebar already has its own border/header */
     padding-top: var(--space-xl);
+    border-top: none;
 
     /* Hide elements not needed in sidebar via CSS */
     & :where(.footer-brand, .footer-nav, .footer-meta) {
@@ -106,22 +104,22 @@
     }
 
     & .footer-bottom {
-      border-top: none;
       padding-top: 0;
+      border-top: none;
     }
 
     & .copyright {
       font-weight: var(--font-weight-bold);
-      letter-spacing: var(--letter-spacing-wider);
       text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wider);
     }
   }
 
   /* --- [ Mode: Main ] --- */
   &[data-layout="main"] {
+    padding-block: var(--space-xxl) var(--space-xl);
     margin-top: var(--space-xxl);
     background-color: var(--color-base-100);
-    padding-block: var(--space-xxl) var(--space-xl);
 
     & .footer-inner {
       grid-template-areas:
@@ -133,10 +131,10 @@
 
     @media (width >= 768px) {
       & .footer-inner {
-        grid-template-columns: 1.5fr 1fr;
         grid-template-areas:
           "brand  nav"
           "social bottom";
+        grid-template-columns: 1.5fr 1fr;
       }
 
       & .footer-nav {
@@ -145,10 +143,10 @@
       }
 
       & .footer-bottom {
-        grid-column: 1 / -1;
         flex-direction: row;
-        justify-content: space-between;
+        grid-column: 1 / -1;
         align-items: center;
+        justify-content: space-between;
       }
     }
   }

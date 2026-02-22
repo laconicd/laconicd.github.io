@@ -28,10 +28,8 @@ site.ignore("AGENTS.md", "CHANGELOG.md", "node_modules");
 site.use(esbuild());
 site.use(googleFonts({
   fonts: {
-    instrument:
-      "https://fonts.google.com/share?selection.family=Instrument+Serif:ital@0;1",
-    outfit:
-      "https://fonts.google.com/share?selection.family=Outfit:wght@100..900",
+    instrument: "https://fonts.google.com/share?selection.family=Instrument+Serif:ital@0;1",
+    outfit: "https://fonts.google.com/share?selection.family=Outfit:wght@100..900",
   },
 }));
 site.use(lightningCss());

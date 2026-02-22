@@ -59,9 +59,7 @@
   .lexicon-tag {
     font-size: var(--font-size-xs);
     text-decoration: none;
-    transition:
-      transform var(--transition-speed-normal),
-      box-shadow var(--transition-speed-normal);
+    transition: transform var(--transition-speed-normal), box-shadow var(--transition-speed-normal);
   }
 
   .theme-tag:hover,

@@ -18,9 +18,7 @@ layout: layouts/base.vto
           <a href="/tags/{{ tag }}/" class="badge">#{{ tag }}</a>
         {{ /for }}
       </div>
-      <time class="badge" data-type="date">{{
-        date.toISOString().split("T")[0]
-      }}</time>
+      <time class="badge" data-type="date">{{ date.toISOString().split("T")[0] }}</time>
     </div>
 
     <h1

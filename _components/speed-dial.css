@@ -71,10 +71,7 @@
     background: transparent;
     border: none;
     opacity: 0;
-    transition:
-      transform 0.4s var(--animation-timing-bounce),
-      opacity 0.2s ease,
-      visibility 0.2s allow-discrete;
+    transition: transform 0.4s var(--animation-timing-bounce), opacity 0.2s ease, visibility 0.2s allow-discrete;
 
     & .inner {
       display: flex;

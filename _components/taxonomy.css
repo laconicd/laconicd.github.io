@@ -19,8 +19,7 @@
     text-decoration: none;
     background-color: var(--color-base-100);
     border: var(--border-width-xs) solid var(--border-color-base);
-    transition: all var(--transition-speed-normal)
-      var(--transition-timing-ease);
+    transition: all var(--transition-speed-normal) var(--transition-timing-ease);
   }
 
   :scope:hover {

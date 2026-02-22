@@ -3,9 +3,7 @@ layout: layouts/base.vto
 ---
 {{ set info = category_info?.[category] }}
 {{ set color = info?.color || (category | tagColor) }}
-{{
-  set categories = search.pages(`category=${category} type=post`, "date=desc")
-}}
+{{ set categories = search.pages(`category=${category} type=post`, "date=desc") }}
 
 <div class="container stack">
   {{
