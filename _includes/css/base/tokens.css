@@ -97,8 +97,8 @@
   --font-weight-black: calc(900 + var(--fw-step));
 
   /* --- 6. Font Families --- */
-  --font-family-base: outfit, ui-sans-serif, system-ui, sans-serif;
-  --font-family-heading: instrument, ui-serif, serif;
+  --font-family-base: outfit, "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-family-heading: instrument, "Noto Serif KR", ui-serif, serif;
   --font-family-mono: ui-monospace, sfmono-regular, menlo, monospace;
 
   /* --- 7. Gradients & Glassmorphism (Modern OKLCH) --- */

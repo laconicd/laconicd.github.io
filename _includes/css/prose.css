@@ -1,0 +1,139 @@
+@scope (.prose) {
+  :scope {
+    --prose-body: var(--color-base-content);
+    --prose-headings: var(--color-base-content);
+    --prose-links: var(--color-primary);
+    --prose-bold: var(--color-base-content);
+    --prose-hr: var(--border-color-muted);
+    --prose-quotes: var(--color-base-content);
+    --prose-quote-borders: var(--color-primary);
+
+    color: var(--prose-body);
+    max-width: 65ch;
+    word-break: keep-all; /* Korean Typography */
+    overflow-wrap: break-word;
+  }
+
+  :scope > * + * {
+    margin-top: 1.75em;
+  }
+
+  /* Typography: Elegant Serif Headings */
+  h1, h2, h3, h4 {
+    color: var(--prose-headings);
+    font-family: var(--font-family-heading, serif); /* Use Serif Font */
+    font-weight: 400; /* Lighter weight for elegance */
+    line-height: 1.15;
+    margin-top: 3em;
+    margin-bottom: 1em;
+    letter-spacing: -0.02em;
+  }
+
+  h1 { font-size: 3em; }
+  h2 { font-size: 2.5em; border-bottom: 1px solid var(--border-color-base); padding-bottom: 0.5em; margin-top: 4em; }
+  h3 { font-size: 1.75em; font-style: italic; opacity: 0.9; }
+  h4 { font-size: 1.25em; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; }
+
+  /* Links: Underline Animation */
+  a {
+    color: var(--prose-links);
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 1px;
+    transition: background-size 0.3s ease;
+  }
+  
+  a:hover {
+    background-size: 100% 2px;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  /* Blockquote: Magazine Style */
+  blockquote {
+    font-family: var(--font-family-heading, serif);
+    font-size: 1.8em;
+    line-height: 1.4;
+    font-style: italic;
+    color: var(--prose-quotes);
+    border-left: none; /* Remove default border */
+    position: relative;
+    padding: 1.5em 2em;
+    margin: 3em 0;
+    text-align: center;
+  }
+
+  blockquote::before {
+    content: "“";
+    display: block;
+    font-size: 3em;
+    color: var(--color-primary);
+    opacity: 0.2;
+    margin-bottom: -0.5em;
+  }
+
+  ul, ol {
+    padding-left: 1.5em;
+    font-size: 1.05em;
+  }
+
+  li {
+    margin-top: 0.75em;
+    padding-left: 0.5em;
+    list-style-position: outside;
+  }
+
+  hr {
+    border-color: var(--prose-hr);
+    border-top-width: 1px;
+    margin-top: 4em;
+    margin-bottom: 4em;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  code {
+    background-color: var(--color-base-200);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-family: var(--font-family-mono);
+  }
+
+  pre {
+    background-color: var(--color-base-300);
+    overflow-x: auto;
+    border-radius: 8px;
+    padding: 1.5em;
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin: 2em 0;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  img {
+    margin-top: 3em;
+    margin-bottom: 3em;
+    border-radius: 4px;
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    height: auto;
+  }
+
+  /* Drop Cap: Dramatic & Artistic */
+  :scope > p:first-of-type::first-letter {
+    float: left;
+    font-family: var(--font-family-heading, serif);
+    font-size: 5.5em;
+    line-height: 0.8;
+    margin-right: 0.15em;
+    margin-top: 0.05em;
+    color: var(--color-primary);
+    font-weight: 400;
+  }
+}
