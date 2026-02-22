@@ -1,74 +1,83 @@
-# Agent Guidelines for MyBlog
+# Agent Guidelines for this Repository
 
-This repository is a Deno-based static site using [Lume](https://lume.land/).
+This repository hosts a static site built with [Lume](https://lume.land/), a static site generator for Deno.
 
 ## 1. Build, Lint, and Test Commands
 
-### Build & Run
+Use `deno task` to run project-specific scripts defined in `deno.json`.
 
-- **Development Server**: `deno task serve` (runs `lume -s`)
-  - Starts a local server with hot reloading.
-- **Production Build**: `deno task build` (runs `lume`)
-  - Generates static files in the `_site/` directory.
+- **Build for Production:**
+  ```bash
+  deno task build
+  ```
+  This command builds the site into the `_site/` directory.
 
-### Linting & Formatting
+- **Development Server:**
+  ```bash
+  deno task serve
+  ```
+  Starts a local development server with hot reloading.
 
-- **Lint TypeScript/JS**: `deno lint`
-- **Lint CSS**: `deno task lint:css` (uses `stylelint`)
-- **Format TypeScript/JS**: `deno fmt`
-- **Format CSS**: `deno task fmt:css` (uses `stylelint --fix`)
-- **Check All**: Run `deno lint && deno task lint:css` before committing.
+- **Linting:**
+  ```bash
+  deno lint
+  ```
+  Checks TypeScript/JavaScript files for linting errors.
 
-### Testing
+- **Formatting:**
+  ```bash
+  deno fmt
+  ```
+  Formats all supported files (TS, JS, JSON, MD).
+  Configuration: `lineWidth: 120` (in `deno.json`).
 
-- **Run Tests**: `deno test`
-  - _Note_: Currently, explicit test files are minimal. Create `*_test.ts` files for new logic.
-  - Use `Deno.test` for writing tests.
+- **CSS Formatting:**
+  ```bash
+  deno task fmt:css
+  ```
+  Formats CSS files using `stylelint`.
 
-## 2. Code Style & Structure
+- **Testing:**
+  ```bash
+  deno test
+  ```
+  Runs tests if present (e.g., `*_test.ts` files). Currently, explicit tests may not be set up, but this is the standard command.
 
-### Project Structure
+## 2. Code Style & Conventions
 
-- `_components/`: Reusable UI components. Each component typically resides in its own subdirectory (e.g.,
-  `_components/navbar/`) containing:
-  - `comp.vto`: The Vento template.
-  - `script.ts`: Component-specific logic.
-  - `style.css`: Component-specific styles.
-- `_includes/`: Layout templates (e.g., `base.vto`, `page.vto`).
-- `assets/`: Static assets (CSS, images, scripts).
-  - `assets/css/`: Global styles following CUBE CSS.
-- `posts/`: Content files (Markdown).
-- `_config.ts`: Lume configuration.
+### Environment
+- **Runtime:** Deno.
+- **Framework:** Lume (Static Site Generator).
+- **Templating:** Vento (`.vto`).
 
-### Templating (Vento)
+### Imports
+- Use **Import Maps**: Refer to `deno.json` for mapped imports (e.g., `lume/`, `htmx.org`).
+- **URL Imports**: Use full URLs for external dependencies if not in the import map.
+- **Extensions**: Always include file extensions in imports (e.g., `import "./_includes/js/htmx.ts";`).
 
-- Use [Vento](https://vento.js.org/) (`.vto`) for templates.
-- Layouts are in `_includes/`.
-- Components are in `_components/` and can be used in templates.
+### Formatting & Structure
+- **Indentation**: 2 spaces.
+- **Quotes**: Double quotes for strings.
+- **Semicolons**: Always use semicolons.
+- **File Naming**:
+  - Source files: `kebab-case.ts` or `snake_case.ts` (consistent with existing files like `post_card.vto`).
+  - Components: Located in `_components/`.
+- **Directory Structure**:
+  - `_config.ts`: Main Lume configuration.
+  - `_components/`: Reusable UI components.
+  - `_includes/`: Layouts and shared snippets.
+  - `assets/`: Static assets (images, JS, CSS).
 
-### CSS Architecture (CUBE CSS)
+### Components (Lume)
+- Define components in `_components/` as `.vto` or `.ts` files.
+- Access components in Vento templates using the `comp` namespace (e.g., `{{ await comp.hero({...}) }}`).
+- Use `await` when rendering components in Vento templates.
 
-- Follow the **CUBE CSS** methodology (Composition, Utility, Block, Exception).
-- **Layers**: CSS is organized into `@layer`s: `reset`, `base`, `composition`, `blocks`, `exceptions`, `utilities`.
-- **Global Styles**: Defined in `assets/css/main.css`, importing from subdirectories.
-- **Component Styles**: Define specific styles in `_components/<name>/style.css`.
-- **Naming**: Use kebab-case for CSS classes.
+### Types & Error Handling
+- **TypeScript**: Use strict typing where possible.
+- **Lume Types**: Import types from `lume/core.ts` or specific plugins if needed (though mostly handled by `deno.json` types config).
 
-### TypeScript / Deno
-
-- **Imports**: Use explicit file extensions (`.ts`, `.js`, `.json`).
-- **Dependencies**: Managed in `deno.json` (imports map) or standard Deno URL imports.
-- **Formatting**: Strictly follow `deno fmt` rules.
-- **Types**: Use strict typing. Avoid `any` unless absolutely necessary.
-
-### Helper Scripts
-
-- `create_posts.py`: Utility script to generate test posts. Use for populating content during dev.
-
-## 3. General Workflow
-
-1. **Understand**: Read `deno.json` and `_config.ts` to grasp the environment.
-2. **Develop**: Use `deno task serve` to see changes in real-time.
-3. **Style**: When adding styles, decide if it belongs in a component (Block) or global utility/composition. Respect the
-   CSS layers.
-4. **Verify**: Run `deno fmt` and `deno lint` before finalizing changes.
+### CSS
+- **Processing**: Uses `lightningcss` plugin.
+- **Linting**: Uses `stylelint` with standard config and recess order.
+- **Files**: Main styles in `style.css`.
