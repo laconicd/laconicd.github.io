@@ -16,15 +16,7 @@ links:
 
 <nav class="navbar">
   <div class="container between">
-    <a
-      href="/"
-      class="brand"
-      hx-get="/"
-      hx-target="#site-main"
-      hx-select="#site-main"
-      hx-push-url="true"
-      hx-swap="innerMorph transition:true"
-    >The Blog</a>
+    <a href="/" class="brand" >The Blog</a>
 
     <!-- Shared Menu Trigger (그대로 유지) -->
     <button class="menu-trigger btn btn-ghost" popovertarget="index-popover" aria-label="Open Archive Index">
@@ -56,11 +48,6 @@ links:
             href="{{ link.url }}"
             class="link"
             aria-current="page"
-            hx-get="{{ link.url }}"
-            hx-target="#site-main"
-            hx-select="#site-main"
-            hx-push-url="true"
-            hx-swap="innerMorph transition:true"
           >
             <span class="num">{{ link.index }}</span>
             <span class="text">{{ link.text }}</span>
