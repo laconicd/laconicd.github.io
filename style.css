@@ -3,7 +3,20 @@
 @import url("css/base/reset.css") layer(reset);
 @import url("css/base/tokens.css") layer(base);
 @import url("css/base/global.css") layer(base);
-@import url("css/composition.css") layer(composition);
+
+@import url("css/compositions/between.css") layer(composition);
+@import url("css/compositions/center.css") layer(composition);
+@import url("css/compositions/center-column.css") layer(composition);
+@import url("css/compositions/center-intrinsic.css") layer(composition);
+@import url("css/compositions/cluster.css") layer(composition);
+@import url("css/compositions/container.css") layer(composition);
+@import url("css/compositions/cover.css") layer(composition);
+@import url("css/compositions/grid.css") layer(composition);
+@import url("css/compositions/reel.css") layer(composition);
+@import url("css/compositions/sidebar.css") layer(composition);
+@import url("css/compositions/stack.css") layer(composition);
+@import url("css/compositions/switcher.css") layer(composition);
+
 @import url("css/blocks/blocks.css") layer(blocks);
 @import url("css/blocks/hero.css") layer(blocks);
 @import url("css/blocks/navbar.css") layer(blocks);

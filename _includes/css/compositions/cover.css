@@ -1,0 +1,24 @@
+@scope (.cover) {
+  :scope {
+    display: flex;
+    flex-direction: column;
+    min-block-size: var(--min-height, 100dvb);
+    padding: var(--gap, var(--space-md));
+  }
+
+  :scope > * {
+    margin-block: var(--gap, var(--space-md));
+  }
+
+  :scope > :first-child:not(.centered) {
+    margin-block-start: 0;
+  }
+
+  :scope > :last-child:not(.centered) {
+    margin-block-end: 0;
+  }
+
+  :scope > .centered {
+    margin-block: auto;
+  }
+}

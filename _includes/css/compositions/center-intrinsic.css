@@ -1,0 +1,6 @@
+@scope (.center-intrinsic) {
+  :scope {
+    display: grid;
+    place-items: center;
+  }
+}

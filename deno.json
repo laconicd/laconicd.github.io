@@ -1,6 +1,5 @@
 {
   "lock": false,
-  "nodeModulesDir": "auto",
   "compilerOptions": {
     "lib": [
       "dom",

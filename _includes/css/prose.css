@@ -15,7 +15,7 @@
     overflow-wrap: break-word;
   }
 
-  :scope>*+* {
+  :scope > * + * {
     margin-top: 1.75em;
   }
 
@@ -153,7 +153,7 @@
   }
 
   /* Drop Cap: Dramatic & Artistic */
-  :scope>p:first-of-type::first-letter {
+  :scope > p:first-of-type::first-letter {
     -webkit-initial-letter: 2;
     /* Safari 필수 접두사 */
     initial-letter: 2;
