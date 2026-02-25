@@ -4,12 +4,16 @@
 @import url("css/base/tokens.css") layer(base);
 @import url("css/base/global.css") layer(base);
 @import url("css/composition.css") layer(composition);
-@import url("css/blocks.css") layer(blocks);
+@import url("css/blocks/blocks.css") layer(blocks);
+@import url("css/blocks/hero.css") layer(blocks);
+@import url("css/blocks/navbar.css") layer(blocks);
+@import url("css/blocks/post-card.css") layer(blocks);
+@import url("css/blocks/separator.css") layer(blocks);
+@import url("css/blocks/site-footer.css") layer(blocks);
 @import url("css/prose.css") layer(blocks);
 
 /* @import url("css/exceptions.css") layer(exceptions); */
 /* @import url("css/utilities.css") layer(utilities); */
-
 
 /* --- Global Atmosphere: Noise Texture --- */
 body::before {
@@ -54,10 +58,18 @@ body::before {
   opacity: 0; /* 초기 상태 숨김 */
 }
 
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-500 { animation-delay: 0.5s; }
+.delay-100 {
+  animation-delay: 0.1s;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+.delay-500 {
+  animation-delay: 0.5s;
+}
 
 /* --- Reading Progress Bar --- */
 #reading-progress {
