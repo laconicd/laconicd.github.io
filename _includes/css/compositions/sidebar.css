@@ -1,18 +1,16 @@
-@scope (.sidebar) {
-  :scope {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap, var(--space-md));
-  }
+.sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap, var(--space-md));
+}
 
-  :scope > :first-child {
-    flex-grow: 1;
-    flex-basis: var(--side-width, 20rem);
-  }
+.sidebar > :first-child {
+  flex-grow: 1;
+  flex-basis: var(--side-width, 20rem);
+}
 
-  :scope > :last-child {
-    flex-grow: 999;
-    flex-basis: 0;
-    min-inline-size: var(--content-min-width, 50%);
-  }
+.sidebar > :last-child {
+  flex-grow: 999;
+  flex-basis: 0;
+  min-inline-size: var(--content-min-width, 50%);
 }

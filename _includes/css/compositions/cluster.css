@@ -1,8 +1,6 @@
-@scope (.cluster) {
-  :scope {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap, 1rem);
-    align-items: center;
-  }
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap, 1rem);
+  align-items: center;
 }

@@ -45,6 +45,5 @@ site.add("style.css");
 site.add("script.ts");
 
 site.copy("assets/images");
-site.copy("assets/js");
 
 export default site;

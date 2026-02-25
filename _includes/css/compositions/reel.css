@@ -1,23 +1,21 @@
-@scope (.reel) {
-  :scope {
-    display: flex;
-    gap: var(--gap, var(--space-md));
-    block-size: auto;
-    overflow: auto hidden;
-    scrollbar-width: none;
-  }
+.reel {
+  display: flex;
+  gap: var(--gap, var(--space-md));
+  block-size: auto;
+  overflow: auto hidden;
+  scrollbar-width: none;
+}
 
-  :scope::-webkit-scrollbar {
-    display: none;
-  }
+.reel::-webkit-scrollbar {
+  display: none;
+}
 
-  :scope > * {
-    flex: 0 0 auto;
-  }
+.reel > * {
+  flex: 0 0 auto;
+}
 
-  :scope img {
-    flex-basis: auto;
-    inline-size: auto;
-    block-size: 100%;
-  }
+.reel img {
+  flex-basis: auto;
+  inline-size: auto;
+  block-size: 100%;
 }

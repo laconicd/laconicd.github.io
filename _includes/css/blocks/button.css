@@ -1,15 +1,3 @@
-@scope (.badge) {
-  :scope {
-    padding-block: 0.25rem;
-    padding-inline: 0.75rem;
-    font-size: var(--font-size-xs);
-    color: var(--color-base-content);
-    background-color: transparent;
-    border: 1px solid var(--border-color-subtle);
-    border-radius: 2.5rem;
-  }
-}
-
 @scope (.btn) {
   :scope {
     padding-block: var(--space-xs);
@@ -20,12 +8,12 @@
     border-radius: var(--border-radius-md);
   }
 
-  &.btn-ghost {
+  &[data-variant="ghost"] {
     background-color: transparent;
     border: none;
   }
 
-  &.btn-circle {
+  &[data-shape="circle"] {
     padding-block: var(--space-sm);
     padding-inline: var(--space-sm);
     color: var(--color-base-100);

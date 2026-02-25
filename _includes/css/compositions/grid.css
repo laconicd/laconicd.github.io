@@ -1,13 +1,11 @@
-@scope (.grid) {
-  :scope {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(var(--min, 300px), 100%), 1fr));
-    gap: var(--gap, 2rem);
-  }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--min, 300px), 100%), 1fr));
+  gap: var(--gap, 2rem);
+}
 
-  @media (width >= 1024px) {
-    :scope {
-      --gap: 3rem;
-    }
+@media (width >= 1024px) {
+  .grid {
+    --gap: 3rem;
   }
 }
