@@ -1,0 +1,128 @@
+@media print {
+  :root {
+    color-scheme: light;
+  }
+
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+
+  .container,
+  .stack,
+  .cluster,
+  .grid,
+  .sidebar,
+  .reel,
+  .cover,
+  .between,
+  .center,
+  .center-column,
+  .center-intrinsic,
+  .switcher,
+  .site-header,
+  .site-footer,
+  .site-widget,
+  .hero,
+  .navbar,
+  .popover-menu,
+  .post-card,
+  .badge,
+  .btn,
+  .separator,
+  .prose {
+    display: block !important;
+    position: static !important;
+    float: none !important;
+    clear: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .animate-fade-in,
+  .delay-100,
+  .delay-200,
+  .delay-300,
+  .delay-500 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  a {
+    text-decoration: underline !important;
+    color: #000 !important;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    font-weight: 400;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+    font-weight: 700;
+    color: #000;
+  }
+
+  blockquote {
+    border: none !important;
+    padding: 0 !important;
+    margin: 1em 0 !important;
+  }
+
+  pre,
+  code {
+    white-space: pre !important;
+    white-space: pre-wrap !important;
+    font-family: "Courier New", Courier, monospace !important;
+    font-size: 0.75em !important;
+  }
+
+  pre {
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 1em 0 !important;
+  }
+
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid !important;
+  }
+
+  figure {
+    page-break-inside: avoid;
+  }
+
+  figcaption {
+    font-size: 0.75em;
+    font-style: italic;
+  }
+
+  .post-card,
+  .site-footer,
+  .site-widget,
+  .popover-menu,
+  #reading-progress {
+    display: none !important;
+  }
+
+  @page {
+    margin: 2cm;
+  }
+
+  html,
+  body {
+    font-size: 12pt;
+    font-family: "Georgia", "Noto Serif KR", serif;
+    line-height: 1.5;
+  }
+}
