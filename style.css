@@ -24,6 +24,9 @@
 @import url("css/blocks/post-card.css") layer(blocks);
 @import url("css/blocks/separator.css") layer(blocks);
 @import url("css/blocks/site-footer.css") layer(blocks);
+@import url("css/blocks/editorial-list.css") layer(blocks);
+@import url("css/blocks/tag-cloud.css") layer(blocks);
+@import url("css/blocks/category-board.css") layer(blocks);
 @import url("css/prose.css") layer(blocks);
 
 /* @import url("css/exceptions.css") layer(exceptions); */
@@ -42,16 +45,4 @@ body::before {
   opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
-}
-
-/* --- Reading Progress Bar --- */
-#reading-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 3px;
-  background: var(--color-primary);
-  z-index: 9999;
-  transition: width 0.1s ease-out;
 }

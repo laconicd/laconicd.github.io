@@ -1,0 +1,81 @@
+@scope (.tag-cloud) {
+  :scope {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  & .tag-chip {
+    text-decoration: none;
+    color: inherit;
+    padding: var(--space-xs) var(--space-md);
+    border: 2px solid var(--tag-color);
+    border-radius: 999px;
+    background: transparent;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  & .chip-bg {
+    position: absolute;
+    inset: 0;
+    background-color: var(--tag-color);
+    opacity: 0.12;
+    z-index: -1;
+    transition: opacity 0.2s ease;
+  }
+
+  & .tag-hash {
+    color: var(--tag-color);
+    font-weight: 800;
+  }
+
+  & .tag-text {
+    font-weight: 500;
+  }
+
+  & .tag-count {
+    background-color: var(--tag-color);
+    color: white;
+    font-size: 0.75rem;
+    border: none;
+    font-weight: 800;
+    opacity: 0.7;
+    padding: 0.1em 0.5em;
+    border-radius: 999px;
+  }
+
+  /* Desktop Interactions */
+  @media (hover: hover) {
+    & .tag-chip:hover {
+      background-color: var(--tag-color);
+      color: white !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px var(--tag-color);
+    }
+    & .tag-chip:hover .chip-bg {
+      opacity: 0;
+    }
+    & .tag-chip:hover .tag-hash,
+    & .tag-chip:hover .tag-count {
+      color: white;
+      opacity: 1;
+    }
+    & .tag-chip:hover .tag-count {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  }
+
+  & .tag-chip:active {
+    transform: scale(0.95);
+  }
+}
