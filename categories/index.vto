@@ -15,7 +15,7 @@ layout: layouts/base.vto
   <div class="category-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-xl); padding-bottom: var(--space-xxl);">
     {{ for index, cat of search.values("category") }}
       {{ set info = category_info?.[cat] }}
-      {{ set color = info?.color || (cat | tagColor) }}
+      {{ set color = info?.color || cat |> tagColor }}
       {{ set url = `/categories/${cat.toLowerCase()}/` }}
       {{ set count = search.pages(`category=${cat} type=post`).length }}
 

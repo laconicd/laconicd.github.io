@@ -14,28 +14,32 @@ layout: layouts/base.vto
 
   <div class="tag-cloud cluster" style="--gap: var(--space-md); justify-content: center; max-width: 900px; margin-inline: auto; padding-inline: var(--space-md);">
     {{ for tag of search.values("tags") }}
-      {{ set info = tag_info?.[tag] }}
-      {{ set color = info?.color || (tag | tagColor) }}
+      {{ set color = tag |> tagColor }}
       {{ set count = search.pages(`tags*=${tag} type=post`).length }}
       {{ set fontSize = 1 + (count * 0.05) }}
 
-      <a href="/tags/{{ tag }}/" class="tag-chip" style="--tag-color: {{ color }}; --tag-bg: oklch(from {{ color }} l c h / 8%); text-decoration: none; color: inherit; padding: var(--space-xs) var(--space-md); border: 1px solid oklch(from {{ color }} l c h / 20%); border-radius: 999px; font-size: {{ fontSize }}rem; background: var(--tag-bg); transition: all 0.2s ease; display: flex; align-items: center; gap: var(--space-xs); white-space: nowrap;">
-        <span style="color: var(--tag-color); font-weight: bold; opacity: 0.6;">#</span>
+      <a href="/tags/{{ tag }}/" class="tag-chip" style="--tag-color: {{ color }}; text-decoration: none; color: inherit; padding: var(--space-xs) var(--space-md); border: 2px solid var(--tag-color); border-radius: 999px; font-size: {{ fontSize }}rem; background: transparent; transition: all 0.2s ease; display: flex; align-items: center; gap: var(--space-xs); white-space: nowrap; position: relative; overflow: hidden; z-index: 1;">
+        <!-- 배경색 레이어 (oklch 직접 적용) -->
+        <div class="chip-bg" style="position: absolute; inset: 0; background-color: var(--tag-color); opacity: 0.12; z-index: -1;"></div>
+        
+        <span style="color: var(--tag-color); font-weight: 800;">#</span>
         <span style="font-weight: 500;">{{ tag }}</span>
-        <span class="badge" style="background: oklch(from {{ color }} l c h / 15%); color: var(--tag-color); font-size: 0.7rem; border: none; font-weight: bold;">{{ count }}</span>
+        <span class="badge" style="background-color: var(--tag-color); color: white; font-size: 0.75rem; border: none; font-weight: 800; opacity: 0.7;">{{ count }}</span>
       </a>
     {{ /for }}
   </div>
 
   <style>
-    /* 데스크탑 호버 효과 */
+    /* 데스크탑 호버 효과 (oklch 테마 유지) */
     @media (hover: hover) {
       .tag-chip:hover {
-        background: var(--tag-color) !important;
+        background-color: var(--tag-color) !important;
         color: white !important;
-        border-color: var(--tag-color) !important;
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px oklch(from var(--tag-color) l c h / 30%);
+        box-shadow: 0 4px 15px var(--tag-color);
+      }
+      .tag-chip:hover .chip-bg {
+        opacity: 0 !important;
       }
       .tag-chip:hover span, 
       .tag-chip:hover .badge {
@@ -43,14 +47,13 @@ layout: layouts/base.vto
         opacity: 1 !important;
       }
       .tag-chip:hover .badge {
-        background: rgba(255, 255, 255, 0.2) !important;
+        background: rgba(255, 255, 255, 0.25) !important;
       }
     }
 
     /* 모바일/터치 피드백 */
     .tag-chip:active {
       transform: scale(0.95);
-      opacity: 0.8;
     }
   </style>
 </div>

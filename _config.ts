@@ -14,19 +14,18 @@ const site = lume();
 
 // Helper to generate dynamic colors for tags
 site.filter("tagColor", (tag: string) => {
+  if (!tag) return "oklch(60% 0.2 0)";
+  
   let hash = 0;
   for (let i = 0; i < tag.length; i++) {
     hash = tag.charCodeAt(i) + ((hash << 5) - hash);
   }
 
-  // Hue: 0-360
-  const h = Math.abs(hash) % 360;
-  // Lightness: 55% - 75% (vary based on hash)
-  const l = 55 + (Math.abs(hash >> 8) % 20);
-  // Chroma: 0.1 - 0.25 (vary based on hash)
-  const c = 0.1 + (Math.abs(hash >> 16) % 15) / 100;
+  const h = Math.abs(hash * 137.508) % 360;
+  const l = 65 + (Math.abs(hash >> 4) % 10); // 65% ~ 75%
+  const c = 0.15 + (Math.abs(hash >> 8) % 10) / 100; // 0.15 ~ 0.25
 
-  return `oklch(${l}% ${c} ${h})`;
+  return `oklch(${l.toFixed(2)}% ${c.toFixed(2)} ${h.toFixed(2)})`;
 });
 
 site.ignore("AGENTS.md", "CHANGELOG.md", "node_modules");

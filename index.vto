@@ -17,7 +17,7 @@ layout: layouts/base.vto
 
     <div class="editorial-list stack" style="--gap: 0; border-top: 1px solid var(--border-color-base);">
       {{ for post of search.pages("type=post", "date=desc", 5) }}
-        {{ set color = (post.category || "General") | tagColor }}
+        {{ set color = post.category || "General" |> tagColor }}
         <article class="editorial-row-item" style="border-bottom: 1px solid var(--border-color-subtle); padding-block: var(--space-lg); transition: all 0.3s ease;">
           <a href="{{ post.url }}" style="text-decoration: none; color: inherit; display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-xl); align-items: baseline;">
             <div class="row-meta stack" style="--gap: var(--space-xs); min-width: 80px;">
