@@ -160,11 +160,35 @@
     /* 글자 높이를 2줄로 고정 */
     float: left;
     font-family: var(--font-family-heading, serif);
-    font-size: 5.5em;
+    font-size: clamp(3.5em, 10vw, 5.5em);
     line-height: 0.8;
-    margin-right: 0.15em;
-    margin-top: 0.05em;
+    margin-right: 0.12em;
+    margin-top: 0.1em;
     color: var(--color-primary);
     font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    :scope {
+      font-size: 1.1rem; /* Slightly smaller for mobile */
+      line-height: 1.7;
+    }
+    
+    h1 { font-size: 2.25em; }
+    h2 { font-size: 1.85em; margin-top: 2.5em; }
+    h3 { font-size: 1.5em; }
+    
+    blockquote {
+      font-size: 1.4em;
+      padding: 1em;
+      margin: 2em 0;
+    }
+
+    pre {
+      padding: 1em;
+      font-size: 0.85em;
+      margin-inline: calc(var(--space-md) * -1);
+      border-radius: 0;
+    }
   }
 }
