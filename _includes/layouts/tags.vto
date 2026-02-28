@@ -5,13 +5,13 @@ layout: layouts/base.vto
 {{ set color = info?.color || (tag | tagColor) }}
 {{ set tags = search.pages(`tags*=${tag} type=post`, "date=desc") }}
 
-<div class="container stack">
+<div class="container stack" style="--gap: var(--space-xxl)">
   {{
     await comp.hero({
       eyebrow: "Tag Archives",
       title: "# " + tag,
       subtitle: info?.description ||
-        `Explore all records marked with "${tag}"`,
+        `Explore all records marked with the theme "${tag}"`,
     })
   }}
 
@@ -21,24 +21,22 @@ layout: layouts/base.vto
   >
     <span
       class="badge"
-      style="--bg: {{ color }}; background-color: var(--bg); color: white; border: none"
+      style="--bg: {{ color }}; background-color: var(--bg); color: white; border: none; font-weight: bold;"
     >THEME ACTIVE</span>
-    <span class="badge">{{ tags.length }} RECORDS FOUND</span>
+    <span class="badge" style="opacity: 0.6">{{ tags.length }} RECORDS FOUND</span>
   </div>
 
-  {{ await comp.separator({ text: "TAGGED RECORDS" }) }}
-  {{ tag }}
-  <div class="grid" style="--gap: var(--space-xl)">
-    {{ for index, post of tags }}
+  {{ await comp.separator({ text: "TAGGED INDEX" }) }}
+
+  <div class="stack" style="--gap: var(--space-sm)">
+    {{ for post of tags }}
       {{
         await comp.post_card({
           url: post.url,
           title: post.title,
           date: post.date.toLocaleDateString("ko-KR"),
           summary: post.description,
-          img: post.img || "/assets/images/hero.svg",
-          layout: "expanded",
-          featured: index === 0,
+          layout: "minimal",
         })
       }}
     {{ /for }}
@@ -48,6 +46,6 @@ layout: layouts/base.vto
     class="cluster"
     style="justify-content: center; margin-top: var(--space-xl)"
   >
-    <a href="/tags" class="btn btn-ghost">BACK TO ALL TAGS</a>
+    <a href="/tags" class="btn btn-ghost" style="border-radius: 999px;">{{ await comp.icons.arrow_left({ size: 4 }) }} BACK TO ALL TAGS</a>
   </div>
 </div>

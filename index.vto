@@ -3,7 +3,7 @@ title: Exploration
 layout: layouts/base.vto
 ---
 
-<div id="site-main" class="container stack">
+<div id="site-main" class="container stack" style="--gap: var(--space-xxl)">
   {{
     await comp.hero({
       eyebrow: "Digital Journal",
@@ -12,28 +12,69 @@ layout: layouts/base.vto
     })
   }}
 
-  {{ await comp.separator({ text: "LATEST RECORDS" }) }}
+  <section class="latest-records stack" style="--gap: var(--space-lg);">
+    {{ await comp.separator({ text: "LATEST RECORDS" }) }}
 
-  <div class="stack" style="--gap: var(--space-xl)">
-    {{ for index, post of search.pages("type=post", "date=desc", 3) }}
-      {{
-        await comp.post_card({
-          url: post.url,
-          title: post.title,
-          date: post.date.toLocaleDateString("ko-KR"),
-          summary: post.description,
-          img: post.img || "/assets/images/hero.svg",
-          layout: "minimal",
-          featured: index === 0,
-        })
-      }}
-    {{ /for }}
-  </div>
+    <div class="editorial-list stack" style="--gap: 0; border-top: 1px solid var(--border-color-base);">
+      {{ for post of search.pages("type=post", "date=desc", 5) }}
+        {{ set color = (post.category || "General") | tagColor }}
+        <article class="editorial-row-item" style="border-bottom: 1px solid var(--border-color-subtle); padding-block: var(--space-lg); transition: all 0.3s ease;">
+          <a href="{{ post.url }}" style="text-decoration: none; color: inherit; display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-xl); align-items: baseline;">
+            <div class="row-meta stack" style="--gap: var(--space-xs); min-width: 80px;">
+              <time class="row-date" style="font-family: var(--font-family-base); font-size: 0.75rem; font-weight: 800; opacity: 0.3; font-variant-numeric: tabular-nums;">
+                {{ post.date.toLocaleDateString("en-US", { month: '2-digit', day: '2-digit', year: '2-digit' }) }}
+              </time>
+              {{ if post.category }}
+                <span class="row-category" style="font-size: 0.65rem; font-weight: 900; color: {{ color }}; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6;">{{ post.category }}</span>
+              {{ /if }}
+            </div>
+            
+            <div class="row-main stack" style="--gap: 2px;">
+              <h2 class="row-title" style="font-family: var(--font-family-heading); font-size: 1.85rem; margin: 0; line-height: 1.1; letter-spacing: -0.02em; font-weight: 400;">{{ post.title }}</h2>
+              {{ if post.description }}
+                <p class="row-desc" style="font-size: 0.95rem; opacity: 0.5; margin: 0; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; font-weight: 300;">{{ post.description }}</p>
+              {{ /if }}
+            </div>
 
-  <div
-    class="cluster"
-    style="justify-content: center; margin-top: var(--space-xl)"
-  >
-    <a href="/posts/" class="btn btn-ghost">VIEW ALL POSTS</a>
-  </div>
+            <span class="row-icon" style="opacity: 0.2; transform: translateY(4px);">{{ await comp.icons.chevron_right({ size: 4 }) }}</span>
+          </a>
+          <style>
+            .editorial-row-item:hover {
+              background-color: oklch(from var(--color-base-content) l c h / 1%);
+              padding-inline: var(--space-md);
+            }
+            .editorial-row-item:hover .row-title {
+              color: var(--color-primary);
+              text-decoration: underline;
+              text-underline-offset: 4px;
+            }
+            .editorial-row-item:hover .row-icon {
+              opacity: 1;
+              color: var(--color-primary);
+              transform: translate(4px, 4px);
+            }
+            
+            @media (max-width: 768px) {
+              .editorial-row-item a {
+                grid-template-columns: 1fr;
+                gap: var(--space-xs);
+              }
+              .row-meta {
+                flex-direction: row;
+                align-items: center;
+                gap: var(--space-md);
+              }
+              .row-icon {
+                display: none;
+              }
+            }
+          </style>
+        </article>
+      {{ /for }}
+    </div>
+
+    <div class="cluster" style="justify-content: center; margin-top: var(--space-xl)">
+      <a href="/posts/" class="btn btn-ghost" style="border-radius: 999px;">VIEW ALL POSTS</a>
+    </div>
+  </section>
 </div>

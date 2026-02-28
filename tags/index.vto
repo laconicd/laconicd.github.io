@@ -3,58 +3,54 @@ title: Tags
 layout: layouts/base.vto
 ---
 
-<div id="site-main" class="container stack">
+<div id="site-main" class="container stack" style="--gap: var(--space-xxl)">
   {{
     await comp.hero({
       eyebrow: "Classification",
       title: "Tags Cloud.",
-      subtitle: "Explore content by specific topics and categories.",
+      subtitle: "Explore content by specific topics and categories. A thematic map of all shared records.",
     })
   }}
 
-  {{ await comp.separator({ text: "ALL TAGS" }) }}
-
-  <div
-    class="grid"
-    style="--grid-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-lg)"
-  >
+  <div class="tag-cloud cluster" style="--gap: var(--space-md); justify-content: center; max-width: 900px; margin-inline: auto; padding-inline: var(--space-md);">
     {{ for tag of search.values("tags") }}
       {{ set info = tag_info?.[tag] }}
       {{ set color = info?.color || (tag | tagColor) }}
-      {{ set url = `/tags/${tag.toLowerCase()}/` }}
+      {{ set count = search.pages(`tags*=${tag} type=post`).length }}
+      {{ set fontSize = 1 + (count * 0.05) }}
 
-      <a
-        href="/tags/{{ tag }}/"
-        class="post-card stack"
-        style="--gap: var(--space-sm); padding: var(--space-lg); text-decoration: none; border: 1px solid var(--border-color-subtle); border-radius: var(--radius-md); transition: all 0.3s ease"
-      >
-        <div
-          class="cluster"
-          style="justify-content: space-between; align-items: center"
-        >
-          <span
-            style="font-weight: var(--font-weight-black); font-size: var(--font-size-xl)"
-          >
-            <span style="opacity: 0.3">#</span>{{ tag }}
-          </span>
-          <span class="badge">{{ search.pages(`tags*=${tag} type=post`).length }}</span>
-        </div>
-
-        {{ if info?.description }}
-          <p style="font-size: var(--font-size-sm); opacity: 0.7; margin: 0">
-            {{ info.description }}
-          </p>
-        {{ else }}
-          <p style="font-size: var(--font-size-sm); opacity: 0.5; margin: 0">
-            Explore records tagged with #{{ tag }}
-          </p>
-        {{ /if }}
-
-        <div
-          style="--bg: {{ color }}; height: 4px; width: 40px; background-color: var(--bg); border-radius: 2px; margin-top: var(--space-xs)"
-        >
-        </div>
+      <a href="/tags/{{ tag }}/" class="tag-chip" style="--tag-color: {{ color }}; --tag-bg: oklch(from {{ color }} l c h / 8%); text-decoration: none; color: inherit; padding: var(--space-xs) var(--space-md); border: 1px solid oklch(from {{ color }} l c h / 20%); border-radius: 999px; font-size: {{ fontSize }}rem; background: var(--tag-bg); transition: all 0.2s ease; display: flex; align-items: center; gap: var(--space-xs); white-space: nowrap;">
+        <span style="color: var(--tag-color); font-weight: bold; opacity: 0.6;">#</span>
+        <span style="font-weight: 500;">{{ tag }}</span>
+        <span class="badge" style="background: oklch(from {{ color }} l c h / 15%); color: var(--tag-color); font-size: 0.7rem; border: none; font-weight: bold;">{{ count }}</span>
       </a>
     {{ /for }}
   </div>
+
+  <style>
+    /* 데스크탑 호버 효과 */
+    @media (hover: hover) {
+      .tag-chip:hover {
+        background: var(--tag-color) !important;
+        color: white !important;
+        border-color: var(--tag-color) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px oklch(from var(--tag-color) l c h / 30%);
+      }
+      .tag-chip:hover span, 
+      .tag-chip:hover .badge {
+        color: white !important;
+        opacity: 1 !important;
+      }
+      .tag-chip:hover .badge {
+        background: rgba(255, 255, 255, 0.2) !important;
+      }
+    }
+
+    /* 모바일/터치 피드백 */
+    .tag-chip:active {
+      transform: scale(0.95);
+      opacity: 0.8;
+    }
+  </style>
 </div>

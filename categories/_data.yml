@@ -3,7 +3,13 @@ layout: layouts/categories.vto
 category_info:
   Development:
     description: "Technical articles, coding tutorials, and software engineering insights."
+    icon: atom
   Journal:
     description: "Daily reflections, personal growth, and life logs."
+    icon: post
   Review:
     description: "Analysis and critiques of books, tools, and technologies."
+    icon: check
+  Design:
+    description: "Creative insights, visual aesthetics, and user experience studies."
+    icon: layers

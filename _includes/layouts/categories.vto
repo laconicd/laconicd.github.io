@@ -5,48 +5,75 @@ layout: layouts/base.vto
 {{ set color = info?.color || (category | tagColor) }}
 {{ set categories = search.pages(`category=${category} type=post`, "date=desc") }}
 
-<div class="container stack">
-  {{
-    await comp.hero({
-      eyebrow: "Category Archives",
-      title: "Folder: " + category,
-      subtitle: info?.description || `Viewing all records in "${category}"`,
-    })
-  }}
+<div class="container stack" style="--gap: var(--space-xxl)">
+  <header class="category-header stack" style="--gap: var(--space-md); padding-top: var(--space-xl);">
+    <div class="category-meta-top cluster" style="--gap: var(--space-sm); font-family: var(--font-family-base); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.15em; color: var(--accent); opacity: 0.8;">
+       <span>CATEGORY ARCHIVE</span>
+       <span style="opacity: 0.2;">/</span>
+       <span>{{ categories.length }} {{ categories.length > 1 ? 'RECORDS' : 'RECORD' }}</span>
+    </div>
 
-  <div
-    class="tag-meta cluster"
-    style="--gap: var(--space-sm); margin-top: calc(var(--space-xl) * -1)"
-  >
-    <span
-      class="badge"
-      style="--bg: {{ color }}; background-color: var(--bg); color: white; border: none"
-    >CATEGORY ACTIVE</span>
-    <span class="badge">{{ categories.length }} RECORDS FOUND</span>
-  </div>
+    <h1 class="category-title" style="font-family: var(--font-family-heading); font-size: clamp(3rem, 10vw, 6rem); margin: 0; line-height: 0.9; letter-spacing: -0.05em; color: var(--color-base-content);">
+      {{ category }}.
+    </h1>
 
-  {{ await comp.separator({ text: "CATEGORY RECORDS" }) }}
+    {{ if info?.description }}
+      <p class="category-subtitle" style="font-size: 1.5rem; color: var(--color-base-content); opacity: 0.6; max-width: 60ch; line-height: 1.4; font-weight: 300;">
+        {{ info.description }}
+      </p>
+    {{ /if }}
+  </header>
 
-  <div class="grid" style="--gap: var(--space-xl)">
-    {{ for index, post of categories }}
-      {{
-        await comp.post_card({
-          url: post.url,
-          title: post.title,
-          date: post.date.toLocaleDateString("ko-KR"),
-          summary: post.description,
-          img: post.img || "/assets/images/hero.svg",
-          layout: "expanded",
-          featured: index === 0,
-        })
-      }}
+  {{ await comp.separator({ text: "CHRONOLOGICAL ARCHIVE" }) }}
+
+  <div class="category-posts-list stack" style="--gap: 0;">
+    {{ for post of categories }}
+      <article class="category-post-item" style="border-bottom: 1px solid var(--border-color-subtle); padding-block: var(--space-xl); transition: all 0.3s ease;">
+        <a href="{{ post.url }}" style="text-decoration: none; color: inherit; display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-xl); align-items: baseline;">
+          <time class="post-date" style="font-family: var(--font-family-base); font-size: 0.8rem; font-weight: 800; opacity: 0.3; font-variant-numeric: tabular-nums; white-space: nowrap;">
+            {{ post.date.toLocaleDateString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' }) }}
+          </time>
+          
+          <div class="post-main stack" style="--gap: var(--space-xs);">
+            <h2 class="post-title" style="font-family: var(--font-family-heading); font-size: 1.75rem; margin: 0; line-height: 1.1; letter-spacing: -0.02em;">{{ post.title }}</h2>
+            {{ if post.description }}
+              <p class="post-desc" style="font-size: 1rem; opacity: 0.5; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5; font-weight: 300;">{{ post.description }}</p>
+            {{ /if }}
+          </div>
+
+          <span class="post-icon" style="opacity: 0.2; transform: translateY(4px);">{{ await comp.icons.chevron_right({ size: 5 }) }}</span>
+        </a>
+        <style>
+          .category-post-item:hover {
+            border-bottom-color: var(--accent);
+          }
+          .category-post-item:hover .post-title {
+            color: var(--accent);
+          }
+          .category-post-item:hover .post-date {
+            opacity: 0.6;
+            color: var(--accent);
+          }
+          .category-post-item:hover .post-icon {
+            opacity: 1;
+            color: var(--accent);
+          }
+          
+          @media (max-width: 768px) {
+            .category-post-item a {
+              grid-template-columns: 1fr;
+              gap: var(--space-sm);
+            }
+            .post-icon {
+              display: none;
+            }
+          }
+        </style>
+      </article>
     {{ /for }}
   </div>
 
-  <div
-    class="cluster"
-    style="justify-content: center; margin-top: var(--space-xl)"
-  >
-    <a href="/categories" class="btn btn-ghost">BACK TO ALL CATEGORIES</a>
+  <div class="cluster" style="justify-content: center; margin-top: var(--space-xl); padding-bottom: var(--space-xl)">
+    <a href="/categories" class="btn btn-ghost" style="border-radius: 999px;">{{ await comp.icons.arrow_left({ size: 4 }) }} ALL CATEGORIES</a>
   </div>
 </div>
