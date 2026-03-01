@@ -37,10 +37,10 @@
   --border-color: light-dark(oklch(0% 0 0 / 6%), oklch(100% 0 0 / 8%));
   --border-color-strong: light-dark(oklch(0% 0 0 / 15%), oklch(100% 0 0 / 20%));
   
-  /* --- Elite Motion Tokens --- */
-  --transition-speed-fast: 0.3s;
-  --transition-speed-base: 0.45s;
-  --transition-speed-slow: 0.8s;
+  /* Elite Motion Tokens: Snappier for UX */
+  --transition-speed-fast: 0.2s;
+  --transition-speed-base: 0.35s;
+  --transition-speed-slow: 0.5s;
   
   /* Snap & Lock Easing (Quintic Out / Custom Snap) */
   --transition-ease-snap: cubic-bezier(0.2, 1, 0.2, 1);

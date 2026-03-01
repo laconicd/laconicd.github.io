@@ -14,20 +14,13 @@ layout: layouts/base.vto
     {{ set url = `/categories/${cat.toLowerCase()}/` }}
     {{ set count = search.pages(`category=${cat} type=post`).length }}
 
-    <a href="{{ url }}" class="category-tile" style="--accent: {{ cat |> tagColor }}; animation: eliteSlideUp 0.8s var(--transition-ease-snap) {{ 0.1 + (index * 0.05) }}s both;">
-      <span class="tile-count">0{{ index + 1 }}</span>
+    <a href="{{ url }}" class="category-item" style="animation: eliteSlideUp var(--transition-speed-base) var(--transition-ease-snap) {{ 0.1 + (index * 0.05) }}s both;">
+      <span class="item-num">0{{ index + 1 }}</span>
       
-      <div class="tile-content [ stack ]" data-gap="xxs">
-        <h2 class="tile-title">{{ cat }}</h2>
-        {{ if info?.description }}
-          <p class="tile-desc">{{ info.description }}</p>
-        {{ /if }}
+      <div class="item-main [ stack ]" data-gap="xxs">
+        <h2 class="item-title">{{ cat }}</h2>
+        <span class="item-meta">{{ count }} {{ count > 1 ? 'Records' : 'Record' }}</span>
       </div>
-
-      <span class="tile-icon">
-        {{ set iconName = info?.icon || 'archive' }}
-        {{ await comp.icons[iconName]({ size: 10 }) }}
-      </span>
     </a>
   {{ /for }}
 </div>

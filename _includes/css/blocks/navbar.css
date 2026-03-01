@@ -147,10 +147,9 @@
     & .text { font-size: var(--font-size-h2); font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
 
     &:hover {
-      padding-inline-start: var(--space-md);
-      border-bottom-color: var(--color-base-content);
-      & .text { transform: skewX(-10deg); color: var(--color-accent); letter-spacing: 0.02em; }
-      & .num { opacity: 0.6; color: var(--color-accent); }
+      background: oklch(from var(--color-base-content) l c h / 2.5%);
+      & .text { color: var(--color-accent); letter-spacing: 0.01em; }
+      & .num { opacity: 0.4; color: var(--color-accent); }
     }
   }
 
