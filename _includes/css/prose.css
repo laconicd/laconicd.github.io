@@ -1,194 +1,74 @@
 @scope (.prose) {
   :scope {
-    --prose-body: var(--color-base-content);
-    --prose-headings: var(--color-base-content);
-    --prose-links: var(--color-primary);
-    --prose-bold: var(--color-base-content);
-    --prose-hr: var(--border-color-muted);
-    --prose-quotes: var(--color-base-content);
-    --prose-quote-borders: var(--color-primary);
-
-    color: var(--prose-body);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-body);
+    line-height: 1.6;
+    color: var(--color-base-content);
+    /* 가로 넘침 방지를 위한 핵심 수정 */
+    width: 100%;
     max-width: 65ch;
-    word-break: keep-all;
-    /* Korean Typography */
+    margin-inline: auto;
+    word-break: break-word; /* keep-all 대신 break-word로 안전하게 */
     overflow-wrap: break-word;
   }
 
-  :scope > * + * {
-    margin-top: 1.75em;
+  :scope > * {
+    max-width: 100%; /* 모든 자식 요소가 부모를 넘지 못하게 고정 */
   }
 
-  /* Typography: Elegant Serif Headings */
-  h1,
-  h2,
-  h3,
-  h4 {
-    color: var(--prose-headings);
-    font-family: var(--font-family-heading, serif);
-    /* Use Serif Font */
-    font-weight: 400;
-    /* Lighter weight for elegance */
-    line-height: 1.15;
-    margin-top: 3em;
+  :scope > * + * { margin-top: 1.5em; }
+
+  h1, h2, h3 {
+    font-family: var(--font-family-base);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    margin-top: 2em;
     margin-bottom: 1em;
-    letter-spacing: -0.02em;
+    word-break: break-word;
   }
 
-  h1 {
-    font-size: 3em;
-  }
+  h1 { font-size: var(--font-size-h1); }
+  h2 { font-size: var(--font-size-h2); border-bottom: 1px solid var(--border-color); padding-bottom: 0.2em; }
 
-  h2 {
-    font-size: 2.5em;
-    border-bottom: 1px solid var(--border-color-base);
-    padding-bottom: 0.5em;
-    margin-top: 4em;
-  }
-
-  h3 {
-    font-size: 1.75em;
-    font-style: italic;
-    opacity: 0.9;
-  }
-
-  h4 {
-    font-size: 1.25em;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.7;
-  }
-
-  /* Links: Underline Animation */
-  a {
-    color: var(--prose-links);
-    text-decoration: none;
-    background-image: linear-gradient(currentColor, currentColor);
-    background-position: 0% 100%;
-    background-repeat: no-repeat;
-    background-size: 100% 1px;
-    transition: background-size 0.3s ease;
-  }
-
-  a:hover {
-    background-size: 100% 2px;
-  }
-
-  strong {
-    font-weight: 700;
-  }
-
-  /* Blockquote: Magazine Style */
   blockquote {
-    font-family: var(--font-family-heading, serif);
-    font-size: 1.8em;
-    line-height: 1.4;
-    font-style: italic;
-    color: var(--prose-quotes);
-    border-left: none;
-    /* Remove default border */
-    position: relative;
-    padding: 1.5em 2em;
-    margin: 3em 0;
-    text-align: center;
-  }
-
-  blockquote::before {
-    content: "“";
-    display: block;
-    font-size: 3em;
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    margin: 2.5rem 0;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--color-accent);
     color: var(--color-primary);
-    opacity: 0.2;
-    margin-bottom: -0.5em;
   }
 
-  ul,
-  ol {
-    padding-left: 1.5em;
-    font-size: 1.05em;
-  }
-
-  li {
-    margin-top: 0.75em;
-    padding-left: 0.5em;
-    list-style-position: outside;
-  }
-
-  hr {
-    border-color: var(--prose-hr);
-    border-top-width: 1px;
-    margin-top: 4em;
-    margin-bottom: 4em;
-    width: 30%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  code {
-    background-color: var(--color-base-200);
-    padding: 0.2em 0.4em;
-    border-radius: 4px;
-    font-size: 0.85em;
-    font-family: var(--font-family-mono);
+  /* Drop Cap: SE에서 안전하게 */
+  :scope > p:first-of-type::first-letter {
+    float: left;
+    font-size: clamp(3.5rem, 12vw, 5.5rem);
+    line-height: 0.85;
+    margin-right: 0.1em;
+    margin-top: 0.05em;
+    font-weight: 900;
+    color: var(--color-accent);
   }
 
   pre {
-    background-color: var(--color-base-300);
-    overflow-x: auto;
-    border-radius: 8px;
-    padding: 1.5em;
-    font-size: 0.9em;
-    line-height: 1.6;
-    margin: 2em 0;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-  }
-
-  img {
-    margin-top: 3em;
-    margin-bottom: 3em;
-    border-radius: 4px;
-    box-shadow: var(--shadow-lg);
+    margin-block: 2em;
+    padding: var(--space-sm);
+    background: var(--color-base-200);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 0.85em;
+    overflow-x: auto; /* 가로 스크롤 허용 */
+    white-space: pre; /* 코드 줄바꿈 방지 및 스크롤 유도 */
     width: 100%;
-    height: auto;
+    /* 모바일에서 살짝 넓게 보이게 하는 음수 마진 제거하여 안전성 확보 */
+    margin-inline: 0; 
   }
 
-  /* Drop Cap: Dramatic & Artistic */
-  :scope > p:first-of-type::first-letter {
-    -webkit-initial-letter: 2;
-    /* Safari 필수 접두사 */
-    initial-letter: 2;
-    /* 글자 높이를 2줄로 고정 */
-    float: left;
-    font-family: var(--font-family-heading, serif);
-    font-size: clamp(3.5em, 10vw, 5.5em);
-    line-height: 0.8;
-    margin-right: 0.12em;
-    margin-top: 0.1em;
-    color: var(--color-primary);
-    font-weight: 400;
-  }
-
-  @media (max-width: 768px) {
-    :scope {
-      font-size: 1.1rem; /* Slightly smaller for mobile */
-      line-height: 1.7;
-    }
-    
-    h1 { font-size: 2.25em; }
-    h2 { font-size: 1.85em; margin-top: 2.5em; }
-    h3 { font-size: 1.5em; }
-    
-    blockquote {
-      font-size: 1.4em;
-      padding: 1em;
-      margin: 2em 0;
-    }
-
-    pre {
-      padding: 1em;
-      font-size: 0.85em;
-      margin-inline: calc(var(--space-md) * -1);
-      border-radius: 0;
-    }
+  code {
+    font-family: var(--font-family-mono);
+    word-break: break-all; /* 긴 변수명 등 대비 */
   }
 }

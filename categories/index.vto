@@ -3,48 +3,31 @@ title: Categories
 layout: layouts/base.vto
 ---
 
-<div id="site-main" class="container stack" style="--gap: var(--space-xxl)">
-  {{
-    await comp.hero({
-      eyebrow: "Digital Folders",
-      title: "Category Board.",
-      subtitle: "The primary structural pillars of this journal. Each board represents a core thematic world.",
-    })
-  }}
+<header class="hero [ stack ]" data-align="center" data-size="small" data-gap="xs" style="width: 100%;">
+    <span class="eyebrow">DIGITAL FOLDERS</span>
+    <h1 class="title">The Index.</h1>
+</header>
 
-  <div class="category-grid">
-    {{ for index, cat of search.values("category") }}
-      {{ set info = category_info?.[cat] }}
-      {{ set color = info?.color || cat |> tagColor }}
-      {{ set url = `/categories/${cat.toLowerCase()}/` }}
-      {{ set count = search.pages(`category=${cat} type=post`).length }}
+<div class="category-grid">
+  {{ for index, cat of search.values("category") }}
+    {{ set info = category_info?.[cat] }}
+    {{ set url = `/categories/${cat.toLowerCase()}/` }}
+    {{ set count = search.pages(`category=${cat} type=post`).length }}
 
-      <a href="{{ url }}" class="category-tile" style="--accent: {{ color }}">
-        <div class="tile-accent-line"></div>
-        
-        <div class="tile-content">
-          <div class="tile-top cluster" style="justify-content: space-between; align-items: center;">
-            <span class="tile-icon">
-              {{ set iconName = info?.icon || 'archive' }}
-              {{ await comp.icons[iconName]({ size: 12 }) }}
-            </span>
-            <span class="tile-count">
-               {{ count.toString().padStart(2, '0') }}
-            </span>
-          </div>
+    <a href="{{ url }}" class="category-tile" style="--accent: {{ cat |> tagColor }}; animation: eliteSlideUp 0.8s var(--transition-ease-snap) {{ 0.1 + (index * 0.05) }}s both;">
+      <span class="tile-count">0{{ index + 1 }}</span>
+      
+      <div class="tile-content [ stack ]" data-gap="xxs">
+        <h2 class="tile-title">{{ cat }}</h2>
+        {{ if info?.description }}
+          <p class="tile-desc">{{ info.description }}</p>
+        {{ /if }}
+      </div>
 
-          <div class="tile-bottom stack" style="--gap: var(--space-xs);">
-            <h2 class="tile-title">{{ cat }}</h2>
-            {{ if info?.description }}
-              <p class="tile-desc">{{ info.description }}</p>
-            {{ /if }}
-          </div>
-        </div>
-
-        <div class="tile-arrow">
-           {{ await comp.icons.arrow_right({ size: 6 }) }}
-        </div>
-      </a>
-    {{ /for }}
-  </div>
+      <span class="tile-icon">
+        {{ set iconName = info?.icon || 'archive' }}
+        {{ await comp.icons[iconName]({ size: 10 }) }}
+      </span>
+    </a>
+  {{ /for }}
 </div>

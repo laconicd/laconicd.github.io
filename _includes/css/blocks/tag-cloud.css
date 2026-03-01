@@ -2,80 +2,58 @@
   :scope {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-md);
-    justify-content: center;
-    max-width: 900px;
+    column-gap: var(--space-md);
+    row-gap: var(--space-xxs);
+    justify-content: center; /* 태그 클라우드도 중앙 정렬 */
+    max-width: var(--container-max-width);
     margin-inline: auto;
+    padding-block: var(--space-lg);
   }
 
   & .tag-chip {
     text-decoration: none;
     color: inherit;
-    padding: var(--space-xs) var(--space-md);
-    border: 2px solid var(--tag-color);
-    border-radius: 999px;
-    background: transparent;
-    transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
-    white-space: nowrap;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  & .chip-bg {
-    position: absolute;
-    inset: 0;
-    background-color: var(--tag-color);
-    opacity: 0.12;
-    z-index: -1;
-    transition: opacity 0.2s ease;
+    gap: 0.15rem;
+    padding-block: var(--space-xs);
+    transition: all var(--transition-speed-base) var(--transition-ease-snap);
   }
 
   & .tag-hash {
-    color: var(--tag-color);
+    font-size: 0.75rem;
     font-weight: 800;
+    opacity: 0.15;
+    color: var(--color-base-content);
   }
 
   & .tag-text {
-    font-weight: 500;
+    font-size: var(--font-size-h3); /* h1/h2보다 작은 h3로 통일 */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    transition: all var(--transition-speed-base) var(--transition-ease-snap);
   }
 
   & .tag-count {
-    background-color: var(--tag-color);
-    color: white;
-    font-size: 0.75rem;
-    border: none;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-label);
     font-weight: 800;
-    opacity: 0.7;
-    padding: 0.1em 0.5em;
-    border-radius: 999px;
+    opacity: 0.1;
+    vertical-align: super;
   }
 
-  /* Desktop Interactions */
-  @media (hover: hover) {
-    & .tag-chip:hover {
-      background-color: var(--tag-color);
-      color: white !important;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px var(--tag-color);
-    }
-    & .tag-chip:hover .chip-bg {
-      opacity: 0;
-    }
-    & .tag-chip:hover .tag-hash,
-    & .tag-chip:hover .tag-count {
-      color: white;
-      opacity: 1;
-    }
-    & .tag-chip:hover .tag-count {
-      background: rgba(255, 255, 255, 0.25);
-    }
+  /* Interaction: Elite Minimal Expansion */
+  & .tag-chip:hover {
+    color: var(--color-accent);
+    
+    & .tag-hash { opacity: 0.8; color: var(--color-accent); transform: rotate(15deg); }
+    & .tag-count { opacity: 0.8; color: var(--color-accent); }
+    & .tag-text { letter-spacing: 0.05em; transform: skewX(-8deg); }
   }
 
-  & .tag-chip:active {
-    transform: scale(0.95);
+  @media (max-width: 768px) {
+    & .tag-text { font-size: 1.15rem; }
+    :scope { gap: var(--space-sm); }
   }
 }

@@ -1,113 +1,58 @@
 :root {
   color-scheme: light dark;
 
-  /* --- 1. Space (Linear Scale) --- */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-xxl: 3rem;
-
-  /* --- 2. Typography: Sizes (Major Third Scale: 1.25) --- */
-  --text-base-size: 1rem;
-  --text-scale-ratio: 1.25;
-  --font-size-sm: calc(var(--text-base-size) / var(--text-scale-ratio));
-  --font-size-xs: calc(var(--font-size-sm) / var(--text-scale-ratio));
-  --font-size-md: var(--text-base-size);
-  --font-size-lg: calc(var(--font-size-md) * var(--text-scale-ratio));
-  --font-size-xl: calc(var(--font-size-lg) * var(--text-scale-ratio));
-  --font-size-xxl: calc(var(--font-size-xl) * var(--text-scale-ratio));
-  --font-size-xxxl: calc(var(--font-size-xxl) * var(--text-scale-ratio));
-  --font-size-hero: calc(var(--font-size-xxxl) * var(--text-scale-ratio));
-
-  /* --- 3. Typography: Letter Spacing --- */
-  --letter-spacing-tighter: -0.05em;
-  --letter-spacing-tight: -0.025em;
-  --letter-spacing-normal: 0em;
-  --letter-spacing-wide: 0.025em;
-  --letter-spacing-wider: 0.05em;
-  --letter-spacing-widest: 0.1em;
-
-  /* --- 4. Typography: Line Heights --- */
-  --font-line-height-xs: 1.2;
-  --font-line-height-sm: 1.4;
-  --font-line-height-md: 1.5;
-  --font-line-height-lg: 1.6;
-  --font-line-height-xl: 1.6;
-  --font-line-height-xxl: 1.7;
-
-  /* --- 5. Typography: Weights --- */
-  --fw-step: 0;
-  --font-weight-thin: calc(100 + var(--fw-step));
-  --font-weight-extralight: calc(200 + var(--fw-step));
-  --font-weight-light: calc(300 + var(--fw-step));
-  --font-weight-normal: calc(400 + var(--fw-step));
-  --font-weight-medium: calc(500 + var(--fw-step));
-  --font-weight-semibold: calc(600 + var(--fw-step));
-  --font-weight-bold: calc(700 + var(--fw-step));
-  --font-weight-extrabold: calc(800 + var(--fw-step));
-  --font-weight-black: calc(900 + var(--fw-step));
-
-  /* --- 6. Font Families --- */
-  --font-family-base: outfit, "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-family-heading: instrument, "Noto Serif KR", ui-serif, serif;
-  --font-family-mono: ui-monospace, sfmono-regular, menlo, monospace;
-
-  /* --- 7. Colors (Auto-reactive using light-dark) --- */
-  --color-base-100: light-dark(oklch(100% 0 0deg), oklch(30.857% 0.023 264.149deg));
-  --color-base-200: light-dark(oklch(97% 0 0deg), oklch(28.036% 0.019 264.182deg));
-  --color-base-300: light-dark(oklch(94% 0 0deg), oklch(26.346% 0.018 262.177deg));
-  --color-base-content: light-dark(oklch(0% 0 0deg), oklch(82.901% 0.031 222.959deg));
+  /* --- Museum Spacing (Linear & Precise) --- */
+  --space-unit: 1rem;
+  --space-xxs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+  --space-xxl: 8rem;
+  --space-hero: clamp(4rem, 15vh, 10rem);
   
-  --color-primary: light-dark(oklch(15.906% 0 0deg), oklch(86.133% 0.141 139.549deg));
-  --color-primary-content: light-dark(oklch(100% 0 0deg), oklch(17.226% 0.028 139.549deg));
-  
-  --color-secondary: light-dark(oklch(21.455% 0.001 17.278deg), oklch(73.375% 0.165 35.353deg));
-  --color-secondary-content: light-dark(oklch(100% 0 0deg), oklch(14.675% 0.033 35.353deg));
-  
-  --color-accent: light-dark(oklch(26.861% 0 0deg), oklch(74.229% 0.133 311.379deg));
-  --color-accent-content: light-dark(oklch(100% 0 0deg), oklch(14.845% 0.026 311.379deg));
-  
-  --color-neutral: light-dark(oklch(0% 0 0deg), oklch(24.731% 0.02 264.094deg));
-  --color-neutral-content: light-dark(oklch(100% 0 0deg), oklch(82.901% 0.031 222.959deg));
-  
-  --color-info: light-dark(oklch(79.54% 0.103 205.9deg), oklch(86.078% 0.142 206.182deg));
-  --color-info-content: light-dark(oklch(15.908% 0.02 205.9deg), oklch(17.215% 0.028 206.182deg));
-  
-  --color-success: light-dark(oklch(90.13% 0.153 164.14deg), oklch(86.171% 0.142 166.534deg));
-  --color-success-content: light-dark(oklch(18.026% 0.03 164.14deg), oklch(17.234% 0.028 166.534deg));
-  
-  --color-warning: light-dark(oklch(88.37% 0.135 79.94deg), oklch(86.163% 0.142 94.818deg));
-  --color-warning-content: light-dark(oklch(17.674% 0.027 79.94deg), oklch(17.232% 0.028 94.818deg));
-  
-  --color-error: light-dark(oklch(78.66% 0.15 28.47deg), oklch(82.418% 0.099 33.756deg));
-  --color-error-content: light-dark(oklch(15.732% 0.03 28.47deg), oklch(16.483% 0.019 33.756deg));
+  --container-max-width: 1400px;
+  --container-padding: clamp(1rem, 5vw, 2.5rem);
 
-  --radius-selector: light-dark(2rem, 1rem);
-  --radius-field: light-dark(0.25rem, 0.5rem);
-  --radius-box: light-dark(0.5rem, 1rem);
-
-  /* --- 8. Borders & Utilities --- */
-  --border-width-xs: 1px;
-  --border-width-sm: 2px;
-  --border-width-md: 3px;
-  --border-radius-lg: 0.5rem;
-  --border-radius-xl: 1rem;
+  /* --- Typography: High-End Elite --- */
+  --font-family-base: "Outfit", sans-serif;
+  --font-family-heading: "Instrument Serif", serif; /* Italic/Serif contrast for Elite feel */
   
-  --border-color-subtle: oklch(from var(--color-base-content) l c h / 5%);
-  --border-color-base: oklch(from var(--color-base-content) l c h / 12%);
-  --border-color-muted: oklch(from var(--color-base-content) l c h / 25%);
+  /* SE Optimized Fluid Typo: Sharper Hierarchy */
+  --font-size-hero: clamp(3.5rem, 18vw, 9rem);
+  --font-size-h1: clamp(2.2rem, 10vw, 4.5rem);  /* Menu / Main Page Headings */
+  --font-size-h2: clamp(1.5rem, 6vw, 2.4rem);   /* Post Titles in Lists */
+  --font-size-h3: clamp(1.2rem, 4vw, 1.8rem);
+  --font-size-body: clamp(0.95rem, 2vw, 1.05rem);
+  --font-size-meta: 0.65rem;
+  --font-size-label: 0.55rem;
 
-  /* --- 9. Shadows & Effects --- */
-  --shadow-sm: 0 1px 2px 0 oklch(0% 0 0deg / 5%);
-  --shadow-md: 0 4px 6px -1px oklch(0% 0 0deg / 10%), 0 2px 4px -1px oklch(0% 0 0deg / 6%);
-  --shadow-lg: 0 10px 15px -3px oklch(0% 0 0deg / 10%), 0 4px 6px -2px oklch(0% 0 0deg / 5%);
-
-  /* --- 10. Motion --- */
-  --transition-speed-normal: 300ms;
+  /* --- Elite Palette (Low Chroma OKLCH) --- */
+  --color-base-100: light-dark(oklch(99% 0.002 250), oklch(12% 0.005 250)); /* Lofi Paper / Dim Slate */
+  --color-base-content: light-dark(oklch(15% 0.01 250), oklch(92% 0.005 250));
+  --color-accent: light-dark(oklch(50% 0.15 250), oklch(80% 0.1 150));
+  
+  /* --- Minimal Rules --- */
+  --border-color: light-dark(oklch(0% 0 0 / 6%), oklch(100% 0 0 / 8%));
+  --border-color-strong: light-dark(oklch(0% 0 0 / 15%), oklch(100% 0 0 / 20%));
+  
+  /* --- Elite Motion Tokens --- */
+  --transition-speed-fast: 0.3s;
+  --transition-speed-base: 0.45s;
+  --transition-speed-slow: 0.8s;
+  
+  /* Snap & Lock Easing (Quintic Out / Custom Snap) */
+  --transition-ease-snap: cubic-bezier(0.2, 1, 0.2, 1);
+  --transition-ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Override support for manual theme toggling if needed */
-[data-theme="lofi"] { color-scheme: light; }
-[data-theme="dim"] { color-scheme: dark; }
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.015em;
+  overflow-x: hidden;
+}

@@ -3,27 +3,18 @@ title: Tags
 layout: layouts/base.vto
 ---
 
-<div id="site-main" class="container stack" style="--gap: var(--space-xxl)">
-  {{
-    await comp.hero({
-      eyebrow: "Classification",
-      title: "Tags Cloud.",
-      subtitle: "Explore content by specific topics and categories. A thematic map of all shared records.",
-    })
-  }}
+<header class="hero [ stack ]" data-align="center" data-size="small" data-gap="xs" style="width: 100%;">
+    <span class="eyebrow">MAP OF CONTENT</span>
+    <h1 class="title">Keywords.</h1>
+</header>
 
-  <div class="tag-cloud">
-    {{ for tag of search.values("tags") }}
-      {{ set color = tag |> tagColor }}
-      {{ set count = search.pages(`tags*=${tag} type=post`).length }}
-      {{ set fontSize = 1 + (count * 0.05) }}
-
-      <a href="/tags/{{ tag }}/" class="tag-chip" style="--tag-color: {{ color }}; font-size: {{ fontSize }}rem;">
-        <div class="chip-bg"></div>
-        <span class="tag-hash">#</span>
-        <span class="tag-text">{{ tag }}</span>
-        <span class="tag-count">{{ count }}</span>
-      </a>
-    {{ /for }}
-  </div>
+<div class="tag-cloud">
+  {{ for index, tag of search.values("tags") }}
+    {{ set count = search.pages(`tags*=${tag} type=post`).length }}
+    <a href="/tags/{{ tag }}/" class="tag-chip" style="animation: eliteSlideUp 0.8s var(--transition-ease-snap) {{ 0.1 + (index * 0.03) }}s both;">
+      <span class="tag-hash">#</span>
+      <span class="tag-text">{{ tag }}</span>
+      <span class="tag-count">{{ count }}</span>
+    </a>
+  {{ /for }}
 </div>

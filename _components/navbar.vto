@@ -1,50 +1,42 @@
 ---
 links:
 - url: /
-  text: The Front Page
+  text: FRONT PAGE
   index: "01"
 - url: /posts
-  text: Posts
+  text: ALL RECORDS
   index: "02"
 - url: /categories
-  text: Categories
+  text: CATEGORIES
   index: "03"
 - url: /tags
-  text: Tags
+  text: TAG CLOUD
   index: "04"
 ---
 
 <nav class="navbar">
-  <div class="container between">
-    <a href="/" class="brand">The Blog</a>
+  <div class="container">
+    <a href="/" class="brand">OSCAR.</a>
 
-    <!-- Shared Menu Trigger (그대로 유지) -->
-    <button
-      class="menu-trigger btn"
-      popovertarget="index-popover"
-      aria-label="Open Archive Index"
-      data-variant="ghost"
-    >
-      <span class="trigger-text">INDEX</span>
-      <span class="trigger-icon">{{ comp.icons.menu() }}</span>
+    <button class="menu-trigger" popovertarget="index-popover">
+      INDEX
     </button>
   </div>
 </nav>
 
-<!-- Unified Index Popover – htmx 적용 -->
 <div id="index-popover" class="popover-menu" popover>
   <header class="header">
-    <h3 class="title">THE ARCHIVE INDEX</h3>
-    <button class="close-btn" popovertarget="index-popover" popovertargetaction="hide" aria-label="Close menu">
-      {{ comp.icons.close(size = 6) }}
+    <span class="meta-label">ARCHIVE INDEX</span>
+    <button class="close-btn" popovertarget="index-popover" popovertargetaction="hide">
+      DISMISS
     </button>
   </header>
 
   <nav class="body">
-    <ul class="list list-blank">
+    <ul class="list">
       {{ for link of links }}
         <li>
-          <a href="{{ link.url }}" class="link" aria-current="page">
+          <a href="{{ link.url }}" class="link">
             <span class="num">{{ link.index }}</span>
             <span class="text">{{ link.text }}</span>
           </a>

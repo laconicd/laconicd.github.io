@@ -1,12 +1,11 @@
 .container {
-  inline-size: 100%;
-  max-inline-size: var(--container-max-inline-size, 1100px);
-  padding-inline: var(--space-md);
+  max-width: var(--max, var(--container-max-width));
   margin-inline: auto;
+  padding-inline: var(--container-padding);
 }
 
-@media (width >= 1440px) {
-  .container {
-    max-inline-size: var(--container-max-inline-size-lg, 1300px);
-  }
-}
+/* Exceptions: 컨테이너 크기 변주 */
+.container[data-size="small"] { --max: 800px; }
+.container[data-size="medium"] { --max: 1100px; }
+.container[data-size="full"] { --max: 100%; }
+.container[data-size="narrow"] { --max: 60ch; }

@@ -1,11 +1,19 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(var(--min, 300px), 100%), 1fr));
-  gap: var(--gap, 2rem);
+  gap: var(--gap, var(--space-md));
+  grid-template-columns: repeat(auto-fill, minmax(var(--min, 20rem), 1fr));
 }
 
-@media (width >= 1024px) {
-  .grid {
-    --gap: 3rem;
-  }
+/* Exceptions: Systematized Gap */
+.grid[data-gap="xs"] { --gap: var(--space-xs); }
+.grid[data-gap="sm"] { --gap: var(--space-sm); }
+.grid[data-gap="md"] { --gap: var(--space-md); }
+.grid[data-gap="lg"] { --gap: var(--space-lg); }
+
+/* Grid Variants */
+.grid[data-variant="tight"] { --min: 15rem; --gap: var(--space-sm); }
+.grid[data-variant="wide"] { --min: 30rem; --gap: var(--space-lg); }
+
+@media (max-width: 768px) {
+  .grid { --min: 100%; }
 }

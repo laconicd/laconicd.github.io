@@ -3,30 +3,26 @@ title: Archive
 layout: layouts/base.vto
 ---
 
-<div id="site-main" class="container stack">
-  {{
-    await comp.hero({
-      eyebrow: "The Archive",
-      title: "All Records.",
-      subtitle: "A complete list of all thoughts, journals, and technical notes recorded so far.",
-    })
-  }}
+<header class="hero [ stack ]" data-align="center" data-size="small" data-gap="xs" style="width: 100%;">
+    <span class="eyebrow">JOURNAL ARCHIVE</span>
+    <h1 class="title">Records.</h1>
+</header>
 
-  {{ await comp.separator({ text: "ARCHIVE INDEX" }) }}
-
-  <div class="grid" style="--gap: var(--space-xl)">
-    {{ for index, post of search.pages("type=post", "date=desc") }}
-      {{
-        await comp.post_card({
-          url: post.url,
-          title: post.title,
-          date: post.date.toLocaleDateString("ko-KR"),
-          summary: post.description,
-          img: post.img || "/assets/images/hero.svg",
-          layout: "expanded",
-          featured: index === 0,
-        })
-      }}
-    {{ /for }}
-  </div>
+<div class="editorial-list">
+  {{ for index, post of search.pages("type=post", "date=desc") }}
+    <article class="editorial-item" style="animation-delay: {{ 0.1 + (index * 0.05) }}s">
+      <a href="{{ post.url }}" class="editorial-link">
+        <div class="item-main [ stack ]" data-gap="xxs">
+          <span class="item-date">
+            {{ post.date.toLocaleDateString("en-US", { month: '2-digit', day: '2-digit', year: '2-digit' }) }}
+            {{ if post.category }} <span style="opacity: 0.5; margin-left: 0.5rem;">/ {{ post.category }}</span>{{ /if }}
+          </span>
+          <h2 class="item-title">{{ post.title }}</h2>
+          {{ if post.description }}
+            <p class="item-desc">{{ post.description }}</p>
+          {{ /if }}
+        </div>
+      </a>
+    </article>
+  {{ /for }}
 </div>

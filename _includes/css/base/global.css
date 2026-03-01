@@ -2,6 +2,13 @@
   navigation: auto;
 }
 
+/* Global Overflow Fix for Mobile */
+html, body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
 /* View Transitions */
 #site-header {
   view-transition-name: site-header;
@@ -16,4 +23,10 @@
 ::view-transition-new(root) {
   animation-duration: 0.3s;
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Shared Elite Animations --- */
+@keyframes eliteSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }

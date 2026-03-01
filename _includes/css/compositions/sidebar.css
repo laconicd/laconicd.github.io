@@ -2,15 +2,21 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap, var(--space-md));
+  align-items: flex-start;
 }
 
 .sidebar > :first-child {
+  flex-basis: var(--side-width, 20ch);
   flex-grow: 1;
-  flex-basis: var(--side-width, 20rem);
 }
 
 .sidebar > :last-child {
-  flex-grow: 999;
   flex-basis: 0;
-  min-inline-size: var(--content-min-width, 50%);
+  flex-grow: 999;
+  min-width: var(--main-min, 50%);
 }
+
+/* Exceptions: 사이드바 배치 변주 */
+.sidebar[data-side="right"] { flex-direction: row-reverse; }
+.sidebar[data-side="narrow"] { --side-width: 12ch; }
+.sidebar[data-side="wide"] { --side-width: 30ch; }

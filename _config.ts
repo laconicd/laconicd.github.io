@@ -34,9 +34,9 @@ site.use(esbuild());
 site.use(
   googleFonts({
     fonts: {
-      "instrument": "https://fonts.google.com/share?selection.family=Instrument+Serif:ital@0;1",
-      "outfit": "https://fonts.google.com/share?selection.family=Outfit:wght@100..900",
-      "noto-serif-kr": "https://fonts.google.com/share?selection.family=Noto+Serif+KR:wght@200..900",
+      "outfit": "https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap",
+      "instrument": "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap",
+      "mono": "https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap",
     },
   }),
 );

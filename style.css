@@ -1,35 +1,28 @@
-@layer reset, base, composition, blocks, exceptions, utilities;
+@layer reset, base, blocks, composition, utilities;
 
 @import url("css/base/reset.css") layer(reset);
 @import url("css/base/tokens.css") layer(base);
 @import url("css/base/global.css") layer(base);
 
-@import url("css/compositions/between.css") layer(composition);
-@import url("css/compositions/center.css") layer(composition);
-@import url("css/compositions/center-column.css") layer(composition);
-@import url("css/compositions/center-intrinsic.css") layer(composition);
+/* Essential Compositions (Layout intent wins over block defaults) */
 @import url("css/compositions/cluster.css") layer(composition);
 @import url("css/compositions/container.css") layer(composition);
-@import url("css/compositions/cover.css") layer(composition);
 @import url("css/compositions/grid.css") layer(composition);
-@import url("css/compositions/reel.css") layer(composition);
-@import url("css/compositions/sidebar.css") layer(composition);
 @import url("css/compositions/stack.css") layer(composition);
 @import url("css/compositions/switcher.css") layer(composition);
+@import url("css/compositions/center.css") layer(composition);
+@import url("css/compositions/frame.css") layer(composition);
+@import url("css/compositions/sidebar.css") layer(composition);
+@import url("css/compositions/reel.css") layer(composition);
 
-@import url("css/blocks/badge.css") layer(blocks);
-@import url("css/blocks/button.css") layer(blocks);
-@import url("css/blocks/hero.css") layer(blocks);
+/* Minimal Blocks (Pure components) */
 @import url("css/blocks/navbar.css") layer(blocks);
-@import url("css/blocks/post-card.css") layer(blocks);
-@import url("css/blocks/separator.css") layer(blocks);
-@import url("css/blocks/site-footer.css") layer(blocks);
+@import url("css/blocks/hero.css") layer(blocks);
 @import url("css/blocks/editorial-list.css") layer(blocks);
 @import url("css/blocks/tag-cloud.css") layer(blocks);
 @import url("css/blocks/category-board.css") layer(blocks);
 @import url("css/prose.css") layer(blocks);
 
-/* @import url("css/exceptions.css") layer(exceptions); */
 @import url("css/utilities.css") layer(utilities);
 
 /* --- Global Atmosphere: Noise Texture --- */

@@ -1,6 +1,24 @@
 .cluster {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap, 1rem);
-  align-items: center;
+  gap: var(--gap, var(--space-md));
+  align-items: var(--align, center);
+  justify-content: var(--justify, flex-start);
 }
+
+/* Exceptions: Justify & Align */
+.cluster[data-justify="center"] { justify-content: center; }
+.cluster[data-justify="between"] { justify-content: space-between; }
+.cluster[data-justify="end"] { justify-content: flex-end; }
+.cluster[data-align="start"] { align-items: flex-start; }
+.cluster[data-align="end"] { align-items: flex-end; }
+.cluster[data-align="baseline"] { align-items: baseline; }
+
+/* Exceptions: Systematized Gap */
+.cluster[data-gap="xxs"] { --gap: var(--space-xxs); }
+.cluster[data-gap="xs"] { --gap: var(--space-xs); }
+.cluster[data-gap="sm"] { --gap: var(--space-sm); }
+.cluster[data-gap="md"] { --gap: var(--space-md); }
+.cluster[data-gap="lg"] { --gap: var(--space-lg); }
+.cluster[data-gap="xl"] { --gap: var(--space-xl); }
+.cluster[data-gap="none"] { --gap: 0; }

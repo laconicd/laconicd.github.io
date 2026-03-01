@@ -1,55 +1,25 @@
-<div class="footer-inner container">
-  <div class="footer-brand">
-    <a href="/" class="logo">{{ metas.site }}</a>
-    <p class="description">
-      Exploring ideas through code, design, and lofi aesthetics. A personal journal focused on building modern web experiences.
-    </p>
+<div class="container [ stack ]" data-gap="lg" style="padding-block: var(--space-xl); border-top: 1px solid var(--border-color); margin-top: var(--space-xxl);">
+  <div class="[ stack ]" data-gap="md">
+    <div class="[ stack ]" data-gap="xxs">
+      <a href="/" style="font-size: 0.9rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; color: inherit;">
+        Oscar.
+      </a>
+      <p style="font-size: 0.7rem; opacity: 0.3; max-width: 30ch; font-weight: 400; line-height: 1.4;">
+        A personal journal focused on code, design, and lofi aesthetics.
+      </p>
+    </div>
+
+    <nav>
+      <ul class="[ cluster ]" data-gap="md" style="list-style: none; padding: 0; margin: 0; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em; opacity: 0.4; text-transform: uppercase;">
+        <li><a href="/rss.xml" style="color: inherit; text-decoration: none;">RSS</a></li>
+        <li><a href="https://github.com/laconicd" style="color: inherit; text-decoration: none;">GITHUB</a></li>
+        <li><a href="https://x.com/misteroom" style="color: inherit; text-decoration: none;">X</a></li>
+      </ul>
+    </nav>
   </div>
 
-  <nav class="footer-nav">
-    <div class="nav-group">
-      <h3 class="nav-title">Archive</h3>
-      <ul class="nav-list list-blank">
-        <li><a href="/">The Front Page</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/categories">Categories</a></li>
-        <li><a href="/tags">Tags</a></li>
-      </ul>
-    </div>
-    <div class="nav-group">
-      <h3 class="nav-title">Connect</h3>
-      <ul class="nav-list list-blank">
-        <li><a href="/rss.xml">RSS Feed</a></li>
-        <li><a href="https://github.com/{{ metas.github }}/{{ metas.github }}.github.io" target="_blank" rel="noopener">Source Code</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <div class="footer-social">
-    {{ if metas.twitter }}
-      <a href="https://x.com/{{ metas.twitter.replace('@', '') }}" title="Twitter" target="_blank" rel="noopener">
-        {{ await comp.icons.twitter({ size: 5 }) }}
-      </a>
-    {{ /if }}
-    {{ if metas.github }}
-      <a href="https://github.com/{{ metas.github }}" title="GitHub" target="_blank" rel="noopener">
-        {{ await comp.icons.github({ size: 5 }) }}
-      </a>
-    {{ /if }}
-    {{ if metas.linkedin }}
-      <a href="https://linkedin.com/in/{{ metas.linkedin }}" title="LinkedIn" target="_blank" rel="noopener">
-        {{ await comp.icons.linkedin({ size: 5 }) }}
-      </a>
-    {{ /if }}
-    <a href="/rss.xml" title="RSS Feed">
-      {{ await comp.icons.rss({ size: 5 }) }}
-    </a>
-  </div>
-
-  <div class="footer-bottom">
-    <div class="copyright">
-      &copy; {{ date.getFullYear() }} {{ metas.site }}.
-      All rights reserved. Built with <a href="https://lume.land" target="_blank" rel="noopener">Lume</a>.
-    </div>
+  <div class="[ cluster ]" data-justify="between" style="font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em; opacity: 0.2; text-transform: uppercase;">
+    <span>&copy; {{ date.getFullYear() }} ALL RIGHTS RESERVED.</span>
+    <span>BUILT WITH LUME</span>
   </div>
 </div>

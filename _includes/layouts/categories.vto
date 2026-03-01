@@ -5,51 +5,40 @@ layout: layouts/base.vto
 {{ set color = info?.color || category |> tagColor }}
 {{ set categories = search.pages(`category=${category} type=post`, "date=desc") }}
 
-<div class="container stack" style="--gap: var(--space-xxl)">
-  <header class="category-header stack" style="--gap: var(--space-md); padding-top: var(--space-xl);">
-    <div class="category-meta-top cluster" style="--gap: var(--space-sm); font-family: var(--font-family-base); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.15em; color: {{ color }}; opacity: 0.8;">
-       <span>CATEGORY ARCHIVE</span>
-       <span style="opacity: 0.2;">/</span>
+<div class="[ stack ]" data-gap="xl">
+  <header class="hero [ stack ]" data-align="center" data-size="small" data-gap="xs" style="width: 100%;">
+    <div class="[ cluster ]" style="font-size: var(--font-size-meta); font-weight: 800; letter-spacing: 0.3em; opacity: 0.3; text-transform: uppercase;">
+       <span>CATEGORY</span>
+       <span style="opacity: 0.5;">/</span>
        <span>{{ categories.length }} {{ categories.length > 1 ? 'RECORDS' : 'RECORD' }}</span>
     </div>
 
-    <h1 class="category-title" style="font-family: var(--font-family-heading); font-size: clamp(3rem, 10vw, 6rem); margin: 0; line-height: 0.9; letter-spacing: -0.05em; color: var(--color-base-content);">
-      {{ category }}.
-    </h1>
+    <h1 class="title">{{ category }}.</h1>
 
     {{ if info?.description }}
-      <p class="category-subtitle" style="font-size: 1.5rem; color: var(--color-base-content); opacity: 0.6; max-width: 60ch; line-height: 1.4; font-weight: 300;">
-        {{ info.description }}
-      </p>
+      <p class="subtitle">{{ info.description }}</p>
     {{ /if }}
   </header>
 
-  {{ await comp.separator({ text: "CHRONOLOGICAL ARCHIVE" }) }}
-
-  <div class="editorial-list" style="--color-primary: {{ color }}">
+  <div class="editorial-list">
     {{ for post of categories }}
       <article class="editorial-item">
         <a href="{{ post.url }}" class="editorial-link">
-          <div class="item-meta">
-            <time class="item-date">
-              {{ post.date.toLocaleDateString("en-US", { month: '2-digit', day: '2-digit', year: '2-digit' }) }}
-            </time>
-          </div>
-          
-          <div class="item-main stack" style="--gap: 2px;">
+          <div class="item-main [ stack ]" data-gap="xxs">
+            <span class="item-date">{{ post.date.toLocaleDateString("en-US", { month: '2-digit', day: '2-digit', year: '2-digit' }) }}</span>
             <h2 class="item-title">{{ post.title }}</h2>
             {{ if post.description }}
               <p class="item-desc">{{ post.description }}</p>
             {{ /if }}
           </div>
-
-          <span class="item-icon">{{ await comp.icons.chevron_right({ size: 5 }) }}</span>
         </a>
       </article>
     {{ /for }}
   </div>
 
-  <div class="cluster" style="justify-content: center; margin-top: var(--space-xl); padding-bottom: var(--space-xl)">
-    <a href="/categories" class="btn btn-ghost" style="border-radius: 999px;">{{ await comp.icons.arrow_left({ size: 4 }) }} ALL CATEGORIES</a>
+  <div class="[ cluster ]" style="justify-content: center; padding-block: var(--space-xl)">
+    <a href="/categories" class="menu-trigger">
+      <span class="trigger-text">VIEW ALL CATEGORIES</span>
+    </a>
   </div>
 </div>
