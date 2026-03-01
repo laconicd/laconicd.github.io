@@ -1,0 +1,116 @@
+@scope (.post-grid) {
+  :scope {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-md);
+    padding-block: var(--space-md);
+  }
+
+  & .post-card {
+    text-decoration: none;
+    color: inherit;
+    padding: var(--space-md);
+    border: 1px solid var(--border-color-strong);
+    transition: all var(--transition-speed-base) var(--transition-ease-snap);
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+    background: var(--color-base-100);
+    position: relative;
+    /* Entrance Animation */
+    opacity: 0;
+    animation: eliteSlideUp var(--transition-speed-slow) var(--transition-ease-smooth) forwards;
+  }
+
+  & .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-sm);
+  }
+
+  & .card-date {
+    font-size: var(--font-size-meta);
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    opacity: 0.25;
+    text-transform: uppercase;
+  }
+
+  & .card-category {
+    font-size: var(--font-size-label);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.6;
+  }
+
+  & .card-title {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-h2);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin: 0;
+    transition: all var(--transition-speed-base) var(--transition-ease-snap);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  & .card-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.4;
+    margin-top: auto;
+    padding-top: var(--space-md);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Interaction: Elite Hover */
+  & .post-card:hover {
+    background: oklch(from var(--color-base-content) l c h / 2.5%);
+    
+    & .card-title {
+      color: var(--color-accent);
+      transform: translateY(-2px);
+    }
+
+    & .card-date {
+      opacity: 0.6;
+    }
+
+    & .card-category {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    :scope {
+      grid-template-columns: 1fr;
+    }
+    
+    & .post-card {
+      min-height: auto;
+      padding: var(--space-sm);
+    }
+
+    & .card-title {
+      font-size: var(--font-size-h3);
+    }
+  }
+}
+
+@keyframes eliteSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

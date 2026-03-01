@@ -18,7 +18,7 @@
 /* Minimal Blocks (Pure components) */
 @import url("css/blocks/navbar.css") layer(blocks);
 @import url("css/blocks/hero.css") layer(blocks);
-@import url("css/blocks/editorial-list.css") layer(blocks);
+@import url("css/blocks/post-grid.css") layer(blocks);
 @import url("css/blocks/tag-cloud.css") layer(blocks);
 @import url("css/blocks/category-board.css") layer(blocks);
 @import url("css/prose.css") layer(blocks);

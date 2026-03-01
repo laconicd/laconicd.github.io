@@ -8,21 +8,23 @@ layout: layouts/base.vto
     <h1 class="title">Records.</h1>
 </header>
 
-<div class="editorial-list">
+<div class="post-grid">
   {{ for index, post of search.pages("type=post", "date=desc") }}
-    <article class="editorial-item" style="animation-delay: {{ 0.1 + (index * 0.05) }}s">
-      <a href="{{ post.url }}" class="editorial-link">
-        <div class="item-main [ stack ]" data-gap="xxs">
-          <span class="item-date">
-            {{ post.date.toLocaleDateString("en-US", { month: '2-digit', day: '2-digit', year: '2-digit' }) }}
-            {{ if post.category }} <span style="opacity: 0.5; margin-left: 0.5rem;">/ {{ post.category }}</span>{{ /if }}
-          </span>
-          <h2 class="item-title">{{ post.title }}</h2>
-          {{ if post.description }}
-            <p class="item-desc">{{ post.description }}</p>
-          {{ /if }}
-        </div>
-      </a>
-    </article>
+    <a href="{{ post.url }}" class="post-card" style="animation-delay: {{ 0.1 + (index * 0.05) }}s">
+      <header class="card-header">
+        <span class="card-date">
+          {{ post.date.toLocaleDateString("en-US", { month: '2-digit', day: '2-digit', year: '2-digit' }) }}
+        </span>
+        {{ if post.category }}
+          <span class="card-category">{{ post.category }}</span>
+        {{ /if }}
+      </header>
+      
+      <h2 class="card-title">{{ post.title }}</h2>
+      
+      {{ if post.description }}
+        <p class="card-desc">{{ post.description }}</p>
+      {{ /if }}
+    </a>
   {{ /for }}
 </div>
