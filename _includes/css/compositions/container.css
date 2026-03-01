@@ -2,6 +2,7 @@
   max-width: var(--max, var(--container-max-width));
   margin-inline: auto;
   padding-inline: var(--container-padding);
+  container-type: inline-size;
 }
 
 /* Exceptions: 컨테이너 크기 변주 */

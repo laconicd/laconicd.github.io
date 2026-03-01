@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap, var(--space-md));
+  container-type: inline-size;
 }
 
 .switcher > * {

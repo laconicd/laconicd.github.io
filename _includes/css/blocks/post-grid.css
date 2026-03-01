@@ -11,6 +11,7 @@
     color: inherit;
     padding: var(--space-md);
     border: 1px solid var(--border-color-strong);
+    border-radius: var(--radius-md);
     transition: all var(--transition-speed-base) var(--transition-ease-snap);
     display: flex;
     flex-direction: column;
@@ -73,7 +74,7 @@
   /* Interaction: Elite Hover */
   & .post-card:hover {
     background: oklch(from var(--color-base-content) l c h / 2.5%);
-    
+
     & .card-title {
       color: var(--color-accent);
       transform: translateY(-2px);
@@ -88,11 +89,11 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @container (width <= 768px) {
     :scope {
       grid-template-columns: 1fr;
     }
-    
+
     & .post-card {
       min-height: auto;
       padding: var(--space-sm);

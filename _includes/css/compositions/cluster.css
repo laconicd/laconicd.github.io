@@ -4,6 +4,7 @@
   gap: var(--gap, var(--space-md));
   align-items: var(--align, center);
   justify-content: var(--justify, flex-start);
+  container-type: inline-size;
 }
 
 /* Exceptions: Justify & Align */

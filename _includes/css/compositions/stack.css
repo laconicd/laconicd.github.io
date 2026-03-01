@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: var(--gap, var(--space-md));
+  container-type: inline-size;
 }
 
 /* Exceptions: Alignment */

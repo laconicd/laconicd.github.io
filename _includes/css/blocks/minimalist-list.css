@@ -48,7 +48,7 @@
   & .minimalist-item:hover {
     background: oklch(from var(--color-base-content) l c h / 1.5%);
     padding-inline: var(--space-xs);
-    
+
     & .item-title {
       color: var(--color-accent);
       transform: translateX(4px);
@@ -59,7 +59,7 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @container (width <= 768px) {
     & .minimalist-item {
       grid-template-columns: 1fr;
       gap: var(--space-xxs);

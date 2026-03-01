@@ -28,7 +28,7 @@
   --gap: var(--space-lg);
 }
 
-@media (max-width: 768px) {
+@container (width <= 768px) {
   .grid {
     --min: 100%;
   }

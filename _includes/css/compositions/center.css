@@ -2,6 +2,7 @@
   box-sizing: content-box;
   margin-inline: auto;
   max-width: var(--measure, 60ch);
+  container-type: inline-size;
 }
 
 /* Exceptions: 텍스트 정렬 선택적 적용 */

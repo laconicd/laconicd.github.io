@@ -60,7 +60,7 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @container (width <= 768px) {
     & .tag-text {
       font-size: 1.15rem;
     }

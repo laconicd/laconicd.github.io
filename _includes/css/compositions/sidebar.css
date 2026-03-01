@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   gap: var(--gap, var(--space-md));
   align-items: flex-start;
+  container-type: inline-size;
 }
 
 .sidebar > :first-child {

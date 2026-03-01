@@ -78,7 +78,7 @@
     }
   }
 
-  @media (max-width: 768px) {
+  @container (width <= 768px) {
     & .editorial-item {
       padding-block: var(--space-sm);
     }
