@@ -15,7 +15,7 @@ const site = lume();
 // Helper to generate dynamic colors for tags
 site.filter("tagColor", (tag: string) => {
   if (!tag) return "oklch(60% 0.2 0)";
-  
+
   let hash = 0;
   for (let i = 0; i < tag.length; i++) {
     hash = tag.charCodeAt(i) + ((hash << 5) - hash);

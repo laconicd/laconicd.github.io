@@ -5,8 +5,12 @@
 }
 
 /* Exceptions: 텍스트 정렬 선택적 적용 */
-.center[data-text-align="center"] { text-align: center; }
-.center[data-text-align="left"] { text-align: left; }
+.center[data-text-align="center"] {
+  text-align: center;
+}
+.center[data-text-align="left"] {
+  text-align: left;
+}
 
 .center[data-intrinsic="true"] {
   display: flex;

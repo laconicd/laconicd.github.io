@@ -16,7 +16,9 @@
     max-width: 100%; /* 모든 자식 요소가 부모를 넘지 못하게 고정 */
   }
 
-  :scope > * + * { margin-top: 1.5em; }
+  :scope > * + * {
+    margin-top: 1.5em;
+  }
 
   h1, h2, h3 {
     font-family: var(--font-family-base);
@@ -28,8 +30,14 @@
     word-break: break-word;
   }
 
-  h1 { font-size: var(--font-size-h1); }
-  h2 { font-size: var(--font-size-h2); border-bottom: 1px solid var(--border-color); padding-bottom: 0.2em; }
+  h1 {
+    font-size: var(--font-size-h1);
+  }
+  h2 {
+    font-size: var(--font-size-h2);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.2em;
+  }
 
   blockquote {
     font-size: clamp(1.2rem, 4vw, 1.6rem);
@@ -64,7 +72,7 @@
     white-space: pre; /* 코드 줄바꿈 방지 및 스크롤 유도 */
     width: 100%;
     /* 모바일에서 살짝 넓게 보이게 하는 음수 마진 제거하여 안전성 확보 */
-    margin-inline: 0; 
+    margin-inline: 0;
   }
 
   code {

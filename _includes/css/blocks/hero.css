@@ -31,6 +31,8 @@
 
   &[data-size="small"] {
     padding-block: var(--space-lg);
-    & .title { font-size: var(--font-size-h1); }
+    & .title {
+      font-size: var(--font-size-h1);
+    }
   }
 }

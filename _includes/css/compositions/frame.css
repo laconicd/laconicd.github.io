@@ -14,8 +14,18 @@
 }
 
 /* Exceptions: 하이엔드 표준 비율 */
-.frame[data-ratio="1:1"] { --ratio: 1 / 1; }
-.frame[data-ratio="4:3"] { --ratio: 4 / 3; }
-.frame[data-ratio="3:2"] { --ratio: 3 / 2; }
-.frame[data-ratio="2:3"] { --ratio: 2 / 3; }
-.frame[data-ratio="golden"] { --ratio: 1.618 / 1; }
+.frame[data-ratio="1:1"] {
+  --ratio: 1 / 1;
+}
+.frame[data-ratio="4:3"] {
+  --ratio: 4 / 3;
+}
+.frame[data-ratio="3:2"] {
+  --ratio: 3 / 2;
+}
+.frame[data-ratio="2:3"] {
+  --ratio: 2 / 3;
+}
+.frame[data-ratio="golden"] {
+  --ratio: 1.618 / 1;
+}

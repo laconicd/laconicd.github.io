@@ -67,11 +67,11 @@
   & .editorial-item:hover {
     background: oklch(from var(--color-base-content) l c h / 2.5%);
     border-bottom-color: var(--color-base-content);
-    
+
     & .item-title {
       color: var(--color-accent);
     }
-    
+
     & .item-date {
       opacity: 0.6;
       color: var(--color-accent);
@@ -79,8 +79,15 @@
   }
 
   @media (max-width: 768px) {
-    & .editorial-item { padding-block: var(--space-sm); }
-    & .item-title { font-size: calc(var(--font-size-h2) * 0.9); }
-    & .item-desc { font-size: 0.95rem; -webkit-line-clamp: 3; }
+    & .editorial-item {
+      padding-block: var(--space-sm);
+    }
+    & .item-title {
+      font-size: calc(var(--font-size-h2) * 0.9);
+    }
+    & .item-desc {
+      font-size: 0.95rem;
+      -webkit-line-clamp: 3;
+    }
   }
 }

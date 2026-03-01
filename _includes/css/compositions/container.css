@@ -5,7 +5,15 @@
 }
 
 /* Exceptions: 컨테이너 크기 변주 */
-.container[data-size="small"] { --max: 800px; }
-.container[data-size="medium"] { --max: 1100px; }
-.container[data-size="full"] { --max: 100%; }
-.container[data-size="narrow"] { --max: 60ch; }
+.container[data-size="small"] {
+  --max: 800px;
+}
+.container[data-size="medium"] {
+  --max: 1100px;
+}
+.container[data-size="full"] {
+  --max: 100%;
+}
+.container[data-size="narrow"] {
+  --max: 60ch;
+}

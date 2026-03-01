@@ -5,11 +5,14 @@ layout: layouts/base.vto
 {{ set tags = search.pages(`tags*=${tag} type=post`, "date=desc") }}
 
 <div class="[ stack ]" data-gap="xl">
-  <header class="hero [ stack ]" data-align="center" data-size="small" data-gap="xs" style="width: 100%;">
-    <div class="[ cluster ]" style="font-size: var(--font-size-meta); font-weight: 800; letter-spacing: 0.3em; opacity: 0.3; text-transform: uppercase;">
-       <span>TAG ARCHIVE</span>
-       <span style="opacity: 0.5;">/</span>
-       <span>{{ tags.length }} {{ tags.length > 1 ? 'RECORDS' : 'RECORD' }}</span>
+  <header class="hero [ stack ]" data-align="center" data-size="small" data-gap="xs" style="width: 100%">
+    <div
+      class="[ cluster ]"
+      style="font-size: var(--font-size-meta); font-weight: 800; letter-spacing: 0.3em; opacity: 0.3; text-transform: uppercase"
+    >
+      <span>TAG ARCHIVE</span>
+      <span style="opacity: 0.5">/</span>
+      <span>{{ tags.length }} {{ tags.length > 1 ? "RECORDS" : "RECORD" }}</span>
     </div>
 
     <h1 class="title">#{{ tag }}.</h1>
@@ -24,7 +27,9 @@ layout: layouts/base.vto
       <article class="editorial-item">
         <a href="{{ post.url }}" class="editorial-link">
           <div class="item-main [ stack ]" data-gap="xxs">
-            <span class="item-date">{{ post.date.toLocaleDateString("en-US", { month: '2-digit', day: '2-digit', year: '2-digit' }) }}</span>
+            <span class="item-date">{{
+              post.date.toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "2-digit" })
+            }}</span>
             <h2 class="item-title">{{ post.title }}</h2>
             {{ if post.description }}
               <p class="item-desc">{{ post.description }}</p>

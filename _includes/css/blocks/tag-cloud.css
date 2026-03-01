@@ -46,14 +46,26 @@
   /* Interaction: Elite Minimal Expansion */
   & .tag-chip:hover {
     color: var(--color-accent);
-    
-    & .tag-hash { opacity: 0.6; color: var(--color-accent); }
-    & .tag-count { opacity: 0.6; color: var(--color-accent); }
-    & .tag-text { letter-spacing: 0.02em; }
+
+    & .tag-hash {
+      opacity: 0.6;
+      color: var(--color-accent);
+    }
+    & .tag-count {
+      opacity: 0.6;
+      color: var(--color-accent);
+    }
+    & .tag-text {
+      letter-spacing: 0.02em;
+    }
   }
 
   @media (max-width: 768px) {
-    & .tag-text { font-size: 1.15rem; }
-    :scope { gap: var(--space-sm); }
+    & .tag-text {
+      font-size: 1.15rem;
+    }
+    :scope {
+      gap: var(--space-sm);
+    }
   }
 }

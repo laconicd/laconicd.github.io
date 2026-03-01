@@ -52,17 +52,17 @@
   /* Interaction: 하이엔드 포인트 */
   & .category-item:hover {
     background: oklch(from var(--color-base-content) l c h / 3%);
-    
+
     & .item-num {
       opacity: 0.3;
       transform: translateX(10px);
       color: var(--color-accent);
     }
-    
+
     & .item-title {
       color: var(--color-accent);
     }
-    
+
     & .item-meta {
       opacity: 0.6;
       color: var(--color-accent);
@@ -70,10 +70,12 @@
   }
 
   @media (max-width: 768px) {
-    :scope { grid-template-columns: 1fr; } /* 모바일은 1열 */
-    & .category-item { 
+    :scope {
+      grid-template-columns: 1fr;
+    } /* 모바일은 1열 */
+    & .category-item {
       min-height: 160px;
-      border-right: none; 
+      border-right: none;
     }
   }
 }

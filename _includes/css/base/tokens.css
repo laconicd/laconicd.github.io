@@ -11,18 +11,18 @@
   --space-xl: 6rem;
   --space-xxl: 8rem;
   --space-hero: clamp(4rem, 15vh, 10rem);
-  
+
   --container-max-width: 1400px;
   --container-padding: clamp(1rem, 5vw, 2.5rem);
 
   /* --- Typography: High-End Elite --- */
   --font-family-base: "Outfit", sans-serif;
   --font-family-heading: "Instrument Serif", serif; /* Italic/Serif contrast for Elite feel */
-  
+
   /* SE Optimized Fluid Typo: Sharper Hierarchy */
   --font-size-hero: clamp(3.5rem, 18vw, 9rem);
-  --font-size-h1: clamp(2.2rem, 10vw, 4.5rem);  /* Menu / Main Page Headings */
-  --font-size-h2: clamp(1.5rem, 6vw, 2.4rem);   /* Post Titles in Lists */
+  --font-size-h1: clamp(2.2rem, 10vw, 4.5rem); /* Menu / Main Page Headings */
+  --font-size-h2: clamp(1.5rem, 6vw, 2.4rem); /* Post Titles in Lists */
   --font-size-h3: clamp(1.2rem, 4vw, 1.8rem);
   --font-size-body: clamp(0.95rem, 2vw, 1.05rem);
   --font-size-meta: 0.65rem;
@@ -32,16 +32,16 @@
   --color-base-100: light-dark(oklch(99% 0.002 250), oklch(12% 0.005 250)); /* Lofi Paper / Dim Slate */
   --color-base-content: light-dark(oklch(15% 0.01 250), oklch(92% 0.005 250));
   --color-accent: light-dark(oklch(50% 0.15 250), oklch(80% 0.1 150));
-  
+
   /* --- Minimal Rules --- */
   --border-color: light-dark(oklch(0% 0 0 / 6%), oklch(100% 0 0 / 8%));
   --border-color-strong: light-dark(oklch(0% 0 0 / 15%), oklch(100% 0 0 / 20%));
-  
+
   /* Elite Motion Tokens: Snappier for UX */
   --transition-speed-fast: 0.2s;
   --transition-speed-base: 0.35s;
   --transition-speed-slow: 0.5s;
-  
+
   /* Snap & Lock Easing (Quintic Out / Custom Snap) */
   --transition-ease-snap: cubic-bezier(0.2, 1, 0.2, 1);
   --transition-ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
