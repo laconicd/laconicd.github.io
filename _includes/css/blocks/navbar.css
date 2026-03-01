@@ -53,6 +53,7 @@
   margin: 0;
   background: var(--color-base-100);
   border: none;
+  overflow: hidden;
   translate: 0 -100%;
   transition:
     display var(--transition-speed-base) allow-discrete,
@@ -94,26 +95,26 @@
     height: calc(100% - 64px);
     display: flex;
     align-items: center;
-    overflow: hidden;
   }
 
-  /* 배경 워터마크 */
+  /* 배경 워터마크: 컨테이너 안에서 잘림 없이 정갈하게 배치 */
   & .menu-watermark {
     position: absolute;
-    bottom: -0.1em;
-    right: -0.05em;
-    font-size: clamp(10rem, 40vw, 30rem);
+    bottom: -0.05em;
+    right: 0;
+    font-size: clamp(8rem, 25vw, 25rem); /* 크기를 안전한 범위로 제한 */
     font-weight: 900;
-    line-height: 0.7;
-    opacity: 0.03;
+    line-height: 0.8;
+    opacity: 0.035;
     pointer-events: none;
     z-index: 0;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.06em;
+    white-space: nowrap;
   }
 
   & .menu-content-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr; /* 비대칭 레이아웃 */
+    grid-template-columns: 1.5fr 1fr;
     gap: var(--space-xl);
     width: 100%;
     z-index: 1;
@@ -179,7 +180,11 @@
   @media (max-width: 768px) {
     & .menu-content-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
     & .menu-side-info { border-left: none; padding-left: 0; border-top: 1px solid var(--border-color); padding-top: var(--space-lg); }
-    & .menu-watermark { font-size: 15rem; bottom: 0; right: -20px; }
+    & .menu-watermark { 
+      font-size: 28vw; /* 모바일에서 잘리지 않는 최적의 크기 */
+      bottom: 0;
+      right: -10px; /* 미세한 음수 여백으로 꽉 찬 느낌 유지 */
+    }
     & .link .text { font-size: var(--font-size-h3); }
   }
 
