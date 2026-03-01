@@ -1,47 +1,70 @@
----
-links:
-- url: /
-  text: FRONT PAGE
-  index: "01"
-- url: /posts
-  text: ALL RECORDS
-  index: "02"
-- url: /categories
-  text: CATEGORIES
-  index: "03"
-- url: /tags
-  text: TAG CLOUD
-  index: "04"
----
-
 <nav class="navbar">
-  <div class="container">
+  <div class="container [ cluster ]" data-justify="between">
     <a href="/" class="brand">OSCAR.</a>
-
-    <button class="menu-trigger" popovertarget="index-popover">
+    
+    <button popovertarget="site-menu" class="menu-trigger">
       INDEX
     </button>
   </div>
+
+  <div id="site-menu" popover class="popover-menu">
+    <div class="header">
+      <span class="meta-label">NAVIGATION MAP</span>
+      <button popovertarget="site-menu" popovertargetaction="hide" class="close-btn">[ CLOSE ]</button>
+    </div>
+
+    <div class="body container">
+      <!-- 배경 워터마크 -->
+      <div class="menu-watermark">INDEX</div>
+
+      <div class="menu-content-grid">
+        <ul class="list">
+          <li>
+            <a href="/" class="link">
+              <span class="num">01</span>
+              <span class="text">Frontispiece</span>
+              <span class="meta">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="/posts" class="link">
+              <span class="num">02</span>
+              <span class="text">Archives</span>
+              <span class="meta">{{ search.pages("type=post").length }} Records</span>
+            </a>
+          </li>
+          <li>
+            <a href="/categories" class="link">
+              <span class="num">03</span>
+              <span class="text">Categories</span>
+              <span class="meta">{{ search.values("category").length }} Sections</span>
+            </a>
+          </li>
+          <li>
+            <a href="/tags" class="link">
+              <span class="num">04</span>
+              <span class="text">Keywords</span>
+              <span class="meta">{{ search.values("tags").length }} Themes</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="menu-side-info [ stack ]" data-gap="md">
+          <div class="info-block [ stack ]" data-gap="xxs">
+            <span class="label">LATEST ENTRY</span>
+            {{ set lastPost = search.pages("type=post", "date=desc", 1)[0] }}
+            <a href="{{ lastPost.url }}" class="info-link">{{ lastPost.title }}</a>
+          </div>
+          <div class="info-block [ stack ]" data-gap="xxs">
+            <span class="label">CONNECT</span>
+            <div class="[ cluster ]" data-gap="sm">
+              <a href="https://github.com/laconicd" class="info-link">GH</a>
+              <a href="https://x.com/misteroom" class="info-link">TW</a>
+              <a href="/rss.xml" class="info-link">RSS</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>
-
-<div id="index-popover" class="popover-menu" popover>
-  <header class="header">
-    <span class="meta-label">ARCHIVE INDEX</span>
-    <button class="close-btn" popovertarget="index-popover" popovertargetaction="hide">
-      DISMISS
-    </button>
-  </header>
-
-  <nav class="body">
-    <ul class="list">
-      {{ for link of links }}
-        <li>
-          <a href="{{ link.url }}" class="link">
-            <span class="num">{{ link.index }}</span>
-            <span class="text">{{ link.text }}</span>
-          </a>
-        </li>
-      {{ /for }}
-    </ul>
-  </nav>
-</div>

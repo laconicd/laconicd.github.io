@@ -10,9 +10,6 @@
 
   & .container {
     height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 
   & .brand {
@@ -37,49 +34,25 @@
     transition: all var(--transition-speed-base) var(--transition-ease-snap);
     position: relative;
 
-    &::before {
-      content: "[";
-      font-weight: 300;
-      opacity: 0.2;
-      transform: translateX(5px);
-      transition: all var(--transition-speed-base) var(--transition-ease-snap);
-    }
-
-    &::after {
-      content: "]";
-      font-weight: 300;
-      opacity: 0.2;
-      transform: translateX(-5px);
-      transition: all var(--transition-speed-base) var(--transition-ease-snap);
-    }
+    &::before { content: "["; font-weight: 300; opacity: 0.2; transform: translateX(5px); transition: inherit; }
+    &::after { content: "]"; font-weight: 300; opacity: 0.2; transform: translateX(-5px); transition: inherit; }
 
     &:hover {
       color: var(--color-accent);
       letter-spacing: 0.45em;
-
-      &::before, &::after {
-        opacity: 1;
-        transform: translateX(0);
-        color: var(--color-accent);
-      }
-    }
-
-    &:active {
-      transform: scale(0.95);
-      opacity: 0.7;
+      &::before, &::after { opacity: 1; transform: translateX(0); color: var(--color-accent); }
     }
   }
 }
 
 .popover-menu {
-  inset: 0 0 auto 0;
+  inset: 0;
   width: 100vw;
   height: 100dvh;
   padding: 0;
   margin: 0;
-  background: oklch(from var(--color-base-100) l c h / 98%);
+  background: var(--color-base-100);
   border: none;
-  
   translate: 0 -100%;
   transition:
     display var(--transition-speed-base) allow-discrete,
@@ -101,14 +74,15 @@
     padding-inline: var(--container-padding);
     max-width: var(--container-max-width);
     margin-inline: auto;
+    border-bottom: 1px solid var(--border-color);
   }
 
-  & .meta-label { font-size: var(--font-size-meta); font-weight: 800; letter-spacing: 0.4em; opacity: 0.2; }
+  & .meta-label { font-size: var(--font-size-label); font-weight: 800; letter-spacing: 0.4em; opacity: 0.2; }
 
   & .close-btn {
     all: unset;
     cursor: pointer;
-    font-size: var(--font-size-meta);
+    font-size: var(--font-size-label);
     font-weight: 800;
     letter-spacing: 0.2em;
     opacity: 0.4;
@@ -116,46 +90,105 @@
   }
 
   & .body {
-    max-width: var(--container-max-width);
-    margin-inline: auto;
-    padding-inline: var(--container-padding);
-    height: calc(100% - 128px);
+    position: relative;
+    height: calc(100% - 64px);
     display: flex;
     align-items: center;
+    overflow: hidden;
+  }
+
+  /* 배경 워터마크 */
+  & .menu-watermark {
+    position: absolute;
+    bottom: -0.1em;
+    right: -0.05em;
+    font-size: clamp(10rem, 40vw, 30rem);
+    font-weight: 900;
+    line-height: 0.7;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+    letter-spacing: -0.05em;
+  }
+
+  & .menu-content-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* 비대칭 레이아웃 */
+    gap: var(--space-xl);
+    width: 100%;
+    z-index: 1;
   }
 
   & .list {
     list-style: none;
     padding: 0; margin: 0;
-    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    border-top: 1px solid var(--border-color);
   }
 
   & .link {
     text-decoration: none;
     color: inherit;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: baseline;
     gap: var(--space-md);
-    padding-block: var(--space-sm);
+    padding-block: var(--space-md);
     border-bottom: 1px solid var(--border-color);
     transition: all var(--transition-speed-base) var(--transition-ease-snap);
 
-    & .num { font-size: 0.75rem; font-weight: 800; opacity: 0.1; }
-    & .text { font-size: var(--font-size-h2); font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
+    & .num { font-size: var(--font-size-label); font-weight: 800; opacity: 0.2; font-family: var(--font-family-mono); }
+    & .text { font-size: var(--font-size-h2); font-weight: 900; letter-spacing: -0.04em; }
+    & .meta { font-size: var(--font-size-label); font-weight: 800; opacity: 0.1; text-transform: uppercase; text-align: right; }
 
     &:hover {
-      background: oklch(from var(--color-base-content) l c h / 2.5%);
-      & .text { color: var(--color-accent); letter-spacing: 0.01em; }
-      & .num { opacity: 0.4; color: var(--color-accent); }
+      background: oklch(from var(--color-base-content) l c h / 3%);
+      padding-inline: var(--space-sm);
+      & .text { color: var(--color-accent); letter-spacing: 0.02em; }
+      & .meta { opacity: 0.6; color: var(--color-accent); }
+      & .num { opacity: 0.6; color: var(--color-accent); }
     }
   }
 
-  &:popover-open .link { animation: eliteSlideUp var(--transition-speed-base) var(--transition-ease-snap) both; }
+  & .menu-side-info {
+    border-left: 1px solid var(--border-color);
+    padding-left: var(--space-xl);
+    justify-content: center;
+  }
+
+  & .info-block .label {
+    font-size: var(--font-size-label);
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    opacity: 0.2;
+    text-transform: uppercase;
+  }
+
+  & .info-link {
+    text-decoration: none;
+    color: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    opacity: 0.6;
+    line-height: 1.4;
+    transition: all 0.3s ease;
+    &:hover { opacity: 1; color: var(--color-accent); }
+  }
+
+  @media (max-width: 768px) {
+    & .menu-content-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
+    & .menu-side-info { border-left: none; padding-left: 0; border-top: 1px solid var(--border-color); padding-top: var(--space-lg); }
+    & .menu-watermark { font-size: 15rem; bottom: 0; right: -20px; }
+    & .link .text { font-size: var(--font-size-h3); }
+  }
+
+  /* Entrance Animation */
+  &:popover-open .link, 
+  &:popover-open .info-block { animation: eliteSlideUp var(--transition-speed-base) var(--transition-ease-snap) both; }
   &:popover-open li:nth-child(1) .link { animation-delay: 0.05s; }
   &:popover-open li:nth-child(2) .link { animation-delay: 0.08s; }
   &:popover-open li:nth-child(3) .link { animation-delay: 0.11s; }
   &:popover-open li:nth-child(4) .link { animation-delay: 0.14s; }
+  &:popover-open .menu-side-info .info-block { animation-delay: 0.2s; }
 }
