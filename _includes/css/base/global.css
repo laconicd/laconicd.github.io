@@ -16,6 +16,9 @@ html, body {
 
 #site-footer {
   view-transition-name: site-footer;
+  border-top: 1px solid var(--border-color);
+  margin-top: var(--space-xxl);
+  background-color: var(--color-base-100);
 }
 
 /* root 트랜지션만으로 부드럽게 전체 전환 (네비바/푸터 제외) */
