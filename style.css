@@ -23,7 +23,7 @@
 @import url("css/blocks/category-board.css") layer(blocks);
 @import url("css/prose.css") layer(blocks);
 
-@import url("css/utilities.css") layer(utilities);
+@import url("css/utilities/utilities.css") layer(utilities);
 
 /* --- Global Atmosphere: Noise Texture --- */
 body::before {

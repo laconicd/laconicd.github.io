@@ -39,29 +39,74 @@
   --font-size-meta: 0.65rem;
   --font-size-label: 0.55rem;
 
-  /* --- Elite Palette (Low Chroma OKLCH) --- */
-  --color-base-100: light-dark(oklch(100% 0 0), oklch(30.857% 0.023 264.149));
-  --color-base-200: light-dark(oklch(97% 0 0), oklch(28.036% 0.019 264.182));
-  --color-base-300: light-dark(oklch(94% 0 0), oklch(26.346% 0.018 262.177));
-  --color-base-content: light-dark(oklch(0% 0 0), oklch(82.901% 0.031 222.959));
+  /* --- Elite Palette: Raw Theme Tokens --- */
+  /* Lofi (Light) */
+  --lofi-base-100: oklch(100% 0 0);
+  --lofi-base-200: oklch(97% 0 0);
+  --lofi-base-300: oklch(94% 0 0);
+  --lofi-base-content: oklch(0% 0 0);
+  --lofi-primary: oklch(15.906% 0 0);
+  --lofi-primary-content: oklch(100% 0 0);
+  --lofi-secondary: oklch(21.455% 0.001 17.278);
+  --lofi-secondary-content: oklch(100% 0 0);
+  --lofi-accent: oklch(26.861% 0 0);
+  --lofi-accent-content: oklch(100% 0 0);
+  --lofi-neutral: oklch(0% 0 0);
+  --lofi-neutral-content: oklch(100% 0 0);
+  --lofi-info: oklch(79.54% 0.103 205.9);
+  --lofi-info-content: oklch(15.908% 0.02 205.9);
+  --lofi-success: oklch(90.13% 0.153 164.14);
+  --lofi-success-content: oklch(18.026% 0.03 164.14);
+  --lofi-warning: oklch(88.37% 0.135 79.94);
+  --lofi-warning-content: oklch(17.674% 0.027 79.94);
+  --lofi-error: oklch(78.66% 0.15 28.47);
+  --lofi-error-content: oklch(15.732% 0.03 28.47);
 
-  --color-primary: light-dark(oklch(15.906% 0 0), oklch(86.133% 0.141 139.549));
-  --color-primary-content: light-dark(oklch(100% 0 0), oklch(17.226% 0.028 139.549));
-  --color-secondary: light-dark(oklch(21.455% 0.001 17.278), oklch(73.375% 0.165 35.353));
-  --color-secondary-content: light-dark(oklch(100% 0 0), oklch(14.675% 0.033 35.353));
-  --color-accent: light-dark(oklch(26.861% 0 0), oklch(74.229% 0.133 311.379));
-  --color-accent-content: light-dark(oklch(100% 0 0), oklch(14.845% 0.026 311.379));
-  --color-neutral: light-dark(oklch(0% 0 0), oklch(24.731% 0.02 264.094));
-  --color-neutral-content: light-dark(oklch(100% 0 0), oklch(82.901% 0.031 222.959));
+  /* Dim (Dark) */
+  --dim-base-100: oklch(30.857% 0.023 264.149);
+  --dim-base-200: oklch(28.036% 0.019 264.182);
+  --dim-base-300: oklch(26.346% 0.018 262.177);
+  --dim-base-content: oklch(82.901% 0.031 222.959);
+  --dim-primary: oklch(86.133% 0.141 139.549);
+  --dim-primary-content: oklch(17.226% 0.028 139.549);
+  --dim-secondary: oklch(73.375% 0.165 35.353);
+  --dim-secondary-content: oklch(14.675% 0.033 35.353);
+  --dim-accent: oklch(74.229% 0.133 311.379);
+  --dim-accent-content: oklch(14.845% 0.026 311.379);
+  --dim-neutral: oklch(24.731% 0.02 264.094);
+  --dim-neutral-content: oklch(82.901% 0.031 222.959);
+  --dim-info: oklch(86.078% 0.142 206.182);
+  --dim-info-content: oklch(17.215% 0.028 206.182);
+  --dim-success: oklch(86.171% 0.142 166.534);
+  --dim-success-content: oklch(17.234% 0.028 166.534);
+  --dim-warning: oklch(86.163% 0.142 94.818);
+  --dim-warning-content: oklch(17.232% 0.028 94.818);
+  --dim-error: oklch(82.418% 0.099 33.756);
+  --dim-error-content: oklch(16.483% 0.019 33.756);
 
-  --color-info: light-dark(oklch(79.54% 0.103 205.9), oklch(86.078% 0.142 206.182));
-  --color-info-content: light-dark(oklch(15.908% 0.02 205.9), oklch(17.215% 0.028 206.182));
-  --color-success: light-dark(oklch(90.13% 0.153 164.14), oklch(86.171% 0.142 166.534));
-  --color-success-content: light-dark(oklch(18.026% 0.03 164.14), oklch(17.234% 0.028 166.534));
-  --color-warning: light-dark(oklch(88.37% 0.135 79.94), oklch(86.163% 0.142 94.818));
-  --color-warning-content: light-dark(oklch(17.674% 0.027 79.94), oklch(17.232% 0.028 94.818));
-  --color-error: light-dark(oklch(78.66% 0.15 28.47), oklch(82.418% 0.099 33.756));
-  --color-error-content: light-dark(oklch(15.732% 0.03 28.47), oklch(16.483% 0.019 33.756));
+  /* --- Elite Palette: Semantic Mapping --- */
+  --color-base-100: light-dark(var(--lofi-base-100), var(--dim-base-100));
+  --color-base-200: light-dark(var(--lofi-base-200), var(--dim-base-200));
+  --color-base-300: light-dark(var(--lofi-base-300), var(--dim-base-300));
+  --color-base-content: light-dark(var(--lofi-base-content), var(--dim-base-content));
+
+  --color-primary: light-dark(var(--lofi-primary), var(--dim-primary));
+  --color-primary-content: light-dark(var(--lofi-primary-content), var(--dim-primary-content));
+  --color-secondary: light-dark(var(--lofi-secondary), var(--dim-secondary));
+  --color-secondary-content: light-dark(var(--lofi-secondary-content), var(--dim-secondary-content));
+  --color-accent: light-dark(var(--lofi-accent), var(--dim-accent));
+  --color-accent-content: light-dark(var(--lofi-accent-content), var(--dim-accent-content));
+  --color-neutral: light-dark(var(--lofi-neutral), var(--dim-neutral));
+  --color-neutral-content: light-dark(var(--lofi-neutral-content), var(--dim-neutral-content));
+
+  --color-info: light-dark(var(--lofi-info), var(--dim-info));
+  --color-info-content: light-dark(var(--lofi-info-content), var(--dim-info-content));
+  --color-success: light-dark(var(--lofi-success), var(--dim-success));
+  --color-success-content: light-dark(var(--lofi-success-content), var(--dim-success-content));
+  --color-warning: light-dark(var(--lofi-warning), var(--dim-warning));
+  --color-warning-content: light-dark(var(--lofi-warning-content), var(--dim-warning-content));
+  --color-error: light-dark(var(--lofi-error), var(--dim-error));
+  --color-error-content: light-dark(var(--lofi-error-content), var(--dim-error-content));
 
   /* --- Minimal Rules --- */
   --border-color: light-dark(oklch(0% 0 0 / 6%), oklch(100% 0 0 / 8%));
@@ -75,9 +120,17 @@
   --radius-lg: 1rem;
   --radius-full: 100rem;
 
-  --radius-selector: light-dark(2rem, 1rem);
-  --radius-field: light-dark(0.25rem, 0.5rem);
-  --radius-box: light-dark(0.5rem, 1rem);
+  --lofi-radius-selector: 2rem;
+  --lofi-radius-field: 0.25rem;
+  --lofi-radius-box: 0.5rem;
+
+  --dim-radius-selector: 1rem;
+  --dim-radius-field: 0.5rem;
+  --dim-radius-box: 1rem;
+
+  --radius-selector: light-dark(var(--lofi-radius-selector), var(--dim-radius-selector));
+  --radius-field: light-dark(var(--lofi-radius-field), var(--dim-radius-field));
+  --radius-box: light-dark(var(--lofi-radius-box), var(--dim-radius-box));
 
   /* --- Sizing tokens --- */
   --size-selector: 0.25rem;
