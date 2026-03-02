@@ -1,6 +1,17 @@
 :root {
   color-scheme: light dark;
 
+  /* --- Theme Control --- */
+  &:has(input.theme-controller[value="lofi"]:checked),
+  &[data-theme="lofi"] {
+    color-scheme: light;
+  }
+
+  &:has(input.theme-controller[value="dim"]:checked),
+  &[data-theme="dim"] {
+    color-scheme: dark;
+  }
+
   /* --- Museum Spacing (Linear & Precise) --- */
   --space-unit: 1rem;
   --space-xxs: 0.25rem;
@@ -29,18 +40,33 @@
   --font-size-label: 0.55rem;
 
   /* --- Elite Palette (Low Chroma OKLCH) --- */
-  --color-base-100: light-dark(oklch(99% 0.002 250), oklch(12% 0.005 250)); /* Lofi Paper / Dim Slate */
-  --color-base-content: light-dark(oklch(15% 0.01 250), oklch(92% 0.005 250));
-  --color-accent: light-dark(oklch(50% 0.15 250), oklch(80% 0.1 150));
+  --color-base-100: light-dark(oklch(100% 0 0), oklch(30.857% 0.023 264.149));
+  --color-base-200: light-dark(oklch(97% 0 0), oklch(28.036% 0.019 264.182));
+  --color-base-300: light-dark(oklch(94% 0 0), oklch(26.346% 0.018 262.177));
+  --color-base-content: light-dark(oklch(0% 0 0), oklch(82.901% 0.031 222.959));
+
+  --color-primary: light-dark(oklch(15.906% 0 0), oklch(86.133% 0.141 139.549));
+  --color-primary-content: light-dark(oklch(100% 0 0), oklch(17.226% 0.028 139.549));
+  --color-secondary: light-dark(oklch(21.455% 0.001 17.278), oklch(73.375% 0.165 35.353));
+  --color-secondary-content: light-dark(oklch(100% 0 0), oklch(14.675% 0.033 35.353));
+  --color-accent: light-dark(oklch(26.861% 0 0), oklch(74.229% 0.133 311.379));
+  --color-accent-content: light-dark(oklch(100% 0 0), oklch(14.845% 0.026 311.379));
+  --color-neutral: light-dark(oklch(0% 0 0), oklch(24.731% 0.02 264.094));
+  --color-neutral-content: light-dark(oklch(100% 0 0), oklch(82.901% 0.031 222.959));
+
+  --color-info: light-dark(oklch(79.54% 0.103 205.9), oklch(86.078% 0.142 206.182));
+  --color-info-content: light-dark(oklch(15.908% 0.02 205.9), oklch(17.215% 0.028 206.182));
+  --color-success: light-dark(oklch(90.13% 0.153 164.14), oklch(86.171% 0.142 166.534));
+  --color-success-content: light-dark(oklch(18.026% 0.03 164.14), oklch(17.234% 0.028 166.534));
+  --color-warning: light-dark(oklch(88.37% 0.135 79.94), oklch(86.163% 0.142 94.818));
+  --color-warning-content: light-dark(oklch(17.674% 0.027 79.94), oklch(17.232% 0.028 94.818));
+  --color-error: light-dark(oklch(78.66% 0.15 28.47), oklch(82.418% 0.099 33.756));
+  --color-error-content: light-dark(oklch(15.732% 0.03 28.47), oklch(16.483% 0.019 33.756));
 
   /* --- Minimal Rules --- */
   --border-color: light-dark(oklch(0% 0 0 / 6%), oklch(100% 0 0 / 8%));
   --border-color-strong: light-dark(oklch(0% 0 0 / 15%), oklch(100% 0 0 / 20%));
-
-  /* --- Elite Motion Tokens: Snappier for UX --- */
-  --transition-speed-fast: 0.2s;
-  --transition-speed-base: 0.35s;
-  --transition-speed-slow: 0.5s;
+  --border-width: 1px;
 
   /* --- Radius: Systematic Softness --- */
   --radius-xs: 0.25rem;
@@ -48,6 +74,21 @@
   --radius-md: 0.75rem;
   --radius-lg: 1rem;
   --radius-full: 100rem;
+
+  --radius-selector: light-dark(2rem, 1rem);
+  --radius-field: light-dark(0.25rem, 0.5rem);
+  --radius-box: light-dark(0.5rem, 1rem);
+
+  /* --- Sizing tokens --- */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --depth: 0;
+  --noise: 0;
+
+  /* --- Elite Motion Tokens: Snappier for UX --- */
+  --transition-speed-fast: 0.2s;
+  --transition-speed-base: 0.35s;
+  --transition-speed-slow: 0.5s;
 
   /* Snap & Lock Easing (Quintic Out / Custom Snap) */
   --transition-ease-snap: cubic-bezier(0.2, 1, 0.2, 1);

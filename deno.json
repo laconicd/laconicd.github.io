@@ -59,6 +59,7 @@
     "lineWidth": 120
   },
   "imports": {
+    "daisyui": "npm:daisyui@^5.5.19",
     "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3.2.1/",
     "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.14/jsx-runtime.ts",
     "stylelint-config-recess-order": "npm:stylelint-config-recess-order@^7.6.1",
