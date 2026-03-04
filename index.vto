@@ -3,29 +3,30 @@ title: Exploration
 layout: layouts/base.vto
 ---
 
-<header class="hero [ stack ]" data-align="center" data-gap="xs" style="width: 100%;">
-    <span class="eyebrow">LOFI EDITORIAL</span>
-    <h1 class="title">The Blog.</h1>
-    <p class="subtitle">
-      Exploring ideas through code, design, and lofi aesthetics.
-    </p>
+<header class="hero [ stack ]" data-align="center" data-gap="xs" style="width: 100%">
+  <span class="eyebrow">LOFI EDITORIAL</span>
+  <h1 class="title">The Blog.</h1>
+  <p class="subtitle">
+    Exploring ideas through code, design, and lofi aesthetics.
+  </p>
 </header>
 
 <section class="latest-records [ stack ]" data-gap="none">
   <div class="post-grid">
+    5
     {{ for index, post of search.pages("type=post", "date=desc", 10) }}
-      <a href="{{ post.url }}" class="post-card" style="animation-delay: {{ 0.1 + (index * 0.05) }}s">
+      <a href="{{ post.url }}" class="post-card">
         <header class="card-header">
           <span class="card-date">
-            {{ post.date.toLocaleDateString("en-US", { month: '2-digit', day: '2-digit', year: '2-digit' }) }}
+            {{ post.date.toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "2-digit" }) }}
           </span>
           {{ if post.category }}
             <span class="card-category">{{ post.category }}</span>
           {{ /if }}
         </header>
-        
+
         <h2 class="card-title">{{ post.title }}</h2>
-        
+
         {{ if post.description }}
           <p class="card-desc">{{ post.description }}</p>
         {{ /if }}

@@ -3,9 +3,9 @@ title: Categories
 layout: layouts/base.vto
 ---
 
-<header class="hero [ stack ]" data-align="center" data-gap="xs" style="width: 100%;">
-    <span class="eyebrow">DIGITAL FOLDERS</span>
-    <h1 class="title">The Index.</h1>
+<header class="hero [ stack ]" data-align="center" data-gap="xs" style="width: 100%">
+  <span class="eyebrow">DIGITAL FOLDERS</span>
+  <h1 class="title">The Index.</h1>
 </header>
 
 <div class="category-grid">
@@ -14,12 +14,12 @@ layout: layouts/base.vto
     {{ set url = `/categories/${cat.toLowerCase()}/` }}
     {{ set count = search.pages(`category=${cat} type=post`).length }}
 
-    <a href="{{ url }}" class="category-item" style="animation: eliteSlideUp var(--transition-speed-base) var(--transition-ease-snap) {{ 0.1 + (index * 0.05) }}s both;">
+    <a href="{{ url }}" class="category-item">
       <span class="item-num">0{{ index + 1 }}</span>
-      
+
       <div class="item-main [ stack ]" data-gap="xxs">
         <h2 class="item-title">{{ cat }}</h2>
-        <span class="item-meta">{{ count }} {{ count > 1 ? 'Records' : 'Record' }}</span>
+        <span class="item-meta">{{ count }} {{ count > 1 ? "Records" : "Record" }}</span>
       </div>
     </a>
   {{ /for }}

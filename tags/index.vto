@@ -3,15 +3,15 @@ title: Tags
 layout: layouts/base.vto
 ---
 
-<header class="hero [ stack ]" data-align="center" data-gap="xs" style="width: 100%;">
-    <span class="eyebrow">MAP OF CONTENT</span>
-    <h1 class="title">Keywords.</h1>
+<header class="hero [ stack ]" data-align="center" data-gap="xs" style="width: 100%">
+  <span class="eyebrow">MAP OF CONTENT</span>
+  <h1 class="title">Keywords.</h1>
 </header>
 
 <div class="tag-cloud">
   {{ for index, tag of search.values("tags") }}
     {{ set count = search.pages(`tags*=${tag} type=post`).length }}
-    <a href="/tags/{{ tag }}/" class="tag-chip" style="animation: eliteSlideUp 0.8s var(--transition-ease-snap) {{ 0.1 + (index * 0.03) }}s both;">
+    <a href="/tags/{{ tag }}/" class="tag-chip">
       <span class="tag-hash">#</span>
       <span class="tag-text">{{ tag }}</span>
       <span class="tag-count">{{ count }}</span>
