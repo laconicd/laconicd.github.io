@@ -13,7 +13,6 @@ layout: layouts/base.vto
 
 <section class="latest-records [ stack ]" data-gap="none">
   <div class="post-grid">
-    5
     {{ for index, post of search.pages("type=post", "date=desc", 10) }}
       <a href="{{ post.url }}" class="post-card">
         <header class="card-header">
@@ -24,7 +23,7 @@ layout: layouts/base.vto
             <span class="card-category">{{ post.category }}</span>
           {{ /if }}
         </header>
-
+        ˜
         <h2 class="card-title">{{ post.title }}</h2>
 
         {{ if post.description }}
