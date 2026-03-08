@@ -1,12 +1,12 @@
 @scope (.editorial-list) {
   :scope {
-    border-top: 1px solid var(--border-color);
+    border-top: var(--border-width) solid var(--border-color);
     display: flex;
     flex-direction: column;
   }
 
   & .editorial-item {
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: var(--border-width) solid var(--border-color);
     padding-block: var(--space-md);
     transition: all var(--transition-speed-base) var(--transition-ease-snap);
     text-decoration: none;
@@ -35,7 +35,7 @@
   & .item-date {
     font-size: var(--font-size-meta);
     font-weight: 800;
-    letter-spacing: 0.2em;
+    letter-spacing: var(--tracking-wider);
     opacity: 0.2;
     text-transform: uppercase;
   }
@@ -44,7 +44,7 @@
     font-size: var(--font-size-h3);
     font-weight: 900;
     line-height: 1.1;
-    letter-spacing: -0.04em;
+    letter-spacing: var(--tracking-tight);
     margin: 0;
     transition: all var(--transition-speed-base) var(--transition-ease-snap);
     word-break: keep-all;

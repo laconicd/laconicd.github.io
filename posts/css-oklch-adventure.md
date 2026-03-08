@@ -4,7 +4,11 @@ date: 2026-03-01
 type: post
 layout: layouts/page.vto
 category: Development
-tags: ["css", "web-design", "oklch", "frontend"]
+tags:
+  - "css"
+  - "web-design"
+  - "oklch"
+  - "frontend"
 description: "HEX나 RGB 시스템의 한계를 넘어서, 인간의 인지 구조에 최적화된 OKLCH 컬러 모델의 장점과 실무 적용 팁을 정리합니다."
 img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop"
 ---

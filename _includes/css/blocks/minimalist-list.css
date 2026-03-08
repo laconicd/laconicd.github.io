@@ -2,76 +2,61 @@
   :scope {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin-top: var(--space-md);
-    border-top: 1px solid var(--border-color);
+    border-top: var(--border-width) solid var(--border-color);
   }
 
-  & .minimalist-item {
-    display: grid;
-    grid-template-columns: 8ch 1fr auto;
-    align-items: center;
-    gap: var(--space-md);
-    padding-block: var(--space-sm);
-    border-bottom: 1px solid var(--border-color);
+  & .list-item {
     text-decoration: none;
     color: inherit;
+    padding-block: var(--space-sm);
+    border-bottom: var(--border-width) solid var(--border-color);
     transition: all var(--transition-speed-base) var(--transition-ease-snap);
-    opacity: 0;
-    animation: eliteSlideUp var(--transition-speed-slow) var(--transition-ease-smooth) forwards;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  & .item-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
   }
 
   & .item-date {
-    font-size: var(--font-size-meta);
-    font-weight: 500;
-    opacity: 0.3;
-    letter-spacing: 0.1em;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-label);
+    font-weight: 800;
+    letter-spacing: var(--tracking-wide);
+    opacity: 0.2;
   }
 
   & .item-title {
     font-size: var(--font-size-body);
-    font-weight: 600;
-    margin: 0;
-    line-height: 1.2;
-    transition: color var(--transition-speed-base) var(--transition-ease-snap);
+    font-weight: 700;
+    transition: all var(--transition-speed-base);
   }
 
   & .item-category {
     font-size: var(--font-size-label);
+    font-weight: 800;
+    letter-spacing: var(--tracking-wider);
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    opacity: 0.25;
-    font-weight: 700;
+    opacity: 0.3;
   }
 
-  /* Interactive: Minimal Glow */
-  & .minimalist-item:hover {
+  & .list-item:hover {
     background: oklch(from var(--color-base-content) l c h / 1.5%);
     padding-inline: var(--space-xs);
 
     & .item-title {
       color: var(--color-accent);
-      transform: translateX(4px);
-    }
-
-    & .item-date, & .item-category {
-      opacity: 0.6;
+      transform: translateX(0.25rem); /* 4px / 16 */
     }
   }
 
   @container (width <= 768px) {
-    & .minimalist-item {
-      grid-template-columns: 1fr;
-      gap: var(--space-xxs);
-      padding-block: var(--space-md);
-    }
-
-    & .item-date {
-      order: -1;
-    }
-
     & .item-category {
-      margin-top: var(--space-xxs);
+      display: none;
     }
   }
 }

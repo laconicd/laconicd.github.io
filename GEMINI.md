@@ -160,3 +160,45 @@ Always prioritize modern CSS features and logical properties over physical ones 
   - **State Queries**: Style queries - `@container style(--sticky: true) { ... }`
   - **Nesting**: Native nesting - `.parent { .child { ... } }`
   - **Composition First**: Layout containers - `.stack { container-type: inline-size; }`
+
+---
+
+### Modern Hybrid CUBE CSS Guide
+
+This project follows a refined **CUBE CSS** methodology, distinguishing between **Layout Data** (inline variables) and
+**Visual State** (utility classes).
+
+#### 1. Layout Data via Inline Variables
+
+For properties with infinite numerical possibilities (Spacing, Alignment, Sizing), use **Inline CSS Variables** injected
+into Composition classes (`.stack`, `.cluster`, etc.).
+
+- **Mechanism**: Use the `style` attribute to pass specific token values to a layout primitive.
+- **Tokens**: Leverage Tailwind-standard spacing and sizing tokens (e.g., `var(--spacing-4)`, `var(--radius-lg)`)
+  defined in `tokens.css`.
+- **Why**: Avoids "utility class explosion" and keeps the relationship between a structure and its specific measurements
+  explicit.
+- **Example**:
+  ```html
+  <div class="stack" style="--gap: var(--spacing-12); --align: center">
+    <div class="cluster" style="--gap: var(--spacing-2)">...</div>
+  </div>
+  ```
+
+#### 2. Visual State via Utility Classes
+
+For properties with limited, binary, or semantic options (Text align, Font weight, Transform), use **Utility Classes**.
+
+- **Mechanism**: Standard classes like `.text-center`, `.uppercase`, `.font-bold`.
+- **Why**: These represent a "state" or "attribute" rather than a raw measurement, making them highly reusable across
+  any element.
+- **Example**:
+  ```html
+  <h1 class="font-heading text-center uppercase">Frontispiece</h1>
+  ```
+
+#### 3. Best Practice: The Balance
+
+- **Parent Level**: Define the "rules" of the layout using Composition classes + Inline variables.
+- **Child Level**: Define the "look" of the content using Utility classes or Block-specific styles.
+- **One Source of Truth**: All measurements follow the **Tailwind Standard Scale** manually maintained in `tokens.css`.

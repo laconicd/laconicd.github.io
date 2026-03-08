@@ -3,7 +3,7 @@ title: Categories
 layout: layouts/base.vto
 ---
 
-<header class="hero [ stack ]" data-align="center" data-gap="xs" style="width: 100%">
+<header class="hero [ stack ] [ align-center gap-xs w-full ]">
   <span class="eyebrow">DIGITAL FOLDERS</span>
   <h1 class="title">The Index.</h1>
 </header>
@@ -17,7 +17,7 @@ layout: layouts/base.vto
     <a href="{{ url }}" class="category-item">
       <span class="item-num">0{{ index + 1 }}</span>
 
-      <div class="item-main [ stack ]" data-gap="xxs">
+      <div class="item-main [ stack ] [ gap-xxs ]">
         <h2 class="item-title">{{ cat }}</h2>
         <span class="item-meta">{{ count }} {{ count > 1 ? "Records" : "Record" }}</span>
       </div>

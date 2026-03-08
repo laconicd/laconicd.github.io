@@ -5,14 +5,13 @@ layout: layouts/base.vto
 {{ set color = info?.color || category |> tagColor }}
 {{ set categories = search.pages(`category=${category} type=post`, "date=desc") }}
 
-<div class="[ stack ]" data-gap="xl">
-  <header class="hero [ stack ]" data-align="center" data-size="small" data-gap="xs" style="width: 100%">
+<div class="[ stack ] [ gap-xl ]">
+  <header class="hero [ stack ] [ align-center gap-xs max-w-small w-full ]">
     <div
-      class="[ cluster ]"
-      style="font-size: var(--font-size-meta); font-weight: 800; letter-spacing: 0.3em; opacity: 0.3; text-transform: uppercase"
+      class="[ cluster ] [ font-meta font-800 tracking-widest opacity-30 uppercase ]"
     >
       <span>CATEGORY</span>
-      <span style="opacity: 0.5">/</span>
+      <span class="[ opacity-50 ]">/</span>
       <span>{{ categories.length }} {{ categories.length > 1 ? "RECORDS" : "RECORD" }}</span>
     </div>
 
@@ -44,7 +43,7 @@ layout: layouts/base.vto
     {{ /for }}
   </div>
 
-  <div class="[ cluster ]" style="justify-content: center; padding-block: var(--space-xl)">
+  <div class="[ cluster ] [ justify-center pb-xl ]">
     <a href="/categories" class="menu-trigger">
       <span class="trigger-text">VIEW ALL CATEGORIES</span>
     </a>

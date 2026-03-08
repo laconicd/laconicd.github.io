@@ -3,33 +3,21 @@ title: Exploration
 layout: layouts/base.vto
 ---
 
-<header class="hero [ stack ]" data-align="center" data-gap="xs" style="width: 100%">
+<header class="hero [ stack ] [ text-center ]" style="--align: center; --gap: var(--space-xxs)">
   <span class="eyebrow">LOFI EDITORIAL</span>
   <h1 class="title">The Blog.</h1>
-  <p class="subtitle">
-    Exploring ideas through code, design, and lofi aesthetics.
-  </p>
+  <p class="subtitle">Exploring ideas through code, design, and lofi aesthetics.</p>
 </header>
 
-<section class="latest-records [ stack ]" data-gap="none">
-  <div class="post-grid">
-    {{ for index, post of search.pages("type=post", "date=desc", 10) }}
-      <a href="{{ post.url }}" class="post-card">
-        <header class="card-header">
-          <span class="card-date">
-            {{ post.date.toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "2-digit" }) }}
-          </span>
-          {{ if post.category }}
-            <span class="card-category">{{ post.category }}</span>
-          {{ /if }}
-        </header>
-        ˜
-        <h2 class="card-title">{{ post.title }}</h2>
-
-        {{ if post.description }}
-          <p class="card-desc">{{ post.description }}</p>
-        {{ /if }}
-      </a>
-    {{ /for }}
-  </div>
+<section class="[ stack ]" style="--gap: 0">
+  {{ for index, post of search.pages("type=post", "date=desc", 3) }}
+    <a href="{{ post.url }}" class="post-card">
+      <header class="card-header">
+        <span class="card-date">{{ post.date.toDateString() }}</span>
+        <span class="card-category">{{ post.category }}</span>
+      </header>
+      <h2 class="card-title">{{ post.title }}</h2>
+      <p class="card-desc">{{ post.description }}</p>
+    </a>
+  {{ /for }}
 </section>

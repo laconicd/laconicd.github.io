@@ -1,10 +1,9 @@
-@layer reset, base, blocks, composition, utilities;
+@layer reset, base, blocks, composition, exceptions, utilities;
 
 @import url("css/base/reset.css") layer(reset);
 @import url("css/base/tokens.css") layer(base);
 @import url("css/base/global.css") layer(base);
 
-/* Essential Compositions (Layout intent wins over block defaults) */
 @import url("css/compositions/cluster.css") layer(composition);
 @import url("css/compositions/container.css") layer(composition);
 @import url("css/compositions/grid.css") layer(composition);
@@ -15,27 +14,14 @@
 @import url("css/compositions/sidebar.css") layer(composition);
 @import url("css/compositions/reel.css") layer(composition);
 
-/* Minimal Blocks (Pure components) */
 @import url("css/blocks/navbar.css") layer(blocks);
 @import url("css/blocks/hero.css") layer(blocks);
-@import url("css/blocks/post-grid.css") layer(blocks);
+@import url("css/blocks/post-card.css") layer(blocks);
 @import url("css/blocks/tag-cloud.css") layer(blocks);
 @import url("css/blocks/category-board.css") layer(blocks);
 @import url("css/prose.css") layer(blocks);
 
-@import url("css/utilities/utilities.css") layer(utilities);
+@import url("css/exceptions/print.css") layer(exceptions);
 
-/* --- Global Atmosphere: Noise Texture --- */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-}
+@import url("css/utilities/layout.css") layer(utilities);
+@import url("css/utilities/typography.css") layer(utilities);

@@ -1,8 +1,6 @@
 @scope (.hero) {
   :scope {
     padding-block: var(--space-xl) var(--space-lg);
-    text-align: inherit; /* 상위 Composition(.center)의 정렬을 따름 */
-    align-items: inherit;
   }
 
   & .eyebrow {
@@ -18,7 +16,6 @@
     font-weight: 900;
     line-height: 0.85;
     letter-spacing: -0.06em;
-    margin: 0;
   }
 
   & .subtitle {
@@ -27,12 +24,5 @@
     opacity: 0.4;
     max-width: 45ch;
     line-height: 1.4;
-  }
-
-  &[data-size="small"] {
-    padding-block: var(--space-lg);
-    & .title {
-      font-size: var(--font-size-h1);
-    }
   }
 }

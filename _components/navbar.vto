@@ -1,47 +1,43 @@
 <nav class="navbar">
-  <div class="container [ cluster ]" data-justify="between">
+  <div class="[ container cluster ]" style="--justify: space-between">
     <a href="/" class="brand">LACONIC.</a>
-
-    <button popovertarget="site-menu" class="menu-trigger">
-      INDEX
-    </button>
+    <button popovertarget="site-menu" class="menu-trigger">INDEX</button>
   </div>
 
   <div id="site-menu" popover class="popover-menu">
-    <div class="header">
+    <div class="header" style="--justify: space-between">
       <span class="meta-label">NAVIGATION MAP</span>
       <button popovertarget="site-menu" popovertargetaction="hide" class="close-btn">[ CLOSE ]</button>
     </div>
 
-    <div class="body container">
-      <!-- 배경 워터마크 -->
+    <div class="body [ container ]">
       <div class="menu-watermark">INDEX</div>
 
-      <div class="menu-content-grid">
+      <div class="menu-content-grid" style="--gap: var(--space-xl)">
         <ul class="list">
           <li>
-            <a href="/" class="link">
+            <a href="/" class="link" style="--gap: var(--space-md)">
               <span class="num">01</span>
               <span class="text">Frontispiece</span>
               <span class="meta">Home</span>
             </a>
           </li>
           <li>
-            <a href="/posts" class="link">
+            <a href="/posts" class="link" style="--gap: var(--space-md)">
               <span class="num">02</span>
               <span class="text">Archives</span>
               <span class="meta">{{ search.pages("type=post").length }} Records</span>
             </a>
           </li>
           <li>
-            <a href="/categories" class="link">
+            <a href="/categories" class="link" style="--gap: var(--space-md)">
               <span class="num">03</span>
               <span class="text">Categories</span>
               <span class="meta">{{ search.values("category").length }} Sections</span>
             </a>
           </li>
           <li>
-            <a href="/tags" class="link">
+            <a href="/tags" class="link" style="--gap: var(--space-md)">
               <span class="num">04</span>
               <span class="text">Keywords</span>
               <span class="meta">{{ search.values("tags").length }} Themes</span>
@@ -49,15 +45,15 @@
           </li>
         </ul>
 
-        <div class="menu-side-info [ stack ]" data-gap="md">
-          <div class="info-block [ stack ]" data-gap="xxs">
+        <div class="menu-side-info [ stack ]" style="--gap: var(--space-lg); --justify: center">
+          <div class="info-block [ stack ]" style="--gap: var(--space-xxs)">
             <span class="label">LATEST ENTRY</span>
             {{ set lastPost = search.pages("type=post", "date=desc", 1)[0] }}
             <a href="{{ lastPost.url }}" class="info-link">{{ lastPost.title }}</a>
           </div>
-          <div class="info-block [ stack ]" data-gap="xxs">
+          <div class="info-block [ stack ]" style="--gap: var(--space-xxs)">
             <span class="label">CONNECT</span>
-            <div class="[ cluster ]" data-gap="sm">
+            <div class="[ cluster ]" style="--gap: var(--space-sm)">
               <a href="https://github.com/laconicd" class="info-link">GH</a>
               <a href="https://x.com/misteroom" class="info-link">TW</a>
               <a href="/rss.xml" class="info-link">RSS</a>

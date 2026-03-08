@@ -16,7 +16,7 @@ html, body {
 
 #site-footer {
   view-transition-name: site-footer;
-  border-top: 1px solid var(--border-color);
+  border-top: var(--border-width) solid var(--border-color);
   margin-top: var(--space-xxl);
   background-color: var(--color-base-100);
 }
@@ -32,8 +32,8 @@ html, body {
 @keyframes eliteSlideUp {
   from {
     opacity: 0;
-    transform: translateY(10px);
-  } /* 30px -> 10px */
+    transform: translateY(0.625rem);
+  }
   to {
     opacity: 1;
     transform: translateY(0);

@@ -1,26 +1,25 @@
 @scope (.category-grid) {
   :scope {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2열 그리드로 포스트 리스트와 차별화 */
-    border-top: 1px solid var(--border-color-strong);
+    grid-template-columns: repeat(2, 1fr);
+    border-top: var(--border-width) solid var(--border-color-strong);
   }
 
   & .category-item {
     text-decoration: none;
     color: inherit;
     padding: var(--space-md);
-    border-bottom: 1px solid var(--border-color);
-    border-right: 1px solid var(--border-color); /* 격자 선 표현 */
+    border-bottom: var(--border-width) solid var(--border-color);
+    border-right: var(--border-width) solid var(--border-color);
     border-radius: var(--radius-lg);
-    margin: var(--space-xxs); /* 라운드 효과를 위해 미세한 여백 추가 */
+    margin: var(--space-xxs);
     transition: all var(--transition-speed-base) var(--transition-ease-snap);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 200px;
+    min-height: 12.5rem; /* 200px / 16 */
   }
 
-  /* 2열 그리드에서 오른쪽 아이템은 오른쪽 보더 제거 */
   & .category-item:nth-child(2n) {
     border-right: none;
   }
@@ -30,7 +29,7 @@
     font-style: italic;
     font-size: 3rem;
     line-height: 1;
-    opacity: 0.05; /* 평소엔 거의 안 보이게 */
+    opacity: 0.05;
     transition: all var(--transition-speed-base) var(--transition-ease-snap);
   }
 
@@ -38,26 +37,25 @@
     font-size: var(--font-size-h2);
     font-weight: 900;
     line-height: 1;
-    letter-spacing: -0.04em;
+    letter-spacing: var(--tracking-tight);
     margin: 0;
   }
 
   & .item-meta {
     font-size: var(--font-size-label);
     font-weight: 800;
-    letter-spacing: 0.2em;
+    letter-spacing: var(--tracking-wider);
     opacity: 0.2;
     text-transform: uppercase;
     margin-top: var(--space-xs);
   }
 
-  /* Interaction: 하이엔드 포인트 */
   & .category-item:hover {
     background: oklch(from var(--color-base-content) l c h / 3%);
 
     & .item-num {
       opacity: 0.3;
-      transform: translateX(10px);
+      transform: translateX(0.625rem); /* 10px / 16 */
       color: var(--color-accent);
     }
 
@@ -74,9 +72,9 @@
   @container (width <= 768px) {
     :scope {
       grid-template-columns: 1fr;
-    } /* 모바일은 1열 */
+    }
     & .category-item {
-      min-height: 160px;
+      min-height: 10rem; /* 160px / 16 */
       border-right: none;
     }
   }

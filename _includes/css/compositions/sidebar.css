@@ -16,14 +16,3 @@
   flex-grow: 999;
   min-width: var(--main-min, 50%);
 }
-
-/* Exceptions: 사이드바 배치 변주 */
-.sidebar[data-side="right"] {
-  flex-direction: row-reverse;
-}
-.sidebar[data-side="narrow"] {
-  --side-width: 12ch;
-}
-.sidebar[data-side="wide"] {
-  --side-width: 30ch;
-}

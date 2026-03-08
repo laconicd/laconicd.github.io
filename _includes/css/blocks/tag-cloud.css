@@ -2,36 +2,30 @@
   :scope {
     display: flex;
     flex-wrap: wrap;
-    column-gap: var(--space-md);
-    row-gap: var(--space-xxs);
-    justify-content: center; /* 태그 클라우드도 중앙 정렬 */
-    max-width: var(--container-max-width);
-    margin-inline: auto;
-    padding-block: var(--space-lg);
+    gap: var(--space-md);
+    border-top: var(--border-width) solid var(--border-color-strong);
+    padding-block: var(--space-xl);
   }
 
   & .tag-chip {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
     align-items: center;
-    gap: 0.15rem;
-    padding-block: var(--space-xs);
-    transition: all var(--transition-speed-base) var(--transition-ease-snap);
+    gap: 0.15rem; /* Small decorative gap, rem okay */
+    text-decoration: none;
+    display: flex;
   }
 
   & .tag-hash {
-    font-size: 0.75rem;
-    font-weight: 800;
     opacity: 0.15;
     color: var(--color-base-content);
+    font-size: 0.75rem; /* Fixed small decorative tag, rem okay */
+    font-weight: 800;
   }
 
   & .tag-text {
-    font-size: var(--font-size-h3); /* h1/h2보다 작은 h3로 통일 */
+    font-size: var(--font-size-h3);
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: -0.04em;
+    letter-spacing: var(--tracking-tight);
     transition: all var(--transition-speed-base) var(--transition-ease-snap);
   }
 
@@ -43,7 +37,6 @@
     vertical-align: super;
   }
 
-  /* Interaction: Elite Minimal Expansion */
   & .tag-chip:hover {
     color: var(--color-accent);
 
@@ -51,21 +44,23 @@
       opacity: 0.6;
       color: var(--color-accent);
     }
+
     & .tag-count {
       opacity: 0.6;
       color: var(--color-accent);
     }
+
     & .tag-text {
       letter-spacing: 0.02em;
     }
   }
 
   @container (width <= 768px) {
-    & .tag-text {
-      font-size: 1.15rem;
-    }
     :scope {
       gap: var(--space-sm);
+    }
+    & .tag-text {
+      font-size: 1.15rem;
     }
   }
 }
